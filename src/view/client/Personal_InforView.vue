@@ -21,7 +21,7 @@
                             </svg>
                             Actual Name: *
                         </label>
-                        <input v-model="formData.name" type="text" placeholder="Please fill in the information"
+                        <input v-model="formData.name" type="text" placeholder="Actual Name: *"
                             class="w-full p-2 border rounded-lg" required />
                     </div>
 
@@ -33,7 +33,7 @@
                             </svg>
                             Identification Card No: *
                         </label>
-                        <input v-model="formData.idNumber" type="text" placeholder="Please fill in the information"
+                        <input v-model="formData.idNumber" type="text" placeholder="Identification Card No: *"
                             class="w-full p-2 border rounded-lg" required />
                     </div>
 
@@ -71,7 +71,7 @@
                             </svg>
                             Enter current job: *
                         </label>
-                        <input v-model="formData.job" type="text" placeholder="Please fill in the information"
+                        <input v-model="formData.job" type="text" placeholder="Enter current job: *"
                             class="w-full p-2 border rounded-lg" required />
                     </div>
 
@@ -83,7 +83,7 @@
                             </svg>
                             Stable income: *
                         </label>
-                        <input v-model="formData.income" type="text" placeholder="Please fill in the information"
+                        <input v-model="formData.income" type="text" placeholder="Stable income: *"
                             class="w-full p-2 border rounded-lg" required />
                     </div>
 
@@ -95,7 +95,7 @@
                             </svg>
                             Enter your loan purpose: *
                         </label>
-                        <input v-model="formData.loanPurpose" type="text" placeholder="Please fill in the information"
+                        <input v-model="formData.loanPurpose" type="text" placeholder="Enter your loan purpose: *"
                             class="w-full p-2 border rounded-lg" required />
                     </div>
 
@@ -107,7 +107,7 @@
                             </svg>
                             Enter your current address: *
                         </label>
-                        <input v-model="formData.address" type="text" placeholder="Please fill in the information"
+                        <input v-model="formData.address" type="text" placeholder="Enter your current address: *"
                             class="w-full p-2 border rounded-lg" required />
                     </div>
 
@@ -119,7 +119,7 @@
                             </svg>
                             Enter the name of your relative: *
                         </label>
-                        <input v-model="formData.relativeName" type="text" placeholder="Please fill in the information"
+                        <input v-model="formData.relativeName" type="text" placeholder="Enter the name of your relative: *"
                             class="w-full p-2 border rounded-lg" required />
                     </div>
 
@@ -131,7 +131,7 @@
                             </svg>
                             Please enter a contact: *
                         </label>
-                        <input v-model="formData.contact" type="text" placeholder="Please fill in the information"
+                        <input v-model="formData.contact" type="text" placeholder="Please enter a contact: *"
                             class="w-full p-2 border rounded-lg" required />
                     </div>
 
@@ -143,7 +143,7 @@
                             </svg>
                             Enter your relative's phone number: *
                         </label>
-                        <input v-model="formData.relativePhone" type="text" placeholder="Please fill in the information"
+                        <input v-model="formData.relativePhone" type="text" placeholder="Enter your relative's phone number: *"
                             class="w-full p-2 border rounded-lg" required />
                     </div>
 
@@ -408,7 +408,9 @@ export default {
                     address: formData.value.address,
                     relativeName: formData.value.relativeName,
                     contact: formData.value.contact,
-                    relativePhone: formData.value.relativePhone
+                    relativePhone: formData.value.relativePhone,
+                    bankName: '',
+                    accountNumber: '',
                 };
 
                 await updateDocs(user?.value?.uid, updatedData);

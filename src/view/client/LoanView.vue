@@ -87,9 +87,14 @@
 
         <!-- Confirm Button -->
         <div class="flex justify-center col-span-2 mt-6">
-            <button type="submit" :disabled="!isLoanValid || !agreedToTerms" @click.prevent="submitLoan"
+            <button v-if="!isLoanding" type="submit" :disabled="!isLoanValid || !agreedToTerms"
+                @click.prevent="submitLoan"
                 class="flex items-center justify-center w-full max-w-sm gap-3 py-3 text-blue-700 transition border border-blue-600 rounded-full shadow-md md:text-xl hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed">
                 <span>Loan Confirm</span>
+            </button>
+            <button v-else
+                class="flex items-center justify-center w-full max-w-sm gap-3 py-3 text-blue-700 transition border border-blue-600 rounded-full shadow-md md:text-xl hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                <span>Waiting...</span>
             </button>
         </div>
 
@@ -141,6 +146,9 @@ import NavbarComponent from '@/components/client/NavbarComponent.vue';
 import MobileView from './MobileView.vue';
 // import IdentificationView from './IdentificationView.vue';
 import { useRouter } from 'vue-router';
+import useCollection from '@/firebase/useCollection';
+import getUser from '@/firebase/getUser';
+
 
 export default {
     components: {
@@ -157,8 +165,12 @@ export default {
         const allLoanValues = ref("")
 
         const currentIndent = ref("")
+        const isLoanding = ref(false)
 
         const router = useRouter();
+
+        const { setDocs } = useCollection("customers")
+        const { user } = getUser()
 
         const formattedAmount = computed(() => {
             return loanAmount.value.toLocaleString();
@@ -205,41 +217,67 @@ export default {
         };
 
         const submitLoan = () => {
-            if (!isLoanValid.value) {
-                alert('Please enter a valid loan amount (15,000P - 6,000,000P) and select a loan term');
-                return;
+
+            isLoanding.value = true
+            try {
+
+                if (!isLoanValid.value) {
+                    alert('Please enter a valid loan amount (15,000P - 6,000,000P) and select a loan term');
+                    return;
+                }
+
+                if (!agreedToTerms.value) {
+                    showModal.value = true;
+                    return;
+                }
+
+
+                processLoan();
+                isLoanding.value = false
+            }
+            catch (err) {
+                console.log(err)
             }
 
-            if (!agreedToTerms.value) {
-                showModal.value = true;
-                return;
+            finally{
+                isLoanding.value = false
             }
 
-            processLoan();
         };
 
         const agreeLoan = () => {
-            agreedToTerms.value = true;
-            showModal.value = false;
 
-            alert(totalPrincipalAndInterest.value);
+            try {
 
-            // console.log('Loan Agreement Confirmed:', {
-            //     amount: loanAmount.value,
-            //     formattedAmount: formattedAmount.value,
-            //     term: loanTerm.value,
-            //     interestRate: interestRate.value,
-            //     monthlyPayment: monthlyPayment.value,
-            //     totalInterest: totalInterest.value,
-            //     totalPrincipalAndInterest: totalPrincipalAndInterest.value,
-            //     createdAt: new Date().toISOString()
-            // });
-            processLoan();
 
+                agreedToTerms.value = true;
+                showModal.value = false;
+
+                alert(totalPrincipalAndInterest.value);
+
+                // console.log('Loan Agreement Confirmed:', {
+                //     amount: loanAmount.value,
+                //     formattedAmount: formattedAmount.value,
+                //     term: loanTerm.value,
+                //     interestRate: interestRate.value,
+                //     monthlyPayment: monthlyPayment.value,
+                //     totalInterest: totalInterest.value,
+                //     totalPrincipalAndInterest: totalPrincipalAndInterest.value,
+                //     createdAt: new Date().toISOString()
+                // });
+                processLoan();
+
+
+
+
+            } catch (err) {
+                console.log(err)
+            }
 
         };
 
-        const processLoan = () => {
+        const processLoan = async () => {
+
             const data = {
                 amount: loanAmount.value,
                 term: loanTerm.value,
@@ -252,11 +290,22 @@ export default {
 
             console.log('Loan request data:', data);
 
+            const dataProfile = {
+                front_image: "",
+                back_image: "",
+                selfie_image: "",
+            }
+
+
+            await setDocs(dataProfile, user?.value?.uid)
+
+
+
 
             router.push({
                 path: "/identification",
                 query: {
-                   data: JSON.stringify(data)
+                    data: JSON.stringify(data)
                 }
             });
 
@@ -280,7 +329,8 @@ export default {
             submitLoan,
             agreeLoan,
             allLoanValues,
-            currentIndent
+            currentIndent,
+            isLoanding
         };
     }
 }

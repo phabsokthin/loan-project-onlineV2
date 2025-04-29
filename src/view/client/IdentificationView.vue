@@ -9,144 +9,233 @@
         <h2 class="p-3 text-lg font-semibold text-center text-white bg-blue-600 rounded-md">KYC Identification</h2>
         <div class="max-w-md p-4 mx-auto overflow-hidden bg-white shadow-md rounded-xl">
             <h1 class="mb-4 text-2xl font-bold text-center text-gray-800">KYC Identification</h1>
-            <form @submit.prevent="handleSubmit" class="space-y-6">
-                <!-- Front ID Card Section -->
-                <div>
-                    <label class="block mb-1 text-sm font-medium text-gray-700">Front ID Card</label>
-                    <div
-                        class="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md">
-                        <div class="space-y-1 text-center">
-                            <div class="flex justify-center">
-                                <template v-if="!frontImage">
-                                    <svg class="w-12 h-12 mx-auto text-gray-400" stroke="currentColor" fill="none"
-                                        viewBox="0 0 48 48" aria-hidden="true">
-                                        <path
-                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </template>
-                                <img v-else :src="frontImage" class="object-contain h-48" alt="Front ID preview">
+
+            <div v-for="usDoc in userDoc" :key="usDoc" class="mb-4">
+         
+                <form v-if="!usDoc.front_image || !usDoc.back_image || !usDoc.selfie_image" @submit.prevent="handleSubmit" class="space-y-6">
+                    <!-- Front ID Card Section -->
+                    <div>
+                        <label class="block mb-1 text-sm font-medium text-gray-700">Front ID Card</label>
+                        <div
+                            class="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md">
+                            <div class="space-y-1 text-center">
+                                <div class="flex justify-center">
+                                    <template v-if="!frontImage">
+                                        <svg class="w-12 h-12 mx-auto text-gray-400" stroke="currentColor" fill="none"
+                                            viewBox="0 0 48 48" aria-hidden="true">
+                                            <path
+                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </template>
+                                    <img v-else :src="frontImage" class="object-contain h-48" alt="Front ID preview">
+                                </div>
+                                <div class="flex justify-center text-sm text-gray-600">
+                                    <label for="front-upload"
+                                        class="relative font-medium text-indigo-600 bg-white rounded-md cursor-pointer hover:text-indigo-500 focus-within:outline-none">
+                                        <span v-if="!frontImage">Upload a file</span>
+                                        <span v-else>Change file</span>
+                                        <input id="front-upload" name="front-upload" type="file" class="sr-only"
+                                            @change="handleFrontUpload" accept="image/*">
+                                    </label>
+                                </div>
+                                <p class="text-xs text-gray-500">PNG, JPG, JPEG up to 5MB</p>
                             </div>
-                            <div class="flex justify-center text-sm text-gray-600">
-                                <label for="front-upload"
-                                    class="relative font-medium text-indigo-600 bg-white rounded-md cursor-pointer hover:text-indigo-500 focus-within:outline-none">
-                                    <span v-if="!frontImage">Upload a file</span>
-                                    <span v-else>Change file</span>
-                                    <input id="front-upload" name="front-upload" type="file" class="sr-only"
-                                        @change="handleFrontUpload" accept="image/*">
-                                </label>
-                            </div>
-                            <p class="text-xs text-gray-500">PNG, JPG, JPEG up to 5MB</p>
                         </div>
                     </div>
-                </div>
 
-                <!-- Back ID Card Section -->
-                <div>
-                    <label class="block mb-1 text-sm font-medium text-gray-700">Back ID Card</label>
-                    <div
-                        class="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md">
-                        <div class="space-y-1 text-center">
-                            <div class="flex justify-center">
-                                <template v-if="!backImage">
-                                    <svg class="w-12 h-12 mx-auto text-gray-400" stroke="currentColor" fill="none"
-                                        viewBox="0 0 48 48" aria-hidden="true">
-                                        <path
-                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </template>
-                                <img v-else :src="backImage" class="object-contain h-48" alt="Back ID preview">
+                    <!-- Back ID Card Section -->
+                    <div>
+                        <label class="block mb-1 text-sm font-medium text-gray-700">Back ID Card</label>
+                        <div
+                            class="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md">
+                            <div class="space-y-1 text-center">
+                                <div class="flex justify-center">
+                                    <template v-if="!backImage">
+                                        <svg class="w-12 h-12 mx-auto text-gray-400" stroke="currentColor" fill="none"
+                                            viewBox="0 0 48 48" aria-hidden="true">
+                                            <path
+                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </template>
+                                    <img v-else :src="backImage" class="object-contain h-48" alt="Back ID preview">
+                                </div>
+                                <div class="flex justify-center text-sm text-gray-600">
+                                    <label for="back-upload"
+                                        class="relative font-medium text-indigo-600 bg-white rounded-md cursor-pointer hover:text-indigo-500 focus-within:outline-none">
+                                        <span v-if="!backImage">Upload a file</span>
+                                        <span v-else>Change file</span>
+                                        <input id="back-upload" name="back-upload" type="file" class="sr-only"
+                                            @change="handleBackUpload" accept="image/*">
+                                    </label>
+                                </div>
+                                <p class="text-xs text-gray-500">PNG, JPG, JPEG up to 5MB</p>
                             </div>
-                            <div class="flex justify-center text-sm text-gray-600">
-                                <label for="back-upload"
-                                    class="relative font-medium text-indigo-600 bg-white rounded-md cursor-pointer hover:text-indigo-500 focus-within:outline-none">
-                                    <span v-if="!backImage">Upload a file</span>
-                                    <span v-else>Change file</span>
-                                    <input id="back-upload" name="back-upload" type="file" class="sr-only"
-                                        @change="handleBackUpload" accept="image/*">
-                                </label>
-                            </div>
-                            <p class="text-xs text-gray-500">PNG, JPG, JPEG up to 5MB</p>
                         </div>
                     </div>
-                </div>
 
-                <!-- Selfie Section -->
-                <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-700">Selfie with Photo</label>
-                    <div
-                        class="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md">
-                        <div class="space-y-1 text-center">
-                            <div class="flex justify-center">
-                                <template v-if="!selfieImage">
-                                    <svg class="w-12 h-12 mx-auto text-gray-400" stroke="currentColor" fill="none"
-                                        viewBox="0 0 48 48" aria-hidden="true">
-                                        <path
-                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </template>
-                                <img v-else :src="selfieImage" class="object-contain h-48" alt="Selfie preview">
+                    <!-- Selfie Section -->
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-700">Selfie with Photo</label>
+                        <div
+                            class="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md">
+                            <div class="space-y-1 text-center">
+                                <div class="flex justify-center">
+                                    <template v-if="!selfieImage">
+                                        <svg class="w-12 h-12 mx-auto text-gray-400" stroke="currentColor" fill="none"
+                                            viewBox="0 0 48 48" aria-hidden="true">
+                                            <path
+                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </template>
+                                    <img v-else :src="selfieImage" class="object-contain h-48" alt="Selfie preview">
+                                </div>
+                                <div class="flex justify-center text-sm text-gray-600">
+                                    <button v-if="!isCameraOpen" type="button" @click="openCamera"
+                                        class="relative font-medium text-indigo-600 bg-white rounded-md hover:text-indigo-500 focus-within:outline-none">
+                                        Take a photo
+                                    </button>
+                                    <button v-else type="button" @click="takePhoto"
+                                        class="relative font-medium text-indigo-600 bg-white rounded-md hover:text-indigo-500 focus-within:outline-none">
+                                        Capture
+                                    </button>
+                                    <label v-if="!isCameraOpen"
+                                        class="relative ml-3 font-medium text-indigo-600 bg-white rounded-md cursor-pointer hover:text-indigo-500 focus-within:outline-none">
+                                        <span v-if="!selfieImage">or upload</span>
+                                        <span v-else>or change</span>
+                                        <input type="file" class="sr-only" @change="handleSelfieUpload"
+                                            accept="image/*">
+                                    </label>
+                                </div>
+                                <p class="text-xs text-gray-500">PNG, JPG, JPEG up to 5MB</p>
                             </div>
-                            <div class="flex justify-center text-sm text-gray-600">
-                                <button v-if="!isCameraOpen" type="button" @click="openCamera"
-                                    class="relative font-medium text-indigo-600 bg-white rounded-md hover:text-indigo-500 focus-within:outline-none">
-                                    Take a photo
+                        </div>
+                    </div>
+
+                    <!-- Camera Modal -->
+                    <div v-if="isCameraOpen"
+                        class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
+                        <div class="w-full max-w-md p-4 bg-white rounded-lg">
+                            <div class="relative">
+                                <video ref="video" autoplay class="w-full h-auto rounded-lg"></video>
+                                <canvas ref="canvas" class="hidden"></canvas>
+                            </div>
+                            <div class="flex justify-between mt-4">
+                                <button type="button" @click="closeCamera"
+                                    class="px-4 py-2 text-white bg-gray-500 rounded-md hover:bg-gray-600">
+                                    Cancel
                                 </button>
-                                <button v-else type="button" @click="takePhoto"
-                                    class="relative font-medium text-indigo-600 bg-white rounded-md hover:text-indigo-500 focus-within:outline-none">
-                                    Capture
+                                <button type="button" @click="takePhoto"
+                                    class="px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700">
+                                    Take Photo
                                 </button>
-                                <label v-if="!isCameraOpen"
-                                    class="relative ml-3 font-medium text-indigo-600 bg-white rounded-md cursor-pointer hover:text-indigo-500 focus-within:outline-none">
-                                    <span v-if="!selfieImage">or upload</span>
-                                    <span v-else>or change</span>
-                                    <input type="file" class="sr-only" @change="handleSelfieUpload" accept="image/*">
-                                </label>
                             </div>
-                            <p class="text-xs text-gray-500">PNG, JPG, JPEG up to 5MB</p>
                         </div>
                     </div>
-                </div>
 
-                <!-- Camera Modal -->
-                <div v-if="isCameraOpen"
-                    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
-                    <div class="w-full max-w-md p-4 bg-white rounded-lg">
-                        <div class="relative">
-                            <video ref="video" autoplay class="w-full h-auto rounded-lg"></video>
-                            <canvas ref="canvas" class="hidden"></canvas>
-                        </div>
-                        <div class="flex justify-between mt-4">
-                            <button type="button" @click="closeCamera"
-                                class="px-4 py-2 text-white bg-gray-500 rounded-md hover:bg-gray-600">
-                                Cancel
-                            </button>
-                            <button type="button" @click="takePhoto"
-                                class="px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700">
-                                Take Photo
-                            </button>
+                    <!-- Submit Button -->
+                    <div>
+                        <button v-if="!isLoanding" type="submit" :disabled="!isFormComplete"
+                            :class="{ 'opacity-50 cursor-not-allowed': !isFormComplete, 'hover:bg-indigo-700': isFormComplete }"
+                            class="flex justify-center w-full px-4 py-2 mb-20 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Continue
+                        </button>
+
+                        <button v-else type="submit" disabled
+                            :class="{ 'opacity-50 cursor-not-allowed': !isFormComplete, 'hover:bg-indigo-700': isFormComplete }"
+                            class="flex justify-center w-full px-4 py-2 mb-20 text-sm font-medium text-white bg-indigo-400 border border-transparent rounded-md shadow-sm cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Waiting...
+                        </button>
+                    </div>
+                </form>
+
+
+                <div v-else class="space-y-6">
+                    <!-- Front ID Card Section -->
+                    <div>
+                        <label class="block mb-1 text-sm font-medium text-gray-700">Front ID Card</label>
+                        <div
+                            class="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md">
+                            <div class="space-y-1 text-center">
+                                <div class="flex justify-center">
+                                    <template v-if="!frontImage">
+                                        <img :src="usDoc.front_image" alt="">
+                                    </template>
+                                    <img v-else :src="frontImage" class="object-contain h-48" alt="Front ID preview">
+                                </div>
+                               
+                              
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Submit Button -->
-                <div>
-                    <button v-if="!isLoanding" type="submit" :disabled="!isFormComplete"
-                        :class="{ 'opacity-50 cursor-not-allowed': !isFormComplete, 'hover:bg-indigo-700': isFormComplete }"
-                        class="flex justify-center w-full px-4 py-2 mb-20 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Continue
-                    </button>
+                    <!-- Back ID Card Section -->
+                    <div>
+                        <label class="block mb-1 text-sm font-medium text-gray-700">Back ID Card</label>
+                        <div
+                            class="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md">
+                            <div class="space-y-1 text-center">
+                                <div class="flex justify-center">
+                                    <img :src="usDoc.back_image" alt="">
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
 
-                    <button v-else type="submit"  disabled
-                        :class="{ 'opacity-50 cursor-not-allowed': !isFormComplete, 'hover:bg-indigo-700': isFormComplete }"
-                        class="flex justify-center w-full px-4 py-2 mb-20 text-sm font-medium text-white bg-indigo-400 border border-transparent rounded-md shadow-sm cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Waiting...
-                    </button>
+                    <!-- Selfie Section -->
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-700">Selfie with Photo</label>
+                        <div
+                            class="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md">
+                            <div class="space-y-1 text-center">
+                                <div class="flex justify-center">
+                                   <img :src="usDoc.selfie_image" alt="">
+                                </div>
+                                <div class="flex justify-center text-sm text-gray-600">
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Camera Modal -->
+                    <div v-if="isCameraOpen"
+                        class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
+                        <div class="w-full max-w-md p-4 bg-white rounded-lg">
+                            <div class="relative">
+                                <video ref="video" autoplay class="w-full h-auto rounded-lg"></video>
+                                <canvas ref="canvas" class="hidden"></canvas>
+                            </div>
+                            <div class="flex justify-between mt-4">
+                                <button type="button" @click="closeCamera"
+                                    class="px-4 py-2 text-white bg-gray-500 rounded-md hover:bg-gray-600">
+                                    Cancel
+                                </button>
+                                <button type="button" @click="takePhoto"
+                                    class="px-4 py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700">
+                                    Take Photo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div>
+                        <button  @click="handleIndentNext"
+                    
+                            class="flex justify-center w-full px-4 py-2 mb-20 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Next
+                        </button>
+
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
+
+    
     </div>
 </template>
 
@@ -161,7 +250,10 @@ import useStorage from '@/firebase/useStorage';
 
 import useCollection from '@/firebase/useCollection';
 import getUser from '@/firebase/getUser';
+import { watch } from 'vue';
 
+import getColectionQuryTerms from '@/firebase/getCollectionQueryTerm';
+import { documentId, where } from 'firebase/firestore';
 
 export default {
     components: {
@@ -187,16 +279,38 @@ export default {
         const backCard = ref(null);
         const selfieCard = ref(null);
         const isLoanding = ref(false);
+        const userDoc = ref(null);
 
         console.log('KYCForm props:', props.data);
 
         const { setDocs } = useCollection('customers');
         const { uploadImage } = useStorage();
-        
+
         const { user } = getUser();
 
 
         const router = useRouter();
+
+
+        //display User
+
+
+        watch(
+            () => user.value?.uid,
+            async (newUid) => {
+                if (newUid) {
+                    const { documents } = await getColectionQuryTerms('customers', where(documentId(), '==', newUid));
+                    console.log("documents", documents);
+                    watch(() => {
+                        userDoc.value = documents.value || null;
+                    })
+
+
+
+                }
+            },
+            { immediate: true }
+        );
 
         const isFormComplete = computed(() => {
             return frontImage.value && backImage.value && selfieImage.value;
@@ -242,7 +356,7 @@ export default {
                 isCameraOpen.value = false;
             }
         };
-        
+
 
         const closeCamera = () => {
             if (stream.value) {
@@ -285,10 +399,10 @@ export default {
                     const back_imagePath = `back_image/${backCard.value.name}`;
                     const selfie_imagePath = `selfie_image/${selfieCard.value.name}`;
 
-                
+
 
                     // Upload images
-                    front_image = await uploadImage(front_imagePath, frontCard.value ); 
+                    front_image = await uploadImage(front_imagePath, frontCard.value);
                     back_image = await uploadImage(back_imagePath, backCard.value);
                     selfie_image = await uploadImage(selfie_imagePath, selfieCard.value);
                     console.log('Front Image URL:', front_image);
@@ -327,6 +441,17 @@ export default {
             }
         };
 
+        const handleIndentNext = () => {
+            // Handle next button click
+         
+            router.push({
+                        path: "/personal",
+                        query: {
+                            data: JSON.stringify(props.data)
+                        }
+                    });
+        };
+
 
         // Clean up camera stream when component is destroyed
         onBeforeUnmount(() => {
@@ -349,7 +474,9 @@ export default {
             takePhoto,
             handleSubmit,
             stream,
-            isLoanding
+            isLoanding,
+            userDoc,
+            handleIndentNext
         };
     }
 }

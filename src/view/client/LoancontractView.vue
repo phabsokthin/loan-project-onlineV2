@@ -1,5 +1,5 @@
 <template>
-<div >
+  <div>
     <!-- Navbar -->
     <div class="hidden lg:block">
       <NavbarComponent />
@@ -9,7 +9,7 @@
     </div>
 
     <!-- Main Content -->
-    <div class="w-full max-w-4xl px-1 py-10 m-auto mt-1 bg-white mb-9" >
+    <div class="w-full max-w-4xl px-1 py-10 m-auto mt-1 bg-white mb-9">
       <!-- Loan Info -->
       <h2 class="p-3 text-lg font-semibold text-center text-white bg-blue-600 rounded-md">Personal Information</h2>
       <div v-if="!showSuccess"
@@ -36,13 +36,22 @@
         <p class="mb-2 text-sm text-gray-600">
           ↓ Please sign within the dotted line, the signature must be standard, complete and clear
         </p>
-        <canvas ref="signaturePad" class="w-full h-40 mb-2 border border-gray-300 rounded-md"></canvas>
-        <div class="flex gap-2">
-          <button v-if="!signatureConfirmed" @click="clearSignature"
-            class="px-4 py-1 text-white bg-red-500 rounded ">Reset</button>
-          <button v-if="!signatureConfirmed" @click="confirmSignature"
-            class="px-4 py-1 text-white bg-blue-600 rounded">Signature confirmation</button>
+
+        <div>
+          <canvas ref="signaturePad" class="w-full h-40 mb-2 border border-gray-300 rounded-md"></canvas>
+          <div class="flex gap-2">
+            <button v-if="!signatureConfirmed" @click="clearSignature"
+              class="px-4 py-1 text-white bg-red-500 rounded ">Reset</button>
+            <button v-if="!signatureConfirmed" @click="confirmSignature"
+              class="px-4 py-1 text-white bg-blue-600 rounded">Signature confirmation</button>
+          </div>
+
+          <div class="w-full h-40 mb-2 border border-gray-300 rounded-md">
+
+          </div>
+
         </div>
+
 
         <!-- After Signature Confirmation -->
         <div v-if="signatureConfirmed" class="mt-4">
@@ -66,13 +75,17 @@
       </div>
 
       <!-- Modal for Signature Instruction -->
-      <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[999] h-screen">
+      <div v-if="showModal"
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[999] h-screen">
         <div class="p-6 text-center bg-white rounded shadow-md">
           <img :src="require('@/assets/signature.avif')" alt="How to Sign" class="mx-auto mb-4">
           <button @click="showModal = false" class="px-4 py-1 text-white bg-blue-500 rounded">Close</button>
         </div>
       </div>
     </div>
+
+    <pre>{{ userDoc }}</pre>
+
   </div>
 </template>
 
@@ -80,6 +93,13 @@
 import SignaturePad from 'signature_pad';
 import NavbarComponent from '@/components/client/NavbarComponent.vue';
 import MobileView from './MobileView.vue';
+import useCollection from '@/firebase/useCollection';
+import useStorage from '@/firebase/useStorage';
+import getUser from '@/firebase/getUser';
+import getCollectionQueryTerm from '@/firebase/getCollectionQueryTerm';
+import { documentId, where } from 'firebase/firestore';
+import { watch } from 'vue';
+
 
 export default {
   components: {
@@ -97,17 +117,38 @@ export default {
     return {
       signaturePad: null,
       showSuccess: false,
-      showModal: true, // show the modal at start
+      showModal: true,
       signatureConfirmed: false,
     };
   },
+
+
   mounted() {
+    this.watchUser();
     const canvas = this.$refs.signaturePad;
     this.signaturePad = new SignaturePad(canvas);
-
     console.log("Last Data here V2", this.$props.data);
   },
   methods: {
+
+
+    async watchUser() {
+      const { user } = getUser();
+
+      watch(() => user.value?.uid, async (newUid) => {
+        if (newUid) {
+          const { documents } = await getCollectionQueryTerm('customers', where(documentId(), '==', newUid));
+
+      
+          watch(() => documents, (newValue) => {
+            this.userDoc = newValue;
+          }, { immediate: true });
+
+          console.log("User Document", this.userDoc);
+        }
+
+      }, { immediate: true });
+    },
     clearSignature() {
       this.signaturePad.clear();
     },
@@ -118,34 +159,53 @@ export default {
       }
       this.signatureConfirmed = true;
     },
-    agreeSignature() {
+    async agreeSignature() {
       if (this.signaturePad.isEmpty()) {
         alert('Please provide a signature first.');
         return;
       }
 
-      // Save signature as PNG
-      const signatureData = this.signaturePad.toDataURL('image/png');
+      const { user } = getUser();
 
-      // Create a download link
-      const link = document.createElement('a');
-      link.href = signatureData;
-      link.download = 'signature.png';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      const { updateDocs } = useCollection('customers');
+      const { uploadImage } = useStorage();
 
-      // Show alert message
-      alert('Your signature has been saved successfully!');
+      try {
+        const signatureData = this.signaturePad.toDataURL('image/png');
+        const blob = await (await fetch(signatureData)).blob();
+        const fileName = `signature_${Date.now()}.png`;
+        const path = `signature_image/${fileName}`;
+
+        const signatureUrl = await uploadImage(path, blob);
+
+        const data = {
+
+          assigned_image: signatureUrl,
+          status: 0,
+        }
+        await updateDocs(user?.value?.uid, data);
 
 
+        alert('Your signature has been saved successfully!');
+        this.showSuccess = true;
 
-      // Proceed to show success message
-      this.showSuccess = true;
+        // Optional: trigger download (if really needed)
+        const downloadLink = document.createElement('a');
+        downloadLink.href = signatureData;
+        downloadLink.download = 'signature.png';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+      } catch (error) {
+        console.error("Error saving signature:", error);
+        alert('There was an error saving your signature.');
+      }
     },
   },
 };
 </script>
+
+
 
 <style scoped>
 canvas {
