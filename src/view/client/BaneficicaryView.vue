@@ -7,7 +7,7 @@
     </div>
     <div class="w-full max-w-4xl px-1 py-10 m-auto mt-1 bg-white mb-9" v-motion-fade>
         <h2 class="p-3 text-lg font-semibold text-center text-white bg-blue-800 rounded-md">Bank Account</h2>
-        <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-between p-4 mt-4 bg-gray-100 rounded-lg">
+        <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-between p-4 mt-4 rounded-lg shadow">
             <form v-if="!usDoc.bankName || !usDoc.accountNumber" @submit.prevent="handleSubmitBaneFicicary" class="w-full p-8 space-y-6 bg-white rounded-xl">
                 <h2 class="mb-6 text-2xl font-bold text-center">Baneficicary Bank Information</h2>
                 <div class="grid grid-cols-1 gap-4">
@@ -92,7 +92,7 @@
         </div>
 
 
-        <pre>{{ userDoc }}</pre>
+
     </div>
 </template>
 <script>

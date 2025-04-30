@@ -39,15 +39,33 @@
 
         <div>
           <canvas ref="signaturePad" class="w-full h-40 mb-2 border border-gray-300 rounded-md"></canvas>
-          <div class="flex gap-2">
-            <button v-if="!signatureConfirmed" @click="clearSignature"
-              class="px-4 py-1 text-white bg-red-500 rounded ">Reset</button>
-            <button v-if="!signatureConfirmed" @click="confirmSignature"
-              class="px-4 py-1 text-white bg-blue-600 rounded">Signature confirmation</button>
+          <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-between">
+            <div class="flex gap-2" v-if="!usDoc.assigned_image">
+              <button v-if="!signatureConfirmed" @click="clearSignature"
+                class="px-4 py-1 text-white bg-red-500 rounded ">Reset</button>
+              <button v-if="!signatureConfirmed" @click="confirmSignature"
+                class="px-4 py-1 text-white bg-blue-600 rounded">Signature confirmation</button>
+            </div>
+
           </div>
 
-          <div class="w-full h-40 mb-2 border border-gray-300 rounded-md">
+          <div v-for="usDoc in userDoc" :key="usDoc" class="mt-2">
 
+            <div v-if="usDoc.assigned_image" class="">
+              <h1>Your Signature</h1>
+              <div class="flex items-center justify-center w-full h-40">
+                <img :src="usDoc.assigned_image" alt="">
+              </div>
+
+              <div class="flex items-center justify-end mt-2">
+                <button @click="handleComplete" class="px-4 py-1 text-white bg-green-600 rounded">Congratulations</button>
+
+              </div>
+            </div>
+            <div v-else>
+              <!-- <p class="text-gray-500">No signature available</p> -->
+
+            </div>
           </div>
 
         </div>
@@ -61,7 +79,7 @@
       </div>
 
       <!-- Success Message -->
-      <div v-if="showSuccess" class="max-w-md mx-auto mt-6 text-center ">
+      <div v-if="showSuccess  && userDoc.some(doc => doc.assigned_image)" class="max-w-md mx-auto mt-6 text-center ">
         <img :src="require('@/assets/success.webp')" alt="How to Sign" class="mx-auto mb-4">
         <h2 class="mb-2 text-xl font-bold text-green-600">✔ Congratulations</h2>
         <p class="text-gray-700">Your loan application was successful, please wait for approval.</p>
@@ -75,7 +93,7 @@
       </div>
 
       <!-- Modal for Signature Instruction -->
-      <div v-if="showModal"
+      <div v-if="showModal && userDoc.some(doc => !doc.assigned_image)"
         class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[999] h-screen">
         <div class="p-6 text-center bg-white rounded shadow-md">
           <img :src="require('@/assets/signature.avif')" alt="How to Sign" class="mx-auto mb-4">
@@ -84,7 +102,9 @@
       </div>
     </div>
 
-    <pre>{{ userDoc }}</pre>
+
+
+    
 
   </div>
 </template>
@@ -99,7 +119,6 @@ import getUser from '@/firebase/getUser';
 import getCollectionQueryTerm from '@/firebase/getCollectionQueryTerm';
 import { documentId, where } from 'firebase/firestore';
 import { watch } from 'vue';
-
 
 export default {
   components: {
@@ -119,6 +138,7 @@ export default {
       showSuccess: false,
       showModal: true,
       signatureConfirmed: false,
+      userDoc: []
     };
   },
 
@@ -131,7 +151,7 @@ export default {
   },
   methods: {
 
-
+    
     async watchUser() {
       const { user } = getUser();
 
@@ -139,8 +159,12 @@ export default {
         if (newUid) {
           const { documents } = await getCollectionQueryTerm('customers', where(documentId(), '==', newUid));
 
-      
+
           watch(() => documents, (newValue) => {
+            watch(() => newValue, (newDoc) => {
+              this.userDoc = newDoc.value || null;
+            }, { immediate: true });
+            console.log("User Document", newValue);
             this.userDoc = newValue;
           }, { immediate: true });
 
@@ -181,6 +205,13 @@ export default {
         const data = {
 
           assigned_image: signatureUrl,
+          amount: this.$props.data.amount,
+          term: this.$props.data.term,
+          monthlyPayment: this.$props.data.monthlyPayment,
+          interestRate: this.$props.data.interestRate,
+          totalInterest: this.$props.data.totalInterest,
+          totalPrincipalAndInterest: this.$props.data.totalPrincipalAndInterest,
+          
           status: 0,
         }
         await updateDocs(user?.value?.uid, data);
@@ -201,6 +232,11 @@ export default {
         alert('There was an error saving your signature.');
       }
     },
+
+    handleComplete() {
+      this.$router.push({ name: 'complete' }); // ✅ Use `this.$router`
+    },
+  
   },
 };
 </script>

@@ -32,15 +32,30 @@
                                     </div>
                                 </div>
 
-                                <div class="mt-6 pb-6 rounded-b-[--card-border-radius]">
-                                    <div class="space-y-3 font-mono text-xl text-black">
-                                        <h1>Welcome!</h1>
-                                        <h1>Account Number: 1232323</h1>
-                                        <div class="space-y-2">
-                                            <h1>Account balance</h1>
-                                            <h1 class="text-2xl font-bold">0,00 $</h1>
+                                <div v-if="user">
+                                    <div v-for="usDoc in userDoc" :key="usDoc"
+                                        class="mt-6 pb-6 rounded-b-[--card-border-radius]">
+                                        <div v-if="usDoc.accountNumber" class="space-y-3 font-mono text-xl text-black">
+                                            <h1>Welcome!</h1>
+                                            <h1>Account Number: {{ usDoc?.accountNumber }}</h1>
+                                            <div class="space-y-2">
+                                                <h1>Account balance</h1>
+                                                <h1 class="text-2xl font-bold">₱ {{ usDoc?.amount }}</h1>
+                                            </div>
+                                        </div>
+                                        <div v-else>
+                                            <h1 class="font-mono text-xs text-black md:text-xl">No Account Number</h1>
+
                                         </div>
                                     </div>
+                                </div>
+                                <div v-else class="mt-6 pb-6 rounded-b-[--card-border-radius]">
+                                    <div  class="space-y-3 font-mono text-xl text-black">
+                                    
+                                       <h1>No Account Number</h1>
+                                     
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -118,14 +133,23 @@
 
                                 </div>
                             </div>
+                            <div v-if="user">
+                                <div v-for="usDoc in userDoc" :key="usDoc"
+                                    class="mt-6 pb-6 rounded-b-[--card-border-radius]">
 
-                            <div class="mt-6 pb-6 rounded-b-[--card-border-radius]">
-                                <div class="space-y-3 font-mono text-xs text-black md:text-xl">
-                                    <h1>40000000 $</h1>
-
+                                    <div v-if="usDoc.totalPrincipalAndInterest"
+                                        class="space-y-3 font-mono text-xs text-black md:text-xl">
+                                        <h1>₱ {{ usDoc?.totalPrincipalAndInterest }}</h1>
+                                    </div>
+                                    <div v-else>
+                                        <h1 class="font-mono text-xs text-black md:text-xl">No Received Loans</h1>
+                                    </div>
                                 </div>
-                            </div>
 
+                            </div>
+                            <div v-else>
+                                <h1 class="font-mono text-xs text-black md:text-xl">No Received Loan</h1>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -133,6 +157,8 @@
 
 
         </section>
+
+
     </div>
 </template>
 
@@ -140,24 +166,49 @@
 
 import getUser from '@/firebase/getUser';
 import { useRouter } from 'vue-router';
+import getCollectionQueryTerm from '@/firebase/getCollectionQueryTerm';
+import { watch } from 'vue';
+import { documentId, where } from 'firebase/firestore';
+import { ref } from 'vue';
+
 export default {
-    setup(){
-        const {user} = getUser()
+    setup() {
+        const { user } = getUser()
 
         const router = useRouter()
 
+        const userDoc = ref(null)
+
+        watch(
+            () => user.value?.uid,
+            async (newUid) => {
+                if (newUid) {
+                    const { documents } = await getCollectionQueryTerm('customers', where(documentId(), '==', newUid));
+                    console.log("documents", documents);
+                    watch(() => {
+                        userDoc.value = documents.value || null;
+                    })
+
+
+
+                }
+            },
+            { immediate: true }
+        );
+
+
         const handleRequestLoan = () => {
-            
-            if(user.value){
+
+            if (user.value) {
                 router.push('/loan')
             }
-            else{
+            else {
                 router.push('/login')
             }
         }
 
 
-        return {user,handleRequestLoan}
+        return { user, handleRequestLoan, userDoc }
     }
 }
 

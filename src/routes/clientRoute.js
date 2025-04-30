@@ -10,6 +10,7 @@ import Personal_InforView from '@/view/client/Personal_InforView.vue';
 import BaneficicaryView from '@/view/client/BaneficicaryView.vue';
 import LoancontractView from '@/view/client/LoancontractView.vue';
 import IdentificationView from '@/view/client/IdentificationView.vue';
+import CompleteLoanView from '@/view/client/CompleteLoanView.vue';
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
@@ -19,6 +20,7 @@ const routes = [
   { path: '/loan', name: 'loan', component: LoanView },
   { path: '/register', name: 'register', component: RegisterAuth },
   { path: '/login', name: 'login', component: LoginAuth },
+  { path: '/complete', name: 'complete', component: CompleteLoanView },
   {
     path: '/personal', name: 'personal', component: Personal_InforView,
 

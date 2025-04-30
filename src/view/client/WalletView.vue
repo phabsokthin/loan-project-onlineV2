@@ -14,6 +14,10 @@
                 <span class="font-medium">Account balance :</span>
             </div>
             <div class="text-right">
+               <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-end">
+                <div v-if="usDoc.totalPrincipalAndInterest" class="font-bold">₱ {{ usDoc?.totalPrincipalAndInterest }}</div>
+                <div v-else class="font-bold">No account balance</div>
+               </div>
                 <svg class="inline-block h-6 text-gray-500 w-7" fill="none" stroke="currentColor" stroke-width="2"
                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M1 12s4-6 11-6 11 6 11 6-4 6-11 6-11-6z" />
@@ -55,9 +59,11 @@ s-2.238,5-5,5s-5-2.238-5-5S29.238,9,32,9z"></path>
                     Loan Number:
                 </p>
             </div>
-            <div class="text-right text-white">
-                <span>000000000000</span>
+            <div v-for="usDoc in userDoc" :key="usDoc" class="text-right text-white">
+                <span v-if="usDoc.accountNumber">{{ usDoc?.accountNumber }}</span>
+                <span v-else>No loan number</span>
             </div>
+            
             <div class="flex items-center">
                 <svg class="w-4 h-4 mr-2 text-white" fill="currentColor" viewBox="0 0 512 512"
                     xmlns="http://www.w3.org/2000/svg">
@@ -75,8 +81,10 @@ c121.048-0.052,207.528-16.496,205.517-31.558C450.511,398.09,388.519,384.847,341.
                     Order Status:
                 </p>
             </div>
-            <div class="text-right">
-                <span class="font-semibold text-white">under review</span>
+            <div class="text-right" v-for="usDoc in userDoc" :key="usDoc">
+                <span v-if="usDoc.status === 0" class="px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded-full">Under Review</span>
+                <span v-else class="px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded-full">Approved</span>
+
             </div>
         </div>
         <!-- we use class select-none and point-events-none -->
@@ -97,17 +105,54 @@ c121.048-0.052,207.528-16.496,205.517-31.558C450.511,398.09,388.519,384.847,341.
             <img src="pnb.png" alt="PNB" class="h-10 shadow-sm">
             <img src="chinabank.png" alt="Chinabank" class="h-10 shadow-sm">
         </div> -->
+
+
+
     </div>
 </template>
 <script>
 import NavbarComponent from '@/components/client/NavbarComponent.vue';
 import MobileView from './MobileView.vue';
-
+import { watch } from 'vue';
+import getUser  from '@/firebase/getUser';
+import  getCollectionQueryTerm  from '@/firebase/getCollectionQueryTerm';
+import { documentId, where } from 'firebase/firestore';
+import { ref } from 'vue';
 export default {
     components: {
         NavbarComponent,
         MobileView,
     },
+
+    setup() {
+       
+       const userDoc = ref(null);
+        const { user } = getUser();
+        
+
+        watch(
+            () => user.value?.uid,
+            async (newUid) => {
+                if (newUid) {
+                    const { documents } = await getCollectionQueryTerm('customers', where(documentId(), '==', newUid));
+                    console.log("documents", documents);
+                    watch(() => {
+                        userDoc.value = documents.value || null;
+                    })
+
+
+
+                }
+            },
+            { immediate: true }
+        );
+
+
+        return {
+            userDoc,
+        };
+
+    },  
 }
 </script>
 <style></style>
