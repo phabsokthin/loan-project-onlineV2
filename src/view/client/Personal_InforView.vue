@@ -298,11 +298,15 @@
 
                     </div>
 
+                  <div>
                     <button @click="handleNext" v-if="!isLoanding" type="submit"
                         class="w-full px-4 py-2 mt-6 font-semibold text-white transition-all rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700">
                         Next
                     </button>
 
+                  
+
+                  </div>
                 </div>
             </div>
 

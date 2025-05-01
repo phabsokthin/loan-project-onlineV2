@@ -147,7 +147,7 @@ export default {
 
 
         const handleSubmitBaneFicicary = async() => {
-            alert("Bank information submitted successfully!");
+            // alert("Bank information submitted successfully!");
 
             const data = {
                bankName:  bankName.value,

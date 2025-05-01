@@ -117,14 +117,22 @@ export default {
         const router = useRouter();
 
         const { setDocs } = useCollection('users');
+        const { setDocs: setDocsData } = useCollection('customers');
+        
 
 
         const handleSubmit = async () => {
-
+         
             const data = {
                 phone: form.value.phone,
                 password: form.value.password,
-                email: form.value.phone+"@gmail.com",            };
+                email: form.value.phone+"@gmail.com",          
+            };
+
+            const clientData = {
+                amount: 0,
+            }
+                
             // Validate phone number: must be 8, 9, or 10 digits
             const phonePattern = /^\d{9,10}$/;
             if (!phonePattern.test(form.value.phone)) {
@@ -142,6 +150,7 @@ export default {
 
                     try {
                         const sign_success = await setDocs(data, result?.user?.uid);
+                        await setDocsData(clientData, result?.user?.uid);
                         if (sign_success) {
                             router.push({ path: '/' });
                            

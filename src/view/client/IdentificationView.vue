@@ -11,8 +11,9 @@
             <h1 class="mb-4 text-2xl font-bold text-center text-gray-800">KYC Identification</h1>
 
             <div v-for="usDoc in userDoc" :key="usDoc" class="mb-4">
-         
-                <form v-if="!usDoc.front_image || !usDoc.back_image || !usDoc.selfie_image" @submit.prevent="handleSubmit" class="space-y-6">
+
+                <form v-if="!usDoc.front_image || !usDoc.back_image || !usDoc.selfie_image"
+                    @submit.prevent="handleSubmit" class="space-y-6">
                     <!-- Front ID Card Section -->
                     <div>
                         <label class="block mb-1 text-sm font-medium text-gray-700">Front ID Card</label>
@@ -165,8 +166,8 @@
                                     </template>
                                     <img v-else :src="frontImage" class="object-contain h-48" alt="Front ID preview">
                                 </div>
-                               
-                              
+
+
                             </div>
                         </div>
                     </div>
@@ -180,7 +181,7 @@
                                 <div class="flex justify-center">
                                     <img :src="usDoc.back_image" alt="">
                                 </div>
-                               
+
                             </div>
                         </div>
                     </div>
@@ -192,10 +193,10 @@
                             class="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md">
                             <div class="space-y-1 text-center">
                                 <div class="flex justify-center">
-                                   <img :src="usDoc.selfie_image" alt="">
+                                    <img :src="usDoc.selfie_image" alt="">
                                 </div>
                                 <div class="flex justify-center text-sm text-gray-600">
-                                  
+
                                 </div>
                             </div>
                         </div>
@@ -223,19 +224,20 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <div>
-                        <button  @click="handleIndentNext"
-                    
-                            class="flex justify-center w-full px-4 py-2 mb-20 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <div class="mb-20 ">
+                        <button @click="handleIndentNext"
+                            class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Next
                         </button>
-
+                        <div class="mt-1">
+                            <p>You already complete!</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-    
+
     </div>
 </template>
 
@@ -283,7 +285,7 @@ export default {
 
         console.log('KYCForm props:', props.data);
 
-        const { setDocs } = useCollection('customers');
+        const { updateDocs } = useCollection('customers');
         const { uploadImage } = useStorage();
 
         const { user } = getUser();
@@ -417,7 +419,7 @@ export default {
                     };
 
 
-                    await setDocs(image_data, user?.value?.uid);
+                    await updateDocs(user?.value?.uid, image_data);
                     console.log('Image URL:', image_data);
 
                     // Navigate to another page
@@ -430,7 +432,7 @@ export default {
 
                     isLoanding.value = false;
 
-                    alert('KYC information submitted successfully!');
+                    // alert('KYC information submitted successfully!');
 
                 }
             } catch (error) {
@@ -443,13 +445,13 @@ export default {
 
         const handleIndentNext = () => {
             // Handle next button click
-         
+
             router.push({
-                        path: "/personal",
-                        query: {
-                            data: JSON.stringify(props.data)
-                        }
-                    });
+                path: "/personal",
+                query: {
+                    data: JSON.stringify(props.data)
+                }
+            });
         };
 
 

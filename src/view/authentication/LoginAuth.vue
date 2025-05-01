@@ -79,6 +79,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { loginWithPhone } from '@/firebase/Auth';
 
+
 export default {
   setup() {
     const loginForm = ref({
@@ -96,7 +97,7 @@ export default {
       const result = await loginWithPhone(loginForm.value.phone, loginForm.value.password);
       if (result.user) {
         alert('Login successful!');
-        router.push({ path: '/' }); // Redirect to index path
+        router.push({ path: '/' }); 
       } else {
         alert(result.error || 'Login failed');
       }

@@ -15,14 +15,16 @@
       <div v-if="!showSuccess"
         class="w-full max-w-md p-6 mx-auto mt-8 mb-3 space-y-6 text-white rounded-md bg-gradient-to-r from-blue-500 to-indigo-600">
         <h2 class="mb-3 text-lg font-bold">Loan details</h2>
-        <div class="space-y-2">
+        <div v-for="usDoc in userDoc" :key="usDoc" class="space-y-2">
           <div class="flex justify-between">
             <p class="text-white">Loan amount</p>
-            <p class="font-medium">₱ {{ $props.data.amount }}</p>
+            <!-- <p class="font-medium">₱ {{ $props.data.amount }}</p> -->
+            <p class="font-medium">₱ {{ usDoc.amount }}</p>
           </div>
           <div class="flex justify-between">
             <p class="text-white">Loan term</p>
-            <p class="font-medium">{{ $props.data.term }} months</p>
+            <!-- <p class="font-medium">{{ $props.data.term }} months</p> -->
+            <p class="font-medium">{{ usDoc.term }} months</p>
           </div>
           <div class="flex justify-between">
             <p class="text-white">Contract</p>
@@ -83,7 +85,7 @@
         <img :src="require('@/assets/success.webp')" alt="How to Sign" class="mx-auto mb-4">
         <h2 class="mb-2 text-xl font-bold text-green-600">✔ Congratulations</h2>
         <p class="text-gray-700">Your loan application was successful, please wait for approval.</p>
-        <button class="px-6 py-2 mt-4 text-white bg-blue-600 rounded">Contact Customer Service</button>
+        <button @click="handleContact" class="px-6 py-2 mt-4 text-white bg-blue-600 rounded">Contact Customer Service</button>
       </div>
 
       <!-- Bottom Bar: Contract Terminated -->
@@ -103,7 +105,7 @@
     </div>
 
 
-
+<!-- <pre>{{ userDoc }}</pre> -->
     
 
   </div>
@@ -217,7 +219,7 @@ export default {
         await updateDocs(user?.value?.uid, data);
 
 
-        alert('Your signature has been saved successfully!');
+        // alert('Your signature has been saved successfully!');
         this.showSuccess = true;
 
         // Optional: trigger download (if really needed)
@@ -236,6 +238,10 @@ export default {
     handleComplete() {
       this.$router.push({ name: 'complete' }); // ✅ Use `this.$router`
     },
+
+    handleContact(){
+      this.$router.push({ name: 'home' }); // ✅ Use `this.$router`
+    }
   
   },
 };
