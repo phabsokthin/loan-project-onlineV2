@@ -207,12 +207,12 @@ export default {
         const data = {
 
           assigned_image: signatureUrl,
-          amount: this.$props.data.amount,
-          term: this.$props.data.term,
-          monthlyPayment: this.$props.data.monthlyPayment,
-          interestRate: this.$props.data.interestRate,
-          totalInterest: this.$props.data.totalInterest,
-          totalPrincipalAndInterest: this.$props.data.totalPrincipalAndInterest,
+          // amount: this.$props.data.amount,
+          // term: this.$props.data.term,
+          // monthlyPayment: this.$props.data.monthlyPayment,
+          // interestRate: this.$props.data.interestRate,
+          // totalInterest: this.$props.data.totalInterest,
+          // totalPrincipalAndInterest: this.$props.data.totalPrincipalAndInterest,
           
           status: 0,
         }

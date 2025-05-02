@@ -1,11 +1,11 @@
-<template >
+<template>
     <div class="hidden lg:block">
         <NavbarComponent />
     </div>
     <div class="lg:hidden">
         <MobileView />
     </div>
-    <div  class="w-full max-w-4xl px-5 py-10 m-auto mt-1 bg-white" v-motion-fade>
+    <div class="w-full max-w-4xl px-5 py-10 m-auto mt-1 bg-white" v-motion-fade>
         <div class="mb-6 text-2xl text-center ">
             <div
                 class="w-[180px] h-[180px] mx-auto rounded-full border-blue-600 border-8 flex items-center justify-center text-white ">
@@ -17,12 +17,14 @@
             <h2 class="mt-4 text-lg font-semibold">Name</h2>
             <div>
                 <div v-if="user" class="text-sm text-gray-500">Phone : {{ user?.email?.slice(0, 10) }}</div>
-                <div v-else class="text-sm text-gray-500">No Account? <RouterLink :to="{name: 'login'}" class="text-blue-400">Login</RouterLink> </div>
+                <div v-else class="text-sm text-gray-500">No Account? <RouterLink :to="{ name: 'login' }"
+                        class="text-blue-400">Login</RouterLink>
+                </div>
             </div>
-        
+
         </div>
 
-        <div class="grid grid-cols-2 gap-3 m-auto">
+        <div class="space-gap-2">
             <div class="col-span-2 lg:col-span-1">
                 <router-link to="#"
                     class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
@@ -35,7 +37,7 @@
                 </router-link>
             </div>
 
-            <div class="col-span-2 lg:col-span-1">
+            <div class="col-span-2 mt-2 lg:col-span-1">
                 <router-link to="#"
                     class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
                     <svg class="h-6 ml-3 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
@@ -48,7 +50,7 @@
                 </router-link>
             </div>
 
-            <div class="col-span-2 lg:col-span-1">
+            <div class="col-span-2 mt-2 lg:col-span-1">
                 <router-link to="#"
                     class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
                     <svg class="h-6 ml-3 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
@@ -58,8 +60,8 @@
                     <span class="ml-3 md:text-xl">Loan Contract</span>
                 </router-link>
             </div>
-           
-            <div class="col-span-2 lg:col-span-1">
+
+            <div class="col-span-2 mt-2 lg:col-span-1">
                 <button
                     class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
                     <svg class="h-6 ml-3 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
@@ -71,7 +73,9 @@
                 </button>
             </div>
 
-            <div class="col-span-2 lg:col-span-1">
+
+
+            <div class="col-span-2 mt-2 lg:col-span-1">
                 <button
                     class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
                     <svg class="h-6 ml-3 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
@@ -84,34 +88,37 @@
                 </button>
             </div>
 
-            <div class="col-span-2 lg:col-span-1">
-                <router-link to="#"
-                    class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
-                    <svg class="h-6 ml-3 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
-                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 8c-4.418 0-8 2.239-8 5s3.582 5 8 5 8-2.239 8-5-3.582-5-8-5z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8V4m0 16v-4" />
-                    </svg>
-                    <span class="ml-3 md:text-xl">About Us</span>
-                </router-link>
-            </div>
+            <div class="mb-20">
+                <div class="w-full mt-2">
+                    <router-link to="#"
+                        class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl lg:mb-0 hover:bg-blue-700">
+                        <svg class="h-6 ml-3 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 8c-4.418 0-8 2.239-8 5s3.582 5 8 5 8-2.239 8-5-3.582-5-8-5z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8V4m0 16v-4" />
+                        </svg>
+                        <span class="ml-3 md:text-xl">About Us</span>
+                    </router-link>
+                </div>
 
-            <div v-if="user"  class="flex justify-center col-span-2 mt-6 ">
-              <div class="hidden md:block">
-                <button @click="handleLogout"
-                    class="flex items-center justify-center gap-3 py-3 text-red-600 transition border border-red-600 rounded-full w-52 px md:text-xl hover:bg-red-100">
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M12 22H5C3.89543 22 3 21.1046 3 20V4C3 2.89543 3.89543 2 5 2H12" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <span>Logout</span>
-                </button>
-              </div>
+                <div v-if="user" class="flex justify-center col-span-2 mt-6 ">
+                    <div class="">
+                        <button @click="handleLogout"
+                            class="flex items-center justify-center gap-3 py-3 mb-40 text-red-600 transition border border-red-600 rounded-full w-52 px md:text-xl hover:bg-red-100">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M12 22H5C3.89543 22 3 21.1046 3 20V4C3 2.89543 3.89543 2 5 2H12"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -132,18 +139,18 @@ export default {
     },
     setup() {
         const router = useRouter();
-        const {user} = getUser()
-        const {signOut} = useSignout()
+        const { user } = getUser()
+        const { signOut } = useSignout()
 
-        const handleLogout = async() => {
+        const handleLogout = async () => {
             // Perform logout logic here, e.g., clearing tokens or user data
-            try{
-                if(window.confirm("Are you sure you want to logout?")){
+            try {
+                if (window.confirm("Are you sure you want to logout?")) {
                     await signOut()
                     router.push('/')
                 }
             }
-            catch(err){
+            catch (err) {
                 console.log(err)
             }
         };

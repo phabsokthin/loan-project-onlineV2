@@ -53,7 +53,7 @@
                     </div>
                 </div>
 
-                <div @click="handleLogout">
+                <!-- <div @click="handleLogout">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="text-gray-600 lucide lucide-log-out-icon lucide-log-out">
@@ -62,7 +62,7 @@
                         <line x1="21" x2="9" y1="12" y2="12" />
                     </svg>
 
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

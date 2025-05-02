@@ -257,7 +257,7 @@
 
 
             <!-- Confirm Button -->
-            <div class="flex justify-center col-span-2 mt-6">
+            <div class="flex justify-center col-span-2 mt-6 mb-40">
                 <button v-if="!isLoanding" type="submit" @click.prevent="handleNextLoan"
                     class="flex items-center justify-center w-full max-w-sm gap-3 py-3 text-blue-700 transition border border-blue-600 rounded-full shadow-md md:text-xl hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed">
                     <span>Next</span>
@@ -298,6 +298,10 @@
 
         </div>
     </div>
+
+    <!-- Bottom-Right Corner -->
+
+
 
 
 </template>

@@ -82,7 +82,8 @@ c121.048-0.052,207.528-16.496,205.517-31.558C450.511,398.09,388.519,384.847,341.
                 </p>
             </div>
             <div class="text-right" v-for="usDoc in userDoc" :key="usDoc">
-                <span v-if="usDoc.status === 0" class="px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded-full">Under Review</span>
+                <span v-if="usDoc.status === 0" class="px-2 py-1 text-xs font-semibold text-white bg-orange-500 rounded-full">Under Review</span>
+                <span v-else-if="usDoc.status === 2" class="px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded-full">Not Complete</span>
                 <span v-else class="px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded-full">Approved</span>
 
             </div>

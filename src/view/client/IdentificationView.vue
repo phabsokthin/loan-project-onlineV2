@@ -7,7 +7,7 @@
     </div>
     <div class="w-full max-w-4xl px-2 py-2 m-auto mt-1 bg-white" v-motion-fade>
         <h2 class="p-3 text-lg font-semibold text-center text-white bg-blue-600 rounded-md">KYC Identification</h2>
-        <div class="max-w-md p-4 mx-auto overflow-hidden bg-white shadow-md rounded-xl">
+        <div class="max-w-md p-4 mx-auto overflow-hidden bg-white rounded-xl">
             <h1 class="mb-4 text-2xl font-bold text-center text-gray-800">KYC Identification</h1>
 
             <div v-for="usDoc in userDoc" :key="usDoc" class="mb-4">
@@ -224,14 +224,12 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <div class="mb-20 ">
+                    <div class="">
                         <button @click="handleIndentNext"
-                            class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            class="flex justify-center w-full px-4 py-2 mb-40 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Next
                         </button>
-                        <div class="mt-1">
-                            <p>You already complete!</p>
-                        </div>
+                       
                     </div>
                 </div>
             </div>

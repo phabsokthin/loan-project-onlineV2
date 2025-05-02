@@ -225,7 +225,7 @@ export default {
             try {
 
                 const data = {
-                    status: 0,
+                    status: 2,
                     amount: 0,
                 }
 
