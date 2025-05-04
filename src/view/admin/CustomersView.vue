@@ -7,8 +7,8 @@
                     <h2 class="text-lg font-medium text-gray-800 dark:text-white">Customers</h2>
 
                     <span
-                        class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">240
-                        vendors</span>
+                        class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{ customers?.length }}
+                        Request</span>
                 </div>
 
             </div>
@@ -56,12 +56,17 @@
 
                 <button
                     class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
-                    Monitored
+                    Approved
                 </button>
 
                 <button
                     class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
-                    Unmonitored
+                    Under Review
+                </button>
+
+                <button
+                    class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
+                    Not Completed
                 </button>
             </div>
 
@@ -84,76 +89,143 @@
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div class="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                            <thead class="bg-gray-50 dark:bg-gray-800">
+                            <thead class="font-mono bg-gray-50 dark:bg-gray-800">
                                 <tr>
-                                 
-                                    <th scope="col"
-                                        class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <th scope="col" class="">
+                                        Actual Name
+                                    </th>
+                                    <th scope="col" class="">
+                                        Identify No.
+                                    </th>
+                                    <th scope="col" class="">
+                                        Gender
+                                    </th>
+                                    <th scope="col" class="">
+                                        DOB
+                                    </th>
+
+                                    <th scope="col" class="">
+                                        Front-Photo
+                                    </th>
+                                    <th scope="col" class="">
+                                        Back-Photo
+                                    </th>
+                                    <th scope="col" class="">
+                                        Selfies-Photo
+                                    </th>
+                                    <th scope="col" class="">
+                                        BankName
+                                    </th>
+
+                                    <th scope="col" class="">
+                                        BankNumber
+                                    </th>
+                                    <th scope="col" class="">
                                         Status
                                     </th>
-
-                                    <th scope="col"
-                                        class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        About
+                                    <th scope="col" class="">
+                                        IP Address
                                     </th>
 
-                                    <th scope="col"
-                                        class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        Users</th>
-
-                                    <th scope="col"
-                                        class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        License use</th>
-
-                                    <th scope="col" class="relative py-3.5 px-4">
-                                        <span class="sr-only">Edit</span>
+                                    <th scope="col" class="p-3">
+                                        Action
                                     </th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                                <tr>
+                                <tr v-for="customer in customers" :key="customer">
                                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                        <div>
-                                            <h2 class="font-medium text-gray-800 dark:text-white ">Catalog</h2>
-                                            <p class="text-sm font-normal text-gray-600 dark:text-gray-400">
-                                                catalogapp.io</p>
-                                        </div>
+                                        {{ customer?.name }}
                                     </td>
-                                    <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
-                                        <div
-                                            class="inline px-3 py-1 text-sm font-normal rounded-full text-emerald-500 gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-                                            Customer
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                        <div>
-                                            <h4 class="text-gray-700 dark:text-gray-200">Content curating app</h4>
-                                            <p class="text-gray-500 dark:text-gray-400">Brings all your news into one
-                                                place</p>
-                                        </div>
-                                    </td>
-                                  
-
-                                    <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                        <div class="w-48 h-1.5 bg-blue-200 overflow-hidden rounded-full">
-                                            <div class="bg-blue-500 w-2/3 h-1.5"></div>
-                                        </div>
+                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                        {{ customer?.idNumber }}
                                     </td>
 
-                                    <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                        <button
-                                            class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg dark:text-gray-300 hover:bg-gray-100">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                        {{ customer?.gender }}
+                                    </td>
+
+                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                        {{ customer?.dob }}
+                                    </td>
+                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                        <img :src="customer?.front_image" class="w-12" alt="">
+
+                                    </td>
+                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                        <img :src="customer?.back_image" class="w-12" alt="">
+                                    </td>
+                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                        <img :src="customer?.selfie_image" class="w-12" alt="">
+                                    </td>
+                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                        {{ customer?.bankName }}
+                                    </td>
+
+                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                        {{ customer?.accountNumber }}
+                                    </td>
+
+                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                        <div v-if="customer.status === '0'" class="text-xs text-center text-white bg-orange-500 rounded-full">
+                                            Under Review
+                                        </div>
+                                        <div v-else-if="customer.status ===
+                                            '1'" class="text-xs text-center text-white bg-green-500 rounded-full">
+                                            <p>Approved</p>
+                                        </div>
+                                        <div v-else class="text-xs text-center text-white bg-red-500 rounded-full">
+                                            <p>Not Completed</p>
+                                        </div>
+                                    </td>
+
+                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                        <div class="text-xs text-center text-white rounded-full bg-black/90">
+                                            {{ customer?.ipAddress }}
+                                        </div>
+                                    </td>
+
+
+
+                                    <td class="flex justify-end gap-2 px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                        <div v-if="customer?.status === '0' || customer?.status === '1'"  @click="handleCurrentUpdate(customer)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="cursor-pointer lucide lucide-circle-check-big-icon lucide-circle-check-big hover:text-green-500">
+                                                <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+                                                <path d="m9 11 3 3L22 4" />
                                             </svg>
-                                        </button>
+                                        </div>
+
+                                        <div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="cursor-pointer lucide lucide-scan-search-icon lucide-scan-search hover:text-orange-500">
+                                                <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+                                                <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                                                <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+                                                <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                                                <circle cx="12" cy="12" r="3" />
+                                                <path d="m16 16-1.9-1.9" />
+                                            </svg>
+                                        </div>
+
+                                        <div>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="cursor-pointer lucide lucide-trash2-icon lucide-trash-2 hover:text-red-500">
+                                                <path d="M3 6h18" />
+                                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                                                <line x1="10" x2="10" y1="11" y2="17" />
+                                                <line x1="14" x2="14" y1="11" y2="17" />
+                                            </svg>
+                                        </div>
                                     </td>
                                 </tr>
-
-
-
                             </tbody>
                         </table>
                     </div>
@@ -196,18 +268,36 @@
         </div>
     </section>
 
-    <pre>{{ customers }}</pre>
+    <!-- <pre>{{ customers }}</pre> -->
+
+
+     <!-- modal Update stutus -->
+    <component :is="currentComponents" :statusData="statusData" @close="currentComponents=''"/>
 </template>
 <script>
 import getCollection from '@/firebase/getCollection';
+import { ref } from 'vue';
+import UpdateCustomerModal from '@/components/admin/UpdateStatusModal.vue'
 export default {
-    
-    setup(){
-    
-        const {document: customers} = getCollection("customers")
+    components: {
+        UpdateCustomerModal
+    },
 
-        
-        return {customers}
+    setup() {
+
+        const currentComponents = ref("")
+        const statusData = ref(null)
+
+        const { document: customers } = getCollection("customers")
+
+        const handleCurrentUpdate = (item) => {
+             console.log(item)
+            statusData.value = item
+            currentComponents.value = 'UpdateCustomerModal'
+        }
+
+
+        return { customers,handleCurrentUpdate, currentComponents,statusData}
     }
 }
 

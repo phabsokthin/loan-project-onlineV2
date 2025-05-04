@@ -152,7 +152,7 @@
                                 Enter your relative's phone number: *
                             </label>
                             <div type="text" placeholder="Please fill in the information"
-                                class="w-full p-2 border rounded-lg bg-gray-50">{{ usDoc.relativePhone }}</div>
+                                class="w-full p-2 mb-40 border rounded-lg bg-gray-50">{{ usDoc.relativePhone }}</div>
                         </div>
 
 

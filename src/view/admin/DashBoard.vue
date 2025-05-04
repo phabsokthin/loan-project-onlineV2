@@ -88,28 +88,28 @@
                     <div class="flex flex-col px-6 py-2 overflow-hidden bg-white rounded-lg shadow">
                         <div class="flex flex-col items-center space-y-2">
                             <div class="text-6xl font-bold leading-none tracking-tight text-blue-500">21</div>
-                            <div class="text-lg font-medium text-blue-500">In use</div>
+                            <div class="text-lg font-medium text-blue-500">Approved</div>
                         </div>
                     </div>
                     <!-- renovation -->
                     <div class="flex flex-col px-6 py-2 overflow-hidden bg-white rounded-lg shadow">
                         <div class="flex flex-col items-center space-y-2">
                             <div class="text-6xl font-bold leading-none tracking-tight text-amber-500">17</div>
-                            <div class="text-lg font-medium text-amber-600">Under renovation</div>
+                            <div class="text-lg font-medium text-amber-600">Under Review</div>
                         </div>
                     </div>
                     <!-- Suspended -->
                     <div class="flex flex-col px-6 py-2 overflow-hidden bg-white rounded-lg shadow">
                         <div class="flex flex-col items-center space-y-2">
                             <div class="text-6xl font-bold leading-none tracking-tight text-red-500">24</div>
-                            <div class="text-lg font-medium text-red-600">Suspended</div>
+                            <div class="text-lg font-medium text-red-600">Not Completed</div>
                         </div>
                     </div>
                     <!-- Closed -->
                     <div class="flex flex-col px-6 py-2 overflow-hidden bg-white rounded-lg shadow">
                         <div class="flex flex-col items-center space-y-2">
-                            <div class="text-6xl font-bold leading-none tracking-tight text-primary-900">38</div>
-                            <div class="text-lg font-medium text-primary-900">Closed</div>
+                            <div class="text-6xl font-bold leading-none tracking-tight text-primary-900">{{ customers?.length }}</div>
+                            <div class="text-lg font-medium text-primary-900">Customers</div>
                         </div>
                     </div>
                 </div>
@@ -117,3 +117,22 @@
         </div>
     </main>
 </template>
+
+
+
+<script>
+import getCollection from '@/firebase/getCollection';
+export default {
+    setup(){
+        
+        const {document: customers} = getCollection('customers')
+
+
+        return {customers}
+        
+
+        
+    }
+}
+
+</script>
