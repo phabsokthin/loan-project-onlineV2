@@ -19,7 +19,7 @@
                 <img :src="require('@/assets/success.webp')" alt="How to Sign" class="mx-auto mb-4">
                 <h2 class="mb-2 text-xl font-bold text-green-600">✔ Congratulations</h2>
                 <p class="text-gray-700">Your loan application was successful, please wait for approval.</p>
-                <button @click="handleContract" class="px-6 py-2 mt-4 text-white bg-blue-600 rounded">Contact Customer Service</button>
+                <button @click="handleContract" class="px-6 py-3 mt-4 text-white bg-blue-600 rounded-full">Contact Customer Service</button>
             </div>
         </div>
 

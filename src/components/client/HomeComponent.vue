@@ -36,12 +36,15 @@
                                     <div v-for="usDoc in userDoc" :key="usDoc"
                                         class="mt-6 pb-6 rounded-b-[--card-border-radius]">
                                         <div v-if="usDoc.accountNumber" class="space-y-3 font-mono text-xl text-black">
-                                            <h1>Welcome!</h1>
-                                            <h1>Account Number: {{ usDoc?.accountNumber }}</h1>
-                                            <div class="space-y-2">
-                                                <h1>Account balance</h1>
-                                                <h1 class="text-2xl font-bold">₱ {{ usDoc?.amount }}</h1>
+                                            <div v-if="usDoc.status === 0 || usDoc.status === 1">
+                                                <h1>Welcome!</h1>
+                                                <h1>Account Number: {{ usDoc?.accountNumber }}</h1>
+                                                <div class="space-y-2">
+                                                    <h1>Account balance</h1>
+                                                    <h1 class="text-2xl font-bold">₱ {{ usDoc?.amount }}</h1>
+                                                </div>
                                             </div>
+                                            <h1 v-else class="font-mono text-xs text-black md:text-xl">No Account Number</h1>
                                         </div>
                                         <div v-else>
                                             <h1 class="font-mono text-xs text-black md:text-xl">No Account Number</h1>
@@ -225,7 +228,7 @@ export default {
             try {
 
                 const data = {
-                    status: 2,
+                    // status: 2,
                     amount: 0,
                 }
 
@@ -252,7 +255,7 @@ export default {
         }
 
 
-        return { user, handleRequestLoan, userDoc, handleLoanInformationNext}
+        return { user, handleRequestLoan, userDoc, handleLoanInformationNext }
     }
 }
 

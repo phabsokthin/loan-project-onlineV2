@@ -23,7 +23,7 @@
 
                     <input type="number" v-model="loanAmount"
                         class="w-full p-3 text-gray-700 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-400"
-                        placeholder="Enter Amount money for borrow" min="15000" max="6000000" step="1000">
+                        placeholder="Enter Amount money for borrow" min="150000" max="60000000" step="1000">
 
                     <div class="grid grid-cols-2 gap-2">
                         <h2 class="p-3 text-lg font-semibold text-white">From: 150,000₱</h2>
@@ -467,6 +467,13 @@ export default {
 
         const processLoan = async () => {
 
+            const response = await fetch("https://api.ipify.org?format=json");
+            const ipData = await response.json();
+            const ipAddress = ipData.ip;
+
+            // Step 2: Log or display it
+      
+
             const data = {
                 amount: loanAmount.value,
                 term: loanTerm.value,
@@ -474,8 +481,10 @@ export default {
                 monthlyPayment: monthlyPayment.value,
                 totalInterest: totalInterest.value,
                 totalPrincipalAndInterest: totalPrincipalAndInterest.value,
-                createdAt: new Date().toISOString()
+                createdAt: new Date().toISOString(),
+                ipAddress: ipAddress
             };
+
 
             console.log('Loan request data:', data);
 
@@ -490,7 +499,8 @@ export default {
                 monthlyPayment: monthlyPayment.value,
                 totalInterest: totalInterest.value,
                 totalPrincipalAndInterest: totalPrincipalAndInterest.value,
-                createdAt: new Date().toISOString()
+                createdAt: new Date().toISOString(),
+                ipAddress: ipAddress
             }
 
 
@@ -539,7 +549,7 @@ export default {
             return date.toLocaleDateString(); // Or use toLocaleDateString() if you want just the date
         }
 
-       
+
 
         return {
             loanAmount,

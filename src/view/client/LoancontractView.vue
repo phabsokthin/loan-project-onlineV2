@@ -11,7 +11,16 @@
     <!-- Main Content -->
     <div class="w-full max-w-4xl px-1 py-10 m-auto mt-1 bg-white mb-9">
       <!-- Loan Info -->
-      <h2 class="p-3 text-lg font-semibold text-center text-white bg-blue-600 rounded-md">Personal Information</h2>
+      <h2 class="flex items-center justify-center gap-2 p-3 text-lg font-semibold text-center text-white bg-blue-600 rounded-md">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-signature-icon lucide-signature">
+          <path
+            d="m21 17-2.156-1.868A.5.5 0 0 0 18 15.5v.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1c0-2.545-3.991-3.97-8.5-4a1 1 0 0 0 0 5c4.153 0 4.745-11.295 5.708-13.5a2.5 2.5 0 1 1 3.31 3.284" />
+          <path d="M3 21h18" />
+        </svg>
+        <span>Signature</span>
+      </h2>
       <div v-if="!showSuccess"
         class="w-full max-w-md p-6 mx-auto mt-8 mb-3 space-y-6 text-white rounded-md bg-gradient-to-r from-blue-500 to-indigo-600">
         <h2 class="mb-3 text-lg font-bold">Loan details</h2>
@@ -59,8 +68,14 @@
                 <img :src="usDoc.assigned_image" alt="">
               </div>
 
-              <div class="flex items-center justify-end mt-2">
-                <button @click="handleComplete" class="px-4 py-1 text-white bg-green-600 rounded">Congratulations</button>
+              <div class="w-full ">
+
+                <button @click="handleComplete"
+                  class="flex items-center justify-center w-full gap-1 p-3 mt-10 font-mono text-white bg-green-600 rounded-full">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>Congratulations</span></button>
 
               </div>
             </div>
@@ -81,11 +96,12 @@
       </div>
 
       <!-- Success Message -->
-      <div v-if="showSuccess  && userDoc.some(doc => doc.assigned_image)" class="max-w-md mx-auto mt-6 text-center ">
+      <div v-if="showSuccess && userDoc.some(doc => doc.assigned_image)" class="max-w-md mx-auto mt-6 text-center ">
         <img :src="require('@/assets/success.webp')" alt="How to Sign" class="mx-auto mb-4">
         <h2 class="mb-2 text-xl font-bold text-green-600">✔ Congratulations</h2>
         <p class="text-gray-700">Your loan application was successful, please wait for approval.</p>
-        <button @click="handleContact" class="px-6 py-2 mt-4 text-white bg-blue-600 rounded">Contact Customer Service</button>
+        <button @click="handleContact" class="px-6 py-2 mt-4 text-white bg-blue-600 rounded">Contact Customer
+          Service</button>
       </div>
 
       <!-- Bottom Bar: Contract Terminated -->
@@ -105,8 +121,8 @@
     </div>
 
 
-<!-- <pre>{{ userDoc }}</pre> -->
-    
+    <!-- <pre>{{ userDoc }}</pre> -->
+
 
   </div>
 </template>
@@ -153,7 +169,7 @@ export default {
   },
   methods: {
 
-    
+
     async watchUser() {
       const { user } = getUser();
 
@@ -213,7 +229,7 @@ export default {
           // interestRate: this.$props.data.interestRate,
           // totalInterest: this.$props.data.totalInterest,
           // totalPrincipalAndInterest: this.$props.data.totalPrincipalAndInterest,
-          
+
           status: 0,
         }
         await updateDocs(user?.value?.uid, data);
@@ -239,10 +255,10 @@ export default {
       this.$router.push({ name: 'complete' }); // ✅ Use `this.$router`
     },
 
-    handleContact(){
+    handleContact() {
       this.$router.push({ name: 'home' }); // ✅ Use `this.$router`
     }
-  
+
   },
 };
 </script>

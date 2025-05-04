@@ -11,6 +11,9 @@ import BaneficicaryView from '@/view/client/BaneficicaryView.vue';
 import LoancontractView from '@/view/client/LoancontractView.vue';
 import IdentificationView from '@/view/client/IdentificationView.vue';
 import CompleteLoanView from '@/view/client/CompleteLoanView.vue';
+import PersionalProfileView from '@/view/client/Personal_InformationProfileView.vue'
+import BaneficicaryProfileView from '@/view/client/Baneficicary_ProfileView.vue'
+import LoanContactProfileView from '@/view/client/LoanContactProfileView.vue'
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
@@ -24,23 +27,23 @@ const routes = [
   {
     path: '/personal', name: 'personal', component: Personal_InforView,
 
-    props: (route) => ({
-      data: JSON.parse(route.query.data),
-    })
+    // props: (route) => ({
+    //   data: JSON.parse(route.query.data),
+    // })
 
   },
   {
     path: '/baneficicary', name: 'baneficicary', component: BaneficicaryView,
 
-    props: (route) => ({
-      data: JSON.parse(route.query.data),
-    })
+    // props: (route) => ({
+    //   data: JSON.parse(route.query.data),
+    // })
   },
   {
     path: '/loancontect', name: 'loancontect', component: LoancontractView,
 
-    props: (route) => ({
-      data: JSON.parse(route.query.data),})
+    // props: (route) => ({
+    //   data: JSON.parse(route.query.data),})
   },
   {
     path: '/identification', name: 'identification', component: IdentificationView,
@@ -48,7 +51,11 @@ const routes = [
     props: (route) => ({
       data: JSON.parse(route.query.data),
     })
-  }
+  },
+  { path: '/persionalProfile', name: 'persionalProfile', component: PersionalProfileView },
+
+  { path: '/baneficicaryProfile', name: 'baneficicaryProfile', component: BaneficicaryProfileView },
+  { path: '/loancontactProfile', name: 'loancontactProfile', component: LoanContactProfileView },
 
 
 ];
@@ -56,6 +63,9 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  linkExactActiveClass: 'bg-blue-500 px-4 py-1 lg:bg-gray-100  hover:text-white  lg:p-2 text-white rounded-full',
+
+
 
   scrollBehavior(to) {
     if (to.hash) {

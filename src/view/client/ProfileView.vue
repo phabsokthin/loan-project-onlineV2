@@ -26,7 +26,7 @@
 
         <div class="space-gap-2">
             <div class="col-span-2 lg:col-span-1">
-                <router-link to="#"
+                <router-link to="/persionalProfile"
                     class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
                     <svg class="h-6 ml-3 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +38,7 @@
             </div>
 
             <div class="col-span-2 mt-2 lg:col-span-1">
-                <router-link to="#"
+                <router-link to="/baneficicaryProfile"
                     class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
                     <svg class="h-6 ml-3 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +51,7 @@
             </div>
 
             <div class="col-span-2 mt-2 lg:col-span-1">
-                <router-link to="#"
+                <router-link to="/loancontactProfile"
                     class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
                     <svg class="h-6 ml-3 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +90,7 @@
 
             <div class="mb-20">
                 <div class="w-full mt-2">
-                    <router-link to="#"
+                    <router-link to="/#"
                         class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl lg:mb-0 hover:bg-blue-700">
                         <svg class="h-6 ml-3 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
