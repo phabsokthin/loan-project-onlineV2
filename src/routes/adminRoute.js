@@ -3,6 +3,7 @@ import AdminHome from '@/view/admin/AdminHome.vue';
 import DashBoard from '@/view/admin/DashBoard.vue';
 import TestAdmin from '@/view/admin/TestAdmin.vue';
 import CustomerView from '@/view/admin//CustomersView.vue';
+import ViewCustomerDetail from '@/view/admin/ViewCustomerDetailView.vue'
 
 const routes = [
   {
@@ -13,6 +14,7 @@ const routes = [
       { path: '/admin', name: "dashboard", component: DashBoard },
       { path: '/admin', name: "test", component: TestAdmin },
       { path: '/admin', name: "customers", component: CustomerView },
+      { path: '/admin/:id', name: "viewCustomer", component: ViewCustomerDetail },
 
     ]
   },

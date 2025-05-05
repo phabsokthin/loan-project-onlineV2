@@ -7,7 +7,8 @@
                     <h2 class="text-lg font-medium text-gray-800 dark:text-white">Customers</h2>
 
                     <span
-                        class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{ customers?.length }}
+                        class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{
+                            customers?.length }}
                         Request</span>
                 </div>
 
@@ -79,7 +80,7 @@
                     </svg>
                 </span>
 
-                <input type="text" placeholder="Search"
+                <input type="text" v-model="searchText" placeholder="Search"
                     class="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
             </div>
         </div>
@@ -133,7 +134,7 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                                <tr v-for="customer in customers" :key="customer">
+                                <tr v-for="customer in data" :key="customer">
                                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                                         {{ customer?.name }}
                                     </td>
@@ -167,7 +168,8 @@
                                     </td>
 
                                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                        <div v-if="customer.status === '0'" class="text-xs text-center text-white bg-orange-500 rounded-full">
+                                        <div v-if="customer.status === '0'"
+                                            class="text-xs text-center text-white bg-orange-500 rounded-full">
                                             Under Review
                                         </div>
                                         <div v-else-if="customer.status ===
@@ -188,7 +190,8 @@
 
 
                                     <td class="flex justify-end gap-2 px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                        <div v-if="customer?.status === '0' || customer?.status === '1'"  @click="handleCurrentUpdate(customer)">
+                                        <div v-if="customer?.status === '0' || customer?.status === '1'"
+                                            @click="handleCurrentUpdate(customer)">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"
@@ -199,17 +202,19 @@
                                         </div>
 
                                         <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="cursor-pointer lucide lucide-scan-search-icon lucide-scan-search hover:text-orange-500">
-                                                <path d="M3 7V5a2 2 0 0 1 2-2h2" />
-                                                <path d="M17 3h2a2 2 0 0 1 2 2v2" />
-                                                <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
-                                                <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
-                                                <circle cx="12" cy="12" r="3" />
-                                                <path d="m16 16-1.9-1.9" />
-                                            </svg>
+                                            <RouterLink :to="{ name: 'viewCustomer', params: { id: customer.id } }">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="cursor-pointer lucide lucide-scan-search-icon lucide-scan-search hover:text-orange-500">
+                                                    <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+                                                    <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                                                    <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+                                                    <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                                                    <circle cx="12" cy="12" r="3" />
+                                                    <path d="m16 16-1.9-1.9" />
+                                                </svg>
+                                            </RouterLink>
                                         </div>
 
                                         <div>
@@ -233,51 +238,50 @@
             </div>
         </div>
 
-        <div class="mt-6 sm:flex sm:items-center sm:justify-between ">
-            <div class="text-sm text-gray-500 dark:text-gray-400">
-                Page <span class="font-medium text-gray-700 dark:text-gray-100">1 of 10</span>
-            </div>
+        <!-- Pagination -->
+        <div class="flex justify-end px-4 py-3">
+            <nav class="flex items-center space-x-1">
+                <!-- Previous Button -->
+                <button type="button" @click="loadPreviousPage" :disabled="currentPage === 1"
+                    class="p-2.5 inline-flex border bg-white items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                    <span >«</span>
+                    <span>Previous</span>
+                </button>
 
-            <div class="flex items-center mt-4 gap-x-4 sm:mt-0">
-                <a href="#"
-                    class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-5 h-5 rtl:-scale-x-100">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
-                    </svg>
+                <!-- Page Number Buttons -->
+                <button v-for="page in pageRange" :key="page" @click="goToPage(page)"
+                    :class="['min-w-[40px] flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2.5 text-sm rounded-full disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10', { 'bg-blue-500 text-white': currentPage === page }]">
+                    {{ page }}
+                </button>
 
-                    <span>
-                        previous
-                    </span>
-                </a>
-
-                <a href="#"
-                    class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
-                    <span>
-                        Next
-                    </span>
-
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-5 h-5 rtl:-scale-x-100">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                    </svg>
-                </a>
-            </div>
+                <!-- Next Button -->
+                <button type="button" @click="loadNextPage" :disabled="currentPage === totalPages"
+                    class="p-2.5 border bg-white inline-flex items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                    <span >»</span>
+                    <span>Next</span>
+                </button>
+            </nav>
         </div>
+
+        <pre>{{ paginatedStudents }}</pre>
+
+
     </section>
 
     <!-- <pre>{{ customers }}</pre> -->
 
 
-     <!-- modal Update stutus -->
-    <component :is="currentComponents" :statusData="statusData" @close="currentComponents=''"/>
+    <!-- modal Update stutus -->
+    <component :is="currentComponents" :statusData="statusData" @close="currentComponents = ''" />
 </template>
 <script>
 import getCollection from '@/firebase/getCollection';
 import { ref } from 'vue';
 import UpdateCustomerModal from '@/components/admin/UpdateStatusModal.vue'
+import { useFirestorePagination } from '@/firebase/useFirestorePagination';
+import { onMounted } from 'vue';
+import { watch } from 'vue';
+import useCollectionSearch from '@/firebase/useCollectionSearch'
 export default {
     components: {
         UpdateCustomerModal
@@ -287,17 +291,86 @@ export default {
 
         const currentComponents = ref("")
         const statusData = ref(null)
-
+        const searchText = ref("")
+        const itemsPerPage = ref(10)
         const { document: customers } = getCollection("customers")
 
+        const { data, currentPage, pageRange, totalPages, loadPreviousPage, loadNextPage, goToPage, fetchTotalPages, getDataRealTime } = useFirestorePagination('customers', 2);
+
+
+        onMounted(() => {
+            fetchTotalPages();
+            getDataRealTime(currentPage.value);
+        });
+
         const handleCurrentUpdate = (item) => {
-             console.log(item)
+            console.log(item)
             statusData.value = item
             currentComponents.value = 'UpdateCustomerModal'
         }
 
 
-        return { customers,handleCurrentUpdate, currentComponents,statusData}
+        //  search text
+        watch(searchText, async (newVal) => {
+            if (newVal.trim()) {
+                currentPage.value = 1; // Reset current page to 1 on search
+                const { documents } = useCollectionSearch('customers', newVal.trim().toLowerCase(), 'name');
+
+                watch(documents, (newDocs) => {
+                    if (newDocs) {
+                        data.value = newDocs.slice(0, 10); // Show first page of search results
+                        totalPages.value = Math.ceil(newDocs.length / 10); // Update totalPages
+                        pageRange.value = Array.from({ length: totalPages.value }, (_, i) => i + 1); // Update page range
+                    }
+                }, { immediate: true });
+
+            } else {
+                // Reset pagination when search is cleared
+                currentPage.value = 1;
+                fetchTotalPages();
+                getDataRealTime(currentPage.value);
+            }
+        });
+
+
+
+
+        return {
+            handleCurrentUpdate,
+            currentComponents,
+            statusData,
+            data,
+            loadPreviousPage,
+            loadNextPage,
+            goToPage,
+            fetchTotalPages,
+            getDataRealTime,
+            totalPages,
+            searchText,
+            itemsPerPage,
+            pageRange,
+            customers,
+            currentPage
+        }
+
+        // return {
+        //     handleCurrentUpdate,
+        //     customers,
+         
+        //     currentPage,
+        //     itemsPerPage,
+        //     searchText,
+         
+        //     loadPreviousPage,
+        //     loadNextPage,
+        //     goToPage,
+        //     fetchTotalPages,
+        //     getDataRealTime,
+        //     totalPages,
+        //     data,
+        //     pageRange,
+
+        // };
     }
 }
 

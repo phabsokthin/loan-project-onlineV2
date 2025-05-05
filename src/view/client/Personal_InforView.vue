@@ -405,7 +405,7 @@ export default {
                 isLoanding.value = true;
 
                 const updatedData = {
-                    name: formData.value.name,
+                    name: formData.value.name.toLowerCase(),
                     idNumber: formData.value.idNumber,
                     gender: formData.value.gender,
                     dob: formData.value.dob,
