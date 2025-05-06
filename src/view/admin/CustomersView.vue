@@ -135,7 +135,7 @@
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                                 <tr v-for="customer in data" :key="customer">
-                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                    <td class="px-4 py-4 text-sm font-medium capitalize whitespace-nowrap">
                                         {{ customer?.name }}
                                     </td>
                                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
@@ -150,7 +150,9 @@
                                         {{ customer?.dob }}
                                     </td>
                                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                        <img :src="customer?.front_image" class="w-12" alt="">
+                                        <div>
+                                            <img :src="customer?.front_image" class="w-12" alt="">
+                                        </div>
 
                                     </td>
                                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
@@ -217,7 +219,8 @@
                                             </RouterLink>
                                         </div>
 
-                                        <div>
+                                        <div
+                                            @click="handleDelete(customer?.id, customer?.front_image, customer?.back_image, customer?.selfie_image, customer?.assigned_image)">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"
@@ -244,7 +247,7 @@
                 <!-- Previous Button -->
                 <button type="button" @click="loadPreviousPage" :disabled="currentPage === 1"
                     class="p-2.5 inline-flex border bg-white items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                    <span >«</span>
+                    <span>«</span>
                     <span>Previous</span>
                 </button>
 
@@ -257,7 +260,7 @@
                 <!-- Next Button -->
                 <button type="button" @click="loadNextPage" :disabled="currentPage === totalPages"
                     class="p-2.5 border bg-white inline-flex items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                    <span >»</span>
+                    <span>»</span>
                     <span>Next</span>
                 </button>
             </nav>
@@ -282,6 +285,9 @@ import { useFirestorePagination } from '@/firebase/useFirestorePagination';
 import { onMounted } from 'vue';
 import { watch } from 'vue';
 import useCollectionSearch from '@/firebase/useCollectionSearch'
+import useCollection from '@/firebase/useCollection';
+import useStorage from '@/firebase/useStorage';
+// import getUser from '@/firebase/getUser';
 export default {
     components: {
         UpdateCustomerModal
@@ -294,6 +300,11 @@ export default {
         const searchText = ref("")
         const itemsPerPage = ref(10)
         const { document: customers } = getCollection("customers")
+        const { deleteDocs } = useCollection("customers")
+
+
+        const { removeImagesArray } = useStorage()
+        // const { user } = getUser()
 
         const { data, currentPage, pageRange, totalPages, loadPreviousPage, loadNextPage, goToPage, fetchTotalPages, getDataRealTime } = useFirestorePagination('customers', 2);
 
@@ -333,6 +344,26 @@ export default {
         });
 
 
+        const handleDelete = async (id, fimage, bimage, simage, assign_image) => {
+            try {
+
+                if (window.confirm("Are you sure you want to delete?")) {
+                
+        
+                    await deleteDocs(id);
+                    await removeImagesArray([fimage, bimage, simage, assign_image]);
+                    console.log(fimage, bimage, simage, assign_image)
+                    alert("Delete Successfull")
+
+
+
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        };
+
+
 
 
         return {
@@ -350,27 +381,10 @@ export default {
             itemsPerPage,
             pageRange,
             customers,
-            currentPage
+            currentPage,
+            handleDelete
         }
 
-        // return {
-        //     handleCurrentUpdate,
-        //     customers,
-         
-        //     currentPage,
-        //     itemsPerPage,
-        //     searchText,
-         
-        //     loadPreviousPage,
-        //     loadNextPage,
-        //     goToPage,
-        //     fetchTotalPages,
-        //     getDataRealTime,
-        //     totalPages,
-        //     data,
-        //     pageRange,
-
-        // };
     }
 }
 

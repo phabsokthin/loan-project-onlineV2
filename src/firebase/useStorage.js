@@ -37,7 +37,34 @@ const useStorage = () => {
     }
 
 
-    return { uploadImage, removeImage,isLoading };
+    const removeImagesArray = async (imageURLs = []) => {
+        try {
+          isLoading.value = true;
+      
+          const baseUrl = 'https://firebasestorage.googleapis.com/v0/b/';
+      
+          const deletePromises = imageURLs
+            .filter(Boolean) // filter out null or undefined images
+            .map((url) => {
+              const pathStart =
+                url.indexOf(baseUrl) !== -1
+                  ? url.split('/o/')[1].split('?')[0]
+                  : url;
+              const decodedPath = decodeURIComponent(pathStart);
+              const itemRef = storageRef(projectStorage, decodedPath);
+              return deleteObject(itemRef);
+            });
+      
+          await Promise.all(deletePromises);
+        } catch (err) {
+          console.error('Error removing images:', err);
+        } finally {
+          isLoading.value = false;
+        }
+      };
+      
+
+    return { uploadImage, removeImage,isLoading, removeImagesArray };
 };
 
 export default useStorage;

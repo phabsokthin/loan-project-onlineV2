@@ -7,7 +7,7 @@
                     <div class="flex flex-wrap -m-4 text-center">
                         <a href="#link_account" class="w-full p-4 md:w-1/4 sm:w-1/2">
 
-                            
+
                             <div
                                 class="px-4 py-6 overflow-hidden transition duration-500 transform border-2 hover:scale-110">
 
@@ -43,7 +43,7 @@
                                     class="absolute inset-0 duration-300 -translate-y-1/2 border rounded-full opacity-25 aspect-video group-hover:-translate-y-1/4 bg-gradient-to-b from-blue-500 to-white dark:from-white dark:to-white blur-2xl dark:opacity-5 dark:group-hover:opacity-10">
                                 </div>
 
-                                <div  class="space-y-2 cursor-pointer">
+                                <div class="space-y-2 cursor-pointer">
                                     <div class="flex justify-center">
 
 
@@ -57,7 +57,8 @@
                                             <path d="M8 16H3v5" />
                                         </svg>
                                     </div>
-                                    <h2 class="font-mono font-medium text-gray-900 md:ext-xl title-font">Request Loan</h2>
+                                    <h2 class="font-mono font-medium text-gray-900 md:ext-xl title-font">Request Loan
+                                    </h2>
                                 </div>
 
                             </div>
@@ -105,10 +106,10 @@
 
                                 <div class="space-y-2">
                                     <div class="flex justify-center">
-                                       
-                                        <svg xmlns="http://www.w3.org/2000/svg" 
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round"
                                             class="w-12 h-12 text-indigo-500 lucide lucide-landmark">
                                             <line x1="3" x2="21" y1="22" y2="22" />
                                             <line x1="6" x2="6" y1="18" y2="11" />
@@ -130,7 +131,7 @@
                     </div>
 
 
-                    
+
                 </div>
             </section>
         </div>
@@ -141,23 +142,33 @@
 
 import { useRouter } from 'vue-router'
 import getUser from '@/firebase/getUser'
+// import useCollection from '@/firebase/useCollection'
 
 export default {
-    setup(){
+    setup() {
 
 
         const router = useRouter()
         const { user } = getUser()
-        
-        const handleRequestLoan = () => {
-            
-            if(user.value){
+
+        // const {setDocs} = useCollection("customers")
+
+        const handleRequestLoan = async () => {
+            // const data = {
+            //     // status: 2,
+            //     amount: 0,
+            // }
+            if (user.value) {
+                // await setDocs(data, user?.value?.uid)
+
                 router.push('/loan')
             }
-            else{
+            else {
                 router.push('/login')
             }
         }
+
+
 
         return {
             handleRequestLoan

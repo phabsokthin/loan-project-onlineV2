@@ -6,10 +6,20 @@
         <MobileView />
     </div>
     <div class="w-full max-w-4xl px-1 m-auto mt-5 bg-white " v-motion-fade>
-        <h2 class="flex items-center justify-center gap-2 p-3 text-lg font-semibold text-center text-white bg-blue-600 rounded-md">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-contact-round-icon lucide-contact-round"><path d="M16 2v2"/><path d="M17.915 22a6 6 0 0 0-12 0"/><path d="M8 2v2"/><circle cx="12" cy="12" r="4"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg>
+        <h2
+            class="flex items-center justify-center gap-2 p-3 text-lg font-semibold text-center text-white bg-blue-600 rounded-md">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-contact-round-icon lucide-contact-round">
+                <path d="M16 2v2" />
+                <path d="M17.915 22a6 6 0 0 0-12 0" />
+                <path d="M8 2v2" />
+                <circle cx="12" cy="12" r="4" />
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+            </svg>
 
-            <span>Personal Information</span></h2>
+            <span>Personal Information</span>
+        </h2>
         <div v-for="usDoc in userDoc" :key="usDoc">
 
             <form v-if="!usDoc.name" @submit.prevent="handleSubmitInfo"
@@ -122,8 +132,9 @@
                             </svg>
                             Enter the name of your relative: *
                         </label>
-                        <input v-model="formData.relativeName" type="text" placeholder="Enter the name of your relative: *"
-                            class="w-full p-2 border rounded-lg" required />
+                        <input v-model="formData.relativeName" type="text"
+                            placeholder="Enter the name of your relative: *" class="w-full p-2 border rounded-lg"
+                            required />
                     </div>
 
                     <div>
@@ -146,21 +157,24 @@
                             </svg>
                             Enter your relative's phone number: *
                         </label>
-                        <input v-model="formData.relativePhone" type="text" placeholder="Enter your relative's phone number: *"
-                            class="w-full p-2 border rounded-lg" required />
+                        <input v-model="formData.relativePhone" type="text"
+                            placeholder="Enter your relative's phone number: *" class="w-full p-2 border rounded-lg"
+                            required />
                     </div>
 
-             
+
                 </div>
 
-                <button v-if="!isLoanding" type="submit"
-                    class="w-full px-4 py-2 mt-6 mb-40 font-semibold text-white transition-all rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700">
-                    Continue
-                </button>
-                <button v-else type="submit" disabled
-                    class="w-full px-4 py-2 mt-6 font-semibold text-white transition-all rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600">
-                    Waiting...
-                </button>
+                <div class="pb-40">
+                    <button v-if="!isLoanding" type="submit"
+                        class="w-full p-3 font-semibold text-white transition-all rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700">
+                        Continue
+                    </button>
+                    <button v-else type="submit" disabled
+                        class="w-full p-3 py-2 mt-6 font-semibold text-white transition-all rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600">
+                        Wait for checking...
+                    </button>
+                </div>
             </form>
             <div v-else>
                 <div class="w-full p-8 space-y-6 bg-white rounded-xl">
@@ -301,15 +315,15 @@
 
                     </div>
 
-                  <div>
-                    <button @click="handleNext" v-if="!isLoanding" type="submit"
-                        class="w-full p-3 mt-6 mb-20 font-semibold text-white transition-all rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700">
-                        Next
-                    </button>
+                    <div>
+                        <button @click="handleNext" v-if="!isLoanding" type="submit"
+                            class="w-full p-3 mt-6 mb-20 font-semibold text-white transition-all rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700">
+                            Next
+                        </button>
 
-                  
 
-                  </div>
+
+                    </div>
                 </div>
             </div>
 
@@ -425,11 +439,11 @@ export default {
                 console.log("Updated Data", updatedData);
 
                 router.push({
-                        path: '/baneficicary',
-                        query: {
-                            data: JSON.stringify(props.data),
-                        }
-                    });
+                    path: '/baneficicary',
+                    query: {
+                        data: JSON.stringify(props.data),
+                    }
+                });
 
                 isLoanding.value = false;
 
