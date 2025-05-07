@@ -36,7 +36,7 @@
                                     <div v-for="usDoc in userDoc" :key="usDoc"
                                         class="mt-6 pb-6 rounded-b-[--card-border-radius]">
                                         <div v-if="usDoc.accountNumber" class="space-y-3 font-mono text-xl text-black">
-                                            <div v-if="usDoc.status === 0 || usDoc.status === 1">
+                                            <div v-if="usDoc.status === '0' || usDoc.status === '1'">
                                                 <h1>Welcome!</h1>
                                                 <h1>Account Number: {{ usDoc?.accountNumber }}</h1>
                                                 <div class="space-y-2">
@@ -44,7 +44,8 @@
                                                     <h1 class="text-2xl font-bold">₱ {{ usDoc?.amount }}</h1>
                                                 </div>
                                             </div>
-                                            <h1 v-else class="font-mono text-xs text-black md:text-xl">No Account Number</h1>
+                                            <h1 v-else class="font-mono text-xs text-black md:text-xl">No Account Number
+                                            </h1>
                                         </div>
                                         <div v-else>
                                             <h1 class="font-mono text-xs text-black md:text-xl">No Account Number</h1>
@@ -66,7 +67,24 @@
                 </div>
             </div>
 
-            <div v-for="usDoc in userDoc" :key="usDoc" class="flex justify-center my-10">
+
+            <div class="flex justify-center my-10">
+                <button @click="handleRequestLoan"
+                    class="flex items-center gap-1 p-3 font-mono font-bold text-white bg-blue-600 rounded-full shadow-xl hover:bg-blue-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-move-down">
+                        <path d="M8 18L12 22L16 18" />
+                        <path d="M12 2V22" />
+                    </svg>
+
+                    <div>
+                        <div class="uppercase">Request loan</div>
+                    </div>
+                </button>
+            </div>
+
+            <!-- <div v-for="usDoc in userDoc" :key="usDoc" class="flex justify-center my-10">
                 <div v-if="usDoc.amount === 0">
                     <button @click="handleRequestLoan"
                         class="flex items-center gap-1 p-3 font-mono font-bold text-white bg-blue-600 rounded-full shadow-xl hover:bg-blue-700">
@@ -76,7 +94,6 @@
                             <path d="M8 18L12 22L16 18" />
                             <path d="M12 2V22" />
                         </svg>
-                        <!-- <span class="uppercase">Request loan</span> -->
 
                         <div>
                             <div class="uppercase">Request loan</div>
@@ -93,14 +110,14 @@
                             <path d="M8 18L12 22L16 18" />
                             <path d="M12 2V22" />
                         </svg>
-                        <!-- <span class="uppercase">Request loan</span> -->
+                   
 
                         <div>
                             <div class="uppercase">Your Loan Information</div>
                         </div>
                     </button>
                 </div>
-            </div>
+            </div> -->
 
 
 
@@ -194,7 +211,7 @@ import getCollectionQueryTerm from '@/firebase/getCollectionQueryTerm';
 import { watch } from 'vue';
 import { documentId, where } from 'firebase/firestore';
 import { ref } from 'vue';
-import useCollection from '@/firebase/useCollection';
+// import useCollection from '@/firebase/useCollection';
 
 export default {
     setup() {
@@ -204,7 +221,7 @@ export default {
 
         const userDoc = ref(null)
 
-        const { setDocs } = useCollection('customers')
+        // const { setDocs } = useCollection('customers')
 
         watch(
             () => user.value?.uid,
@@ -227,13 +244,13 @@ export default {
         const handleRequestLoan = async () => {
             try {
 
-                const data = {
-                    // status: 2,
-                    amount: 0,
-                }
+                // const data = {
+                //     status: 2,
+                //     amount: 0,
+                // }
 
                 if (user.value) {
-                    await setDocs(data, user?.value?.uid)
+                    // await setDocs(data, user?.value?.uid)
                     router.push('/loan')
                 }
                 else {
