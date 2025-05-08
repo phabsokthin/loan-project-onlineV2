@@ -16,7 +16,7 @@
                     x-cloak>
                     <!-- Modal panel -->
                     <div class="px-6 py-4">
-                        <h3 class="text-lg font-medium leading-6 text-gray-900"> Privacy Policy </h3>
+                        <h3 class="text-lg font-medium leading-6 text-gray-900">Update Status </h3>
                     </div>
                     <div class="max-w-screen-md p-6 overflow-y-auto prose"
                         style="max-height: 70vh; background-color: #fff; border: 1px solid #e2e8f0; border-radius: 0.375rem; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);">

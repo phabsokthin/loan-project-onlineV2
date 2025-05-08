@@ -151,14 +151,15 @@
                     <div>
                         <button v-if="!isLoanding" type="submit" :disabled="!isFormComplete"
                             :class="{ 'opacity-50 cursor-not-allowed': !isFormComplete, 'hover:bg-indigo-700': isFormComplete }"
-                            class="flex justify-center w-full p-3 py-2 mb-20 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            class="flex justify-center w-full p-3 mb-20 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Continue
+                            
                         </button>
 
                         <button v-else type="submit" disabled
                             :class="{ 'opacity-50 cursor-not-allowed': !isFormComplete, 'hover:bg-indigo-700': isFormComplete }"
-                            class="flex justify-center w-full p-3 py-2 mb-20 text-sm font-medium text-white bg-indigo-400 border border-transparent rounded-md shadow-sm cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Waiting...
+                            class="flex justify-center w-full p-3 mb-20 text-sm font-medium text-white bg-indigo-400 border border-transparent rounded-md shadow-sm cursor-not-allowed focus:outline-none ">
+                            Wait a minute...
                         </button>
                     </div>
                 </form>

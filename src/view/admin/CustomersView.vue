@@ -287,7 +287,7 @@ import { watch } from 'vue';
 import useCollectionSearch from '@/firebase/useCollectionSearch'
 import useCollection from '@/firebase/useCollection';
 import useStorage from '@/firebase/useStorage';
-// import getUser from '@/firebase/getUser';
+import getUser from '@/firebase/getUser';
 export default {
     components: {
         UpdateCustomerModal
@@ -300,11 +300,11 @@ export default {
         const searchText = ref("")
         const itemsPerPage = ref(10)
         const { document: customers } = getCollection("customers")
-        const { deleteDocs } = useCollection("customers")
+        const { deleteDocs, setDocs } = useCollection("customers")
 
 
         const { removeImagesArray } = useStorage()
-        // const { user } = getUser()
+        const { user } = getUser()
 
         const { data, currentPage, pageRange, totalPages, loadPreviousPage, loadNextPage, goToPage, fetchTotalPages, getDataRealTime } = useFirestorePagination('customers', 2);
 
@@ -347,17 +347,27 @@ export default {
         const handleDelete = async (id, fimage, bimage, simage, assign_image) => {
             try {
 
+
+
                 if (window.confirm("Are you sure you want to delete?")) {
-                
-        
+
+
                     await deleteDocs(id);
                     await removeImagesArray([fimage, bimage, simage, assign_image]);
                     console.log(fimage, bimage, simage, assign_image)
                     alert("Delete Successfull")
 
-
+                    setTimeout(async () => {
+                        const data = {
+                            amount: 0
+                        }
+                        await setDocs(data, user?.value?.uid)
+                    })
 
                 }
+
+
+
             } catch (err) {
                 console.log(err);
             }

@@ -11,7 +11,7 @@
 
         <div class="grid items-center grid-cols-2 grid-rows-2 gap-4 mt-4 bg-gray-200 rounded-md p-7">
             <div class="flex items-center">
-                <span class="font-medium">Account balance :</span>
+                <span class="font-mono font-bold">Account balance :</span>
             </div>
             <div class="text-right">
                <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-end">
@@ -24,12 +24,12 @@
                     <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" fill="none" />
                 </svg>
             </div>
-            <div class="flex items-center">
+            <!-- <div class="flex items-center">
                 <span class="font-medium">Another Field :</span>
             </div>
             <div class="text-right">
                 <span class="font-semibold text-blue-600">0₱</span>
-            </div>
+            </div> -->
         </div>
 
 

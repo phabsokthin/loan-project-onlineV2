@@ -53,9 +53,9 @@
           <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-between">
             <div class="flex gap-2" v-if="!usDoc.assigned_image">
               <button v-if="!signatureConfirmed" @click="clearSignature"
-                class="px-4 py-1 text-white bg-red-500 rounded ">Reset</button>
+                class="px-4 py-3 text-white bg-red-500 rounded ">Reset</button>
               <button v-if="!signatureConfirmed" @click="confirmSignature"
-                class="px-4 py-1 text-white bg-blue-600 rounded">Signature confirmation</button>
+                class="px-4 py-3 text-white bg-blue-600 rounded">Signature confirmation</button>
             </div>
 
           </div>

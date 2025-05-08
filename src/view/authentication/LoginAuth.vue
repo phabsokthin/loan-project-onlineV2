@@ -99,7 +99,8 @@ export default {
         alert('Login successful!');
         router.push({ path: '/' }); 
       } else {
-        alert(result.error || 'Login failed');
+        // alert(result.error || 'Login failed');
+        alert("Incorrect email or passowrd. try again!")
       }
       loading.value = false;
     };

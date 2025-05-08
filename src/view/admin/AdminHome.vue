@@ -67,7 +67,7 @@
                         </RouterLink>
                     </li>
 
-                    <li class="block">
+                    <!-- <li class="block">
                         <RouterLink to="#"
                             class="flex items-center gap-3 px-4 py-2 font-thin rounded hover:bg-gray-200">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -77,9 +77,9 @@
                             </svg>
                             <span class="font-bold text-gray-600 uppercase">Report Today</span>
                         </RouterLink>
-                    </li>
+                    </li> -->
 
-                    <li class="block">
+                    <!-- <li class="block">
                         <RouterLink to="#"
                             class="flex items-center gap-3 px-4 py-2 font-thin rounded hover:bg-gray-200">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -89,7 +89,7 @@
                             </svg>
                             <span class="font-bold text-gray-600 uppercase">Reports</span>
                         </RouterLink>
-                    </li>
+                    </li> -->
 
 
                 </ul>

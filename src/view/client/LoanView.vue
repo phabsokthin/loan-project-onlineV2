@@ -390,8 +390,8 @@ export default {
         });
 
         const isLoanValid = computed(() => {
-            return loanAmount.value >= 15000 &&
-                loanAmount.value <= 6000000 &&
+            return loanAmount.value >= 150000 &&
+                loanAmount.value <= 60000000 &&
                 loanTerm.value > 0;
         });
 
