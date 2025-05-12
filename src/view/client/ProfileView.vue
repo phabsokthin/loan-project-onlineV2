@@ -9,10 +9,12 @@
         <div class="mb-6 text-2xl text-center ">
             <div
                 class="w-[180px] h-[180px] mx-auto rounded-full border-blue-600 border-8 flex items-center justify-center text-white ">
-                <div class="space-y-2 text-center">
-                    <h1 class="font-mono text-3xl text-black">500</h1>
+                <div v-for="usDoc in userDoc" :key="usDoc" class="space-y-2 text-center">
+                    <h1 class="font-mono text-3xl text-black">{{ usDoc?.credit }}</h1>
                     <span class="font-mono text-black">Meduim Credit</span>
                 </div>
+                <span v-if="!user" class="font-mono text-black">No Meduim Credit</span>
+
             </div>
             <h2 class="mt-4 text-lg font-semibold">Name</h2>
             <div>
@@ -132,6 +134,11 @@ import MobileView from './MobileView.vue';
 import { useRouter } from 'vue-router';
 import useSignout from '@/firebase/useSignout';
 import getUser from '@/firebase/getUser';
+import { watch } from 'vue';
+import getCollectionQueryTerm from '@/firebase/getCollectionQueryTerm';
+import { documentId, where } from 'firebase/firestore';
+import { ref } from 'vue';
+
 export default {
     components: {
         NavbarComponent,
@@ -141,6 +148,28 @@ export default {
         const router = useRouter();
         const { user } = getUser()
         const { signOut } = useSignout()
+
+        const userDoc = ref(null)
+
+
+
+        watch(
+            () => user.value?.uid,
+            async (newUid) => {
+                if (newUid) {
+                    const { documents } = await getCollectionQueryTerm('customers', where(documentId(), '==', newUid));
+                    // console.log("documents", documents);
+                    watch(() => {
+                        userDoc.value = documents.value || null;
+                    })
+
+
+
+                }
+            },
+            { immediate: true }
+        );
+
 
         const handleLogout = async () => {
             // Perform logout logic here, e.g., clearing tokens or user data
@@ -157,7 +186,8 @@ export default {
 
         return {
             handleLogout,
-            user
+            user,
+            userDoc
         };
     }
 }

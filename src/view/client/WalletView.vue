@@ -14,10 +14,17 @@
                 <span class="font-mono font-bold">Account balance :</span>
             </div>
             <div class="text-right">
-               <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-end">
-                <div v-if="usDoc.totalPrincipalAndInterest" class="font-bold">₱ {{ usDoc?.totalPrincipalAndInterest }}</div>
-                <div v-else class="font-bold">No account balance</div>
-               </div>
+                <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-end">
+                    <div v-if="usDoc?.status == '1'">
+                        <div v-if="usDoc.totalPrincipalAndInterest" class="font-mono text-lg font-bold">₱ {{
+                            usDoc?.totalPrincipalAndInterest }}</div>
+                        <div v-else class="font-mono">No account balance</div>
+                    </div>
+                    <div v-else>
+                        <p class="font-mono text-lg">₱ 0</p>
+                    </div>
+
+                </div>
                 <svg class="inline-block h-6 text-gray-500 w-7" fill="none" stroke="currentColor" stroke-width="2"
                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M1 12s4-6 11-6 11 6 11 6-4 6-11 6-11-6z" />
@@ -33,8 +40,16 @@
         </div>
 
 
+        <div v-for="usDoc in userDoc" :key="usDoc">
+            <button @click="handleWidthModal(usDoc)" v-if="usDoc?.status === '1'"
+                class="w-full py-2 mt-4 font-mono font-semibold text-white capitalize bg-blue-700 rounded-md hover:bg-blue-600">Withdraw
+                money</button>
+            <!-- <button v-else
+                class="w-full py-2 mt-4 font-mono font-semibold text-white capitalize rounded-md bg-orange-600/90">Waiting
+                For Loan Approved</button> -->
 
-        <button class="w-full py-2 mt-4 font-semibold text-white bg-blue-700 rounded-md">Withdraw money</button>
+        </div>
+
 
         <div class="grid items-center grid-cols-2 grid-rows-2 gap-4 mt-4 bg-blue-700 rounded-md p-7">
             <div class="flex items-center">
@@ -63,7 +78,7 @@ s-2.238,5-5,5s-5-2.238-5-5S29.238,9,32,9z"></path>
                 <span v-if="usDoc.accountNumber">{{ usDoc?.accountNumber }}</span>
                 <span v-else>No loan number</span>
             </div>
-            
+
             <div class="flex items-center">
                 <svg class="w-4 h-4 mr-2 text-white" fill="currentColor" viewBox="0 0 512 512"
                     xmlns="http://www.w3.org/2000/svg">
@@ -82,9 +97,12 @@ c121.048-0.052,207.528-16.496,205.517-31.558C450.511,398.09,388.519,384.847,341.
                 </p>
             </div>
             <div class="text-right" v-for="usDoc in userDoc" :key="usDoc">
-                <span v-if="usDoc.status === '0'" class="px-2 py-1 text-xs font-semibold text-white bg-orange-500 rounded-full">Under Review</span>
-                <span v-else-if="usDoc.status === '1'" class="px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded-full">Approved</span>
-                <span v-else class="px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded-full">Not Complete</span>
+                <span v-if="usDoc.status === '0'"
+                    class="px-2 py-1 text-xs font-semibold text-white bg-orange-500 rounded-full">Under Review</span>
+                <span v-else-if="usDoc.status === '1'"
+                    class="px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded-full">Approved</span>
+                <span v-else class="px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded-full">Not
+                    Complete</span>
 
 
             </div>
@@ -110,27 +128,37 @@ c121.048-0.052,207.528-16.496,205.517-31.558C450.511,398.09,388.519,384.847,341.
 
 
 
+
     </div>
+    <component :is="currentComponents" :currentData="currentData" @close="currentComponents=''"/>
+
 </template>
 <script>
 import NavbarComponent from '@/components/client/NavbarComponent.vue';
 import MobileView from './MobileView.vue';
 import { watch } from 'vue';
-import getUser  from '@/firebase/getUser';
-import  getCollectionQueryTerm  from '@/firebase/getCollectionQueryTerm';
+import getUser from '@/firebase/getUser';
+import getCollectionQueryTerm from '@/firebase/getCollectionQueryTerm';
 import { documentId, where } from 'firebase/firestore';
 import { ref } from 'vue';
+import WidthDrawModal from '@/components/admin/WithDrawLoanModal.vue'
 export default {
     components: {
         NavbarComponent,
         MobileView,
+        WidthDrawModal
+
     },
 
     setup() {
-       
-       const userDoc = ref(null);
+
+        const userDoc = ref(null);
         const { user } = getUser();
+
+        const currentComponents = ref("")
         
+        const currentData = ref(null)
+
 
         watch(
             () => user.value?.uid,
@@ -150,11 +178,20 @@ export default {
         );
 
 
+        const handleWidthModal = (item) => {
+            currentComponents.value = "WidthDrawModal"
+            currentData.value = item
+        }
+
+
         return {
             userDoc,
+            handleWidthModal,
+            currentComponents,
+            currentData
         };
 
-    },  
+    },
 }
 </script>
 <style></style>

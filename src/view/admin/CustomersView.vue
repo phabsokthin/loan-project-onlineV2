@@ -219,6 +219,16 @@
                                             </RouterLink>
                                         </div>
 
+                                        <div class="cursor-pointer" @click="handleAddCreditModal(customer)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-credit-card-icon lucide-credit-card hover:text-blue-500">
+                                                <rect width="20" height="14" x="2" y="5" rx="2" />
+                                                <line x1="2" x2="22" y1="10" y2="10" />
+                                            </svg>
+                                        </div>
+
                                         <div
                                             @click="handleDelete(customer?.id, customer?.front_image, customer?.back_image, customer?.selfie_image, customer?.assigned_image)">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -266,7 +276,7 @@
             </nav>
         </div>
 
-        <pre>{{ paginatedStudents }}</pre>
+        <!-- <pre>{{ paginatedStudents }}</pre> -->
 
 
     </section>
@@ -275,7 +285,7 @@
 
 
     <!-- modal Update stutus -->
-    <component :is="currentComponents" :statusData="statusData" @close="currentComponents = ''" />
+    <component :is="currentComponents" :statusData="statusData" @close="currentComponents = ''" :creditData="creditData" />
 </template>
 <script>
 import getCollection from '@/firebase/getCollection';
@@ -288,17 +298,23 @@ import useCollectionSearch from '@/firebase/useCollectionSearch'
 import useCollection from '@/firebase/useCollection';
 import useStorage from '@/firebase/useStorage';
 import getUser from '@/firebase/getUser';
+import AddCreditModal from '@/components/admin/AddCreditModal.vue';
 export default {
     components: {
-        UpdateCustomerModal
+        UpdateCustomerModal,
+        AddCreditModal
     },
 
     setup() {
 
         const currentComponents = ref("")
+        const creditData = ref(null)
+
+
         const statusData = ref(null)
         const searchText = ref("")
         const itemsPerPage = ref(10)
+
         const { document: customers } = getCollection("customers")
         const { deleteDocs, setDocs } = useCollection("customers")
 
@@ -373,6 +389,13 @@ export default {
             }
         };
 
+        //add credit 
+
+
+        const handleAddCreditModal = (item) => {
+            currentComponents.value = "AddCreditModal"
+            creditData.value = item
+        }
 
 
 
@@ -392,7 +415,9 @@ export default {
             pageRange,
             customers,
             currentPage,
-            handleDelete
+            handleDelete,
+            handleAddCreditModal,
+            creditData
         }
 
     }

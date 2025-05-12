@@ -26,9 +26,13 @@
                                 class="relative grid items-center justify-center grid-cols-1 lg:flex lg:justify-between">
                                 <div
                                     class="mt-6 border-blue-600 rounded-full border-8 flex items-center justify-center w-[180px] h-[180px]">
-                                    <div class="space-y-2 text-center">
-                                        <h1 class="font-mono text-3xl text-black">500</h1>
+                                    <div v-for="usDoc in userDoc" :key="usDoc" class="space-y-2 text-center">
+                                        <h1 class="font-mono text-3xl text-black">{{ usDoc?.credit }}</h1>
                                         <span class="font-mono">Meduim Credit</span>
+                                    </div>
+                                    <div v-if="!user">
+                                        <span class="font-mono"> No Meduim Credit</span>
+
                                     </div>
                                 </div>
 
