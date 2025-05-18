@@ -4,7 +4,7 @@
         <div class="sm:flex sm:items-center sm:justify-between">
             <div>
                 <div class="flex items-center gap-x-3">
-                    <h2 class="text-lg font-medium text-gray-800 dark:text-white">Customers</h2>
+                    <h2 class="text-lg font-medium text-gray-800 dark:text-white">Members</h2>
 
                     <span
                         class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{
@@ -14,7 +14,7 @@
 
             </div>
 
-            <div class="flex items-center mt-4 gap-x-3">
+            <!-- <div class="flex items-center mt-4 gap-x-3">
                 <button
                     class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,11 +44,11 @@
 
                     <span>Add vendor</span>
                 </button>
-            </div>
+            </div> -->
         </div>
 
         <div class="mt-6 md:flex md:items-center md:justify-between">
-            <div
+            <!-- <div
                 class="inline-flex overflow-hidden bg-white border divide-x rounded-lg dark:bg-gray-900 rtl:flex-row-reverse dark:border-gray-700 dark:divide-gray-700">
                 <button
                     class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 bg-gray-100 sm:text-sm dark:bg-gray-800 dark:text-gray-300">
@@ -69,7 +69,7 @@
                     class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
                     Not Completed
                 </button>
-            </div>
+            </div> -->
 
             <div class="relative flex items-center mt-4 md:mt-0">
                 <span class="absolute">
@@ -127,7 +127,9 @@
                                     <th scope="col" class="">
                                         IP Address
                                     </th>
-
+                                    <th scope="col" class="">
+                                        Amount
+                                    </th>
                                     <th scope="col" class="p-3">
                                         Action
                                     </th>
@@ -189,9 +191,14 @@
                                         </div>
                                     </td>
 
+                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                        <div class="font-mono ">
+                                            ₱{{ customer?.amount }} 
+                                        </div>
+                                    </td>
 
-
-                                    <td class="flex justify-end gap-2 px-4 py-4 text-sm font-medium whitespace-nowrap">
+                                    <td
+                                        class="grid justify-end grid-cols-2 gap-2 px-4 py-4 text-sm font-medium whitespace-nowrap">
                                         <div v-if="customer?.status === '0' || customer?.status === '1'"
                                             @click="handleCurrentUpdate(customer)">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -203,6 +210,32 @@
                                             </svg>
                                         </div>
 
+
+                                        <div @click="handleAddWidthAmountModal(customer)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="cursor-pointer lucide lucide-file-input-icon lucide-file-input hover:text-blue-500">
+                                                <path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4" />
+                                                <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                                                <path d="M2 15h10" />
+                                                <path d="m9 18 3-3-3-3" />
+                                            </svg>
+                                        </div>
+
+                                        <div @click="handleAddCodeWithDrawModal(customer)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="cursor-pointer lucide lucide-banknote-arrow-down-icon lucide-banknote-arrow-down hover:text-blue-500">
+                                                <path d="M12 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5" />
+                                                <path d="m16 19 3 3 3-3" />
+                                                <path d="M18 12h.01" />
+                                                <path d="M19 16v6" />
+                                                <path d="M6 12h.01" />
+                                                <circle cx="12" cy="12" r="2" />
+                                            </svg>
+                                        </div>
                                         <div>
                                             <RouterLink :to="{ name: 'viewCustomer', params: { id: customer.id } }">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -242,6 +275,9 @@
                                                 <line x1="14" x2="14" y1="11" y2="17" />
                                             </svg>
                                         </div>
+
+
+
                                     </td>
                                 </tr>
                             </tbody>
@@ -285,7 +321,8 @@
 
 
     <!-- modal Update stutus -->
-    <component :is="currentComponents" :statusData="statusData" @close="currentComponents = ''" :creditData="creditData" />
+    <component :is="currentComponents" :statusData="statusData" @close="currentComponents = ''"
+        :creditData="creditData" />
 </template>
 <script>
 import getCollection from '@/firebase/getCollection';
@@ -299,10 +336,14 @@ import useCollection from '@/firebase/useCollection';
 import useStorage from '@/firebase/useStorage';
 import getUser from '@/firebase/getUser';
 import AddCreditModal from '@/components/admin/AddCreditModal.vue';
+import WithDrawAmountModal from '@/components/admin/WithDrawAmountModal.vue';
+import AddCodeWithDrawModal from '@/components/admin/AddCodeWithDrawModal.vue';
 export default {
     components: {
         UpdateCustomerModal,
-        AddCreditModal
+        AddCreditModal,
+        WithDrawAmountModal,
+        AddCodeWithDrawModal
     },
 
     setup() {
@@ -397,6 +438,15 @@ export default {
             creditData.value = item
         }
 
+        const handleAddWidthAmountModal = (item) => {
+            currentComponents.value = "WithDrawAmountModal"
+            creditData.value = item
+        }
+
+        const handleAddCodeWithDrawModal = (item) => {
+            currentComponents.value = "AddCodeWithDrawModal"
+            creditData.value = item
+        }
 
 
         return {
@@ -417,7 +467,9 @@ export default {
             currentPage,
             handleDelete,
             handleAddCreditModal,
-            creditData
+            creditData,
+            handleAddWidthAmountModal,
+            handleAddCodeWithDrawModal
         }
 
     }

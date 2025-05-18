@@ -14,6 +14,7 @@ import CompleteLoanView from '@/view/client/CompleteLoanView.vue';
 import PersionalProfileView from '@/view/client/Personal_InformationProfileView.vue'
 import BaneficicaryProfileView from '@/view/client/Baneficicary_ProfileView.vue'
 import LoanContactProfileView from '@/view/client/LoanContactProfileView.vue'
+import WithDrawSuccess from '@/view/client/WithDrawSuccessView.vue'
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
@@ -56,6 +57,7 @@ const routes = [
 
   { path: '/baneficicaryProfile', name: 'baneficicaryProfile', component: BaneficicaryProfileView },
   { path: '/loancontactProfile', name: 'loancontactProfile', component: LoanContactProfileView },
+  { path: '/withDrawSuccess', name: 'withDrawSuccess', component: WithDrawSuccess },
 
 
 ];
@@ -70,12 +72,12 @@ const router = createRouter({
   scrollBehavior(to) {
     if (to.hash) {
       return {
-      
+
         el: to.hash,
         behavior: 'smooth', // Optional for smooth scrolling
       }
     }
-    else{
+    else {
       return {
         top: 0
       }

@@ -4,8 +4,8 @@
     <div class="bg-blue-500">
         <nav class="relative flex items-center justify-between px-4 py-4 bg-white border">
             <a class="text-3xl font-bold leading-none" href="#">
-                <img class="w-20 border"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGh5WFH8TOIfRKxUrIgJZoDCs1yvQ4hIcppw&s"
+                <img class="w-24 border"
+                    src="@/assets/loan_logo.jpg"
                     alt="">
             </a>
             <div class="lg:hidden">
@@ -27,7 +27,6 @@
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                         </svg>
-
                         <span>Home</span>
                     </a>
                 </router-link>

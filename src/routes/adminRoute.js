@@ -4,12 +4,52 @@ import DashBoard from '@/view/admin/DashBoard.vue';
 import TestAdmin from '@/view/admin/TestAdmin.vue';
 import CustomerView from '@/view/admin//CustomersView.vue';
 import ViewCustomerDetail from '@/view/admin/ViewCustomerDetailView.vue'
+import { projectAuth } from '@/config/config';
+// import Login from '@/view/authentication/LoginAuth.vue';
+import RegisterAuth from '@/view/authentication/AdminRegisterAuth.vue';
+import LoginAuth from '@/view/authentication/AdminLoginAuth.vue'
+
+const requiresAuth = (to, from, next) => {
+  const user = projectAuth.currentUser;
+  if (user) {
+    next();
+  }
+  else {
+    next({ name: 'login' })
+  }
+}
+
+//if we loggin exist it show admin
+const checkIfUserAlreadyLogin = (to, from, next) => {
+  projectAuth.onAuthStateChanged((user) => {
+    if (user) {
+      next("/admin");
+    } else {
+      next();
+    }
+  });
+};
+
 
 const routes = [
+
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginAuth,
+    beforeEnter: checkIfUserAlreadyLogin
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: RegisterAuth,
+    // beforeEnter: checkIfUserAlreadyLogin
+  },
   {
     path: '/admin',
     name: 'admin',
     component: AdminHome,
+    beforeEnter: requiresAuth,
     children: [
       { path: '/admin', name: "dashboard", component: DashBoard },
       { path: '/admin', name: "test", component: TestAdmin },

@@ -14,12 +14,14 @@
         </div>
 
         <!-- Phone Input -->
-        <div class="flex items-center mx-4 my-6 transition-colors duration-300 border-b-2 border-gray-700 hover:border-green-800">
+        <div
+          class="flex items-center mx-4 my-6 transition-colors duration-300 border-b-2 border-gray-700 hover:border-green-800">
           <label class="self-center text-gray-700">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
               class="lucide lucide-phone">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
             </svg>
           </label>
           <input v-model="loginForm.phone" class="w-full py-3 pl-4 bg-transparent border-0 focus:outline-none"
@@ -27,7 +29,8 @@
         </div>
 
         <!-- Password Input -->
-        <div class="flex items-center mx-4 my-6 transition-colors duration-300 border-b-2 border-gray-700 hover:border-green-800">
+        <div
+          class="flex items-center mx-4 my-6 transition-colors duration-300 border-b-2 border-gray-700 hover:border-green-800">
           <label class="self-center text-gray-700">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -45,7 +48,7 @@
         <div class="mx-4 mt-8 mb-4">
           <button type="submit"
             class="w-full py-3 font-medium text-white transition-colors duration-300 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-         
+
             <span v-if="loading" class="mr-2 loader"></span>
             <span>{{ loading ? 'Logging in...' : 'LOGIN' }}</span>
           </button>
@@ -64,7 +67,7 @@
         </div>
 
         <div class="mx-4 mt-8 mb-4">
-          <RouterLink :to="{name: 'register'}" 
+          <RouterLink :to="{ name: 'register' }"
             class="flex justify-center w-full py-3 font-medium text-black transition-colors duration-300 bg-white border-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
             Register
           </RouterLink>
@@ -90,14 +93,14 @@ export default {
     const router = useRouter();
 
 
-    
+
     const handleLogin = async () => {
       if (loading.value) return;
       loading.value = true;
       const result = await loginWithPhone(loginForm.value.phone, loginForm.value.password);
       if (result.user) {
         alert('Login successful!');
-        router.push({ path: '/' }); 
+        router.push({ path: '/' });
       } else {
         // alert(result.error || 'Login failed');
         alert("Incorrect email or passowrd. try again!")
@@ -123,6 +126,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 /* Simple loader spinner */
 .loader {
   border: 2px solid #f3f3f3;
@@ -134,8 +138,14 @@ export default {
   display: inline-block;
   vertical-align: middle;
 }
+
 @keyframes spin {
-  0% { transform: rotate(0deg);}
-  100% { transform: rotate(360deg);}
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

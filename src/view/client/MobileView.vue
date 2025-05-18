@@ -3,8 +3,8 @@
         <div class="flex items-center justify-between">
             <div>
                 <a class="text-3xl font-bold leading-none" href="#">
-                    <img class="w-12 border"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGh5WFH8TOIfRKxUrIgJZoDCs1yvQ4hIcppw&s"
+                    <img class="w-16 border"
+                        src="@/assets/loan_logo.jpg"
                         alt="">
                 </a>
             </div>

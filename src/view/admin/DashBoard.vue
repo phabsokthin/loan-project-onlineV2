@@ -2,9 +2,17 @@
     <!-- component -->
     <main class="w-full min-h-screen ">
         <h1 class="flex items-center gap-2 my-5 font-mono text-2xl font-bold">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
-            <span>Dashboard</span></h1>
-        <section class="grid w-full grid-cols-4 bg-white divide-x rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard">
+                <rect width="7" height="9" x="3" y="3" rx="1" />
+                <rect width="7" height="5" x="14" y="3" rx="1" />
+                <rect width="7" height="9" x="14" y="12" rx="1" />
+                <rect width="7" height="5" x="3" y="16" rx="1" />
+            </svg>
+            <span>Dashboard</span>
+        </h1>
+        <!-- <section class="grid w-full grid-cols-4 bg-white divide-x rounded-lg">
             <div class="flex items-center px-8 py-5 text-gray-900 cursor-pointer hover:bg-gray-100 ">
                 <svg class="text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="48px"
                     fill="#5f6368">
@@ -54,12 +62,12 @@
                 </div>
             </div>
 
-        </section>
+        </section> -->
 
         <!-- CONTENT GOES HERE -->
         <div class="flex flex-col w-full h-full mx-auto space-y-6">
             <section class="flex flex-col w-full p-6 mx-auto space-y-6 bg-white rounded-lg shadow-md">
-                <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
+                <!-- <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
                     <form class="relative flex flex-col md:col-span-3">
                         <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
@@ -80,36 +88,40 @@
                             New facility
                         </button>
                     </div>
-                </div>
+                </div> -->
 
 
                 <div class="grid w-full min-w-0 grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
                     <!-- In use -->
                     <div class="flex flex-col px-6 py-2 overflow-hidden bg-white rounded-lg shadow">
                         <div class="flex flex-col items-center space-y-2">
-                            <div class="text-6xl font-bold leading-none tracking-tight text-blue-500">21</div>
-                            <div class="text-lg font-medium text-blue-500">Approved</div>
+                            <div class="text-4xl font-bold leading-none tracking-tight text-blue-500">{{ users?.length
+                            }}</div>
+                            <div class="font-mono text-lg font-medium text-blue-500">Member Registered</div>
                         </div>
                     </div>
                     <!-- renovation -->
                     <div class="flex flex-col px-6 py-2 overflow-hidden bg-white rounded-lg shadow">
                         <div class="flex flex-col items-center space-y-2">
-                            <div class="text-6xl font-bold leading-none tracking-tight text-amber-500">17</div>
-                            <div class="text-lg font-medium text-amber-600">Under Review</div>
+                            <div class="text-4xl font-bold leading-none tracking-tight text-green-500">{{
+                                countUserApproved }}</div>
+                            <div class="font-mono text-lg font-medium text-green-600">Loan Applied</div>
                         </div>
                     </div>
                     <!-- Suspended -->
                     <div class="flex flex-col px-6 py-2 overflow-hidden bg-white rounded-lg shadow">
                         <div class="flex flex-col items-center space-y-2">
-                            <div class="text-6xl font-bold leading-none tracking-tight text-red-500">24</div>
-                            <div class="text-lg font-medium text-red-600">Not Completed</div>
+                            <div class="text-4xl font-bold leading-none tracking-tight text-red-500">{{ totalAmount }}
+                            </div>
+                            <div class="font-mono text-lg font-medium text-red-600">Lending Amount</div>
                         </div>
                     </div>
                     <!-- Closed -->
                     <div class="flex flex-col px-6 py-2 overflow-hidden bg-white rounded-lg shadow">
                         <div class="flex flex-col items-center space-y-2">
-                            <div class="text-6xl font-bold leading-none tracking-tight text-primary-900">{{ customers?.length }}</div>
-                            <div class="text-lg font-medium text-primary-900">Customers</div>
+                            <div class="text-4xl font-bold leading-none tracking-tight text-primary-900">{{
+                                customers?.length }}</div>
+                            <div class="font-mono text-lg font-medium text-primary-900">All Members</div>
                         </div>
                     </div>
                 </div>
@@ -118,21 +130,27 @@
     </main>
 </template>
 
-
-
 <script>
-import getCollection from '@/firebase/getCollection';
+import getCollection from '@/firebase/getCollection'
+import { computed } from 'vue'
+
 export default {
-    setup(){
-        
-        const {document: customers} = getCollection('customers')
+    setup() {
+        const { document: customers } = getCollection('customers')
+        const { document: users } = getCollection('users')
+
+        const countUserApproved = computed(() => {
+            return customers.value?.filter(user => user.status === '1').length || 0
+        })
 
 
-        return {customers}
-        
+        const totalAmount = computed(() => {
+            return customers.value?.reduce((sum, user) => {
+                return sum + (Number(user.amount) || 0)
+            }, 0) || 0
+        })
 
-        
+        return { customers, users, countUserApproved, totalAmount }
     }
 }
-
 </script>

@@ -17,7 +17,7 @@
                 <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-end">
                     <div v-if="usDoc?.status == '1'">
                         <div v-if="usDoc.totalPrincipalAndInterest" class="font-mono text-lg font-bold">₱ {{
-                            usDoc?.totalPrincipalAndInterest }}</div>
+                            usDoc?.withDrawAmount }}</div>
                         <div v-else class="font-mono">No account balance</div>
                     </div>
                     <div v-else>
@@ -75,7 +75,7 @@ s-2.238,5-5,5s-5-2.238-5-5S29.238,9,32,9z"></path>
                 </p>
             </div>
             <div v-for="usDoc in userDoc" :key="usDoc" class="text-right text-white">
-                <span v-if="usDoc.accountNumber">{{ usDoc?.accountNumber }}</span>
+                <span v-if="usDoc.accountNumber" class="font-mono">{{ usDoc?.accountNumber }}</span>
                 <span v-else>No loan number</span>
             </div>
 

@@ -45,7 +45,8 @@
                                                 <h1>Account Number: {{ usDoc?.accountNumber }}</h1>
                                                 <div class="space-y-2">
                                                     <h1>Account balance</h1>
-                                                    <h1 class="text-2xl font-bold">₱ {{ usDoc?.amount }}</h1>
+                                                    <h1 v-if="usDoc.status === '1'" class="text-2xl font-bold">₱ {{ usDoc?.withDrawAmount }}</h1>
+                                                     <h1 v-else class="text-2xl font-bold">₱ 0</h1>
                                                 </div>
                                             </div>
                                             <h1 v-else class="font-mono text-xs text-black md:text-xl">No Account Number
@@ -216,6 +217,7 @@ import { watch } from 'vue';
 import { documentId, where } from 'firebase/firestore';
 import { ref } from 'vue';
 // import useCollection from '@/firebase/useCollection';
+
 
 export default {
     setup() {

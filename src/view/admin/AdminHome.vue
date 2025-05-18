@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col h-screen ">
+    <div v-if="user?.email === 'admin123@gmail.com'" class="flex flex-col h-screen ">
         <!-- Navbar (always visible on all screen sizes) -->
         <nav class="flex items-center justify-between p-4 text-black border print:hidden ">
             <div class="text-xl font-meduim font-[500] text-blue-600 flex items-center gap-1">
@@ -20,7 +20,7 @@
             </div>
             <div class="flex items-center gap-2">
                 <div class="flex gap-1">
-                    <p class="font-medium uppercase">Profile៖ <span class="font-bold">Admin</span></p>
+                    <p class="font-medium uppercase">Profile៖ <span class="font-bold">{{ user?.email }}</span></p>
                 </div>
                 <div class="p-4 bg-gray-100 rounded-full">
 
@@ -53,6 +53,7 @@
                             <span class="font-bold text-gray-600 uppercase">Dashboard</span>
                         </RouterLink>
                     </li>
+               
 
 
                     <li class="block">
@@ -63,7 +64,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
                             </svg>
-                            <span class="font-bold text-gray-600 uppercase">Customers</span>
+                            <span class="font-bold text-gray-600 uppercase">All Members</span>
                         </RouterLink>
                     </li>
 
@@ -103,7 +104,7 @@
 
 
         <div class="fixed bottom-4 right-4">
-            <button class="flex items-center gap-1 px-4 py-2 font-bold text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">
+            <button @click="handleLogout" class="flex items-center gap-1 px-4 py-2 font-bold text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-circle-arrow-out-up-left-icon lucide-circle-arrow-out-up-left">
@@ -121,6 +122,39 @@
     </div>
 
 </template>
+
+<script>
+import useSignout from '@/firebase/useSignout';
+import { useRouter } from 'vue-router';
+
+import getUser from '@/firebase/getUser';
+export default{
+    setup(){
+
+        const { signOut } = useSignout()
+        const router = useRouter()
+
+        const { user } = getUser()
+        
+         const handleLogout = async () => {
+            try {
+                if (window.confirm("Are you sure you want to logout?")) {
+                    await signOut()
+                    router.push('/login')
+                }
+            }
+            catch (err) {
+                console.log(err)
+            }
+        };
+
+
+        return {handleLogout, user}
+
+    }
+}
+
+</script>
 
 
 
