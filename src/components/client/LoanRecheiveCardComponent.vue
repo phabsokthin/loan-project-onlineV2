@@ -68,7 +68,7 @@
 
                         <RouterLink to="/profile" class="w-full p-4 md:w-1/4 sm:w-1/2">
 
-                            <div
+                            <div 
                                 class="px-4 py-6 overflow-hidden transition duration-500 transform border-2 hover:scale-110">
 
                                 <div aria-hidden="true"
@@ -95,7 +95,7 @@
 
 
                         </RouterLink>
-                        <div class="w-full p-4 md:w-1/4 sm:w-1/2">
+                        <RouterLink :to="{ name: 'wallet' }" class="w-full p-4 md:w-1/4 sm:w-1/2">
 
                             <div
                                 class="px-4 py-6 overflow-hidden transition duration-500 transform border-2 hover:scale-110">
@@ -125,7 +125,7 @@
                             </div>
 
 
-                        </div>
+                        </RouterLink>
 
 
                     </div>

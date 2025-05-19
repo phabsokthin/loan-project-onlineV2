@@ -63,7 +63,7 @@
                         style="max-height: 70vh; background-color: #fff; border: 1px solid #e2e8f0; border-radius: 0.375rem; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);">
                         <div>
                             <label for="" class="mb-4 font-mono font-bold">WithDraw Amount (₱)</label>
-                            <input class="w-full p-2 font-mono bg-gray-100 border rounded-md" readonly
+                            <input required class="w-full p-2 font-mono bg-gray-100 border rounded-md"  readonly
                                 placeholder="WithDraw Amount" v-model="amount" type="number">
                         </div>
                         <div>
