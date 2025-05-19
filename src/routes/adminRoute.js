@@ -8,6 +8,7 @@ import { projectAuth } from '@/config/config';
 // import Login from '@/view/authentication/LoginAuth.vue';
 import RegisterAuth from '@/view/authentication/AdminRegisterAuth.vue';
 import LoginAuth from '@/view/authentication/AdminLoginAuth.vue'
+import SlideView from '@/view/admin/SlidesView.vue'
 
 const requiresAuth = (to, from, next) => {
   const user = projectAuth.currentUser;
@@ -55,6 +56,8 @@ const routes = [
       { path: '/admin', name: "test", component: TestAdmin },
       { path: '/admin', name: "customers", component: CustomerView },
       { path: '/admin/:id', name: "viewCustomer", component: ViewCustomerDetail },
+      { path: '/admin', name: "slide", component: SlideView },
+
 
     ]
   },
@@ -63,7 +66,7 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  linkExactActiveClass: 'bg-gray-100 h-10 hover:text-black',
+  linkExactActiveClass: 'bg-black/40 h-10 hover:text-black',
 });
 
 
