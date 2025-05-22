@@ -7,7 +7,7 @@
     </div>
     <div v-for="usDoc in userDoc" :key="usDoc">
         <form v-if="usDoc.amount === 0" @submit.prevent="submitLoan" v-motion-fade>
-            <div class="w-full px-4 py-2 m-auto mt-2 bg-blue-700">
+            <div class="max-w-4xl rounded-md px-4 py-2 m-auto mt-2 bg-[oklch(58.8%_0.158_241.966)] opacity-90 font-mono">
                 <div class="max-w-4xl px-4 py-2 m-auto mt-2">
                     <h2 class="flex items-center p-3 text-lg font-semibold text-white rounded-md">
                         <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,44 +57,44 @@
             </div>
 
             <!-- Loan Information -->
-            <div class="w-full max-w-4xl p-4 m-auto mt-4 bg-blue-700 rounded-lg">
+            <div class="w-full max-w-4xl p-4 m-auto mt-4 bg-[oklch(58.8%_0.158_241.966)] opacity-90  font-mono rounded-lg">
                 <h2 class="flex items-center justify-center p-3 text-4xl font-semibold text-white">
                     Loan Information
                 </h2>
                 <div class="grid grid-cols-2 gap-4 p-3 mt-1">
-                    <span class="text-xl text-gray-300">Amount of money</span>
+                    <span class="text-xl text-white">Amount of money</span>
                     <span class="text-right text-white">{{ formattedAmount }}₱</span>
 
-                    <span class="text-xl text-gray-300">Monthly interest rate</span>
-                    <span class="font-semibold text-right text-gray-300">{{ interestRate }}%</span>
+                    <span class="text-xl text-white">Monthly interest rate</span>
+                    <span class="font-semibold text-right text-white">{{ interestRate }}%</span>
 
-                    <span class="text-xl text-gray-300">Loan term</span>
-                    <span class="text-right text-gray-300">{{ loanTerm }} months</span>
+                    <span class="text-xl text-white">Loan term</span>
+                    <span class="text-right text-white">{{ loanTerm }} months</span>
 
-                    <span class="text-xl text-gray-300">Monthly Payments</span>
-                    <span class="font-semibold text-right text-gray-300">{{ monthlyPayment }}₱</span>
+                    <span class="text-xl text-white">Monthly Payments</span>
+                    <span class="font-semibold text-right text-white">{{ monthlyPayment }}₱</span>
 
-                    <span class="text-xl text-gray-300">Total Interest</span>
-                    <span class="text-right text-gray-300">{{ totalInterest }}₱</span>
+                    <span class="text-xl text-white">Total Interest</span>
+                    <span class="text-right text-white">{{ totalInterest }}₱</span>
 
-                    <span class="text-xl text-gray-300">Total Principal & Interest</span>
-                    <span class="font-semibold text-right text-gray-300">{{ totalPrincipalAndInterest }}₱</span>
+                    <span class="text-xl text-white">Total Principal & Interest</span>
+                    <span class="font-semibold text-right text-white">{{ totalPrincipalAndInterest }}₱</span>
 
-                    <span class="text-xl text-gray-300">Disbursement date</span>
-                    <span class="font-semibold text-right text-gray-300">00/00/0000</span>
+                    <span class="text-xl text-white">Disbursement date</span>
+                    <span class="font-semibold text-right text-white">00/00/0000</span>
                 </div>
             </div>
 
 
             <!-- Confirm Button -->
-            <div class="flex justify-center col-span-2 mt-6">
+            <div class="flex justify-center col-span-2 mt-6 font-mono">
                 <button v-if="!isLoanding" type="submit" :disabled="!isLoanValid || !agreedToTerms"
                     @click.prevent="submitLoan"
-                    class="flex items-center justify-center w-full max-w-sm gap-3 py-3 text-blue-700 transition border border-blue-600 rounded-full shadow-md md:text-xl hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                    class="flex items-center justify-center w-full max-w-sm gap-3 py-3 text-white transition border border-white rounded-full shadow-md md:text-xl hover:bg-blue-500 disabled:cursor-not-allowed">
                     <span>Loan Confirm</span>
                 </button>
                 <button v-else
-                    class="flex items-center justify-center w-full max-w-sm gap-3 py-3 text-blue-700 transition border border-blue-600 rounded-full shadow-md md:text-xl hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                    class="flex items-center justify-center w-full max-w-sm gap-3 py-3 text-white transition border border-white rounded-full shadow-md md:text-xl hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed">
                     <span>Waiting...</span>
                 </button>
             </div>
@@ -126,7 +126,7 @@
 
 
             <!-- Agreement Checkbox -->
-            <div class="grid justify-center col-span-2 mt-6 mb-40 text-center lg:mb-8">
+            <div class="grid justify-center col-span-2 pb-40 mt-6 text-center text-white lg:mb-0 lg:pb-5">
                 <label class="flex items-center justify-center p-2">
                     <input type="checkbox" v-model="agreedToTerms" class="mr-2">
                     Agree (User Service Agreement & Policy conditions)
@@ -138,9 +138,9 @@
 
 
         <div v-else v-motion-fade>
-            <div class="w-full px-4 py-2 m-auto mt-2 bg-blue-700">
+            <div class="max-w-4xl px-4 py-2 m-auto mt-2 bg-[oklch(58.8%_0.158_241.966)] opacity-90 rounded-md">
                 <div class="max-w-4xl px-4 py-2 m-auto mt-2">
-                    <h2 class="flex items-center p-3 text-lg font-semibold text-white rounded-md">
+                    <h2 class="flex items-center p-3 font-mono text-lg text-white rounded-md">
                         <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 2L16 6L12 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -176,7 +176,7 @@
                 </div>
 
                 <!-- Loan Period Buttons -->
-                <div class="grid w-full max-w-4xl grid-cols-3 gap-4 p-2 px-4 m-auto mt-1 bg-blue-700 rounded-md">
+                <div class="grid w-full max-w-4xl grid-cols-3 gap-4 p-2 px-4 m-auto mt-1 rounded-md">
 
                     <button v-if="usDoc.term === 6" type="button"
                         class="flex items-center justify-center p-3 px-4 py-2 font-medium text-white bg-blue-500 rounded-md shadow-md">6
@@ -227,39 +227,39 @@
             </div>
 
             <!-- Loan Information -->
-            <div class="w-full max-w-4xl p-4 m-auto mt-4 bg-blue-700 rounded-lg">
-                <h2 class="flex items-center justify-center p-3 text-4xl font-semibold text-white">
+            <div class="w-full max-w-4xl p-4 m-auto mt-4 bg-[oklch(58.8%_0.158_241.966)] opacity-95 rounded-lg">
+                <h2 class="flex items-center justify-center p-3 font-mono text-4xl text-white">
                     Loan Information
                 </h2>
-                <div class="grid grid-cols-2 gap-4 p-3 mt-1">
-                    <span class="text-xl text-gray-300">Amount of money</span>
+                <div class="grid grid-cols-2 gap-4 p-3 mt-1 font-mono">
+                    <span class="text-xl text-white">Amount of money</span>
                     <span class="text-right text-white"><b>{{ usDoc?.amount }}₱</b></span>
 
-                    <span class="text-xl text-gray-300">Monthly interest rate</span>
-                    <span class="font-semibold text-right text-gray-300">{{ interestRate }}%</span>
+                    <span class="text-xl text-white">Monthly interest rate</span>
+                    <span class="font-semibold text-right text-white">{{ interestRate }}%</span>
 
-                    <span class="text-xl text-gray-300">Loan term</span>
-                    <span class="text-right text-gray-300">{{ usDoc?.term }} months</span>
+                    <span class="text-xl text-white">Loan term</span>
+                    <span class="text-right text-white">{{ usDoc?.term }} months</span>
 
-                    <span class="text-xl text-gray-300">Monthly Payments</span>
-                    <span class="font-semibold text-right text-gray-300">{{ usDoc?.monthlyPayment }}₱</span>
+                    <span class="text-xl text-white">Monthly Payments</span>
+                    <span class="font-semibold text-right text-white">{{ usDoc?.monthlyPayment }}₱</span>
 
-                    <span class="text-xl text-gray-300">Total Interest</span>
-                    <span class="text-right text-gray-300">{{ usDoc?.totalInterest }}₱</span>
+                    <span class="text-xl text-white">Total Interest</span>
+                    <span class="text-right text-white">{{ usDoc?.totalInterest }}₱</span>
 
-                    <span class="text-xl text-gray-300">Total Principal & Interest</span>
-                    <span class="font-semibold text-right text-gray-300">{{ usDoc?.totalPrincipalAndInterest }}₱</span>
+                    <span class="text-xl text-white">Total Principal & Interest</span>
+                    <span class="font-mono font-semibold text-right text-white">{{ usDoc?.totalPrincipalAndInterest }}₱</span>
 
-                    <span class="text-xl text-gray-300">Disbursement date</span>
-                    <span class="font-semibold text-right text-gray-300">{{ formatDate(usDoc?.createdAt) }}</span>
+                    <span class="text-xl text-white">Disbursement date</span>
+                    <span class="font-mono font-semibold text-right text-white">{{ formatDate(usDoc?.createdAt) }}</span>
                 </div>
             </div>
 
 
             <!-- Confirm Button -->
-            <div class="flex justify-center col-span-2 mt-6 mb-40">
+            <div class="flex justify-center col-span-2 pb-40 mt-6 font-mono">
                 <button v-if="!isLoanding" type="submit" @click.prevent="handleNextLoan"
-                    class="flex items-center justify-center w-full max-w-sm gap-3 py-3 text-blue-700 transition border border-blue-600 rounded-full shadow-md md:text-xl hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                    class="flex items-center justify-center w-full max-w-sm gap-3 py-3 text-white transition border border-blue-300 rounded-full shadow-md md:text-xl hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed">
                     <span>Next</span>
                 </button>
                 <button v-else

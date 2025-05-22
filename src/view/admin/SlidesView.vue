@@ -14,16 +14,16 @@
                         <span>Slide Table</span>
                     </h2>
 
-              
+
                 </div>
 
             </div>
 
-       
+
         </div>
 
         <div class="p-4 bg-white border md:flex md:items-center md:justify-between">
-          
+
 
             <div class="relative flex items-center mt-4 md:mt-0">
                 <span class="absolute">
@@ -38,64 +38,68 @@
                     class="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200  md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
             </div>
 
-             <button @click="handleAddSlideModal('AddModalSlide')"
-                    class="flex items-center justify-center w-1/2 px-5 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 bg-blue-500 shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 ">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+            <button @click="handleAddSlideModal('AddModalSlide')"
+                class="flex items-center justify-center w-1/2 px-5 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 bg-blue-500 shrink-0 sm:w-auto gap-x-2 hover:bg-blue-600 ">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
 
-                    <span>Add Slide</span>
-                </button>
-            
+                <span>Add Slide</span>
+            </button>
+
         </div>
 
         <div class="w-[100%] h-full p-4 bg-white border border-t-0">
-     
+
 
             <table class="w-full border border-collapse border-gray-400">
                 <thead class="bg-[#2EABBF]/90 text-white font-mono text-xs">
                     <tr>
-              
+                        <th class="p-2 border border-gray-300">No</th>
+
                         <th class="p-2 border border-gray-300">Images</th>
-            
+
                         <th class="border border-gray-300">Status</th>
                         <th class="border border-gray-300">Created At</th>
-                    
-                        
+
+
                         <th class="border border-gray-300 ">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(customer, index) in data" :key="customer" class="text-sm font-medium">
+                    <tr v-for="(slide, index) in slides" :key="slide" class="text-sm font-medium">
                         <td class="p-2 px-1 border border-gray-300">#{{ index + 1 }}</td>
-                        <td class="px-2 border border-gray-300">{{ customer?.name }}</td>
+                        <td class="px-2 border border-gray-300">
+                            <div class="flex items-center justify-center py-2">
+                                <img :src="slide.image" class="w-40">
+                            </div>
+                        </td>
 
-                        <td class="px-2 border border-gray-300">{{ customer?.idNumber }}</td>
+                        <td class="px-2 border border-gray-300">
+                            <button @click="handleUpdateToggleStatus(slide?.id, slide?.status)"
+                                v-if="slide.status === 1"
+                                class="p-1 text-xs text-center text-green-600 bg-green-100 rounded-md">
+                                Enabled
+                            </button>
 
-                     
+                            <button @click="handleUpdateToggleStatus(slide?.id, slide?.status)" v-else
+                                class="p-1 text-xs text-center text-red-600 bg-red-100 rounded-md">
+                                Disabled
+                            </button>
+
+                        </td>
+                        <td class="px-2 border border-gray-300">{{ formatDate(slide?.createdAt) }}</td>
+
                         <td class="px-2 border border-gray-300 w-72">
-                            <div
-                                class="flex gap-2 px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                <div v-if="customer?.status === '0' || customer?.status === '1'"
-                                    @click="handleCurrentUpdate(customer)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="cursor-pointer lucide lucide-circle-check-big-icon lucide-circle-check-big hover:text-green-500">
-                                        <path d="M21.801 10A10 10 0 1 1 17 3.335" />
-                                        <path d="m9 11 3 3L22 4" />
-                                    </svg>
-                                </div>
+                            <div class="flex gap-2 px-4 py-4 text-sm font-medium whitespace-nowrap">
 
 
-                            
 
-                               
 
-                                <div
-                                    @click="handleDelete(customer?.id, customer?.front_image, customer?.back_image, customer?.selfie_image, customer?.assigned_image)">
+
+                                <div @click="handleDelete(slide?.id, slide?.image)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round"
@@ -118,37 +122,12 @@
                 </tbody>
             </table>
 
-            <!-- Pagination -->
-            <div class="flex justify-end px-4 py-3">
-                <nav class="flex items-center space-x-1">
-                    <!-- Previous Button -->
-                    <button type="button" @click="loadPreviousPage" :disabled="currentPage === 1"
-                        class="p-2.5 inline-flex border bg-white items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none ">
-                        <span>«</span>
-                        <span>Previous</span>
-                    </button>
 
-                    <!-- Page Number Buttons -->
-                    <button v-for="page in pageRange" :key="page" @click="goToPage(page)"
-                        :class="['min-w-[40px] flex justify-center items-center text-gray-800 hover:bg-gray-100 py-2.5 text-sm rounded-full disabled:opacity-50 disabled:pointer-events-none ', { 'bg-blue-500 text-white': currentPage === page }]">
-                        {{ page }}
-                    </button>
-
-                    <!-- Next Button -->
-                    <button type="button" @click="loadNextPage" :disabled="currentPage === totalPages"
-                        class="p-2.5 border bg-white inline-flex items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none ">
-                        <span>»</span>
-                        <span>Next</span>
-                    </button>
-                </nav>
-            </div>
-
-            <!-- <pre>{{ paginatedStudents }}</pre> -->
         </div>
 
     </section>
 
-    <!-- <pre>{{ customers }}</pre> -->
+    <!-- <pre>{{ slides }}</pre> -->
 
 
     <!-- modal Update stutus -->
@@ -159,13 +138,10 @@
 import getCollection from '@/firebase/getCollection';
 import { ref } from 'vue';
 import UpdateCustomerModal from '@/components/admin/UpdateStatusModal.vue'
-import { useFirestorePagination } from '@/firebase/useFirestorePagination';
-import { onMounted } from 'vue';
-import { watch } from 'vue';
-import useCollectionSearch from '@/firebase/useCollectionSearch'
+
 import useCollection from '@/firebase/useCollection';
 import useStorage from '@/firebase/useStorage';
-import getUser from '@/firebase/getUser';
+// import getUser from '@/firebase/getUser';
 import AddCreditModal from '@/components/admin/AddCreditModal.vue';
 import AddModalSlide from '@/components/admin/AddSlideModal.vue';
 export default {
@@ -173,7 +149,7 @@ export default {
         UpdateCustomerModal,
         AddCreditModal,
         AddModalSlide
-   
+
     },
 
     setup() {
@@ -186,52 +162,18 @@ export default {
         const searchText = ref("")
         const itemsPerPage = ref(10)
 
-        const { document: customers } = getCollection("customers")
-        const { deleteDocs, setDocs } = useCollection("customers")
+        const { document: slides } = getCollection("slides")
+        const { deleteDocs, updateDocs } = useCollection("slides")
 
 
-        const { removeImagesArray } = useStorage()
-        const { user } = getUser()
-
-        const { data, currentPage, pageRange, totalPages, loadPreviousPage, loadNextPage, goToPage, fetchTotalPages, getDataRealTime } = useFirestorePagination('customers', 10);
-
-
-        onMounted(() => {
-            fetchTotalPages();
-            getDataRealTime(currentPage.value);
-        });
-
-        const handleCurrentUpdate = (item) => {
-            console.log(item)
-            statusData.value = item
-            currentComponents.value = 'UpdateCustomerModal'
-        }
+        const { removeImage } = useStorage()
+        // const { user } = getUser()
 
 
         //  search text
-        watch(searchText, async (newVal) => {
-            if (newVal.trim()) {
-                currentPage.value = 1; // Reset current page to 1 on search
-                const { documents } = useCollectionSearch('customers', newVal.trim().toLowerCase(), 'name');
-
-                watch(documents, (newDocs) => {
-                    if (newDocs) {
-                        data.value = newDocs.slice(0, 10); // Show first page of search results
-                        totalPages.value = Math.ceil(newDocs.length / 10); // Update totalPages
-                        pageRange.value = Array.from({ length: totalPages.value }, (_, i) => i + 1); // Update page range
-                    }
-                }, { immediate: true });
-
-            } else {
-                // Reset pagination when search is cleared
-                currentPage.value = 1;
-                fetchTotalPages();
-                getDataRealTime(currentPage.value);
-            }
-        });
 
 
-        const handleDelete = async (id, fimage, bimage, simage, assign_image) => {
+        const handleDelete = async (id, image) => {
             try {
 
 
@@ -240,19 +182,11 @@ export default {
 
 
                     await deleteDocs(id);
-                    await removeImagesArray([fimage, bimage, simage, assign_image]);
-                    console.log(fimage, bimage, simage, assign_image)
+                    await removeImage(image);
+
                     alert("Delete Successfull")
 
-                    setTimeout(async () => {
-                        const data = {
-                            amount: 0
-                        }
-                        await setDocs(data, user?.value?.uid)
-                    })
-
                 }
-
 
 
             } catch (err) {
@@ -262,34 +196,49 @@ export default {
 
         //add credit 
 
-        
+
         const handleAddSlideModal = (component) => {
-           
+
             currentComponents.value = component
         }
+
+        const formatDate = (timestamp) => {
+            if (!timestamp) return 'N/A';
+            const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+            return date.toLocaleDateString(); // Or use toLocaleDateString() if you want just the date
+        }
+
+        const handleUpdateToggleStatus = async (id, currentStatus) => {
+            try {
+                const data = {
+                    status: currentStatus === 1 ? 0 : 1
+                };
+
+                await updateDocs(id, data);
+                alert("You updated status!");
+            } catch (err) {
+                console.log(err);
+            }
+        };
 
 
 
         return {
-            handleCurrentUpdate,
+
             currentComponents,
             statusData,
-            data,
-            loadPreviousPage,
-            loadNextPage,
-            goToPage,
-            fetchTotalPages,
-            getDataRealTime,
-            totalPages,
+
             searchText,
             itemsPerPage,
-            pageRange,
-            customers,
-            currentPage,
+
+            slides,
+
             handleDelete,
             creditData,
-            handleAddSlideModal
-        
+            handleAddSlideModal,
+            formatDate,
+            handleUpdateToggleStatus
+
         }
 
     }

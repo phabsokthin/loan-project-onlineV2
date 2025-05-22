@@ -5,15 +5,17 @@
     <div class="lg:hidden">
         <MobileView />
     </div>
-    <div class="w-full max-w-4xl px-4 py-2 m-auto mt-2 bg-white" v-motion-fade>
+    <div class="w-full max-w-4xl px-4 py-2 m-auto mt-2 font-mono " v-motion-fade>
 
-        <h2 class="p-3 text-lg font-semibold text-center text-white bg-blue-600 rounded-md">Wallet</h2>
+        <h2 class="p-3 text-lg font-semibold text-center text-white bg-blue-600 border rounded-md opacity-80">Wallet
+        </h2>
 
-        <div class="grid items-center grid-cols-2 grid-rows-2 gap-4 mt-4 bg-gray-200 rounded-md p-7">
+        <div
+            class="grid items-center grid-cols-2 grid-rows-2 gap-4 mt-4 bg-[oklch(58.8%_0.158_241.966)] opacity-90 border rounded-md p-7">
             <div class="flex items-center">
-                <span class="font-mono font-bold">Account balance :</span>
+                <span class="font-mono font-bold text-white">Account balance :</span>
             </div>
-            <div class="text-right">
+            <div class="text-right text-white">
                 <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-end">
                     <div v-if="usDoc?.status == '1'">
                         <div v-if="usDoc.totalPrincipalAndInterest" class="font-mono text-lg font-bold">₱ {{
@@ -25,7 +27,7 @@
                     </div>
 
                 </div>
-                <svg class="inline-block h-6 text-gray-500 w-7" fill="none" stroke="currentColor" stroke-width="2"
+                <svg class="inline-block h-6 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M1 12s4-6 11-6 11 6 11 6-4 6-11 6-11-6z" />
                     <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" fill="none" />
@@ -42,16 +44,26 @@
 
         <div v-for="usDoc in userDoc" :key="usDoc">
             <button @click="handleWidthModal(usDoc)" v-if="usDoc?.status === '1'"
-                class="w-full py-2 mt-4 font-mono font-semibold text-white capitalize bg-blue-700 rounded-md hover:bg-blue-600">Withdraw
-                money</button>
-            <!-- <button v-else
-                class="w-full py-2 mt-4 font-mono font-semibold text-white capitalize rounded-md bg-orange-600/90">Waiting
-                For Loan Approved</button> -->
+                class="w-full py-3 mt-4 font-mono font-semibold text-white capitalize bg-[oklch(58.8%_0.158_241.966)] opacity-90 border rounded-md hover:bg-blue-600 flex justify-center gap-2 ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-banknote-arrow-down-icon lucide-banknote-arrow-down">
+                    <path d="M12 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5" />
+                    <path d="m16 19 3 3 3-3" />
+                    <path d="M18 12h.01" />
+                    <path d="M19 16v6" />
+                    <path d="M6 12h.01" />
+                    <circle cx="12" cy="12" r="2" />
+                </svg>
+                <span> Withdraw Money</span>
+            </button>
+
 
         </div>
 
 
-        <div class="grid items-center grid-cols-2 grid-rows-2 gap-4 mt-4 bg-blue-700 rounded-md p-7">
+        <div
+            class="grid items-center grid-cols-2 grid-rows-2 gap-4 mt-4 bg-[oklch(58.8%_0.158_241.966)] opacity-90 border rounded-md p-7">
             <div class="flex items-center">
                 <svg class="w-4 h-4 mr-2 text-white" fill="currentColor" viewBox="0 0 64 64"
                     xmlns="http://www.w3.org/2000/svg">
@@ -108,29 +120,17 @@ c121.048-0.052,207.528-16.496,205.517-31.558C450.511,398.09,388.519,384.847,341.
             </div>
         </div>
         <!-- we use class select-none and point-events-none -->
-        <div class="w-full max-w-4xl mt-5 select-none">
+        <!-- <div class="w-full max-w-4xl mt-5 select-none">
             <img :src="require('@/assets/Bank_image.jpg')" alt="BPI"
                 class="object-cover w-full max-w-4xl shadow-sm pointer-events-none select-none">
-        </div>
-
-
-
-        <!-- <div class="grid justify-between grid-cols-4 gap-4 mt-5">
-            <img src="bpi.png" alt="BPI" class="h-10 shadow-sm ">
-            <img src="bdo.png" alt="BDO" class="h-10 shadow-sm ">
-            <img src="metrobank.png" alt="Metrobank" class="h-10 shadow-sm">
-            <img src="landbank.png" alt="Landbank" class="h-10 shadow-sm">
-            <img src="security.png" alt="Security Bank" class="h-10 shadow-sm">
-            <img src="unionbank.png" alt="Union Bank" class="h-10 shadow-sm">
-            <img src="pnb.png" alt="PNB" class="h-10 shadow-sm">
-            <img src="chinabank.png" alt="Chinabank" class="h-10 shadow-sm">
         </div> -->
 
 
 
 
+
     </div>
-    <component :is="currentComponents" :currentData="currentData" @close="currentComponents=''"/>
+    <component :is="currentComponents" :currentData="currentData" @close="currentComponents = ''" />
 
 </template>
 <script>
@@ -156,7 +156,7 @@ export default {
         const { user } = getUser();
 
         const currentComponents = ref("")
-        
+
         const currentData = ref(null)
 
 

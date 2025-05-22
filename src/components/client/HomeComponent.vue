@@ -5,33 +5,33 @@
             <div class="">
                 <div class="max-w-4xl px-6 mx-auto text-gray-500">
                     <div class="flex justify-center my-10">
-                        <h2 class="flex items-center gap-1 text-2xl font-semibold text-gray-950 dark:text-white">
+                        <h2 class="flex items-center gap-1 text-2xl font-semibold text-gray-950 ">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="lucide lucide-move-right">
+                                stroke-linejoin="round" class="text-white lucide lucide-move-right">
                                 <path d="M18 8L22 12L18 16" />
                                 <path d="M2 12H22" />
                             </svg>
-                            <span class="font-mono text-lg md:text-2xl">Loan Processing</span>
+                            <span class="font-mono text-lg text-white md:text-2xl">Loan Processing</span>
                         </h2>
 
                     </div>
                     <div id="link_account" class="">
                         <div
-                            class="relative p-8 overflow-hidden bg-white border-2 border-gray-200 group border-t-blue-500 dark:border-gray-800 dark:bg-gray-900">
+                            class="relative p-8 overflow-hidden border rounded-md shadow-xl bg-[oklch(58.8%_0.158_241.966)] opacity-90 group">
                             <div aria-hidden="true"
-                                class="absolute inset-0 duration-300 -translate-y-1/2 border rounded-full opacity-25 aspect-video group-hover:-translate-y-1/4 bg-gradient-to-b from-blue-500 to-white dark:from-white dark:to-white blur-2xl dark:opacity-5 dark:group-hover:opacity-10">
+                                class="absolute inset-0 duration-300 -translate-y-1/2 border rounded-full opacity-25 aspect-video group-hover:-translate-y-1/4 to-white blur-2xl ">
                             </div>
                             <div
                                 class="relative grid items-center justify-center grid-cols-1 lg:flex lg:justify-between">
                                 <div
-                                    class="mt-6 border-blue-600 rounded-full border-8 flex items-center justify-center w-[180px] h-[180px]">
+                                    class="mt-6 border-gray-200 rounded-full border-8 flex items-center justify-center w-[180px] h-[180px]">
                                     <div v-for="usDoc in userDoc" :key="usDoc" class="space-y-2 text-center">
-                                        <h1 class="font-mono text-3xl text-black">{{ usDoc?.credit }}</h1>
-                                        <span class="font-mono">Meduim Credit</span>
+                                        <h1 class="font-mono text-3xl text-white">{{ usDoc?.credit }}</h1>
+                                        <span class="font-mono text-white">Meduim Credit</span>
                                     </div>
                                     <div v-if="!user">
-                                        <span class="font-mono"> No Meduim Credit</span>
+                                        <span class="font-mono text-white"> No Meduim Credit</span>
 
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                                 <div v-if="user">
                                     <div v-for="usDoc in userDoc" :key="usDoc"
                                         class="mt-6 pb-6 rounded-b-[--card-border-radius]">
-                                        <div v-if="usDoc.accountNumber" class="space-y-3 font-mono text-xl text-black">
+                                        <div v-if="usDoc.accountNumber" class="space-y-3 font-mono text-xl text-white">
                                             <div v-if="usDoc.status === '0' || usDoc.status === '1'">
                                                 <h1>Welcome!</h1>
                                                 <h1>Account Number: {{ usDoc?.accountNumber }}</h1>
@@ -49,17 +49,17 @@
                                                      <h1 v-else class="text-2xl font-bold">₱ 0</h1>
                                                 </div>
                                             </div>
-                                            <h1 v-else class="font-mono text-xs text-black md:text-xl">No Account Number
+                                            <h1 v-else class="font-mono text-xs text-white md:text-xl">No Account Number
                                             </h1>
                                         </div>
                                         <div v-else>
-                                            <h1 class="font-mono text-xs text-black md:text-xl">No Account Number</h1>
+                                            <h1 class="font-mono text-xs text-white md:text-xl">No Account Number</h1>
 
                                         </div>
                                     </div>
                                 </div>
                                 <div v-else class="mt-6 pb-6 rounded-b-[--card-border-radius]">
-                                    <div class="space-y-3 font-mono text-xl text-black">
+                                    <div class="space-y-3 font-mono text-xl text-white">
 
                                         <h1>No Account Number</h1>
 
@@ -84,7 +84,7 @@
                     </svg>
 
                     <div>
-                        <div class="uppercase">Request loan</div>
+                        <div class="font-mono ">Request loan</div>
                     </div>
                 </button>
             </div>
@@ -130,7 +130,7 @@
 
             <div>
                 <div class="flex justify-center my-10">
-                    <h2 class="flex items-center gap-1 font-semibold text-gray-950 dark:text-white">
+                    <h2 class="flex items-center gap-1 font-semibold text-white ">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-move-right">
@@ -141,17 +141,17 @@
                     </h2>
                 </div>
 
-                <div class="max-w-4xl px-6 mx-auto text-gray-500">
+                <div class="max-w-4xl px-6 mx-auto text-white">
                     <div
-                        class="relative p-2 overflow-hidden bg-white border-2 border-gray-200 md:px-8 group border-t-blue-500 dark:border-gray-800 dark:bg-gray-900">
+                        class="relative p-2 overflow-hidden bg-[oklch(58.8%_0.158_241.966)] opacity-95  border rounded-md border-gray-200 md:px-8 group ">
                         <div aria-hidden="true"
-                            class="absolute inset-0 duration-300 -translate-y-1/2 border rounded-full opacity-25 aspect-video group-hover:-translate-y-1/4 bg-gradient-to-b from-blue-500 to-white dark:from-white dark:to-white blur-2xl dark:opacity-5 dark:group-hover:opacity-10">
+                            class="absolute inset-0 duration-300 -translate-y-1/2 border rounded-full opacity-25 aspect-video group-hover:-translate-y-1/4 bg-gradient-to-b from-blue-500 to-white blur-2xl ">
                         </div>
                         <div class="relative flex items-center justify-between gap-2">
 
 
                             <div
-                                class=" border-blue-600 rounded-full border-2 flex items-center justify-center w-12 h-12 md:w-[80px] md:h-[80px]">
+                                class=" border-white rounded-full border-2 flex items-center justify-center w-12 h-12 md:w-[80px] md:h-[80px]">
                                 <div class="space-y-2 text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -167,15 +167,15 @@
                             </div>
 
                             <div class="mt-6 pb-6 rounded-b-[--card-border-radius]">
-                                <div class="space-y-3 font-mono text-xs text-black md:text-xl">
+                                <div class="space-y-3 font-mono text-xs text-white md:text-xl">
                                     <h1 v-if="user">{{ user?.email ? user.email.slice(0, 7) + '***' : '' }}</h1>
                                     <h1 v-else>No Account!</h1>
                                 </div>
                             </div>
 
                             <div class="mt-6 pb-6 rounded-b-[--card-border-radius]">
-                                <div class="space-y-3 font-mono text-xs text-black md:text-xl">
-                                    <h1 class="text-green-500">Received Loans Amount </h1>
+                                <div class="space-y-3 font-mono text-xs text-white md:text-xl">
+                                    <h1 class="text-white">Received Loans Amount </h1>
 
                                 </div>
                             </div>
@@ -184,17 +184,17 @@
                                     class="mt-6 pb-6 rounded-b-[--card-border-radius]">
 
                                     <div v-if="usDoc.totalPrincipalAndInterest"
-                                        class="space-y-3 font-mono text-xs text-black md:text-xl">
+                                        class="space-y-3 font-mono text-xs text-white md:text-xl">
                                         <h1>₱ {{ usDoc?.totalPrincipalAndInterest }}</h1>
                                     </div>
                                     <div v-else>
-                                        <h1 class="font-mono text-xs text-black md:text-xl">No Received Loans</h1>
+                                        <h1 class="font-mono text-xs text-white md:text-xl">No Received Loans</h1>
                                     </div>
                                 </div>
 
                             </div>
                             <div v-else>
-                                <h1 class="font-mono text-xs text-black md:text-xl">No Received Loan</h1>
+                                <h1 class="font-mono text-xs text-white md:text-xl">No Received Loan</h1>
                             </div>
                         </div>
                     </div>

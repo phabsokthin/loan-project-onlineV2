@@ -5,22 +5,22 @@
     <div class="lg:hidden">
         <MobileView />
     </div>
-    <div class="w-full max-w-4xl px-5 py-10 m-auto mt-1 bg-white" v-motion-fade>
+    <div class="w-full max-w-4xl px-5 py-10 m-auto mt-1 " v-motion-fade>
         <div class="mb-6 text-2xl text-center ">
             <div
-                class="w-[180px] h-[180px] mx-auto rounded-full border-blue-600 border-8 flex items-center justify-center text-white ">
+                class="w-[180px] h-[180px] mx-auto rounded-full border-white border-8 flex items-center justify-center text-white ">
                 <div v-for="usDoc in userDoc" :key="usDoc" class="space-y-2 text-center">
-                    <h1 class="font-mono text-3xl text-black">{{ usDoc?.credit }}</h1>
-                    <span class="font-mono text-black">Meduim Credit</span>
+                    <h1 class="font-mono text-3xl text-white">{{ usDoc?.credit }}</h1>
+                    <span class="font-mono text-white">Meduim Credit</span>
                 </div>
-                <span v-if="!user" class="font-mono text-black">No Meduim Credit</span>
+                <span v-if="!user" class="font-mono text-white">No Meduim Credit</span>
 
             </div>
-            <h2 class="mt-4 text-lg font-semibold">Name</h2>
+            <h2 class="mt-4 text-lg font-semibold text-white">Name</h2>
             <div>
-                <div v-if="user" class="text-sm text-gray-500">Phone : {{ user?.email?.slice(0, 10) }}</div>
-                <div v-else class="text-sm text-gray-500">No Account? <RouterLink :to="{ name: 'login' }"
-                        class="text-blue-400">Login</RouterLink>
+                <div v-if="user" class="text-sm text-white">Phone : {{ user?.email?.slice(0, 10) }}</div>
+                <div v-else class="text-sm text-white">No Account? <RouterLink :to="{ name: 'login' }"
+                        class="text-blue-300">Login</RouterLink>
                 </div>
             </div>
 
@@ -29,7 +29,7 @@
         <div class="space-gap-2">
             <div class="col-span-2 lg:col-span-1">
                 <router-link to="/persionalProfile"
-                    class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
+                    class="flex items-center w-full p-3 text-left text-white bg-[oklch(58.8%_0.158_241.966)] opacity-90 border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
                     <svg class="h-6 ml-3 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -41,7 +41,7 @@
 
             <div class="col-span-2 mt-2 lg:col-span-1">
                 <router-link to="/baneficicaryProfile"
-                    class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
+                    class="flex items-center w-full p-3 text-left text-white bg-[oklch(58.8%_0.158_241.966)] opacity-90  border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
                     <svg class="h-6 ml-3 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
@@ -54,7 +54,7 @@
 
             <div class="col-span-2 mt-2 lg:col-span-1">
                 <router-link to="/loancontactProfile"
-                    class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
+                    class="flex items-center w-full p-3 text-left text-white bg-[oklch(58.8%_0.158_241.966)] opacity-90  border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
                     <svg class="h-6 ml-3 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h8M8 11h8M8 15h4" />
@@ -65,7 +65,7 @@
 
             <div class="col-span-2 mt-2 lg:col-span-1">
                 <button
-                    class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
+                    class="flex items-center w-full p-3 text-left text-white bg-[oklch(58.8%_0.158_241.966)] opacity-90  border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
                     <svg class="h-6 ml-3 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -79,7 +79,7 @@
 
             <div class="col-span-2 mt-2 lg:col-span-1">
                 <button
-                    class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
+                    class="flex items-center w-full p-3 text-left text-white bg-[oklch(58.8%_0.158_241.966)] opacity-90  border border-gray-300 rounded-full shadow-xl hover:bg-blue-700">
                     <svg class="h-6 ml-3 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -93,7 +93,7 @@
             <div class="mb-20">
                 <div class="w-full mt-2">
                     <router-link to="/#"
-                        class="flex items-center w-full p-3 text-left text-white bg-blue-600 border border-gray-300 rounded-full shadow-xl lg:mb-0 hover:bg-blue-700">
+                        class="flex items-center w-full p-3 text-left text-white bg-[oklch(58.8%_0.158_241.966)] opacity-90  border border-gray-300 rounded-full shadow-xl lg:mb-0 hover:bg-blue-700">
                         <svg class="h-6 ml-3 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -107,7 +107,7 @@
                 <div v-if="user" class="flex justify-center col-span-2 mt-6 ">
                     <div class="">
                         <button @click="handleLogout"
-                            class="flex items-center justify-center gap-3 py-3 mb-40 text-red-600 transition border border-red-600 rounded-full w-52 px md:text-xl hover:bg-red-100">
+                            class="flex items-center justify-center gap-3 py-3 mb-40 text-white transition border border-red-300 rounded-full w-52 px md:text-xl hover:bg-red-500">
                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round" />

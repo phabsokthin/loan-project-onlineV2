@@ -1,5 +1,5 @@
 <template>
-    <div v-if="user?.email === 'admin123@gmail.com'" class="flex flex-col h-screen ">
+    <div v-if="user?.email === 'admin123@gmail.com'" class="flex flex-col h-screen">
         <!-- Navbar (always visible on all screen sizes) -->
         <nav class="flex items-center justify-between p-2 text-black border print:hidden ">
             <div class="text-xl font-meduim font-[500] text-blue-600 flex items-center gap-1">
@@ -20,9 +20,9 @@
             </div>
             <div class="flex items-center gap-2">
                 <div class="flex gap-1">
-                    <p class="font-medium uppercase">Profile៖ <span class="font-bold">{{ user?.email }}</span></p>
+                    <p class="font-medium text-white uppercase">Profile៖ <span class="font-bold">{{ user?.email }}</span></p>
                 </div>
-                <div class="p-4 bg-gray-100 rounded-full">
+                <div class="p-4 bg-gray-100 rounded-full shadow-xl">
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -38,7 +38,7 @@
         <div class="flex flex-1 ">
             <!-- Sidebar (hidden on small screens) -->
             <div
-                class="w-16 p-4 text-black transition-all duration-300 ease-in-out border-b border-r bg-black/80 lg:w-64 print:hidden">
+                class="w-16 p-4 text-black transition-all duration-300 ease-in-out border-b border-r bg-black/60 lg:w-64 print:hidden">
                 <ul class="space-y-1">
 
 
@@ -88,7 +88,7 @@
             </div>
 
             <!-- Content -->
-            <div class="flex-1 p-6 bg-gray-200/60">
+            <div class="flex-1 p-6 bg-gray-50/20">
                 <router-view />
             </div>
         </div>

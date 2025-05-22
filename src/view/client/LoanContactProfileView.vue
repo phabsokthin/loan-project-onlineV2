@@ -7,61 +7,64 @@
         <div class="bg-white lg:hidden">
             <MobileView />
         </div>
-
+       <div class="max-w-4xl mx-auto mt-5">
+         <h2
+            class="flex items-center justify-center gap-2 p-3 text-lg font-semibold text-center text-white border rounded-md bg-blue-600/90">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-signature-icon lucide-signature">
+                <path
+                    d="m21 17-2.156-1.868A.5.5 0 0 0 18 15.5v.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1c0-2.545-3.991-3.97-8.5-4a1 1 0 0 0 0 5c4.153 0 4.745-11.295 5.708-13.5a2.5 2.5 0 1 1 3.31 3.284" />
+                <path d="M3 21h18" />
+            </svg>
+            <span>Signature</span>
+        </h2>
+       </div>
         <!-- Main Content -->
-        <div class="w-full max-w-4xl px-1 m-auto mt-5 bg-white mb-9">
+        <div class="w-full max-w-4xl px-6 pt-1 m-auto mt-5 bg-[oklch(58.8%_0.158_241.966)] opacity-95 rounded-lg mb-9">
             <!-- Loan Info -->
-            <h2
-                class="flex items-center justify-center gap-2 p-3 text-lg font-semibold text-center text-white bg-blue-600 rounded-md">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-signature-icon lucide-signature">
-                    <path
-                        d="m21 17-2.156-1.868A.5.5 0 0 0 18 15.5v.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1c0-2.545-3.991-3.97-8.5-4a1 1 0 0 0 0 5c4.153 0 4.745-11.295 5.708-13.5a2.5 2.5 0 1 1 3.31 3.284" />
-                    <path d="M3 21h18" />
-                </svg>
-                <span>Signature</span>
-            </h2>
+
+
             <div v-if="!showSuccess"
-                class="w-full max-w-md p-6 mx-auto mt-8 mb-3 space-y-6 text-white rounded-md bg-gradient-to-r from-blue-500 to-indigo-600">
+                class="w-full max-w-4xl p-6 m-4 mx-auto mt-8 mb-3 space-y-6 text-white rounded-md bg-gradient-to-r from-blue-500 to-indigo-600">
                 <h2 class="mb-3 text-lg font-bold">Loan details</h2>
                 <div v-for="usDoc in userDoc" :key="usDoc" class="space-y-2">
                     <div class="flex justify-between">
-                        <p class="text-white">Loan amount</p>
+                        <p class="font-mono text-white">Loan amount</p>
                         <!-- <p class="font-medium">₱ {{ $props.data.amount }}</p> -->
                         <p class="font-medium">₱ {{ usDoc.amount }}</p>
                     </div>
                     <div class="flex justify-between">
-                        <p class="text-white">Loan term</p>
+                        <p class="font-mono text-white">Loan term</p>
                         <!-- <p class="font-medium">{{ $props.data.term }} months</p> -->
-                        <p class="font-medium">{{ usDoc.term }} months</p>
+                        <p class="font-mono font-medium">{{ usDoc.term }} months</p>
                     </div>
                     <div class="flex justify-between">
-                        <p class="text-white">Contract</p>
+                        <p class="font-mono text-white">Contract</p>
                         <button class="font-bold text-white underline hover:text-yellow-200">View Contract</button>
                     </div>
                 </div>
             </div>
 
             <!-- Signature Section -->
-            <div v-if="!showSuccess" class="max-w-md p-4 mx-auto mb-40 rounded">
+            <div v-if="!showSuccess" class="max-w-4xl p-4 mx-auto mb-40 rounded">
 
 
                 <div>
-                   
+
 
                     <div v-for="usDoc in userDoc" :key="usDoc" class="mt-2">
 
                         <div v-if="usDoc.assigned_image" class="">
-                            <h1>Your Signature</h1>
-                            <div class="flex items-center justify-center w-full h-40 border rounded">
-                                <img :src="usDoc.assigned_image" alt="">
+                            <h1 class="font-mono text-xl text-white">Your Signature</h1>
+                            <div class="flex items-center justify-center w-full h-40 mt-3 bg-white border rounded">
+                                <img :src="usDoc.assigned_image" alt="" class="pb-5">
                             </div>
 
 
                         </div>
                         <div v-else>
-                            <p class="text-gray-500">No signature available</p>
+                            <p class="text-white">No signature available</p>
 
                         </div>
                     </div>
@@ -77,11 +80,11 @@
             </div>
 
             <!-- Success Message -->
-          
+
         </div>
 
 
-  
+
 
 
     </div>

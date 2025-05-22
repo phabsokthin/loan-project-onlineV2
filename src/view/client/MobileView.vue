@@ -1,5 +1,5 @@
 <template>
-    <div class="p-4 bg-white shadow-sm">
+    <div class="p-4 shadow-md bg-blue-600/80">
         <div class="flex items-center justify-between">
             <div>
                 <a class="text-3xl font-bold leading-none" href="#">
@@ -40,7 +40,7 @@
                 <div class="relative mr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="text-gray-600 lucide lucide-user-round-check-icon lucide-user-round-check">
+                        class="text-white lucide lucide-user-round-check-icon lucide-user-round-check">
                         <path d="M2 21a8 8 0 0 1 13.292-6" />
                         <circle cx="10" cy="8" r="5" />
                         <path d="m16 19 2 2 4-4" />
@@ -70,7 +70,7 @@
     <!-- bottom navigation -->
     <div class="mx-auto ">
         <div class="fixed bottom-0 z-50 w-full shadow-xl ">
-            <div class="flex items-center justify-between px-8 py-2 mx-12 mb-8 bg-blue-600 shadow-xl rounded-xl">
+            <div class="flex items-center justify-between px-8 py-2 mx-5 mb-8 bg-blue-600 border shadow-xl opacity-95 rounded-xl">
                 <div>
                     <RouterLink to="/" class="flex flex-col items-center space-y-2 font-mono uppercase">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

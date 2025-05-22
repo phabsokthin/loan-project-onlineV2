@@ -9,17 +9,17 @@
         </div>
 
         <!-- Main Content -->
-        <div class="w-full max-w-4xl px-1 py-10 m-auto mt-1 bg-white mb-9">
+        <div class="w-full max-w-4xl px-1 py-10 m-auto mt-1 mb-9">
             <!-- Loan Info -->
 
 
 
             <!-- Success Message -->
-            <div class="max-w-md mx-auto mt-6 text-center ">
+            <div class="max-w-md mx-auto mt-6 text-center bg-[oklch(58.8%_0.158_241.966)] opacity-95 p-4 rounded-md">
                 <img :src="require('@/assets/success.webp')" alt="How to Sign" class="mx-auto mb-4">
-                <h2 class="mb-2 text-xl font-bold text-green-600">✔ Congratulations</h2>
-                <p class="text-gray-700">Your loan application was successful, please wait for approval.</p>
-                <button @click="handleContract" class="px-6 py-3 mt-4 text-white bg-blue-600 rounded-full">Contact Customer Service</button>
+                <h2 class="mb-2 text-xl font-bold text-white">✔ Congratulations</h2>
+                <p class="text-white">Your loan application was successful, please wait for approval.</p>
+                <button @click="handleContract" class="px-6 py-3 mt-4 text-white bg-blue-600 rounded-full shadow-lg">Contact Customer Service</button>
             </div>
         </div>
 

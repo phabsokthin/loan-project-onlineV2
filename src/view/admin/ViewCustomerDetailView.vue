@@ -1,6 +1,6 @@
 <template>
 
-    <div v-for="usDoc in userDoc" :key="usDoc" class="m-auto space-y-8 divide-y divide-gray-200 ">
+    <div v-for="usDoc in userDoc" :key="usDoc" class="m-auto space-y-8 overflow-hidden divide-y divide-gray-200 h-[880px] overflow-y-scroll">
         <div class="space-y-8 divide-y divide-gray-200">
             <div class="p-5 bg-white border-t-2 rounded-md border-t-blue-500">
                 <div class="flex items-center gap-2">

@@ -9,9 +9,10 @@
     </div>
 
     <!-- Main Content -->
-    <div class="w-full max-w-4xl px-1 py-10 m-auto mt-1 bg-white mb-9">
+    <div class="w-full max-w-md px-1 mx-auto mt-5 ">
       <!-- Loan Info -->
-      <h2 class="flex items-center justify-center gap-2 p-3 text-lg font-semibold text-center text-white bg-blue-600 rounded-md">
+      <h2
+        class="flex items-center justify-center gap-2 p-3 text-lg font-semibold text-center text-white bg-blue-600 border rounded-md">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
           class="lucide lucide-signature-icon lucide-signature">
@@ -22,9 +23,9 @@
         <span>Signature</span>
       </h2>
       <div v-if="!showSuccess"
-        class="w-full max-w-md p-6 mx-auto mt-8 mb-3 space-y-6 text-white rounded-md bg-gradient-to-r from-blue-500 to-indigo-600">
-        <h2 class="mb-3 text-lg font-bold">Loan details</h2>
-        <div v-for="usDoc in userDoc" :key="usDoc" class="space-y-2">
+        class="w-full max-w-md p-6 mx-auto mt-2 mb-3 space-y-6 text-white rounded-md bg-gradient-to-r from-blue-500 to-indigo-600">
+        <h2 class="mb-3 font-mono text-lg font-bold">Loan details</h2>
+        <div v-for="usDoc in userDoc" :key="usDoc" class="space-y-2 font-mono">
           <div class="flex justify-between">
             <p class="text-white">Loan amount</p>
             <!-- <p class="font-medium">₱ {{ $props.data.amount }}</p> -->
@@ -43,45 +44,46 @@
       </div>
 
       <!-- Signature Section -->
-      <div v-if="!showSuccess" class="max-w-md p-4 mx-auto mb-40 border rounded">
-        <p class="mb-2 text-sm text-gray-600">
-          ↓ Please sign within the dotted line, the signature must be standard, complete and clear
-        </p>
+      <div v-if="!showSuccess" class="max-w-md pb-40 mx-auto">
+        <div class="bg-[oklch(58.8%_0.158_241.966)] opacity-95 border rounded-md p-4 font-medium text-justify">
+          <p class="mb-2 text-xl text-white">
+            ↓ Please sign within the dotted line, the signature must be standard, complete and clear.
+          </p>
 
-        <div>
-          <canvas ref="signaturePad" class="w-full h-40 mb-2 border border-gray-300 rounded-md"></canvas>
-          <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-between">
-            <div class="flex gap-2" v-if="!usDoc.assigned_image">
-              <button v-if="!signatureConfirmed" @click="clearSignature"
-                class="px-4 py-3 text-white bg-red-500 rounded ">Reset</button>
-              <button v-if="!signatureConfirmed" @click="confirmSignature"
-                class="px-4 py-3 text-white bg-blue-600 rounded">Signature confirmation</button>
+          <div>
+            <div class="">
+              <canvas ref="signaturePad" class="w-full h-40 mb-2 bg-white border border-gray-300 rounded-md"></canvas>
+
             </div>
-
-          </div>
-
-          <div v-for="usDoc in userDoc" :key="usDoc" class="mt-2">
-
-            <div v-if="usDoc.assigned_image" class="">
-              <h1>Your Signature</h1>
-              <div class="flex items-center justify-center w-full h-40">
-                <img :src="usDoc.assigned_image" alt="">
+            <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-between font-mono">
+              <div class="flex gap-2" v-if="!usDoc.assigned_image">
+                <button v-if="!signatureConfirmed" @click="clearSignature"
+                  class="px-4 py-3 text-white bg-red-500 rounded ">Reset</button>
+                <button v-if="!signatureConfirmed" @click="confirmSignature"
+                  class="px-4 py-3 text-white bg-blue-600 rounded">Signature confirmation</button>
               </div>
 
-              <div class="w-full ">
-
-                <button @click="handleComplete"
-                  class="flex items-center justify-center w-full gap-1 p-3 mt-10 font-mono text-white bg-green-600 rounded-full">
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>Congratulations</span></button>
-
-              </div>
             </div>
-            <div v-else>
-              <!-- <p class="text-gray-500">No signature available</p> -->
 
+            <div v-for="usDoc in userDoc" :key="usDoc" class="mt-2">
+
+              <div v-if="usDoc.assigned_image" class="">
+                <h1 class="font-mono text-xl text-white">Your Signature</h1>
+                <div class="flex items-center justify-center w-full h-40 bg-white rounded-md">
+                  <img :src="usDoc.assigned_image" alt="">
+                </div>
+
+                <div class="w-full ">
+
+                  <button @click="handleComplete"
+                    class="flex items-center justify-center w-full gap-1 p-3 mt-10 font-mono text-white bg-green-800 rounded-full ">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Congratulations</span></button>
+
+                </div>
+              </div>
             </div>
           </div>
 
@@ -91,15 +93,15 @@
         <!-- After Signature Confirmation -->
         <div v-if="signatureConfirmed" class="mt-4">
           <button @click="agreeSignature"
-            class="w-full px-8 py-2 text-white rounded-full bg-gradient-to-r from-blue-500 to-indigo-600">Agree</button>
+            class="w-full px-8 py-3 text-white rounded-full bg-gradient-to-r from-blue-500 to-indigo-600">Agree</button>
         </div>
       </div>
 
       <!-- Success Message -->
-      <div v-if="showSuccess && userDoc.some(doc => doc.assigned_image)" class="max-w-md mx-auto mt-6 text-center ">
+      <div v-if="showSuccess && userDoc.some(doc => doc.assigned_image)" class="max-w-md mx-auto mt-6 font-mono text-center ">
         <img :src="require('@/assets/success.webp')" alt="How to Sign" class="mx-auto mb-4">
         <h2 class="mb-2 text-xl font-bold text-green-600">✔ Congratulations</h2>
-        <p class="text-gray-700">Your loan application was successful, please wait for approval.</p>
+        <p class="text-white">Your loan application was successful, please wait for approval.</p>
         <button @click="handleContact" class="px-6 py-2 mt-4 text-white bg-blue-600 rounded">Contact Customer
           Service</button>
       </div>
@@ -115,7 +117,7 @@
         class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[999] h-screen">
         <div class="p-6 text-center bg-white rounded shadow-md">
           <img :src="require('@/assets/signature.avif')" alt="How to Sign" class="mx-auto mb-4">
-          <button @click="showModal = false" class="px-4 py-1 text-white bg-blue-500 rounded">Close</button>
+          <button @click="showModal = false" class="px-4 py-2 font-mono text-white bg-blue-500 rounded">Close</button>
         </div>
       </div>
     </div>

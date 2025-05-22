@@ -2,7 +2,7 @@
 
 
     <!-- component -->
-    <div class="flex items-center justify-center h-screen font-sans bg-gray-100">
+    <div class="flex items-center justify-center font-sans bg-gray-100">
         <div x-data="{ showPrivacyPolicy: true }">
             <!-- Button to open the privacy policy modal -->
             <!-- Privacy Policy Modal -->

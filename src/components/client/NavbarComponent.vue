@@ -1,8 +1,8 @@
 <!-- component -->
 <template>
 
-    <div class="bg-blue-500">
-        <nav class="relative flex items-center justify-between px-4 py-4 bg-white border">
+    <div class="">
+        <nav class="relative flex items-center justify-between px-4 py-4 shadow-md bg-blue-600/80">
             <a class="text-3xl font-bold leading-none" href="#">
                 <img class="w-24 border"
                     src="@/assets/loan_logo.jpg"
@@ -20,7 +20,7 @@
             <ul
                 class="absolute hidden transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-6">
                 <router-link to="/"><a
-                        class="flex items-center gap-1 font-mono text-gray-400 uppercase text-md hover:text-gray-500"
+                        class="flex items-center gap-1 font-mono text-white uppercase text-md hover:text-gray-500"
                         href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -38,7 +38,7 @@
                     </svg>
                 </li>
                 <router-link to="/wallet">
-                    <a class="flex items-center gap-1 font-mono text-gray-400 uppercase text-md hover:text-gray-500"
+                    <a class="flex items-center gap-1 font-mono text-white uppercase text-md hover:text-gray-500"
                         href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -57,7 +57,7 @@
                     </svg>
                 </li>
                 <router-link to="/profile">
-                    <a class="flex items-center gap-1 font-mono text-gray-400 uppercase text-md hover:text-gray-500"
+                    <a class="flex items-center gap-1 font-mono text-white uppercase text-md hover:text-gray-500"
                         href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -110,7 +110,7 @@
                 <div v-else class="relative mr-10">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="text-gray-600 lucide lucide-user-round-check-icon lucide-user-round-check">
+                        class="text-white lucide lucide-user-round-check-icon lucide-user-round-check">
                         <path d="M2 21a8 8 0 0 1 13.292-6" />
                         <circle cx="10" cy="8" r="5" />
                         <path d="m16 19 2 2 4-4" />

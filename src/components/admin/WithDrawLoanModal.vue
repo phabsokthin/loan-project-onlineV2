@@ -2,14 +2,14 @@
 
 
     <!-- component -->
-    <div class="z-50 flex items-center justify-center h-screen font-sans bg-gray-100">
+    <div class="z-50 flex items-center justify-center font-sans ">
         <div x-data="{ showPrivacyPolicy: true }">
             <!-- Button to open the privacy policy modal -->
             <!-- Privacy Policy Modal -->
             <form @submit.prevent="handleWithDrawCode" x-show="showPrivacyPolicy"
-                class="fixed inset-0 z-10 flex items-center justify-center">
+                class="fixed inset-0 z-50 flex items-center justify-center">
                 <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-                <div class="relative w-full max-w-screen-md m-4 overflow-hidden bg-white rounded-lg shadow-xl"
+                <div class="relative w-full max-w-screen-md m-4 overflow-hidden bg-green-500 rounded-lg shadow-xl"
                     x-transition:enter="transition ease-out duration-300 transform opacity-0 scale-95"
                     x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                     x-transition:leave="transition ease-in duration-200 transform opacity-100 scale-100"
@@ -17,12 +17,12 @@
                     x-cloak>
                     <!-- Modal panel -->
                     <div class="px-6 py-4">
-                        <h3 class="text-lg font-medium leading-6 text-gray-900">Withdraw Loan </h3>
+                        <h3 class="font-mono text-lg font-medium leading-6 text-white">Withdraw Loan </h3>
                     </div>
 
-                    <div class="p-5 border-t-2 rounded-md bg-gray-50">
+                    <div class="p-5 border-t-2 ">
 
-                        <div class="p-4 text-white bg-blue-600 rounded-md shadow-xl">
+                        <div class="p-4 text-white bg-[oklch(58.8%_0.158_241.966)] opacity-95 rounded-md shadow-xl">
                             <div class="space-y-3">
                                 <h1 class="flex justify-between font-mono text-xl">Loan Amount: <span><b>₱ {{
                                     currentData?.amount

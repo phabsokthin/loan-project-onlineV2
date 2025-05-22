@@ -5,11 +5,11 @@
     <div class="lg:hidden">
         <MobileView />
     </div>
-    <div class="w-full max-w-4xl px-1 m-auto mt-5 bg-white " v-motion-fade>
-        <h2 class="flex items-center justify-center gap-2 p-3 text-lg font-semibold text-center text-white bg-blue-600 rounded-md">
+    <div class="w-full max-w-4xl px-1 m-auto mt-5 " v-motion-fade>
+        <h2 class="flex items-center justify-center gap-2 p-3 text-lg font-semibold text-center text-white border rounded-md bg-blue-600/80">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-contact-round-icon lucide-contact-round"><path d="M16 2v2"/><path d="M17.915 22a6 6 0 0 0-12 0"/><path d="M8 2v2"/><circle cx="12" cy="12" r="4"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg>
 
-            <span>Personal Information</span></h2>
+            <span class="font-mono ">Personal Information</span></h2>
         <div v-for="usDoc in userDoc" :key="usDoc">
 
             <div v-if="!usDoc.name" 
@@ -18,13 +18,13 @@
              
             </div>
             <div v-else>
-                <div class="w-full p-8 space-y-6 bg-white rounded-xl">
-                    <h2 class="mb-6 text-2xl font-bold text-center">
+                <div class="w-full p-8 space-y-6 bg-[oklch(58.8%_0.158_241.966)] opacity-90 rounded-xl mt-4 pb-40 lg:pb-8">
+                    <h2 class="mb-6 font-mono text-2xl font-bold text-center text-white">
                         
                         Personal Information</h2>
                     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                         <div>
-                            <label class="flex items-center gap-2 mb-1 font-medium ">
+                            <label class="flex items-center gap-2 mb-1 font-mono text-white ">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5.121 17.804A9.935 9.935 0 0012 20c2.485 0 4.77-.91 6.516-2.413M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -36,7 +36,7 @@
                         </div>
 
                         <div>
-                            <label class="flex items-center gap-2 mb-1 font-medium ">
+                            <label class="flex items-center gap-2 mb-1 font-mono text-white">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 4v1m0 14v1m8-8h1M4 12H3m15.364 6.364l.707.707M6.343 6.343l-.707-.707M17.657 6.343l.707-.707M6.343 17.657l-.707.707" />
@@ -48,7 +48,7 @@
                         </div>
 
                         <div>
-                            <label class="flex items-center gap-2 mb-1 font-medium ">
+                            <label class="flex items-center gap-2 mb-1 font-mono text-white">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M20 12H4" />
@@ -60,7 +60,7 @@
                         </div>
 
                         <div>
-                            <label class="flex items-center gap-2 mb-1 font-medium ">
+                            <label class="flex items-center gap-2 mb-1 font-mono text-white">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M8 7V3m8 4V3m-9 4h10M5 11h14M5 19h14M5 15h14" />
@@ -72,7 +72,7 @@
                         </div>
 
                         <div>
-                            <label class="flex items-center gap-2 mb-1 font-medium ">
+                            <label class="flex items-center gap-2 mb-1 font-mono text-white ">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 11c0-1.104.895-2 2-2s2 .896 2 2v3h1.5a1.5 1.5 0 010 3h-9a1.5 1.5 0 010-3H10v-3c0-1.104.895-2 2-2z" />
@@ -84,7 +84,7 @@
                         </div>
 
                         <div>
-                            <label class="flex items-center gap-2 mb-1 font-medium ">
+                            <label class="flex items-center gap-2 mb-1 font-mono text-white ">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M11 11V7a4 4 0 118 0v4m0 4v4a4 4 0 11-8 0v-4m-4-4h16" />
@@ -96,7 +96,7 @@
                         </div>
 
                         <div>
-                            <label class="flex items-center gap-2 mb-1 font-medium ">
+                            <label class="flex items-center gap-2 mb-1 font-mono text-white ">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8v4l3 3m6-1a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -108,7 +108,7 @@
                         </div>
 
                         <div>
-                            <label class="flex items-center gap-2 mb-1 font-medium ">
+                            <label class="flex items-center gap-2 mb-1 font-mono text-white ">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M17.657 16.657L13.414 12 17.657 7.343M6 18h6" />
@@ -120,7 +120,7 @@
                         </div>
 
                         <div>
-                            <label class="flex items-center gap-2 mb-1 font-medium ">
+                            <label class="flex items-center gap-2 mb-1 font-mono text-white ">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5.121 17.804A9.935 9.935 0 0012 20c2.485 0 4.77-.91 6.516-2.413M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -132,7 +132,7 @@
                         </div>
 
                         <div>
-                            <label class="flex items-center gap-2 mb-1 font-medium ">
+                            <label class="flex items-center gap-2 mb-1 font-mono text-white">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 5h12M9 3v2m0 4v12m-4 0h8a2 2 0 002-2v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7a2 2 0 002 2z" />
@@ -144,7 +144,7 @@
                         </div>
 
                         <div class="md:col-span-2">
-                            <label class="flex items-center gap-2 mb-1 font-medium ">
+                            <label class="flex items-center gap-2 mb-1 font-mono text-white ">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 10h4l3 10 4-18 3 8h4" />
@@ -152,7 +152,7 @@
                                 Enter your relative's phone number: *
                             </label>
                             <div type="text" placeholder="Please fill in the information"
-                                class="w-full p-2 mb-40 border rounded-lg bg-gray-50">{{ usDoc.relativePhone }}</div>
+                                class="w-full p-2 border rounded-lg bg-gray-50">{{ usDoc.relativePhone }}</div>
                         </div>
 
 

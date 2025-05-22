@@ -13,7 +13,7 @@
             <SliderComponent />
             <HomeComponent />
             <LoanRecheiveCardComponent />
-            <!-- <FooterView/> -->
+            <FooterView/>
 
         </div>
     </div>
