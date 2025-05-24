@@ -9,6 +9,9 @@ import { projectAuth } from '@/config/config';
 import RegisterAuth from '@/view/authentication/AdminRegisterAuth.vue';
 import LoginAuth from '@/view/authentication/AdminLoginAuth.vue'
 import SlideView from '@/view/admin/SlidesView.vue'
+import ViewAllMembers from '@/view/admin/AllMemberView.vue'
+import ViewContract from '@/view/admin/ViewContractView.vue'
+import WidthdrawalList from '@/view/admin/WithdrawalListView.vue'
 
 const requiresAuth = (to, from, next) => {
   const user = projectAuth.currentUser;
@@ -57,8 +60,12 @@ const routes = [
       { path: '/admin', name: "customers", component: CustomerView },
       { path: '/admin/:id', name: "viewCustomer", component: ViewCustomerDetail },
       { path: '/admin', name: "slide", component: SlideView },
+      { path: '/admin', name: "viewAllMember", component: ViewAllMembers },
+      { path: '/admin/:id', name: "viewContract", component: ViewContract },
+      { path: '/admin', name: "withdrawal", component: WidthdrawalList },
 
 
+      
     ]
   },
 ];

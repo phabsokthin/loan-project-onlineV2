@@ -15,7 +15,7 @@
                     </h2>
 
                     <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full ">{{
-                        customers?.length }}
+                        customerStatus?.length }}
                         Request</span>
                 </div>
 
@@ -55,28 +55,7 @@
         </div>
 
         <div class="p-4 bg-white border md:flex md:items-center md:justify-between">
-            <!-- <div
-                class="inline-flex overflow-hidden bg-white border divide-x rounded-lg dark:bg-gray-900 rtl:flex-row-reverse dark:border-gray-700 dark:divide-gray-700">
-                <button
-                    class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 bg-gray-100 sm:text-sm dark:bg-gray-800 dark:text-gray-300">
-                    View all
-                </button>
 
-                <button
-                    class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
-                    Approved
-                </button>
-
-                <button
-                    class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
-                    Under Review
-                </button>
-
-                <button
-                    class="px-5 py-2 text-xs font-medium text-gray-600 transition-colors duration-200 sm:text-sm dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100">
-                    Not Completed
-                </button>
-            </div> -->
 
             <div class="relative flex items-center mt-4 md:mt-0">
                 <span class="absolute">
@@ -313,7 +292,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(customer, index) in data" :key="customer" class="text-sm font-medium">
+                    <tr v-for="(customer, index) in customerStatus" :key="customer" class="text-sm font-medium">
                         <td class="p-2 px-1 border border-gray-300">#{{ index + 1 }}</td>
                         <td class="px-2 border border-gray-300">{{ customer?.name }}</td>
 
@@ -329,19 +308,21 @@
                                 class="p-1 text-xs text-center text-white bg-orange-500">
                                 Under Review
                             </div>
-                            <div v-else-if="customer.status ===
-                                '1'" class="p-1 text-xs text-center text-white bg-green-500">
-                                <p>Approved</p>
+                            <div v-else-if="customer.status === '1'">
+                                <div class="p-1 text-xs text-center text-white bg-green-500">
+                                    <p>Approved</p>
+                                </div>
+                                <p class="text-xs text-gray-500">Congratulations, your loan has been approved.</p>
                             </div>
                             <div v-else class="p-1 text-xs text-center text-white bg-red-500">
                                 <p>Not Completed</p>
                             </div>
                         </td>
                         <td class="px-2 border border-gray-300 w-72">
-                            <div
-                                class="flex gap-2 px-4 py-4 text-sm font-medium whitespace-nowrap">
+                            <div class="flex flex-wrap gap-2 px-4 py-4 text-sm font-medium whitespace-nowrap">
                                 <div v-if="customer?.status === '0' || customer?.status === '1'"
-                                    @click="handleCurrentUpdate(customer)">
+                                    @click="handleCurrentUpdate(customer)"
+                                    class="flex items-center gap-2 p-2 text-white bg-blue-600 shadow-md cursor-pointer hover:bg-blue-500">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round"
@@ -349,10 +330,13 @@
                                         <path d="M21.801 10A10 10 0 1 1 17 3.335" />
                                         <path d="m9 11 3 3L22 4" />
                                     </svg>
+
+                                    <p>Review</p>
                                 </div>
 
 
-                                <div @click="handleAddWidthAmountModal(customer)">
+                                <div @click="handleAddWidthAmountModal(customer)"
+                                    class="flex items-center gap-2 p-2 text-white bg-blue-600 shadow-md cursor-pointer hover:bg-blue-500">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round"
@@ -362,9 +346,11 @@
                                         <path d="M2 15h10" />
                                         <path d="m9 18 3-3-3-3" />
                                     </svg>
+                                    <p>Wallet Modification</p>
                                 </div>
 
-                                <div @click="handleAddCodeWithDrawModal(customer)">
+                                <div @click="handleAddCodeWithDrawModal(customer)"
+                                    class="flex items-center gap-2 p-2 text-white bg-blue-600 shadow-md cursor-pointer hover:bg-blue-500">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round"
@@ -376,24 +362,31 @@
                                         <path d="M6 12h.01" />
                                         <circle cx="12" cy="12" r="2" />
                                     </svg>
+                                    <p>Withdrawal Code</p>
                                 </div>
                                 <div>
                                     <RouterLink :to="{ name: 'viewCustomer', params: { id: customer.id } }">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="cursor-pointer lucide lucide-scan-search-icon lucide-scan-search hover:text-orange-500">
-                                            <path d="M3 7V5a2 2 0 0 1 2-2h2" />
-                                            <path d="M17 3h2a2 2 0 0 1 2 2v2" />
-                                            <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
-                                            <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
-                                            <circle cx="12" cy="12" r="3" />
-                                            <path d="m16 16-1.9-1.9" />
-                                        </svg>
+                                        <div
+                                            class="flex items-center gap-2 p-2 text-white bg-blue-600 shadow-md cursor-pointer hover:bg-blue-500">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="cursor-pointer lucide lucide-scan-search-icon lucide-scan-search hover:text-orange-500">
+                                                <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+                                                <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                                                <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+                                                <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                                                <circle cx="12" cy="12" r="3" />
+                                                <path d="m16 16-1.9-1.9" />
+                                            </svg>
+
+                                            <p>Checking Data</p>
+                                        </div>
                                     </RouterLink>
                                 </div>
 
-                                <div class="cursor-pointer" @click="handleAddCreditModal(customer)">
+                                <div class="flex items-center gap-2 p-2 text-white bg-blue-600 shadow-md cursor-pointer hover:bg-blue-500"
+                                    @click="handleAddCreditModal(customer)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round"
@@ -401,9 +394,28 @@
                                         <rect width="20" height="14" x="2" y="5" rx="2" />
                                         <line x1="2" x2="22" y1="10" y2="10" />
                                     </svg>
+                                    <p>Credit Score</p>
                                 </div>
 
-                                <div
+                                <RouterLink :to="{ name: 'viewContract', params: { id: customer.id } }">
+
+
+                                    <div
+                                        class="flex items-center gap-2 p-2 text-white bg-yellow-600 shadow-md cursor-pointer hover:bg-yellow-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-eye-icon lucide-eye">
+                                            <path
+                                                d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                                            <circle cx="12" cy="12" r="3" />
+                                        </svg>
+                                        <p>View Contract</p>
+                                    </div>
+
+                                </RouterLink>
+
+                                <div class="flex items-center gap-2 p-2 text-white bg-red-600 shadow-md cursor-pointer hover:bg-red-500"
                                     @click="handleDelete(customer?.id, customer?.front_image, customer?.back_image, customer?.selfie_image, customer?.assigned_image)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -415,6 +427,7 @@
                                         <line x1="10" x2="10" y1="11" y2="17" />
                                         <line x1="14" x2="14" y1="11" y2="17" />
                                     </svg>
+                                    <p>Delete</p>
                                 </div>
 
 
@@ -478,6 +491,7 @@ import getUser from '@/firebase/getUser';
 import AddCreditModal from '@/components/admin/AddCreditModal.vue';
 import WithDrawAmountModal from '@/components/admin/WithDrawAmountModal.vue';
 import AddCodeWithDrawModal from '@/components/admin/AddCodeWithDrawModal.vue';
+import { computed } from 'vue';
 export default {
     components: {
         UpdateCustomerModal,
@@ -595,6 +609,13 @@ export default {
             return date.toLocaleDateString(); // Or use toLocaleDateString() if you want just the date
         }
 
+
+        const customerStatus = computed(() => {
+            return data.value.filter((customer) => {
+                return customer.status === '0' || customer.status === '1';
+            });
+        })
+
         return {
             handleCurrentUpdate,
             currentComponents,
@@ -616,7 +637,8 @@ export default {
             creditData,
             handleAddWidthAmountModal,
             handleAddCodeWithDrawModal,
-            formatDate
+            formatDate,
+            customerStatus
         }
 
     }

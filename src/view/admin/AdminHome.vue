@@ -1,9 +1,9 @@
 <template>
-    <div v-if="user?.email === 'admin123@gmail.com'" class="flex flex-col h-screen">
+    <div v-if="user?.email === 'admin123@gmail.com'" class="flex flex-col h-screen bg-gray-50">
         <!-- Navbar (always visible on all screen sizes) -->
-        <nav class="flex items-center justify-between p-2 text-black border print:hidden ">
-            <div class="text-xl font-meduim font-[500] text-blue-600 flex items-center gap-1">
-              
+        <nav class="flex items-center justify-between p-2 text-black bg-gray-700 print:hidden ">
+            <div class="text-xl font-meduim font-[500] text-white flex items-center gap-1">
+
                 <p class="flex items-center gap-1 space-x-1 font-medium uppercase">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
@@ -18,18 +18,37 @@
                 <CurrentDate />
 
             </div>
-            <div class="flex items-center gap-2">
-                <div class="flex gap-1">
-                    <p class="font-medium text-white uppercase">Profile៖ <span class="font-bold">{{ user?.email }}</span></p>
+            <div class="flex items-center gap-3">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-2 px-3 py-2 font-mono text-sm text-white bg-blue-600 ">
+                            <p>New Member</p>
+                            <p class="px-2 bg-red-500 rounded-full">{{ inactiveMembersCount }}</p>
+                        </div>
+                         <div class="flex items-center gap-2 px-3 py-2 font-mono text-sm text-white bg-blue-600 ">
+                            <p>New Loan</p>
+                            <p class="px-2 bg-red-500 rounded-full">{{ inactiveLoanMembersCount }}</p>
+                        </div>
+                        <div class="flex items-center gap-2 px-3 py-2 font-mono text-sm text-white bg-blue-600 ">
+                            <p>New WithDraw</p>
+                            <p class="px-2 bg-red-500 rounded-full">{{ inactiveLoanMembersCount }}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="p-4 bg-gray-100 rounded-full shadow-xl">
+                <div class="flex items-center gap-2">
+                    <div class="flex gap-1">
+                        <p class="font-medium text-white uppercase">Profile៖ <span class="font-bold">{{ user?.email
+                        }}</span></p>
+                    </div>
+                    <div class="p-4 bg-gray-100 rounded-full shadow-xl">
 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-user">
-                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                        <circle cx="12" cy="7" r="4" />
-                    </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-user">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -53,8 +72,21 @@
                             <span class="font-bold text-white capitalize">Dashboard</span>
                         </RouterLink>
                     </li>
-               
 
+
+                    <li class="block">
+                        <RouterLink :to="{ name: 'viewAllMember' }"
+                            class="flex items-center gap-3 px-4 py-2 font-thin rounded hover:bg-black/50">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="text-white size-5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                            </svg>
+                            <span class="font-mono font-bold text-white capitalize ">All Members</span>
+                        </RouterLink>
+                    </li>
+
+                    
 
                     <li class="block">
                         <RouterLink :to="{ name: 'customers' }"
@@ -68,8 +100,20 @@
                         </RouterLink>
                     </li>
 
+                     <li class="block">
+                        <RouterLink :to="{ name: 'withdrawal' }"
+                            class="flex items-center gap-3 px-4 py-2 font-thin rounded hover:bg-black/50">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="text-white size-5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                            </svg>
+                            <span class="font-mono font-bold text-white capitalize ">Withdrawal List</span>
+                        </RouterLink>
+                    </li>
 
-                       <li class="block">
+
+                    <li class="block">
                         <RouterLink :to="{ name: 'slide' }"
                             class="flex items-center gap-3 px-4 py-2 font-thin rounded hover:bg-black/50">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -82,20 +126,21 @@
                     </li>
 
 
-          
+
 
                 </ul>
             </div>
 
             <!-- Content -->
-            <div class="flex-1 p-6 bg-gray-50/20">
+            <div class="flex-1 p-6 bg-gray-50">
                 <router-view />
             </div>
         </div>
 
 
         <div class="fixed bottom-4 right-4">
-            <button @click="handleLogout" class="flex items-center gap-1 px-4 py-2 font-bold text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">
+            <button @click="handleLogout"
+                class="flex items-center gap-1 px-4 py-2 font-bold text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-circle-arrow-out-up-left-icon lucide-circle-arrow-out-up-left">
@@ -103,12 +148,12 @@
                     <path d="m2 2 10 10" />
                     <path d="M12 2A10 10 0 1 1 2 12" />
                 </svg>
-                
+
                 <span class="font-medium ">Logout</span>
             </button>
         </div>
 
-        
+
 
     </div>
 
@@ -119,15 +164,19 @@ import useSignout from '@/firebase/useSignout';
 import { useRouter } from 'vue-router';
 
 import getUser from '@/firebase/getUser';
-export default{
-    setup(){
+import getCollection from '@/firebase/getCollection';
+import { computed } from 'vue';
+export default {
+    setup() {
 
         const { signOut } = useSignout()
         const router = useRouter()
 
         const { user } = getUser()
-        
-         const handleLogout = async () => {
+
+        const { document: members } = getCollection("customers")
+
+        const handleLogout = async () => {
             try {
                 if (window.confirm("Are you sure you want to logout?")) {
                     await signOut()
@@ -140,7 +189,26 @@ export default{
         };
 
 
-        return {handleLogout, user}
+        const inactiveMembers = computed(() => {
+            return members.value
+                ? members.value.filter(customer => !customer.status)
+                : [];
+        });
+
+        const inactiveMembersCount = computed(() => inactiveMembers.value.length);
+
+
+            const inactiveLoanMembers = computed(() => {
+            return members.value
+                ? members.value.filter(customer => customer.status)
+                : [];
+        });
+
+        const inactiveLoanMembersCount = computed(() => inactiveLoanMembers.value.length);
+
+
+
+        return { handleLogout, user, inactiveMembersCount,inactiveLoanMembersCount }
 
     }
 }

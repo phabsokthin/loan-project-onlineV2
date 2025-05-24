@@ -1,7 +1,7 @@
 <template>
     <!-- component -->
     <main class="w-full">
-        <h1 class="flex items-center gap-2 my-5 font-mono text-2xl font-bold text-white">
+        <h1 class="flex items-center gap-2 my-5 font-mono text-2xl font-bold text-black">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-layout-dashboard-icon lucide-layout-dashboard">

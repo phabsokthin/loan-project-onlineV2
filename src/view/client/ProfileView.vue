@@ -107,7 +107,7 @@
                 <div v-if="user" class="flex justify-center col-span-2 mt-6 ">
                     <div class="">
                         <button @click="handleLogout"
-                            class="flex items-center justify-center gap-3 py-3 mb-40 text-white transition border border-red-300 rounded-full w-52 px md:text-xl hover:bg-red-500">
+                            class="flex items-center justify-center gap-3 py-3 mb-40 font-mono text-white transition border border-red-300 rounded-full w-52 px md:text-xl hover:bg-red-500">
                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round" />
