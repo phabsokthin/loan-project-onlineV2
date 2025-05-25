@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-center bg-cover loan-bg">
+  <div class="">
     <router-view />
   </div>
 </template>

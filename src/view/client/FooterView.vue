@@ -10,22 +10,22 @@
                 <path d="m6 17 5-5-5-5" />
                 <path d="m13 17 5-5-5-5" />
             </svg>
-            <h1 class="font-mono text-lg md:text-2xl">SIGN-UP FOR YOUR LOAN</h1>
+            <h1 class=" text-lg md:text-2xl">SIGN-UP FOR YOUR LOAN</h1>
            </div>
             <div class="flex flex-col w-full py-8 text-white">
                 <div class="flex">
                     <div class="flex w-full py-3">
                         <input type="text" placeholder="Enter your email here"
-                            class="w-full p-4 font-mono text-black bg-white border-2 border-r-0 outline-none focus:border-blue-500 focus:border-r-0 " />
+                            class="w-full p-4  text-black bg-white border-2 border-r-0 outline-none focus:border-blue-500 focus:border-r-0 " />
                     </div>
                     <div class="flex py-3">
                         <button
-                            class="w-full p-2 font-mono text-sm text-white bg-blue-600 shadow-xl rounded-e-lg hover:bg-blue-500">Subscribe</button>
+                            class="w-full p-2  text-sm text-white bg-blue-600 shadow-xl rounded-e-lg hover:bg-blue-500">Subscribe</button>
                     </div>
                 </div>
                 <div class="flex py-3 pb-20 md:pb-0">
                     <div class="flex text-sm ">
-                        <p class="font-mono font-bold ">© {{ currentYear }} By LoanOnline Service. All
+                        <p class=" font-bold ">© {{ currentYear }} By LoanOnline Service. All
                             Rights Reserved.</p>
                     </div>
                 </div>

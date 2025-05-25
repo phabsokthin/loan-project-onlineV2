@@ -5,7 +5,7 @@
     <div class="lg:hidden">
         <MobileView />
     </div>
-    <div class="w-full max-w-4xl px-4 py-2 m-auto mt-2 font-mono " v-motion-fade>
+    <div class="w-full max-w-4xl px-4 py-2 m-auto mt-2 " v-motion-fade>
 
         <h2 class="p-3 text-lg font-semibold text-center text-white bg-blue-600 border rounded-md opacity-80">Wallet
         </h2>
@@ -13,17 +13,17 @@
         <div
             class="grid items-center grid-cols-2 grid-rows-2 gap-4 mt-4 bg-[oklch(58.8%_0.158_241.966)] opacity-90 border rounded-md p-7">
             <div class="flex items-center">
-                <span class="font-mono font-bold text-white">Account balance :</span>
+                <span class="font-bold text-white ">Account balance :</span>
             </div>
             <div class="text-right text-white">
                 <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-end">
                     <div v-if="usDoc?.status == '1'">
-                        <div v-if="usDoc.totalPrincipalAndInterest" class="font-mono text-lg font-bold">₱ {{
+                        <div v-if="usDoc.totalPrincipalAndInterest" class="text-lg font-bold ">₱ {{
                             usDoc?.withDrawAmount }}</div>
-                        <div v-else class="font-mono">No account balance</div>
+                        <div v-else class="">No account balance</div>
                     </div>
                     <div v-else>
-                        <p class="font-mono text-lg">₱ 0</p>
+                        <p class="text-lg ">₱ 0</p>
                     </div>
 
                 </div>
@@ -45,7 +45,7 @@
         <div v-for="usDoc in userDoc" :key="usDoc">
             <div v-if="usDoc?.status === '1'">
                 <button @click="handleWidthModal(usDoc)"
-                    class="w-full py-3 mt-4 font-mono font-semibold text-white capitalize bg-[oklch(58.8%_0.158_241.966)] opacity-90 border rounded-md hover:bg-blue-600 flex justify-center gap-2 ">
+                    class="w-full py-3 mt-4  font-semibold text-white capitalize bg-[oklch(58.8%_0.158_241.966)] opacity-90 border rounded-md hover:bg-blue-600 flex justify-center gap-2 ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-banknote-arrow-down-icon lucide-banknote-arrow-down">
@@ -59,7 +59,7 @@
                     <span> Withdraw Money</span>
                 </button>
 
-                <p class="mt-2 text-sm text-white">Congratulations, your loan has been approved.
+                <p class="mt-2 text-sm text-green-500">Congratulations, your loan has been approved.
                 </p>
             </div>
 
@@ -91,7 +91,7 @@ s-2.238,5-5,5s-5-2.238-5-5S29.238,9,32,9z"></path>
                 </p>
             </div>
             <div v-for="usDoc in userDoc" :key="usDoc" class="text-right text-white">
-                <span v-if="usDoc.accountNumber" class="font-mono">{{ usDoc?.accountNumber }}</span>
+                <span v-if="usDoc.accountNumber" class="">{{ usDoc?.accountNumber }}</span>
                 <span v-else>No loan number</span>
             </div>
 

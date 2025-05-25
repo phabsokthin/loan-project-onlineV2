@@ -8,19 +8,19 @@
     <div class="w-full max-w-4xl px-5 py-10 m-auto mt-1 " v-motion-fade>
         <div class="mb-6 text-2xl text-center ">
             <div
-                class="w-[180px] h-[180px] mx-auto rounded-full border-white border-8 flex items-center justify-center text-white ">
+                class="w-[180px] h-[180px] mx-auto rounded-full border-blue-500 border-8 flex items-center justify-center text-black ">
                 <div v-for="usDoc in userDoc" :key="usDoc" class="space-y-2 text-center">
-                    <h1 class="font-mono text-3xl text-white">{{ usDoc?.credit }}</h1>
-                    <span class="font-mono text-white">Meduim Credit</span>
+                    <h1 class="text-3xl text-black ">{{ usDoc?.credit }}</h1>
+                    <span class="text-black ">Meduim Credit</span>
                 </div>
-                <span v-if="!user" class="font-mono text-white">No Meduim Credit</span>
+                <span v-if="!user" class="text-black ">No Meduim Credit</span>
 
             </div>
-            <h2 class="mt-4 text-lg font-semibold text-white">Name</h2>
+            <h2 class="mt-4 text-lg font-semibold text-black">Name</h2>
             <div>
-                <div v-if="user" class="text-sm text-white">Phone : {{ user?.email?.slice(0, 10) }}</div>
-                <div v-else class="text-sm text-white">No Account? <RouterLink :to="{ name: 'login' }"
-                        class="text-blue-300">Login</RouterLink>
+                <div v-if="user" class="text-sm text-black">Phone : {{ user?.email?.slice(0, 10) }}</div>
+                <div v-else class="text-sm text-black">No Account? <RouterLink :to="{ name: 'login' }"
+                        class="text-blue-500 hover:underline">Login</RouterLink>
                 </div>
             </div>
 
@@ -107,7 +107,7 @@
                 <div v-if="user" class="flex justify-center col-span-2 mt-6 ">
                     <div class="">
                         <button @click="handleLogout"
-                            class="flex items-center justify-center gap-3 py-3 mb-40 font-mono text-white transition border border-red-300 rounded-full w-52 px md:text-xl hover:bg-red-500">
+                            class="flex items-center justify-center gap-3 py-3 mb-40 text-black transition border border-red-300 rounded-full hover:text-white w-52 px md:text-xl hover:bg-red-500">
                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round" />

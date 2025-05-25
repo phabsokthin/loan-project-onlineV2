@@ -7,7 +7,7 @@
     </div>
     <div class="w-full max-w-4xl px-1 py-4 m-auto mt-1 " v-motion-fade>
         <h2
-            class="flex items-center justify-center gap-2 p-3 font-mono text-lg font-semibold text-center text-white border rounded-md bg-blue-600/90">
+            class="flex items-center justify-center gap-2 p-3 text-lg font-semibold text-center text-white border rounded-md bg-blue-600/90">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="text-white lucide lucide-credit-card-icon lucide-credit-card">
@@ -22,9 +22,9 @@
                 <div class="bg-[oklch(58.8%_0.158_241.966)] opacity-90  rounded-xl p-4">
 
 
-                    <h2 class="mb-6 font-mono text-2xl font-bold text-center text-white">Baneficicary Bank Information</h2>
+                    <h2 class="mb-6 text-2xl font-bold text-center text-white">Baneficicary Bank Information</h2>
                     <div class="grid grid-cols-1 gap-4">
-                        <div class="relative font-mono ">
+                        <div class="relative ">
                             <label class="flex items-center gap-2 mb-1 font-medium text-white">
                                 <!-- Bank Icon SVG -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none"
@@ -37,7 +37,7 @@
                             <input type="text" required v-model="bankName" placeholder="Please fill in the information"
                                 class="w-full p-2 pl-10 border rounded-lg" />
                         </div>
-                        <div class="relative font-mono ">
+                        <div class="relative ">
                             <label class="flex items-center gap-2 mb-1 font-medium text-white">
                                 <!-- Credit Card Icon SVG -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none"
@@ -65,11 +65,11 @@
 
             <div v-else class="w-full space-y-6 ">
                 <div class="bg-[oklch(58.8%_0.158_241.966)] opacity-85 p-5 rounded-md ">
-                    <h2 class="mb-6 font-mono text-2xl font-bold text-center text-white">Baneficicary Bank Information
+                    <h2 class="mb-6 text-2xl font-bold text-center text-white">Baneficicary Bank Information
                     </h2>
                     <div class="grid grid-cols-1 gap-4">
                         <div class="relative">
-                            <label class="flex items-center gap-2 mb-1 font-mono text-white">
+                            <label class="flex items-center gap-2 mb-1 text-white">
                                 <!-- Bank Icon SVG -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -82,7 +82,7 @@
                                 class="w-full p-2 pl-10 border rounded-lg bg-gray-50">{{ usDoc.bankName }}</div>
                         </div>
                         <div class="relative">
-                            <label class="flex items-center gap-2 mb-1 font-mono text-white">
+                            <label class="flex items-center gap-2 mb-1 text-white">
                                 <!-- Credit Card Icon SVG -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <button @click="handleNextToAssign"
-                    class="flex items-center justify-center w-full gap-2 p-3 mt-6 font-mono font-semibold text-white transition-all rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700">
+                    class="flex items-center justify-center w-full gap-2 p-3 mt-6 font-semibold text-white transition-all rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700">
 
                     Next
                 </button>

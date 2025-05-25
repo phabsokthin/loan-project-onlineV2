@@ -326,7 +326,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round"
-                                        class="cursor-pointer lucide lucide-circle-check-big-icon lucide-circle-check-big hover:text-green-500">
+                                        class="cursor-pointer lucide lucide-circle-check-big-icon lucide-circle-check-big ">
                                         <path d="M21.801 10A10 10 0 1 1 17 3.335" />
                                         <path d="m9 11 3 3L22 4" />
                                     </svg>
@@ -340,7 +340,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round"
-                                        class="cursor-pointer lucide lucide-file-input-icon lucide-file-input hover:text-blue-500">
+                                        class="cursor-pointer lucide lucide-file-input-icon lucide-file-input">
                                         <path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4" />
                                         <path d="M14 2v4a2 2 0 0 0 2 2h4" />
                                         <path d="M2 15h10" />
@@ -354,7 +354,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round"
-                                        class="cursor-pointer lucide lucide-banknote-arrow-down-icon lucide-banknote-arrow-down hover:text-blue-500">
+                                        class="cursor-pointer lucide lucide-banknote-arrow-down-icon lucide-banknote-arrow-down ">
                                         <path d="M12 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5" />
                                         <path d="m16 19 3 3 3-3" />
                                         <path d="M18 12h.01" />
@@ -396,6 +396,21 @@
                                     </svg>
                                     <p>Credit Score</p>
                                 </div>
+                                <div class="flex items-center gap-2 p-2 text-white bg-blue-600 shadow-md cursor-pointer hover:bg-blue-500"
+                                    @click="hanldeViewBank(customer)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="lucide lucide-landmark-icon lucide-landmark">
+                                        <path d="M10 18v-7" />
+                                        <path
+                                            d="M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z" />
+                                        <path d="M14 18v-7" />
+                                        <path d="M18 18v-7" />
+                                        <path d="M3 22h18" />
+                                        <path d="M6 18v-7" />
+                                    </svg>
+                                    <p>Bank </p>
+                                </div>
 
                                 <RouterLink :to="{ name: 'viewContract', params: { id: customer.id } }">
 
@@ -420,7 +435,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round"
-                                        class="cursor-pointer lucide lucide-trash2-icon lucide-trash-2 hover:text-red-500">
+                                        class="cursor-pointer lucide lucide-trash2-icon lucide-trash-2 ">
                                         <path d="M3 6h18" />
                                         <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
                                         <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
@@ -492,12 +507,14 @@ import AddCreditModal from '@/components/admin/AddCreditModal.vue';
 import WithDrawAmountModal from '@/components/admin/WithDrawAmountModal.vue';
 import AddCodeWithDrawModal from '@/components/admin/AddCodeWithDrawModal.vue';
 import { computed } from 'vue';
+import ViewBankModal from '@/components/admin/ViewBankModal.vue';
 export default {
     components: {
         UpdateCustomerModal,
         AddCreditModal,
         WithDrawAmountModal,
-        AddCodeWithDrawModal
+        AddCodeWithDrawModal,
+        ViewBankModal
     },
 
     setup() {
@@ -602,6 +619,13 @@ export default {
             creditData.value = item
         }
 
+        const hanldeViewBank = (item) => {
+            currentComponents.value = "ViewBankModal"
+            creditData.value = item
+           
+        }
+        
+
 
         const formatDate = (timestamp) => {
             if (!timestamp) return 'N/A';
@@ -638,7 +662,8 @@ export default {
             handleAddWidthAmountModal,
             handleAddCodeWithDrawModal,
             formatDate,
-            customerStatus
+            customerStatus,
+            hanldeViewBank
         }
 
     }

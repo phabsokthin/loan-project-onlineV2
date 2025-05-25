@@ -1,5 +1,5 @@
 <template>
-    <div v-if="user?.email === 'admin123@gmail.com'" class="flex flex-col h-screen bg-gray-50">
+    <div v-if="user?.email === 'admin123@gmail.com'" class="flex flex-col h-screen ">
         <!-- Navbar (always visible on all screen sizes) -->
         <nav class="flex items-center justify-between p-2 text-black bg-gray-700 print:hidden ">
             <div class="text-xl font-meduim font-[500] text-white flex items-center gap-1">
@@ -16,28 +16,27 @@
             </div>
             <div class="hidden space-x-6 lg:flex">
                 <CurrentDate />
-
             </div>
             <div class="flex items-center gap-3">
                 <div>
                     <div class="flex items-center gap-2">
-                        <div class="flex items-center gap-2 px-3 py-2 font-mono text-sm text-white bg-blue-600 ">
+                        <div class="flex items-center gap-2 px-3 py-2 text-sm text-white bg-blue-600 ">
                             <p>New Member</p>
                             <p class="px-2 bg-red-500 rounded-full">{{ inactiveMembersCount }}</p>
                         </div>
-                         <div class="flex items-center gap-2 px-3 py-2 font-mono text-sm text-white bg-blue-600 ">
+                         <div class="flex items-center gap-2 px-3 py-2 text-sm text-white bg-blue-600 ">
                             <p>New Loan</p>
                             <p class="px-2 bg-red-500 rounded-full">{{ inactiveLoanMembersCount }}</p>
                         </div>
-                        <div class="flex items-center gap-2 px-3 py-2 font-mono text-sm text-white bg-blue-600 ">
+                        <div class="flex items-center gap-2 px-3 py-2 text-sm text-white bg-blue-600 ">
                             <p>New WithDraw</p>
-                            <p class="px-2 bg-red-500 rounded-full">{{ inactiveLoanMembersCount }}</p>
+                            <p class="px-2 bg-red-500 rounded-full">{{ withdrawLoanDoc?.length }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="flex items-center gap-2">
                     <div class="flex gap-1">
-                        <p class="font-medium text-white uppercase">Profile៖ <span class="font-bold">{{ user?.email
+                        <p class="text-xs text-white uppercase">Profile៖ <span class="font-bold">{{ user?.email
                         }}</span></p>
                     </div>
                     <div class="p-4 bg-gray-100 rounded-full shadow-xl">
@@ -57,8 +56,8 @@
         <div class="flex flex-1 ">
             <!-- Sidebar (hidden on small screens) -->
             <div
-                class="w-16 p-4 text-black transition-all duration-300 ease-in-out border-b border-r bg-black/60 lg:w-64 print:hidden">
-                <ul class="space-y-1">
+                class="w-16 p-4 text-sm text-black transition-all duration-300 ease-in-out border-t bg-gray-800/90 lg:w-64 print:hidden">
+                <ul class="space-y-2">
 
 
                     <li class="block">
@@ -82,7 +81,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
                             </svg>
-                            <span class="font-mono font-bold text-white capitalize ">All Members</span>
+                            <span class="font-bold text-white capitalize ">All Members</span>
                         </RouterLink>
                     </li>
 
@@ -96,7 +95,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
                             </svg>
-                            <span class="font-mono font-bold text-white capitalize ">Borrowing List</span>
+                            <span class="font-bold text-white capitalize ">Borrowing List</span>
                         </RouterLink>
                     </li>
 
@@ -108,7 +107,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
                             </svg>
-                            <span class="font-mono font-bold text-white capitalize ">Withdrawal List</span>
+                            <span class="font-bold text-white capitalize ">Withdrawal List</span>
                         </RouterLink>
                     </li>
 
@@ -121,7 +120,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
                             </svg>
-                            <span class="font-mono font-bold text-white capitalize ">Slides</span>
+                            <span class="font-bold text-white capitalize ">Slides</span>
                         </RouterLink>
                     </li>
 
@@ -175,6 +174,7 @@ export default {
         const { user } = getUser()
 
         const { document: members } = getCollection("customers")
+         const { document: withdrawLoanDoc } = getCollection("withdrawLoan")
 
         const handleLogout = async () => {
             try {
@@ -208,7 +208,7 @@ export default {
 
 
 
-        return { handleLogout, user, inactiveMembersCount,inactiveLoanMembersCount }
+        return { handleLogout, user, inactiveMembersCount,inactiveLoanMembersCount,withdrawLoanDoc }
 
     }
 }

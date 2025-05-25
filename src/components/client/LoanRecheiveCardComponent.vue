@@ -22,7 +22,7 @@
                                             <line x1="2" x2="22" y1="10" y2="10" />
                                         </svg>
                                     </div>
-                                    <h2 class="font-mono font-medium text-white md:ext-xl title-font">Account</h2>
+                                    <h2 class="font-medium text-white  md:ext-xl title-font">Account</h2>
                                 </div>
 
                             </div>
@@ -52,7 +52,7 @@
                                             <path d="M8 16H3v5" />
                                         </svg>
                                     </div>
-                                    <h2 class="font-mono font-medium text-white md:ext-xl title-font">Request Loan
+                                    <h2 class="font-medium text-white  md:ext-xl title-font">Request Loan
                                     </h2>
                                 </div>
 
@@ -81,7 +81,7 @@
                                             <circle cx="10" cy="8" r="5" />
                                         </svg>
                                     </div>
-                                    <h2 class="font-mono font-medium text-white md:ext-xl title-font">Profile</h2>
+                                    <h2 class="font-medium text-white  md:ext-xl title-font">Profile</h2>
                                 </div>
 
                             </div>
@@ -110,7 +110,7 @@
                                             <polygon points="12 2 20 7 4 7" />
                                         </svg>
                                     </div>
-                                    <h2 class="font-mono font-medium text-white md:ext-xl title-font">Withdraw</h2>
+                                    <h2 class="font-medium text-white  md:ext-xl title-font">Withdraw</h2>
                                 </div>
 
                             </div>

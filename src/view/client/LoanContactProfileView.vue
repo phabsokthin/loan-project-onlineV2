@@ -30,17 +30,17 @@
                 <h2 class="mb-3 text-lg font-bold">Loan details</h2>
                 <div v-for="usDoc in userDoc" :key="usDoc" class="space-y-2">
                     <div class="flex justify-between">
-                        <p class="font-mono text-white">Loan amount</p>
+                        <p class="text-white ">Loan amount</p>
                         <!-- <p class="font-medium">₱ {{ $props.data.amount }}</p> -->
                         <p class="font-medium">₱ {{ usDoc.amount }}</p>
                     </div>
                     <div class="flex justify-between">
-                        <p class="font-mono text-white">Loan term</p>
+                        <p class="text-white ">Loan term</p>
                         <!-- <p class="font-medium">{{ $props.data.term }} months</p> -->
-                        <p class="font-mono font-medium">{{ usDoc.term }} months</p>
+                        <p class="font-medium ">{{ usDoc.term }} months</p>
                     </div>
                     <div class="flex justify-between">
-                        <p class="font-mono text-white">Contract</p>
+                        <p class="text-white ">Contract</p>
                         <button class="font-bold text-white underline hover:text-yellow-200">View Contract</button>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                     <div v-for="usDoc in userDoc" :key="usDoc" class="mt-2">
 
                         <div v-if="usDoc.assigned_image" class="">
-                            <h1 class="font-mono text-xl text-white">Your Signature</h1>
+                            <h1 class="text-xl text-white ">Your Signature</h1>
                             <div class="flex items-center justify-center w-full h-40 mt-3 bg-white border rounded">
                                 <img :src="usDoc.assigned_image" alt="" class="pb-5">
                             </div>

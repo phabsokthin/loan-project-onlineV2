@@ -7,7 +7,7 @@
     </div>
     <div class="w-full max-w-4xl px-2 py-2 m-auto mt-1 text-white" v-motion-fade>
         <h2
-            class="flex items-center justify-center gap-2 p-3 font-mono text-2xl font-semibold text-center text-white border rounded-md bg-blue-600/90">
+            class="flex items-center justify-center gap-2 p-3 text-2xl font-semibold text-center text-white border rounded-md bg-blue-600/90">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-id-card-icon lucide-id-card">
@@ -27,7 +27,7 @@
                 <form v-if="!usDoc.front_image || !usDoc.back_image || !usDoc.selfie_image"
                     @submit.prevent="handleSubmit" class="space-y-6 ">
                     <!-- Front ID Card Section -->
-                    <div class="bg-[oklch(58.8%_0.158_241.966)] opacity-95 font-mono text-lg p-4 space-y-5 rounded-md text-white">
+                    <div class="bg-[oklch(58.8%_0.158_241.966)] opacity-95  text-lg p-4 space-y-5 rounded-md text-white">
                         <div>
                             <label class="block mb-1 text-white text-2xlfont-medium">Front ID Card</label>
                             <div
@@ -153,7 +153,7 @@
                       
                     </div>
                 
-                        <div class="pb-20 font-mono">
+                        <div class="pb-20 ">
                             <button v-if="!isLoanding" type="submit" :disabled="!isFormComplete"
                                 :class="{ 'opacity-50 cursor-not-allowed': !isFormComplete, 'hover:bg-indigo-700': isFormComplete }"
                                 class="flex justify-center w-full p-3 mb-20 text-white bg-blue-600 border border-transparent rounded-md shadow-sm text-2xlfont-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -241,7 +241,7 @@
                     </div>
                     <!-- Submit Button -->
                     <div class="">
-                        <div class="pb-40 font-mono">
+                        <div class="pb-40">
                             <button @click="handleIndentNext"
                                 class="flex justify-center w-full p-3 text-white bg-blue-600 border border-transparent rounded-full shadow-sm text-2xlfont-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Next

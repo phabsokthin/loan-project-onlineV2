@@ -8,19 +8,19 @@
     <div class="w-full max-w-4xl py-10 m-auto mt-1 mb-9" v-motion-fade>
         <h2 class="flex items-center justify-center gap-2 p-3 mx-4 text-lg font-semibold text-center text-white border rounded-md bg-blue-600/80">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card-icon lucide-credit-card"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
-            <span class="font-mono">Bank Account</span></h2>        <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-between p-4 mt-4 rounded-lg ">
+            <span class="">Bank Account</span></h2>        <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-between p-4 mt-4 rounded-lg ">
             <form v-if="!usDoc.bankName || !usDoc.accountNumber" @submit.prevent="handleSubmitBaneFicicary" class="w-full p-8 space-y-6 bg-white rounded-xl">
              
-                <h2 class="mb-6 font-mono text-2xl font-bold text-center text-black">No Baneficicary Bank Information</h2>
+                <h2 class="mb-6 text-2xl font-bold text-center text-black">No Baneficicary Bank Information</h2>
 
 
             </form>
 
             <div v-else class="w-full p-8 space-y-6 bg-[oklch(58.8%_0.158_241.966)] opacity-90 rounded-xl">
-                <h2 class="mb-6 font-mono text-2xl font-bold text-center text-white">Baneficicary Bank Information</h2>
+                <h2 class="mb-6 text-2xl font-bold text-center text-white">Baneficicary Bank Information</h2>
                 <div class="grid grid-cols-1 gap-4">
                     <div class="relative text-lg">
-                        <label class="flex items-center gap-2 mb-1 font-mono font-medium text-white">
+                        <label class="flex items-center gap-2 mb-1 font-medium text-white">
                             <!-- Bank Icon SVG -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -33,7 +33,7 @@
                             class="w-full p-2 pl-10 border rounded-lg bg-gray-50">{{ usDoc.bankName }}</div>
                     </div>
                     <div class="relative text-lg">
-                        <label class="flex items-center gap-2 mb-1 font-mono text-white">
+                        <label class="flex items-center gap-2 mb-1 text-white">
                             <!-- Credit Card Icon SVG -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">

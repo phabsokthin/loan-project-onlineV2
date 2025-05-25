@@ -12,7 +12,7 @@
 
                 <RouterLink to="/login">
                     <div
-                        class="flex items-center px-6 py-2 font-mono text-xs font-bold text-black uppercase transition duration-200 bg-gray-100 lg:inline-block lg:ml-auto lg:mr-3 rounded-xl">
+                        class="flex items-center px-6 py-2  text-xs font-bold text-black uppercase transition duration-200 bg-gray-100 lg:inline-block lg:ml-auto lg:mr-3 rounded-xl">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-chevrons-right">
@@ -24,7 +24,7 @@
                 </RouterLink>
                 <RouterLink to="/register">
                     <div
-                        class="flex items-center px-6 py-2 font-mono text-xs font-bold text-white uppercase transition duration-200 bg-blue-500 lg:inline-block lg:ml-auto lg:mr-3 rounded-xl">
+                        class="flex items-center px-6 py-2  text-xs font-bold text-white uppercase transition duration-200 bg-blue-500 lg:inline-block lg:ml-auto lg:mr-3 rounded-xl">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-user-round">
@@ -72,7 +72,7 @@
         <div class="fixed bottom-0 z-50 w-full shadow-xl ">
             <div class="flex items-center justify-between px-8 py-2 mx-5 mb-8 bg-blue-600 border shadow-xl opacity-95 rounded-xl">
                 <div>
-                    <RouterLink to="/" class="flex flex-col items-center space-y-2 font-mono uppercase">
+                    <RouterLink to="/" class="flex flex-col items-center space-y-2  uppercase">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="font-bold text-white size-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -87,7 +87,7 @@
 
 
                 <div>
-                    <RouterLink to="/wallet" class="flex flex-col items-center space-y-2 font-mono">
+                    <RouterLink to="/wallet" class="flex flex-col items-center space-y-2 ">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="text-white lucide lucide-wallet size-6">
@@ -100,7 +100,7 @@
                 </div>
 
                 <div>
-                    <RouterLink to="/profile" class="flex flex-col items-center space-y-2 font-mono uppercase">
+                    <RouterLink to="/profile" class="flex flex-col items-center space-y-2  uppercase">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="text-white lucide lucide-user-cog size-6">

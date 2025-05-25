@@ -24,8 +24,8 @@
       </h2>
       <div v-if="!showSuccess"
         class="w-full max-w-md p-6 mx-auto mt-2 mb-3 space-y-6 text-white rounded-md bg-gradient-to-r from-blue-500 to-indigo-600">
-        <h2 class="mb-3 font-mono text-lg font-bold">Loan details</h2>
-        <div v-for="usDoc in userDoc" :key="usDoc" class="space-y-2 font-mono">
+        <h2 class="mb-3 text-lg font-bold">Loan details</h2>
+        <div v-for="usDoc in userDoc" :key="usDoc" class="space-y-2 ">
           <div class="flex justify-between">
             <p class="text-white">Loan amount</p>
             <!-- <p class="font-medium">₱ {{ $props.data.amount }}</p> -->
@@ -55,7 +55,7 @@
               <canvas ref="signaturePad" class="w-full h-40 mb-2 bg-white border border-gray-300 rounded-md"></canvas>
 
             </div>
-            <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-between font-mono">
+            <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-between ">
               <div class="flex gap-2" v-if="!usDoc.assigned_image">
                 <button v-if="!signatureConfirmed" @click="clearSignature"
                   class="px-4 py-3 text-white bg-red-500 rounded ">Reset</button>
@@ -68,7 +68,7 @@
             <div v-for="usDoc in userDoc" :key="usDoc" class="mt-2">
 
               <div v-if="usDoc.assigned_image" class="">
-                <h1 class="font-mono text-xl text-white">Your Signature</h1>
+                <h1 class="text-xl text-white ">Your Signature</h1>
                 <div class="flex items-center justify-center w-full h-40 bg-white rounded-md">
                   <img :src="usDoc.assigned_image" alt="">
                 </div>
@@ -76,7 +76,7 @@
                 <div class="w-full ">
 
                   <button @click="handleComplete"
-                    class="flex items-center justify-center w-full gap-1 p-3 mt-10 font-mono text-white bg-green-800 rounded-full ">
+                    class="flex items-center justify-center w-full gap-1 p-3 mt-10 text-white bg-green-800 rounded-full ">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                     </svg>
@@ -98,7 +98,7 @@
       </div>
 
       <!-- Success Message -->
-      <div v-if="showSuccess && userDoc.some(doc => doc.assigned_image)" class="max-w-md mx-auto mt-6 font-mono text-center ">
+      <div v-if="showSuccess && userDoc.some(doc => doc.assigned_image)" class="max-w-md mx-auto mt-6 text-center ">
         <img :src="require('@/assets/success.webp')" alt="How to Sign" class="mx-auto mb-4">
         <h2 class="mb-2 text-xl font-bold text-green-600">✔ Congratulations</h2>
         <p class="text-white">Your loan application was successful, please wait for approval.</p>
@@ -117,7 +117,7 @@
         class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[999] h-screen">
         <div class="p-6 text-center bg-white rounded shadow-md">
           <img :src="require('@/assets/signature.avif')" alt="How to Sign" class="mx-auto mb-4">
-          <button @click="showModal = false" class="px-4 py-2 font-mono text-white bg-blue-500 rounded">Close</button>
+          <button @click="showModal = false" class="px-4 py-2 text-white bg-blue-500 rounded">Close</button>
         </div>
       </div>
     </div>

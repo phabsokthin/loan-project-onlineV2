@@ -22,7 +22,6 @@
             <div class="p-5 pt-8 border-t-2 rounded-md bg-gray-50">
                 <div>
                     <h3 class="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
-                    <p class="mt-1 text-sm text-gray-500">Use a permanent address where you can receive mail.</p>
                 </div>
                 <div class="grid grid-cols-1 mt-6 gap-y-6 gap-x-4 sm:grid-cols-6">
 
@@ -136,7 +135,7 @@
             <div class="p-5 pt-8 border-t-2 rounded-md bg-gray-50">
                 <div>
                     <h3 class="text-lg font-medium leading-6 text-gray-900">KYC Indentification</h3>
-                    <p class="mt-1 text-sm text-gray-500">Check about customer's indentification make sure correct.</p>
+                    <!-- <p class="mt-1 text-sm text-gray-500">Check about customer's indentification make sure correct.</p> -->
                 </div>
                 <div class="mt-6">
                     <fieldset>

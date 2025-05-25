@@ -12,7 +12,7 @@
                                 <path d="M18 8L22 12L18 16" />
                                 <path d="M2 12H22" />
                             </svg>
-                            <span class="font-mono text-lg text-white md:text-2xl">Loan Processing</span>
+                            <span class="text-lg text-black  md:text-2xl">Loan Processing</span>
                         </h2>
 
                     </div>
@@ -27,11 +27,11 @@
                                 <div
                                     class="mt-6 border-gray-200 rounded-full border-8 flex items-center justify-center w-[180px] h-[180px]">
                                     <div v-for="usDoc in userDoc" :key="usDoc" class="space-y-2 text-center">
-                                        <h1 class="font-mono text-3xl text-white">{{ usDoc?.credit }}</h1>
-                                        <span class="font-mono text-white">Meduim Credit</span>
+                                        <h1 class="text-3xl text-white ">{{ usDoc?.credit }}</h1>
+                                        <span class="text-white ">Meduim Credit</span>
                                     </div>
                                     <div v-if="!user">
-                                        <span class="font-mono text-white"> No Meduim Credit</span>
+                                        <span class="text-white "> No Meduim Credit</span>
 
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                                 <div v-if="user">
                                     <div v-for="usDoc in userDoc" :key="usDoc"
                                         class="mt-6 pb-6 rounded-b-[--card-border-radius]">
-                                        <div v-if="usDoc.accountNumber" class="space-y-3 font-mono text-xl text-white">
+                                        <div v-if="usDoc.accountNumber" class="space-y-3 text-xl text-white">
                                             <div v-if="usDoc.status === '0' || usDoc.status === '1'">
                                                 <h1>Welcome!</h1>
                                                 <h1>Account Number: {{ usDoc?.accountNumber }}</h1>
@@ -49,17 +49,17 @@
                                                      <h1 v-else class="text-2xl font-bold">₱ 0</h1>
                                                 </div>
                                             </div>
-                                            <h1 v-else class="font-mono text-xs text-white md:text-xl">No Account Number
+                                            <h1 v-else class="text-xs text-white  md:text-xl">No Account Number
                                             </h1>
                                         </div>
                                         <div v-else>
-                                            <h1 class="font-mono text-xs text-white md:text-xl">No Account Number</h1>
+                                            <h1 class="text-xs text-white  md:text-xl">No Account Number</h1>
 
                                         </div>
                                     </div>
                                 </div>
                                 <div v-else class="mt-6 pb-6 rounded-b-[--card-border-radius]">
-                                    <div class="space-y-3 font-mono text-xl text-white">
+                                    <div class="space-y-3 text-xl text-white">
 
                                         <h1>No Account Number</h1>
 
@@ -75,7 +75,7 @@
 
             <div class="flex justify-center my-10">
                 <button @click="handleRequestLoan"
-                    class="flex items-center gap-1 p-3 font-mono font-bold text-white bg-blue-600 rounded-full shadow-xl hover:bg-blue-700">
+                    class="flex items-center gap-1 p-3 font-bold text-white bg-blue-600 rounded-full shadow-xl hover:bg-blue-700">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="lucide lucide-move-down">
@@ -84,7 +84,7 @@
                     </svg>
 
                     <div>
-                        <div class="font-mono ">Request loan</div>
+                        <div class="">Request loan</div>
                     </div>
                 </button>
             </div>
@@ -92,7 +92,7 @@
             <!-- <div v-for="usDoc in userDoc" :key="usDoc" class="flex justify-center my-10">
                 <div v-if="usDoc.amount === 0">
                     <button @click="handleRequestLoan"
-                        class="flex items-center gap-1 p-3 font-mono font-bold text-white bg-blue-600 rounded-full shadow-xl hover:bg-blue-700">
+                        class="flex items-center gap-1 p-3 font-bold text-white bg-blue-600 rounded-full shadow-xl hover:bg-blue-700">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-move-down">
@@ -108,7 +108,7 @@
 
                 <div v-else>
                     <button @click="handleLoanInformationNext"
-                        class="flex items-center gap-1 p-3 font-mono font-bold text-white bg-blue-600 rounded-full shadow-xl hover:bg-blue-700">
+                        class="flex items-center gap-1 p-3 font-bold text-white bg-blue-600 rounded-full shadow-xl hover:bg-blue-700">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-move-down">
@@ -130,14 +130,14 @@
 
             <div>
                 <div class="flex justify-center my-10">
-                    <h2 class="flex items-center gap-1 font-semibold text-white ">
+                    <h2 class="flex items-center gap-1 font-semibold text-black ">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                             class="lucide lucide-move-right">
                             <path d="M18 8L22 12L18 16" />
                             <path d="M2 12H22" />
                         </svg>
-                        <span class="font-mono text-lg md:text-2xl ">Customer Received Loans </span>
+                        <span class="text-lg  md:text-2xl">Customer Received Loans </span>
                     </h2>
                 </div>
 
@@ -167,14 +167,14 @@
                             </div>
 
                             <div class="mt-6 pb-6 rounded-b-[--card-border-radius]">
-                                <div class="space-y-3 font-mono text-xs text-white md:text-xl">
+                                <div class="space-y-3 text-xs text-white md:text-xl">
                                     <h1 v-if="user">{{ user?.email ? user.email.slice(0, 7) + '***' : '' }}</h1>
                                     <h1 v-else>No Account!</h1>
                                 </div>
                             </div>
 
                             <div class="mt-6 pb-6 rounded-b-[--card-border-radius]">
-                                <div class="space-y-3 font-mono text-xs text-white md:text-xl">
+                                <div class="space-y-3 text-xs text-white md:text-xl">
                                     <h1 class="text-white">Received Loans Amount </h1>
 
                                 </div>
@@ -184,17 +184,17 @@
                                     class="mt-6 pb-6 rounded-b-[--card-border-radius]">
 
                                     <div v-if="usDoc.totalPrincipalAndInterest"
-                                        class="space-y-3 font-mono text-xs text-white md:text-xl">
+                                        class="space-y-3 text-xs text-white md:text-xl">
                                         <h1>₱ {{ usDoc?.totalPrincipalAndInterest }}</h1>
                                     </div>
                                     <div v-else>
-                                        <h1 class="font-mono text-xs text-white md:text-xl">No Received Loans</h1>
+                                        <h1 class="text-xs text-white  md:text-xl">No Received Loans</h1>
                                     </div>
                                 </div>
 
                             </div>
                             <div v-else>
-                                <h1 class="font-mono text-xs text-white md:text-xl">No Received Loan</h1>
+                                <h1 class="text-xs text-white  md:text-xl">No Received Loan</h1>
                             </div>
                         </div>
                     </div>

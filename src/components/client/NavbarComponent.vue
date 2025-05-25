@@ -20,7 +20,7 @@
             <ul
                 class="absolute hidden transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-6">
                 <router-link to="/"><a
-                        class="flex items-center gap-1 font-mono text-white uppercase text-md hover:text-gray-500"
+                        class="flex items-center gap-1 text-white uppercase text-md hover:text-gray-500"
                         href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">
@@ -38,7 +38,7 @@
                     </svg>
                 </li>
                 <router-link to="/wallet">
-                    <a class="flex items-center gap-1 font-mono text-white uppercase text-md hover:text-gray-500"
+                    <a class="flex items-center gap-1 text-white uppercase text-md hover:text-gray-500"
                         href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -57,7 +57,7 @@
                     </svg>
                 </li>
                 <router-link to="/profile">
-                    <a class="flex items-center gap-1 font-mono text-white uppercase text-md hover:text-gray-500"
+                    <a class="flex items-center gap-1 text-white uppercase text-md hover:text-gray-500"
                         href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -81,7 +81,7 @@
             <div class="flex items-center gap-3">
                 <div v-if="!user">
                     <RouterLink :to="{ name: 'login' }"
-                        class="hidden px-6 py-2 font-mono text-sm font-bold text-gray-900 transition duration-200 bg-gray-100 lg:inline-block lg:ml-auto lg:mr-3 hover:bg-gray-100 rounded-xl">
+                        class="hidden px-6 py-2 text-sm font-bold text-gray-900 transition duration-200 bg-gray-100 lg:inline-block lg:ml-auto lg:mr-3 hover:bg-gray-100 rounded-xl">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -93,7 +93,7 @@
                         </div>
                     </RouterLink>
                     <RouterLink :to="{ name: 'register' }"
-                        class="hidden px-6 py-2 font-mono text-sm text-white transition duration-200 bg-blue-500 lg:inline-block hover:bg-blue-600 rounded-xl">
+                        class="hidden px-6 py-2 text-sm text-white transition duration-200 bg-blue-500 lg:inline-block hover:bg-blue-600 rounded-xl">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"

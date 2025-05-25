@@ -25,7 +25,7 @@
                     <div class="relative mx-auto flex w-full max-w-full md:pt-[unset] mb-6">
                         <div class="w-2 h-2 mt-1 bg-green-500 rounded-full me-4"></div>
                         <div>
-                            <p class="mb-1 font-mono font-medium text-white ">
+                            <p class="mb-1  font-medium text-white ">
                                 Withdrawal request submitted.
                             </p>
                             <p class="font-medium text-zinc-500 dark:text-zinc-400">
@@ -36,7 +36,7 @@
                     <div class="relative mx-auto flex w-full max-w-full md:pt-[unset] mb-6">
                         <div class="w-2 h-2 mt-1 bg-green-500 rounded-full me-4"></div>
                         <div>
-                            <p class="mb-1 font-mono font-medium text-white">
+                            <p class="mb-1  font-medium text-white">
                                 System proccessing.
                             </p>
                             <!-- <p class="font-medium text-zinc-500 dark:text-zinc-400">
@@ -47,7 +47,7 @@
                     <div class="relative mx-auto flex w-full max-w-full md:pt-[unset]">
                         <div class="w-2 h-2 mt-1 bg-gray-800 rounded-full me-4"></div>
                         <div>
-                            <p class="mb-1 font-mono font-medium text-gray-300/90">
+                            <p class="mb-1  font-medium text-gray-300/90">
                                 Withdrawal request successfull
                             </p>
 
