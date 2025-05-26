@@ -69,211 +69,56 @@
                 <input type="text" v-model="searchText" placeholder="Search"
                     class="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200  md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
             </div>
+
+
+            <div class="flex items-center gap-2">
+                <div class="relative flex items-center mt-4 md:mt-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="absolute ml-2 text-gray-500 lucide lucide-calendar-fold-icon lucide-calendar-fold">
+                        <path d="M8 2v4" />
+                        <path d="M16 2v4" />
+                        <path d="M21 17V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11Z" />
+                        <path d="M3 10h18" />
+                        <path d="M15 22v-4a2 2 0 0 1 2-2h4" />
+                    </svg>
+
+                    <input type="date" v-model="fromDate" placeholder="Search"
+                        class="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200  md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                </div>
+                <span>To</span>
+                <div class="relative flex items-center mt-4 md:mt-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="absolute ml-2 text-gray-500 lucide lucide-calendar-fold-icon lucide-calendar-fold">
+                        <path d="M8 2v4" />
+                        <path d="M16 2v4" />
+                        <path d="M21 17V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11Z" />
+                        <path d="M3 10h18" />
+                        <path d="M15 22v-4a2 2 0 0 1 2-2h4" />
+                    </svg>
+
+                    <input type="date" v-model="toDate" placeholder="Search"
+                        class="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200  md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                </div>
+
+                <div>
+                    <button
+                        class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white transition-colors duration-200 bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-search-icon lucide-search">
+                            <path d="m21 21-4.34-4.34" />
+                            <circle cx="11" cy="11" r="8" />
+                        </svg>
+                        <span>Search</span>
+                    </button>
+                </div>
+            </div>
+
         </div>
 
         <div class="w-[100%] h-full p-4 bg-white border border-t-0">
-            <!-- <div class="flex flex-col bg-white">
-                <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                        <div class="overflow-hidden border border-gray-200 ">
-                            <table class="min-w-full divide-y divide-gray-200 ">
-                                <thead class="font-mono bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="">
-                                            Actual Name
-                                        </th>
-                                        <th scope="col" class="">
-                                            Identify No.
-                                        </th>
-                                        <th scope="col" class="">
-                                            Gender
-                                        </th>
-                                        <th scope="col" class="">
-                                            DOB
-                                        </th>
-
-                                        <th scope="col" class="">
-                                            Front-Photo
-                                        </th>
-                                        <th scope="col" class="">
-                                            Back-Photo
-                                        </th>
-                                        <th scope="col" class="">
-                                            Selfies-Photo
-                                        </th>
-                                        <th scope="col" class="">
-                                            BankName
-                                        </th>
-
-                                        <th scope="col" class="">
-                                            BankNumber
-                                        </th>
-                                        <th scope="col" class="">
-                                            Status
-                                        </th>
-                                        <th scope="col" class="">
-                                            IP Address
-                                        </th>
-                                        <th scope="col" class="">
-                                            Amount
-                                        </th>
-                                        <th scope="col" class="p-3">
-                                            Action
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200 ">
-                                    <tr v-for="customer in data" :key="customer">
-                                        <td class="px-4 py-4 text-sm font-medium capitalize whitespace-nowrap">
-                                            {{ customer?.name }}
-                                        </td>
-                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            {{ customer?.idNumber }}
-                                        </td>
-
-                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            {{ customer?.gender }}
-                                        </td>
-
-                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            {{ customer?.dob }}
-                                        </td>
-                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            <div>
-                                                <img :src="customer?.front_image" class="w-12" alt="">
-                                            </div>
-
-                                        </td>
-                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            <img :src="customer?.back_image" class="w-12" alt="">
-                                        </td>
-                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            <img :src="customer?.selfie_image" class="w-12" alt="">
-                                        </td>
-                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            {{ customer?.bankName }}
-                                        </td>
-
-                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            {{ customer?.accountNumber }}
-                                        </td>
-
-                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            <div v-if="customer.status === '0'"
-                                                class="text-xs text-center text-white bg-orange-500 rounded-full">
-                                                Under Review
-                                            </div>
-                                            <div v-else-if="customer.status ===
-                                                '1'" class="text-xs text-center text-white bg-green-500 rounded-full">
-                                                <p>Approved</p>
-                                            </div>
-                                            <div v-else class="text-xs text-center text-white bg-red-500 rounded-full">
-                                                <p>Not Completed</p>
-                                            </div>
-                                        </td>
-
-                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            <div class="text-xs text-center text-white rounded-full bg-black/90">
-                                                {{ customer?.ipAddress }}
-                                            </div>
-                                        </td>
-
-                                        <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            <div class="font-mono ">
-                                                ₱{{ customer?.amount }}
-                                            </div>
-                                        </td>
-
-                                        <td
-                                            class="grid justify-end grid-cols-2 gap-2 px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                            <div v-if="customer?.status === '0' || customer?.status === '1'"
-                                                @click="handleCurrentUpdate(customer)">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="cursor-pointer lucide lucide-circle-check-big-icon lucide-circle-check-big hover:text-green-500">
-                                                    <path d="M21.801 10A10 10 0 1 1 17 3.335" />
-                                                    <path d="m9 11 3 3L22 4" />
-                                                </svg>
-                                            </div>
-
-
-                                            <div @click="handleAddWidthAmountModal(customer)">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="cursor-pointer lucide lucide-file-input-icon lucide-file-input hover:text-blue-500">
-                                                    <path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4" />
-                                                    <path d="M14 2v4a2 2 0 0 0 2 2h4" />
-                                                    <path d="M2 15h10" />
-                                                    <path d="m9 18 3-3-3-3" />
-                                                </svg>
-                                            </div>
-
-                                            <div @click="handleAddCodeWithDrawModal(customer)">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="cursor-pointer lucide lucide-banknote-arrow-down-icon lucide-banknote-arrow-down hover:text-blue-500">
-                                                    <path
-                                                        d="M12 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5" />
-                                                    <path d="m16 19 3 3 3-3" />
-                                                    <path d="M18 12h.01" />
-                                                    <path d="M19 16v6" />
-                                                    <path d="M6 12h.01" />
-                                                    <circle cx="12" cy="12" r="2" />
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <RouterLink :to="{ name: 'viewCustomer', params: { id: customer.id } }">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                        class="cursor-pointer lucide lucide-scan-search-icon lucide-scan-search hover:text-orange-500">
-                                                        <path d="M3 7V5a2 2 0 0 1 2-2h2" />
-                                                        <path d="M17 3h2a2 2 0 0 1 2 2v2" />
-                                                        <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
-                                                        <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
-                                                        <circle cx="12" cy="12" r="3" />
-                                                        <path d="m16 16-1.9-1.9" />
-                                                    </svg>
-                                                </RouterLink>
-                                            </div>
-
-                                            <div class="cursor-pointer" @click="handleAddCreditModal(customer)">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="lucide lucide-credit-card-icon lucide-credit-card hover:text-blue-500">
-                                                    <rect width="20" height="14" x="2" y="5" rx="2" />
-                                                    <line x1="2" x2="22" y1="10" y2="10" />
-                                                </svg>
-                                            </div>
-
-                                            <div
-                                                @click="handleDelete(customer?.id, customer?.front_image, customer?.back_image, customer?.selfie_image, customer?.assigned_image)">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                    class="cursor-pointer lucide lucide-trash2-icon lucide-trash-2 hover:text-red-500">
-                                                    <path d="M3 6h18" />
-                                                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-                                                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-                                                    <line x1="10" x2="10" y1="11" y2="17" />
-                                                    <line x1="14" x2="14" y1="11" y2="17" />
-                                                </svg>
-                                            </div>
-
-
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
 
 
 
@@ -292,7 +137,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(customer, index) in customerStatus" :key="customer" class="text-sm font-medium">
+                    <tr v-for="(customer, index) in filterFromDateToData" :key="customer" class="text-sm font-medium">
                         <td class="p-2 px-1 border border-gray-300">#{{ index + 1 }}</td>
                         <td class="px-2 border border-gray-300">{{ customer?.name }}</td>
 
@@ -522,6 +367,9 @@ export default {
         const currentComponents = ref("")
         const creditData = ref(null)
 
+        const fromDate = ref(null)
+        const toDate = ref(null)
+
 
         const statusData = ref(null)
         const searchText = ref("")
@@ -622,9 +470,9 @@ export default {
         const hanldeViewBank = (item) => {
             currentComponents.value = "ViewBankModal"
             creditData.value = item
-           
+
         }
-        
+
 
 
         const formatDate = (timestamp) => {
@@ -639,6 +487,21 @@ export default {
                 return customer.status === '0' || customer.status === '1';
             });
         })
+
+        const filterFromDateToData = computed(() => {
+            if (!fromDate.value || !toDate.value) return customerStatus.value;
+
+            const from = new Date(fromDate.value);
+            const to = new Date(toDate.value);
+            to.setHours(23, 59, 59, 999); 
+
+            return customerStatus.value.filter((customer) => {
+                const createdAt = new Date(customer.createdAt);
+                return createdAt >= from && createdAt <= to;
+            });
+        });
+
+
 
         return {
             handleCurrentUpdate,
@@ -663,7 +526,10 @@ export default {
             handleAddCodeWithDrawModal,
             formatDate,
             customerStatus,
-            hanldeViewBank
+            hanldeViewBank,
+            fromDate,
+            toDate,
+            filterFromDateToData
         }
 
     }

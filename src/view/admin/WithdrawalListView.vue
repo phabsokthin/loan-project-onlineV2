@@ -39,6 +39,51 @@
                 <input type="text" v-model="searchText" placeholder="Search"
                     class="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200  md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
             </div>
+
+            <div class="flex items-center gap-2">
+                <div class="relative flex items-center mt-4 md:mt-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="absolute ml-2 text-gray-500 lucide lucide-calendar-fold-icon lucide-calendar-fold">
+                        <path d="M8 2v4" />
+                        <path d="M16 2v4" />
+                        <path d="M21 17V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11Z" />
+                        <path d="M3 10h18" />
+                        <path d="M15 22v-4a2 2 0 0 1 2-2h4" />
+                    </svg>
+
+                    <input type="date" v-model="fromDate" placeholder="Search"
+                        class="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200  md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                </div>
+                <span>To</span>
+                <div class="relative flex items-center mt-4 md:mt-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="absolute ml-2 text-gray-500 lucide lucide-calendar-fold-icon lucide-calendar-fold">
+                        <path d="M8 2v4" />
+                        <path d="M16 2v4" />
+                        <path d="M21 17V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11Z" />
+                        <path d="M3 10h18" />
+                        <path d="M15 22v-4a2 2 0 0 1 2-2h4" />
+                    </svg>
+
+                    <input type="date" v-model="toDate" placeholder="Search"
+                        class="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200  md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                </div>
+
+                <div>
+                    <button
+                        class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white transition-colors duration-200 bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-search-icon lucide-search">
+                            <path d="m21 21-4.34-4.34" />
+                            <circle cx="11" cy="11" r="8" />
+                        </svg>
+                        <span>Search</span>
+                    </button>
+                </div>
+            </div>
         </div>
 
         <div class="w-[100%] h-full p-4 bg-white border border-t-0">
@@ -59,7 +104,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(customer, index) in data" :key="customer" class="text-sm font-medium">
+                    <tr v-for="(customer, index) in filteredData" :key="customer.id" class="text-sm font-medium">
                         <td class="p-2 px-1 border border-gray-300">#{{ index + 1 }}</td>
                         <td class="px-2 border border-gray-300">{{ customer?.codeWithdraw }}</td>
                         <td class="px-2 border border-gray-300">{{ customer?.name }}</td>
@@ -112,7 +157,7 @@
 
 
                                 <div v-if="customer.status === '0' || customer.status === '2'">
-                                    <div @click="hanldeConfirmLoan(customer?.id)">
+                                    <div @click="handleConfirmLoan(customer?.id)">
                                         <div
                                             class="flex items-center gap-2 p-2 text-white bg-blue-600 shadow-md cursor-pointer hover:bg-blue-500">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -125,8 +170,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                 <div v-else>
-                                    <div >
+                                <div v-else>
+                                    <div>
                                         <div
                                             class="flex items-center gap-2 p-2 text-white bg-blue-400 shadow-md cursor-pointer ">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -231,20 +276,18 @@
         :creditData="creditData" />
 </template>
 
+
 <script>
 import getCollection from '@/firebase/getCollection';
-import { ref } from 'vue';
+import { ref, computed, watch, onMounted } from 'vue';
 import UpdateCustomerModal from '@/components/admin/UpdateStatusModal.vue'
 import { useFirestorePagination } from '@/firebase/useFirestorePagination';
-import { onMounted } from 'vue';
-import { watch } from 'vue';
 import useCollectionSearch from '@/firebase/useCollectionSearch'
 import useCollection from '@/firebase/useCollection';
-
-// import getUser from '@/firebase/getUser';
 import AddCreditModal from '@/components/admin/AddCreditModal.vue';
 import WithDrawAmountModal from '@/components/admin/WithDrawAmountModal.vue';
 import AddCodeWithDrawModal from '@/components/admin/AddCodeWithDrawModal.vue';
+
 export default {
     components: {
         UpdateCustomerModal,
@@ -254,131 +297,141 @@ export default {
     },
 
     setup() {
+        // Refs
+        const currentComponents = ref("");
+        const creditData = ref(null);
+        const statusData = ref(null);
+        const searchText = ref("");
+        const fromDate = ref(null);
+        const toDate = ref(null);
+        const rawData = ref([]); // Store unfiltered data
 
-        const currentComponents = ref("")
-        const creditData = ref(null)
-
-
-        const statusData = ref(null)
-        const searchText = ref("")
-        const itemsPerPage = ref(1)
-
-        const { document: customers } = getCollection("withdrawLoan")
-        const { deleteDocs, updateDocs } = useCollection("withdrawLoan")
-        const { updateDocs: updateDocsCustomer } = useCollection('customers')
-
-
-
-    
-        // const { user } = getUser()
+        // Firebase Collections
+        const { document: customers } = getCollection("withdrawLoan");
+        const { deleteDocs, updateDocs } = useCollection("withdrawLoan");
+        const { updateDocs: updateDocsCustomer } = useCollection('customers');
 
         // Pagination
+        const itemsPerPage = ref(10);
+        const { 
+            data, 
+            currentPage, 
+            pageRange, 
+            totalPages, 
+            loadPreviousPage, 
+            loadNextPage, 
+            goToPage, 
+            fetchTotalPages, 
+            getDataRealTime 
+        } = useFirestorePagination('withdrawLoan', itemsPerPage.value);
 
-
-        const { data, currentPage, pageRange, totalPages, loadPreviousPage, loadNextPage, goToPage, fetchTotalPages, getDataRealTime } = useFirestorePagination('withdrawLoan', 10);
-
-
-        onMounted(() => {
-            fetchTotalPages();
-            getDataRealTime(currentPage.value);
+        // Initialize
+        onMounted(async () => {
+            await fetchTotalPages();
+            await getDataRealTime(currentPage.value);
         });
 
+        // Handle current update
         const handleCurrentUpdate = (item) => {
-            console.log(item)
-            statusData.value = item
-            currentComponents.value = 'UpdateCustomerModal'
+            statusData.value = item;
+            currentComponents.value = 'UpdateCustomerModal';
         }
 
-
-        //  search text
+        // Search functionality
         watch(searchText, async (newVal) => {
+            currentPage.value = 1;
             if (newVal.trim()) {
-                currentPage.value = 1; // Reset current page to 1 on search
                 const { documents } = useCollectionSearch('withdrawLoan', newVal.trim().toLowerCase(), 'name');
-
                 watch(documents, (newDocs) => {
                     if (newDocs) {
-                        data.value = newDocs.slice(0, 10); // Show first page of search results
-                        totalPages.value = Math.ceil(newDocs.length / 10); // Update totalPages
-                        pageRange.value = Array.from({ length: totalPages.value }, (_, i) => i + 1); // Update page range
+                        rawData.value = newDocs;
+                        applyFilters();
                     }
                 }, { immediate: true });
-
             } else {
-                // Reset pagination when search is cleared
-                currentPage.value = 1;
-                fetchTotalPages();
+                // Reset to original data when search is cleared
                 getDataRealTime(currentPage.value);
             }
         });
 
+        // Date filter
+        const filteredData = computed(() => {
+            if (!fromDate.value || !toDate.value) return rawData.value.length ? rawData.value : data.value;
 
+            const from = new Date(fromDate.value);
+            const to = new Date(toDate.value);
+            to.setHours(23, 59, 59, 999);
+
+            const sourceData = rawData.value.length ? rawData.value : data.value;
+            
+            return sourceData.filter((customer) => {
+                const createdAt = customer.createdAt?.toDate ? customer.createdAt.toDate() : new Date(customer.createdAt);
+                return createdAt >= from && createdAt <= to;
+            });
+        });
+
+        // Apply filters and update pagination
+        const applyFilters = () => {
+            if (filteredData.value.length) {
+                data.value = filteredData.value.slice(
+                    (currentPage.value - 1) * itemsPerPage.value,
+                    currentPage.value * itemsPerPage.value
+                );
+                totalPages.value = Math.ceil(filteredData.value.length / itemsPerPage.value);
+                pageRange.value = Array.from({ length: totalPages.value }, (_, i) => i + 1);
+            }
+        };
+
+        // Watch date changes
+        watch([fromDate, toDate], () => {
+            currentPage.value = 1;
+            applyFilters();
+        });
+
+        // Delete handler
         const handleDelete = async (id) => {
             try {
                 if (window.confirm("Are you sure you want to delete?")) {
                     await deleteDocs(id);
-               
-                    alert("Delete Successfull")
+                    alert("Delete Successful");
+                    getDataRealTime(currentPage.value); // Refresh data
                 }
-
             } catch (err) {
-                console.log(err);
+                console.error(err);
             }
         };
 
-        //add credit 
-
-
-
-
-
+        // Date formatter
         const formatDate = (timestamp) => {
             if (!timestamp) return 'N/A';
             const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
             return date.toLocaleDateString();
         }
 
-
+        // Withdrawal handlers
         const handleReject = async (id, withDrawAmount) => {
-
             if (window.confirm("Are you sure you want to reject this withdrawal?")) {
                 try {
-                    const data = {
-                        status: '2',
-                        withDrawAmount: 0
-                    }
-                    await updateDocs(id, data);
-                    const customerData = {
-                        withDrawAmount: withDrawAmount
-                    }
-                    await updateDocsCustomer(id, customerData);
-                    alert("Withdrawal Rejected Successfully")
+                    await updateDocs(id, { status: '2', withDrawAmount: 0 });
+                    await updateDocsCustomer(id, { withDrawAmount });
+                    alert("Withdrawal Rejected Successfully");
+                    getDataRealTime(currentPage.value); // Refresh data
                 } catch (error) {
                     console.error("Error rejecting withdrawal:", error);
                 }
             }
-
-
         }
 
-        const hanldeConfirmLoan = async (id) => {
-            try{
-              
-                console.log(id)
+        const handleConfirmLoan = async (id) => {
+            try {
                 if (window.confirm("Are you sure you want to confirm this withdrawal?")) {
-                    const data = {
-                        status: '1',
-                        withDrawAmount: 0
-                    }
-                    await updateDocs(id, data);
-             
+                    await updateDocs(id, { status: '1', withDrawAmount: 0 });
+                    getDataRealTime(currentPage.value); // Refresh data
                 }
-            }
-            catch (error) {
+            } catch (error) {
                 console.error("Error confirming loan:", error);
             }
         }
-
 
         return {
             handleCurrentUpdate,
@@ -388,8 +441,6 @@ export default {
             loadPreviousPage,
             loadNextPage,
             goToPage,
-            fetchTotalPages,
-            getDataRealTime,
             totalPages,
             searchText,
             itemsPerPage,
@@ -400,10 +451,11 @@ export default {
             creditData,
             formatDate,
             handleReject,
-            hanldeConfirmLoan
+            handleConfirmLoan,
+            fromDate,
+            toDate,
+            filteredData
         }
-
     }
 }
-
 </script>

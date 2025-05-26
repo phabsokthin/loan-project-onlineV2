@@ -39,6 +39,52 @@
                 <input type="text" v-model="searchText" placeholder="Search"
                     class="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200  md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
             </div>
+
+
+             <div class="flex items-center gap-2">
+                <div class="relative flex items-center mt-4 md:mt-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="absolute ml-2 text-gray-500 lucide lucide-calendar-fold-icon lucide-calendar-fold">
+                        <path d="M8 2v4" />
+                        <path d="M16 2v4" />
+                        <path d="M21 17V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11Z" />
+                        <path d="M3 10h18" />
+                        <path d="M15 22v-4a2 2 0 0 1 2-2h4" />
+                    </svg>
+
+                    <input type="date" v-model="fromDate" placeholder="Search"
+                        class="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200  md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                </div>
+                <span>To</span>
+                <div class="relative flex items-center mt-4 md:mt-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="absolute ml-2 text-gray-500 lucide lucide-calendar-fold-icon lucide-calendar-fold">
+                        <path d="M8 2v4" />
+                        <path d="M16 2v4" />
+                        <path d="M21 17V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11Z" />
+                        <path d="M3 10h18" />
+                        <path d="M15 22v-4a2 2 0 0 1 2-2h4" />
+                    </svg>
+
+                    <input type="date" v-model="toDate" placeholder="Search"
+                        class="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-gray-200  md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                </div>
+
+                <div>
+                    <button
+                        class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white transition-colors duration-200 bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-search-icon lucide-search">
+                            <path d="m21 21-4.34-4.34" />
+                            <circle cx="11" cy="11" r="8" />
+                        </svg>
+                        <span>Search</span>
+                    </button>
+                </div>
+            </div>
         </div>
 
         <div class="w-[100%] h-full p-4 bg-white border border-t-0">
@@ -59,7 +105,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(customer, index) in customerStatus" :key="customer" class="text-sm font-medium">
+                    <tr v-for="(customer, index) in filterFromDateToData" :key="customer" class="text-sm font-medium">
                         <td class="p-2 px-1 border border-gray-300">#{{ index + 1 }}</td>
                         <td class="px-2 border border-gray-300">{{ customer?.name }}</td>
 
@@ -261,7 +307,8 @@ export default {
 
         const currentComponents = ref("")
         const creditData = ref(null)
-
+ const fromDate = ref(null);
+        const toDate = ref(null);
 
         const statusData = ref(null)
         const searchText = ref("")
@@ -373,6 +420,20 @@ export default {
             });
         })
 
+         const filterFromDateToData = computed(() => {
+            if (!fromDate.value || !toDate.value) return customerStatus.value;
+
+            const from = new Date(fromDate.value);
+            const to = new Date(toDate.value);
+            to.setHours(23, 59, 59, 999); 
+
+            return customerStatus.value.filter((customer) => {
+                const createdAt = new Date(customer.createdAt);
+                return createdAt >= from && createdAt <= to;
+            });
+        });
+
+
 
         return {
             handleCurrentUpdate,
@@ -396,7 +457,10 @@ export default {
             handleAddWidthAmountModal,
             handleAddCodeWithDrawModal,
             formatDate,
-            customerStatus
+            customerStatus,
+            fromDate,
+            toDate,
+            filterFromDateToData
         }
 
     }
