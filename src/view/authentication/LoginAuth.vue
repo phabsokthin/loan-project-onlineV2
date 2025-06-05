@@ -50,7 +50,7 @@
             class="w-full py-3 font-medium text-white transition-colors duration-300 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
 
             <span v-if="loading" class="mr-2 loader"></span>
-            <span>{{ loading ? 'Logging in...' : 'LOGIN' }}</span>
+            <span>{{ loading ? 'Signing in...' : 'Sign In' }}</span>
           </button>
         </div>
         <div class="mt-8">
@@ -69,7 +69,7 @@
         <div class="mx-4 mt-8 mb-4">
           <RouterLink :to="{ name: 'register' }"
             class="flex justify-center w-full py-3 font-medium text-black transition-colors duration-300 bg-white border-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            Register
+            Sign Up
           </RouterLink>
         </div>
       </form>

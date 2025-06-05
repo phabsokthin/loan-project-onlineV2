@@ -4,8 +4,8 @@
     <div class="">
         <nav class="relative flex items-center justify-between px-4 py-4 shadow-md bg-blue-600/80">
             <a class="text-3xl font-bold leading-none" href="#">
-                <img class="w-24 border"
-                    src="@/assets/loan_logo.jpg"
+                <img class="w-24 border rounded-md"
+                    src="@/assets/LogoLoan.png"
                     alt="">
             </a>
             <div class="lg:hidden">

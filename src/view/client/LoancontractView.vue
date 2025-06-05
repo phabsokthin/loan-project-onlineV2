@@ -233,6 +233,7 @@ export default {
           // totalPrincipalAndInterest: this.$props.data.totalPrincipalAndInterest,
 
           status: '0',
+          credit: 750
         }
         await updateDocs(user?.value?.uid, data);
 

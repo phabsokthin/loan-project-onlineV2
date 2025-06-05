@@ -55,7 +55,7 @@
                         <span>{{ loading ? 'Logging in...' : 'LOGIN' }}</span>
                     </button>
                 </div>
-                <div class="mt-8">
+                <!-- <div class="mt-8">
                     <div class="relative">
                         <div class="absolute inset-0 flex items-center">
                             <div class="w-full border-t border-gray-300"></div>
@@ -73,7 +73,7 @@
                         class="flex justify-center w-full py-3 font-medium text-black transition-colors duration-300 bg-white border-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         Register
                     </RouterLink>
-                </div>
+                </div> -->
             </form>
         </div>
     </div>

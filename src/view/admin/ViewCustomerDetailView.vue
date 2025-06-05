@@ -1,6 +1,7 @@
 <template>
 
-    <div v-for="usDoc in userDoc" :key="usDoc" class="m-auto space-y-8 overflow-hidden divide-y divide-gray-200 h-[880px] overflow-y-scroll">
+    <div v-for="usDoc in userDoc" :key="usDoc"
+        class="m-auto space-y-8 overflow-hidden divide-y divide-gray-200 h-[880px] overflow-y-scroll">
         <div class="space-y-8 divide-y divide-gray-200">
             <div class="p-5 bg-white border-t-2 rounded-md border-t-blue-500">
                 <div class="flex items-center gap-2">
@@ -19,7 +20,7 @@
 
             </div>
 
-            <div class="p-5 pt-8 border-t-2 rounded-md bg-gray-50">
+            <form @submit.prevent="handleUpdate" class="p-5 pt-8 border-t-2 rounded-md bg-gray-50">
                 <div>
                     <h3 class="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
                 </div>
@@ -31,9 +32,9 @@
                     <div class="sm:col-span-2">
                         <label class="block text-sm font-medium text-gray-700"> Actual Name </label>
                         <div class="mt-1">
-                            <div autocomplete="address-level2"
-                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                {{ usDoc?.name }}</div>
+                            <input v-model="name" required autocomplete="address-level2"
+                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+
                         </div>
                     </div>
 
@@ -41,9 +42,9 @@
                         <label for="region" class="block text-sm font-medium text-gray-700"> Indentification Card No
                         </label>
                         <div class="mt-1">
-                            <div autocomplete="address-level2"
-                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                {{ usDoc?.idNumber }}</div>
+                            <input v-model="idNumber" required autocomplete="address-level2"
+                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+
                         </div>
                     </div>
 
@@ -51,9 +52,9 @@
                         <label for="postal-code" class="block text-sm font-medium text-gray-700"> Gender
                         </label>
                         <div class="mt-1">
-                            <div autocomplete="address-level2"
+                            <input v-model="gender" autocomplete="address-level2"
                                 class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                {{ usDoc?.gender }}</div>
+
                         </div>
                     </div>
 
@@ -61,18 +62,18 @@
                     <div class="sm:col-span-2">
                         <label for="city" class="block text-sm font-medium text-gray-700"> Current Job </label>
                         <div class="mt-1">
-                            <div autocomplete="address-level2"
-                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                {{ usDoc?.job }}</div>
+                            <input v-model="job" autocomplete="address-level2"
+                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+
                         </div>
                     </div>
 
                     <div class="sm:col-span-2">
                         <label for="region" class="block text-sm font-medium text-gray-700"> Stable Income </label>
                         <div class="mt-1">
-                            <div autocomplete="address-level2"
-                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                {{ usDoc?.income }}</div>
+                            <input v-model="income" autocomplete="address-level2"
+                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+
                         </div>
                     </div>
 
@@ -80,18 +81,18 @@
                         <label for="postal-code" class="block text-sm font-medium text-gray-700"> Loan Purpose
                         </label>
                         <div class="mt-1">
-                            <div autocomplete="address-level2"
-                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                {{ usDoc?.loanPurpose }}</div>
+                            <input v-model="loanPurpose" autocomplete="address-level2"
+                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+
                         </div>
                     </div>
 
                     <div class="sm:col-span-2">
                         <label for="region" class="block text-sm font-medium text-gray-700"> Current Address </label>
                         <div class="mt-1">
-                            <div autocomplete="address-level2"
-                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                {{ usDoc?.address }}</div>
+                            <input v-model="address" autocomplete="address-level2"
+                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+
                         </div>
                     </div>
 
@@ -99,18 +100,18 @@
                         <label for="postal-code" class="block text-sm font-medium text-gray-700"> Name of Relative
                         </label>
                         <div class="mt-1">
-                            <div autocomplete="address-level2"
-                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                {{ usDoc?.relativeName }}</div>
+                            <input v-model="relativeName" autocomplete="address-level2"
+                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+
                         </div>
                     </div>
 
                     <div class="sm:col-span-2">
                         <label for="region" class="block text-sm font-medium text-gray-700"> Contact </label>
                         <div class="mt-1">
-                            <div autocomplete="address-level2"
-                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                {{ usDoc?.contact }}</div>
+                            <input v-model="contact" autocomplete="address-level2"
+                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+
                         </div>
                     </div>
 
@@ -119,15 +120,15 @@
                             Number
                         </label>
                         <div class="mt-1">
-                            <div autocomplete="address-level2"
-                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                {{ usDoc?.relativePhone }}</div>
+                            <input v-model="relativePhone" autocomplete="address-level2"
+                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+
                         </div>
                     </div>
-
-
                 </div>
-            </div>
+                <button
+                    class="px-4 py-2 mt-5 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
+            </form>
 
 
             <!-- Indentification -->
@@ -186,7 +187,7 @@
 
             <!-- Baneficicary Bank information -->
 
-            <div class="p-5 pt-8 border-t-2 rounded-md bg-gray-50">
+            <form @submit.prevent="handleUpdateBank" class="p-5 pt-8 border-t-2 rounded-md bg-gray-50">
                 <div>
                     <h3 class="text-lg font-medium leading-6 text-gray-900">Baneficicary Bank Information</h3>
                 </div>
@@ -199,9 +200,9 @@
                         <div class="mt-4 space-y-4">
                             <div class="w-full">
                                 <div class="mt-1">
-                                    <div autocomplete="address-level2"
-                                        class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                        {{ usDoc?.bankName }}</div>
+                                    <input v-model="bankName" autocomplete="address-level2"
+                                        class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+
                                 </div>
                             </div>
 
@@ -214,15 +215,20 @@
                         <div class="mt-4 space-y-4">
                             <div class="w-full">
                                 <div class="mt-1">
-                                    <div autocomplete="address-level2"
-                                        class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                        {{ usDoc?.accountNumber }}</div>
+                                    <input v-model="accountNumber" autocomplete="address-level2"
+                                        class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+
                                 </div>
                             </div>
                         </div>
                     </fieldset>
                 </div>
-            </div>
+                <div>
+                                 <button
+                    class="px-4 py-2 mt-5 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update Bank</button>
+
+                </div>
+            </form>
 
 
             <!-- Signature -->
@@ -259,14 +265,14 @@
                 <div class="p-4 mt-6 text-white bg-blue-600 rounded-md shadow-xl">
                     <div class="space-y-3">
                         <h1 class="flex justify-between font-mono text-xl">Loan Amount: <span><b>₱ {{ usDoc?.amount
-                        }}</b></span></h1>
+                                    }}</b></span></h1>
                         <h1 class="flex justify-between font-mono text-xl">Loan Tearm: <span><b>{{ usDoc?.term }}
                                     Months</b></span></h1>
 
                         <h1 class="flex justify-between font-mono text-xl">Montly Payments: <span><b>₱ {{
                             usDoc?.monthlyPayment }}</b></span></h1>
                         <h1 class="flex justify-between font-mono text-xl">Interest: <span><b>₱ {{ usDoc?.totalInterest
-                        }}</b></span></h1>
+                                    }}</b></span></h1>
                         <h1 class="flex justify-between font-mono text-xl">Loan Total & Interest: <span><b>₱ {{
                             usDoc?.totalPrincipalAndInterest }}</b></span></h1>
                         <h1 class="flex justify-between font-mono text-xl">Status:
@@ -316,6 +322,7 @@ import { documentId, where } from 'firebase/firestore';
 import { watch } from 'vue';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
+import useCollection from '@/firebase/useCollection';
 
 
 export default {
@@ -325,17 +332,48 @@ export default {
 
         const userDoc = ref(null)
 
+        const name = ref("")
+        const idNumber = ref("")
+        const gender = ref("")
+        const job = ref("")
+        const income = ref("")
+        const loanPurpose = ref("")
+        const address = ref("")
+        const relativeName = ref("")
+        const contact = ref("")
+        const relativePhone = ref("")
+        const accountNumber = ref("")
+        const bankName = ref("")
+
 
         const route = useRoute()
+        const { updateDocs } = useCollection('customers');
 
         watch(
             () => route.params.id,
             async (newUid) => {
                 if (newUid) {
                     const { documents } = await getCollectionQueryTerm('customers', where(documentId(), '==', newUid));
-                    console.log("documents", documents);
+
                     watch(() => {
                         userDoc.value = documents.value || null;
+                        if (userDoc.value && userDoc.value.length > 0) {
+                            name.value = userDoc.value[0].name || "";
+                            idNumber.value = userDoc.value[0].idNumber || "";
+                            gender.value = userDoc.value[0].gender || "";
+                            job.value = userDoc.value[0].job || "";
+                            income.value = userDoc.value[0].income || "";
+                            loanPurpose.value = userDoc.value[0].loanPurpose || "";
+                            address.value = userDoc.value[0].address || "";
+                            relativeName.value = userDoc.value[0].relativeName || "";
+                            contact.value = userDoc.value[0].contact || "";
+                            relativePhone.value = userDoc.value[0].relativePhone || "";
+                            bankName.value = userDoc.value[0].bankName || "";
+                            accountNumber.value = userDoc.value[0].accountNumber || "";
+
+                        } else {
+                            name.value = "";
+                        }
                     })
 
                 }
@@ -343,7 +381,42 @@ export default {
             { immediate: true }
         );
 
-        return { userDoc }
+
+        const handleUpdate = async () => {
+            if (userDoc.value && userDoc.value.length > 0) {
+                const data = {
+                    name: name.value,
+                    idNumber: idNumber.value,
+                    gender: gender.value,
+                    job: job.value,
+                    income: income.value,
+                    loanPurpose: loanPurpose.value,
+                    address: address.value,
+                    relativeName: relativeName.value,
+                    contact: contact.value,
+                    relativePhone: relativePhone.value,
+                }
+                await updateDocs(userDoc.value[0].id, data)
+                alert("Customer details updated successfully.")
+            } else {
+                console.error("No user document found for update.");
+            }
+        }
+
+
+        const handleUpdateBank = async () => {
+            if (userDoc.value && userDoc.value.length > 0) {
+                const data = {
+                    bankName: bankName.value,
+                    accountNumber: accountNumber.value,
+                }
+                await updateDocs(userDoc.value[0].id, data)
+                alert("Bank details updated successfully.")
+            } else {
+                console.error("No user document found for update.");
+            }
+        }
+        return { userDoc, name, idNumber, gender, job, income, loanPurpose, address, relativeName, contact, relativePhone, handleUpdate, bankName, accountNumber, handleUpdateBank }
 
     }
 }
