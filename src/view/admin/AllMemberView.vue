@@ -105,11 +105,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(customer, index) in filterFromDateToData" :key="customer" class="text-sm font-medium">
-                        <td class="p-2 px-1 border border-gray-300">#{{ index + 1 }}</td>
-                        <td class="px-2 border border-gray-300">{{ customer?.name }}</td>
+                    <tr v-for="(customer, index) in filterFromDateToData" :key="customer" class="text-sm font-medium align-top">
+                        <td class="p-2 px-1 pt-5 border border-gray-300">#{{ index + 1 }}</td>
+                        <td class="px-2 pt-5 border border-gray-300">{{ customer?.name }}</td>
 
-                        <td class="px-2 border border-gray-300">
+                        <td class="px-2 pt-5 border border-gray-300">
                             <a class="text-blue-500 underline" :href="`https://ipinfo.io/${customer?.ipAddress}`" target="_blank"
                                 rel="noopener noreferrer">
                                 {{ customer?.ipAddress }}
@@ -119,10 +119,10 @@
 
                         <!-- <td class="px-2 border border-gray-300">{{ customer?.gender }}</td> -->
 
-                        <td class="px-2 border border-gray-300">₱ {{ customer?.amount }}</td>
-                        <td class="px-2 border border-gray-300"> {{ customer?.term }} Months</td>
-                        <td class="w-10 px-2 border border-gray-300"> {{ formatDate(customer?.createdAt) }}</td>
-                        <td class="px-2 border border-gray-300 w-28">
+                        <td class="px-2 pt-5 border border-gray-300">₱ {{ customer?.amount }}</td>
+                        <td class="px-2 pt-5 border border-gray-300"> {{ customer?.term }} Months</td>
+                        <td class="w-10 px-2 pt-5 border border-gray-300"> {{ formatDate(customer?.createdAt) }}</td>
+                        <td class="px-2 pt-5 border border-gray-300 w-28">
                             <div v-if="customer.status === '0'"
                                 class="p-1 text-xs text-center text-white bg-orange-500">
                                 Under Review

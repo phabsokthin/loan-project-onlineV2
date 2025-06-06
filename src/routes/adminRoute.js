@@ -13,6 +13,7 @@ import ViewAllMembers from '@/view/admin/AllMemberView.vue'
 import ViewContract from '@/view/admin/ViewContractView.vue'
 import WidthdrawalList from '@/view/admin/WithdrawalListView.vue'
 import AdminRegisterAuth from '@/view/authentication/AdminRegisterAuth.vue';
+import UserListView from '@/view/admin/UserListView.vue';
 
 const requiresAuth = (to, from, next) => {
   const user = projectAuth.currentUser;
@@ -65,7 +66,7 @@ const routes = [
       { path: '/admin/:id', name: "viewContract", component: ViewContract },
       { path: '/admin', name: "withdrawal", component: WidthdrawalList },
       {path: '/admin', name: "adminRegister", component: AdminRegisterAuth },
-
+ {path: '/admin', name: "userList", component: UserListView },
       
     ]
   },

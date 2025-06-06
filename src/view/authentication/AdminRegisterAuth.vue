@@ -170,6 +170,7 @@ import { ref } from 'vue';
 
 import useCollection from '@/firebase/useCollection';
 import useSignUp from '@/firebase/useSignup'
+import { timestamp } from '@/config/config';
 
 export default {
     components: {
@@ -198,6 +199,7 @@ export default {
                 email: form.value.email,
                 password: form.value.password,
                 roles: form.value.roles,
+                createdAt: timestamp()
             };
 
 

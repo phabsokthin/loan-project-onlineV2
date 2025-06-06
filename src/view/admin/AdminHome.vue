@@ -145,7 +145,7 @@
 
 
                     <li v-if="allowSuperAdmin" class="block">
-                        <RouterLink :to="{ name: 'adminRegister' }"
+                        <RouterLink :to="{ name: 'userList' }"
                             class="flex items-center gap-3 px-4 py-2 font-thin rounded hover:bg-black/50">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="text-white size-5">

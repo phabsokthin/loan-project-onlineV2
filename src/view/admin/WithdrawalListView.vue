@@ -104,16 +104,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(customer, index) in filteredData" :key="customer.id" class="text-sm font-medium">
-                        <td class="p-2 px-1 border border-gray-300">#{{ index + 1 }}</td>
-                        <td class="px-2 border border-gray-300">{{ customer?.codeWithdraw }}</td>
-                        <td class="px-2 border border-gray-300">{{ customer?.name }}</td>
+                    <tr v-for="(customer, index) in filteredData" :key="customer.id" class="text-sm font-medium align-top">
+                        <td class="p-2 px-1 pt-5 border border-gray-300">#{{ index + 1 }}</td>
+                        <td class="px-2 pt-5 border border-gray-300">{{ customer?.codeWithdraw }}</td>
+                        <td class="px-2 pt-5 border border-gray-300">{{ customer?.name }}</td>
                         <!-- <td class="px-2 border border-gray-300">{{ customer?.gender }}</td> -->
 
-                        <td class="px-2 border border-gray-300">₱ {{ customer?.totalPrincipalAndInterest }}</td>
-                        <td class="px-2 border border-gray-300"> {{ customer?.term }} Months</td>
-                        <td class="w-10 px-2 border border-gray-300"> {{ formatDate(customer?.createdAt) }}</td>
-                        <td class="w-32 px-2 border border-gray-300">
+                        <td class="px-2 pt-5 border border-gray-300">₱ {{ customer?.totalPrincipalAndInterest }}</td>
+                        <td class="px-2 pt-5 border border-gray-300"> {{ customer?.term }} Months</td>
+                        <td class="w-10 px-2 pt-5 border border-gray-300"> {{ formatDate(customer?.createdAt) }}</td>
+                        <td class="w-32 px-2 pt-5 border border-gray-300">
                             <div v-if="customer.status === '0'"
                                 class="p-1 text-xs text-center text-white bg-gray-500 shadow-md cursor-pointer">
                                 Under Review
