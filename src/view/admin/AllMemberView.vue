@@ -451,6 +451,7 @@ export default {
             pageRange,
             customers,
             currentPage,
+            
             handleDelete,
             handleAddCreditModal,
             creditData,

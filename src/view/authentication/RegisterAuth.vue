@@ -105,6 +105,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { registerWithPhone } from '@/firebase/Auth';
 import useCollection from '@/firebase/useCollection';
+import { timestamp } from '@/config/config';
 
 export default {
     setup() {
@@ -126,7 +127,8 @@ export default {
             const data = {
                 phone: form.value.phone,
                 password: form.value.password,
-                email: form.value.phone+"@gmail.com",          
+                email: form.value.phone+"@gmail.com",  
+                createdAt: timestamp(),        
             };
 
             const clientData = {

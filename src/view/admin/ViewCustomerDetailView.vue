@@ -305,9 +305,13 @@
             <div class="flex justify-end mb-20">
                 <!-- <button type="button"
                     class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button> -->
-                <RouterLink :to="{ name: 'customers' }"
+                <!-- <RouterLink :to="{ name: 'customers' }"
                     class="inline-flex justify-center px-4 py-2 ml-3 font-mono text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Back</RouterLink>
+                    Back</RouterLink> -->
+
+                      <div @click="hanldeBack"
+                    class="inline-flex justify-center px-4 py-2 ml-3 font-mono text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm cursor-pointer hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Back</div>
             </div>
         </div>
     </div>
@@ -416,7 +420,16 @@ export default {
                 console.error("No user document found for update.");
             }
         }
-        return { userDoc, name, idNumber, gender, job, income, loanPurpose, address, relativeName, contact, relativePhone, handleUpdate, bankName, accountNumber, handleUpdateBank }
+
+
+
+        const hanldeBack = () => {
+            // router.push({ name: 'customers' })
+            window.history.go(-1);
+        }
+
+        
+        return { userDoc, name, idNumber, gender, job, income, loanPurpose, address, relativeName, contact, relativePhone, handleUpdate, bankName, accountNumber, handleUpdateBank,hanldeBack }
 
     }
 }

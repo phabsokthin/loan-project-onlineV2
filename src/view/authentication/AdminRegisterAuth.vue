@@ -202,8 +202,7 @@ export default {
                 createdAt: timestamp()
             };
 
-
-
+            
             if (form.value.password !== form.value.confirm_password) {
                 alert('Passwords do not match');
                 return;
@@ -217,13 +216,11 @@ export default {
                         const sign_success = await setDocs(data, result?.user?.uid);
                         if (sign_success) {
                             alert("User account created successfully!");
-
+                            // router.push({ name: 'login' });
                         }
                     }
                     catch (err) {
-
                         console.log(err)
-
                     }
 
                 } else {

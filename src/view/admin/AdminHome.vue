@@ -119,7 +119,7 @@
                     </li>
 
 
-                    <li v-if="allowAdmin || allowSuperAdmin" class="block">
+                    <li v-if="allowAdmin || allowSuperAdmin || allowDeveloper" class="block">
                         <RouterLink :to="{ name: 'slide' }"
                             class="flex items-center gap-3 px-4 py-2 font-thin rounded hover:bg-black/50">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -131,7 +131,7 @@
                         </RouterLink>
                     </li>
 
-                    <li v-if="allowSuperAdmin" class="block">
+                    <li v-if="allowSuperAdmin || allowDeveloper" class="block">
                         <RouterLink :to="{ name: 'adminRegister' }"
                             class="flex items-center gap-3 px-4 py-2 font-thin rounded hover:bg-black/50">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -144,7 +144,7 @@
                     </li>
 
 
-                    <li v-if="allowSuperAdmin" class="block">
+                    <li v-if="allowSuperAdmin || allowDeveloper" class="block">
                         <RouterLink :to="{ name: 'userList' }"
                             class="flex items-center gap-3 px-4 py-2 font-thin rounded hover:bg-black/50">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -153,6 +153,18 @@
                                     d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
                             </svg>
                             <span class="font-bold text-white capitalize ">Staff List</span>
+                        </RouterLink>
+                    </li>
+
+                     <li v-if="allowDeveloper" class="block">
+                        <RouterLink :to="{ name: 'allMemberRegister' }"
+                            class="flex items-center gap-3 px-4 py-2 font-thin rounded hover:bg-black/50">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="text-white size-5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+                            </svg>
+                            <span class="font-bold text-white capitalize ">All User List</span>
                         </RouterLink>
                     </li>
 
@@ -167,7 +179,7 @@
         </div>
 
 
-        <div class="fixed bottom-4 right-4">
+        <div class="fixed bottom-4 left-4">
             <button @click="handleLogout"
                 class="flex items-center gap-1 px-4 py-2 font-bold text-white bg-red-500 rounded-full shadow-lg hover:bg-red-600">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -248,7 +260,7 @@ export default {
         const isAdmin = computed(() => {
             return roleDoc.value?.some(role =>
                 role.email === user.value?.email &&
-                ['admin', 'superadmin', 'staff'].includes(role.roles)
+                ['admin', 'superadmin', 'staff', 'Developer'].includes(role.roles)
             );
         });
 
@@ -269,8 +281,15 @@ export default {
         })
 
 
+          const allowDeveloper = computed(() => {
+            return roleDoc.value?.some(role =>
+                role.email === user.value?.email &&
+                ['Developer'].includes(role.roles)
+            );
+        })
 
-        return { handleLogout, user, inactiveMembersCount, inactiveLoanMembersCount, withdrawLoanDoc, isAdmin, allowSuperAdmin,allowAdmin }
+
+        return { handleLogout, user, inactiveMembersCount, inactiveLoanMembersCount, withdrawLoanDoc, isAdmin, allowSuperAdmin,allowAdmin,allowDeveloper }
 
     }
 }

@@ -275,7 +275,7 @@
 
                                 </RouterLink>
 
-                                <div class="flex items-center gap-2 p-2 text-white bg-red-600 shadow-md cursor-pointer hover:bg-red-500"
+                                <div v-if="customer?.status !== '1'" class="flex items-center gap-2 p-2 text-white bg-red-600 shadow-md cursor-pointer hover:bg-red-500"
                                     @click="handleDelete(customer?.id, customer?.front_image, customer?.back_image, customer?.selfie_image, customer?.assigned_image)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -389,6 +389,9 @@ export default {
             fetchTotalPages();
             getDataRealTime(currentPage.value);
         });
+
+
+        
 
         const handleCurrentUpdate = (item) => {
             console.log(item)
@@ -507,6 +510,7 @@ export default {
             handleCurrentUpdate,
             currentComponents,
             statusData,
+            
             data,
             loadPreviousPage,
             loadNextPage,
@@ -519,6 +523,8 @@ export default {
             pageRange,
             customers,
             currentPage,
+
+            
             handleDelete,
             handleAddCreditModal,
             creditData,
