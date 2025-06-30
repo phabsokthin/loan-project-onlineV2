@@ -4,7 +4,7 @@ const cors = require('cors');
 
 // Global CORS options
 const corsOptions = cors({
-    origin: 'http://localhost:8080', // Update with your frontend URL
+    origin: 'https://db-onlinev2.web.app', // Update with your frontend URL but if deloy we use the firebase hosting url
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,

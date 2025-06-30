@@ -108,17 +108,17 @@
                                         <img v-else :src="selfieImage" class="object-contain h-48" alt="Selfie preview">
                                     </div>
                                     <div class="flex justify-center text-2xltext-gray-600">
-                                        <button v-if="!isCameraOpen" type="button" @click="openCamera"
+                                        <!-- <button v-if="!isCameraOpen" type="button" @click="openCamera"
                                             class="relative font-medium text-indigo-600 bg-white rounded-md hover:text-indigo-500 focus-within:outline-none">
                                             Take a photo
                                         </button>
                                         <button v-else type="button" @click="takePhoto"
                                             class="relative font-medium text-indigo-600 bg-white rounded-md hover:text-indigo-500 focus-within:outline-none">
                                             Capture
-                                        </button>
+                                        </button> -->
                                         <label v-if="!isCameraOpen"
                                             class="relative ml-3 font-medium text-indigo-600 bg-white rounded-md cursor-pointer hover:text-indigo-500 focus-within:outline-none">
-                                            <span v-if="!selfieImage">or upload</span>
+                                            <span v-if="!selfieImage">Upload File</span>
                                             <span v-else>or change</span>
                                             <input type="file" class="sr-only" @change="handleSelfieUpload"
                                                 accept="image/*">

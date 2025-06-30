@@ -59,8 +59,8 @@
                     <span> Withdraw Money</span>
                 </button>
 
-                <p class="mt-2 text-sm text-green-500">Congratulations, your loan has been approved.
-                </p>
+                <p class="mt-2 text-sm text-green-500">{{ usDoc?.description }}</p>
+             
             </div>
 
         </div>

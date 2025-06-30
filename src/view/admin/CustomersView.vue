@@ -137,7 +137,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(customer, index) in filterFromDateToData" :key="customer" class="text-sm font-medium align-top">
+                    <tr v-for="(customer, index) in filterFromDateToData" :key="customer"
+                        class="text-sm font-medium align-top">
                         <td class="p-2 px-1 pt-5 border border-gray-300">#{{ index + 1 }}</td>
                         <td class="px-2 pt-5 border border-gray-300">{{ customer?.name }}</td>
 
@@ -149,15 +150,19 @@
                         <td class="px-2 pt-5 border border-gray-300"> {{ customer?.term }} Months</td>
                         <td class="w-10 px-2 pt-5 border border-gray-300"> {{ formatDate(customer?.createdAt) }}</td>
                         <td class="px-2 pt-5 border border-gray-300 w-28">
-                            <div v-if="customer.status === '0'"
-                                class="p-1 text-xs text-center text-white bg-orange-500">
-                                Under Review
+                            <div v-if="customer.status === '0'">
+
+                                <div class="p-1 text-xs text-center text-white bg-orange-500">
+                                    Under Review
+                                </div>
+                                <p class="text-xs text-gray-500">{{ customer.description }}</p>
+
                             </div>
                             <div v-else-if="customer.status === '1'">
                                 <div class="p-1 text-xs text-center text-white bg-green-500">
                                     <p>Approved</p>
                                 </div>
-                                <p class="text-xs text-gray-500">Congratulations, your loan has been approved.</p>
+                                <p class="text-xs text-gray-500">{{ customer.description }}</p>
                             </div>
                             <div v-else class="p-1 text-xs text-center text-white bg-red-500">
                                 <p>Not Completed</p>
@@ -275,7 +280,8 @@
 
                                 </RouterLink>
 
-                                <div v-if="customer?.status !== '1'" class="flex items-center gap-2 p-2 text-white bg-red-600 shadow-md cursor-pointer hover:bg-red-500"
+                                <div v-if="customer?.status !== '1'"
+                                    class="flex items-center gap-2 p-2 text-white bg-red-600 shadow-md cursor-pointer hover:bg-red-500"
                                     @click="handleDelete(customer?.id, customer?.front_image, customer?.back_image, customer?.selfie_image, customer?.assigned_image)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -391,7 +397,7 @@ export default {
         });
 
 
-        
+
 
         const handleCurrentUpdate = (item) => {
             console.log(item)
@@ -496,7 +502,7 @@ export default {
 
             const from = new Date(fromDate.value);
             const to = new Date(toDate.value);
-            to.setHours(23, 59, 59, 999); 
+            to.setHours(23, 59, 59, 999);
 
             return customerStatus.value.filter((customer) => {
                 const createdAt = new Date(customer.createdAt);
@@ -510,7 +516,7 @@ export default {
             handleCurrentUpdate,
             currentComponents,
             statusData,
-            
+
             data,
             loadPreviousPage,
             loadNextPage,
@@ -524,7 +530,7 @@ export default {
             customers,
             currentPage,
 
-            
+
             handleDelete,
             handleAddCreditModal,
             creditData,
