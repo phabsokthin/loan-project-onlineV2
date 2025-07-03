@@ -12,11 +12,11 @@
                                 <path d="M18 8L22 12L18 16" />
                                 <path d="M2 12H22" />
                             </svg>
-                            <span class="text-lg text-black  md:text-2xl">Loan Processing</span>
+                            <!-- <span class="text-lg text-black md:text-2xl">Loan Processing</span> -->
                         </h2>
 
                     </div>
-                    <div id="link_account" class="">
+                    <!-- <div id="link_account" class="">
                         <div
                             class="relative p-8 overflow-hidden border rounded-md shadow-xl bg-[oklch(58.8%_0.158_241.966)] opacity-90 group">
                             <div aria-hidden="true"
@@ -49,11 +49,11 @@
                                                      <h1 v-else class="text-2xl font-bold">₱ 0</h1>
                                                 </div>
                                             </div>
-                                            <h1 v-else class="text-xs text-white  md:text-xl">No Account Number
+                                            <h1 v-else class="text-xs text-white md:text-xl">No Account Number
                                             </h1>
                                         </div>
                                         <div v-else>
-                                            <h1 class="text-xs text-white  md:text-xl">No Account Number</h1>
+                                            <h1 class="text-xs text-white md:text-xl">No Account Number</h1>
 
                                         </div>
                                     </div>
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -137,7 +137,7 @@
                             <path d="M18 8L22 12L18 16" />
                             <path d="M2 12H22" />
                         </svg>
-                        <span class="text-lg  md:text-2xl">Customer Received Loans </span>
+                        <span class="text-lg md:text-2xl">Customer Received Loans </span>
                     </h2>
                 </div>
 
@@ -188,13 +188,13 @@
                                         <h1>₱ {{ usDoc?.totalPrincipalAndInterest }}</h1>
                                     </div>
                                     <div v-else>
-                                        <h1 class="text-xs text-white  md:text-xl">No Received Loans</h1>
+                                        <h1 class="text-xs text-white md:text-xl">No Received Loans</h1>
                                     </div>
                                 </div>
 
                             </div>
                             <div v-else>
-                                <h1 class="text-xs text-white  md:text-xl">No Received Loan</h1>
+                                <h1 class="text-xs text-white md:text-xl">No Received Loan</h1>
                             </div>
                         </div>
                     </div>
