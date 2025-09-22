@@ -1,104 +1,90 @@
 <template>
+    <div class="flex items-center justify-center min-h-screen hero-image">
+        <div class="w-full max-w-md px-4 py-10">
+            <form @submit.prevent="handleSubmit" class="p-8 rounded-xl bg-opacity-90">
 
-    <div class="flex items-center justify-center min-h-screen hero-image" v-motion-fade>
-        <div class="w-full max-w-md px-8 py-12">
-            <form @submit.prevent="handleSubmit"
-                class="p-8 bg-white shadow-lg bg-opacity-90 backdrop-blur-sm rounded-xl">
                 <!-- Logo Section -->
-                <div class="flex justify-center my-6">
+                <div class="flex justify-center mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="w-24 h-24 lucide lucide-user-plus">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                        <circle cx="9" cy="7" r="4" />
-                        <line x1="19" x2="19" y1="8" y2="14" />
-                        <line x1="22" x2="16" y1="11" y2="11" />
+                        stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-28 h-28 lucide lucide-circle-user">
+                        <circle cx="12" cy="12" r="10" />
+                        <circle cx="12" cy="10" r="3" />
+                        <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
                     </svg>
                 </div>
 
+                <!-- Welcome text -->
+                <div class="mb-4 text-center text-white">
+                    <h2 class="mb-2 text-lg font-semibold">Welcome!</h2>
+                    <p class="mb-4 text-sm">Please register your loan application.</p>
+                </div>
+
                 <!-- Phone Input -->
-                <div
-                    class="flex items-center mx-4 my-6 transition-colors duration-300 border-b-2 border-gray-700 hover:border-green-800">
-                    <label class="self-center text-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-phone">
-                            <path
-                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                        </svg>
-                    </label>
-                    <input id="phone" v-model="form.phone" type="tel" autocomplete="tel" required maxlength="10"
-                        class="w-full py-3 pl-4 bg-transparent border-0 focus:outline-none"
-                        placeholder="Phone Number" />
+                <div class="mb-4">
+                    <label for="phone" class="block mb-1 text-sm text-white">Enter your phone number</label>
+                    <input id="phone" v-model="form.phone"
+                        class="w-full px-4 py-3 text-gray-700 placeholder-gray-500 bg-white bg-opacity-50 rounded-md focus:outline-none"
+                        placeholder="Phone Number" required>
                 </div>
 
                 <!-- Password Input -->
-                <div
-                    class="flex items-center mx-4 my-6 transition-colors duration-300 border-b-2 border-gray-700 hover:border-green-800">
-                    <label class="self-center text-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-lock-keyhole">
-                            <circle cx="12" cy="16" r="1" />
-                            <rect x="3" y="10" width="18" height="12" rx="2" />
-                            <path d="M7 10V7a5 5 0 0 1 10 0v3" />
-                        </svg>
-                    </label>
-                    <input id="password" v-model="form.password" type="password" autocomplete="new-password" required
-                        class="w-full py-3 pl-4 bg-transparent border-0 focus:outline-none" placeholder="Password" />
+                <div class="mb-4">
+                    <label for="password" class="block mb-1 text-sm text-white">Create your own password</label>
+                    <input id="password" type="password" v-model="form.password"
+                        class="w-full px-4 py-3 text-gray-700 placeholder-gray-500 bg-white bg-opacity-50 rounded-md focus:outline-none"
+                        placeholder="Password" required>
                 </div>
 
                 <!-- Confirm Password Input -->
-                <div
-                    class="flex items-center mx-4 my-6 transition-colors duration-300 border-b-2 border-gray-700 hover:border-green-800">
-                    <label class="self-center text-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-lock-keyhole">
-                            <circle cx="12" cy="16" r="1" />
-                            <rect x="3" y="10" width="18" height="12" rx="2" />
-                            <path d="M7 10V7a5 5 0 0 1 10 0v3" />
-                        </svg>
-                    </label>
-                    <input id="confirm_password" v-model="form.confirm_password" type="password"
-                        autocomplete="new-password" required
-                        class="w-full py-3 pl-4 bg-transparent border-0 focus:outline-none"
-                        placeholder="Confirm Password" />
+                <div class="mb-4">
+                    <label for="confirm_password" class="block mb-1 text-sm text-white">Confirm Password</label>
+                    <input id="confirm_password" type="password" v-model="form.confirm_password"
+                        class="w-full px-4 py-3 text-gray-700 placeholder-gray-500 bg-white bg-opacity-50 rounded-md focus:outline-none"
+                        placeholder="Confirm Password" required>
                 </div>
 
-                <!-- Register Button -->
-                <div class="mx-4 mt-8 mb-4">
-                    <button type="submit" :disabled="loading"
-                        class="flex items-center justify-center w-full py-3 font-medium text-white transition-colors duration-300 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <span v-if="loading" class="mr-2 loader"></span>
-                        <span>{{ loading ? 'Signing up...' : 'Sign Up' }}</span>
-                    </button>
-                </div>
-
-                <!-- Login Link -->
-                <div class="mt-8">
-                    <div class="relative">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-300"></div>
-                        </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-2 text-gray-500 bg-white bg-opacity-90">
-                                Already have an account?
-                            </span>
+                <!-- Verification Code -->
+                <div class="mt-5 mb-4">
+                    <label for="confirm_password" class="block mb-1 text-sm text-white">Verification Code</label>
+                    <div class="flex items-center gap-3">
+                        <input id="verification" v-model="form.verification"
+                            class="w-full px-4 py-3 text-gray-700 placeholder-gray-500 bg-white bg-opacity-50 rounded-md focus:outline-none"
+                            placeholder="Verification Code" required>
+                        <div class="block mb-1 text-sm text-white code_input">
+                            <button>55565</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="mx-4 mt-8 mb-4">
-                    <RouterLink :to="{ name: 'login' }"
-                        class="flex justify-center w-full py-3 font-medium text-black transition-colors duration-300 bg-white border-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        Sign In
-                    </RouterLink>
+                <!-- Register Button -->
+                <div class="mb-4 ">
+                    <button type="submit" :disabled="loading"
+                        class="flex items-center justify-center w-full py-3 font-medium text-white transition-colors duration-300 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <span v-if="loading" class="mr-2 loader"></span>
+                        <span>{{ loading ? 'Registering...' : 'Register' }}</span>
+                    </button>
+                </div>
+
+                <!-- Login Link -->
+                <div class="text-center ">
+                    <p class="text-sm text-white">
+                        Already have an account?
+                    </p>
+                    <p class="text-sm text-white hover:text-green-600">
+                        <RouterLink :to="{ name: 'login' }" class="font-semibold underline hover:text-gray-200">
+                            Login
+                        </RouterLink>
+                    </p>
+                </div>
+                <div class="items-center justify-center mt-3 patner">
+
                 </div>
             </form>
         </div>
     </div>
 </template>
+
 
 <script>
 import { ref } from 'vue';
@@ -106,6 +92,8 @@ import { useRouter } from 'vue-router';
 import { registerWithPhone } from '@/firebase/Auth';
 import useCollection from '@/firebase/useCollection';
 import { timestamp } from '@/config/config';
+
+
 
 export default {
     setup() {
@@ -119,22 +107,22 @@ export default {
 
         const { setDocs } = useCollection('users');
         const { setDocs: setDocsData } = useCollection('customers');
-        
+
 
 
         const handleSubmit = async () => {
-         
+
             const data = {
                 phone: form.value.phone,
                 password: form.value.password,
-                email: form.value.phone+"@gmail.com",  
-                createdAt: timestamp(),        
+                email: form.value.phone + "@gmail.com",
+                createdAt: timestamp(),
             };
 
             const clientData = {
                 amount: 0,
             }
-                
+
             // Validate phone number: must be 8, 9, or 10 digits
             const phonePattern = /^\d{9,10}$/;
             if (!phonePattern.test(form.value.phone)) {
@@ -155,7 +143,7 @@ export default {
                         await setDocsData(clientData, result?.user?.uid);
                         if (sign_success) {
                             router.push({ path: '/' });
-                           
+
                         }
                     }
                     catch (err) {
@@ -181,19 +169,37 @@ export default {
 };
 </script>
 
+
 <style scoped>
 .hero-image {
-    background-image: url("/src/assets/loan_chart.jpg");
-    background-color: #cccccc;
+    background-image: url("/src/assets/bg1.png");
     min-height: 100vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.patner {
+    background-image: url("/src/assets/partner.png");
+    min-height: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.code_input{
+    background-image: url("/src/assets/Verification\ Code.png");
+    width: 150px;
+    height: 50px;
+    background-position: center ;
+    border-radius: 5px;
 }
 
 .loader {
     border: 2px solid #f3f3f3;
-    border-top: 2px solid #3498db;
+    border-top: 2px solid #fff;
     border-radius: 50%;
     width: 18px;
     height: 18px;
