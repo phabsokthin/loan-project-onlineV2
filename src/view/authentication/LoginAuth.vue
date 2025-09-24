@@ -1,136 +1,120 @@
 <template>
-  <div class="flex items-center justify-center min-h-screen hero-image" v-motion-fade>
-    <div class="w-full max-w-md px-8 py-12">
-      <form @submit.prevent="handleLogin" class="p-8 bg-white shadow-lg bg-opacity-90 backdrop-blur-sm rounded-xl">
+  <div class="flex flex-col items-center justify-center min-h-screen hero-image">
+    <!-- Login Card -->
+    <div class="w-full max-w-md px-6 py-8 bg-white bg-opacity-10 rounded-lg shadow-lg ">
+      <form @submit.prevent="handleLogin" class="text-white">
         <!-- Logo Section -->
-        <div class="flex justify-center my-6">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="w-24 h-24 lucide lucide-circle-user">
-            <circle cx="12" cy="12" r="10" />
-            <circle cx="12" cy="10" r="3" />
-            <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
-          </svg>
+        <!-- Logo Section -->
+        <div class="flex justify-center mb-3">
+            <img :src="userIcon" alt="User Icon" class="w-20 h-20 object-contain" />
+        </div>
+
+        <!-- Welcome text -->
+        <div class="mb-8 text-center">
+          <h2 class="text-lg font-semibold">Welcome!</h2>
+          <p class="text-sm">Please login your loan application.</p>
         </div>
 
         <!-- Phone Input -->
-        <div
-          class="flex items-center mx-4 my-6 transition-colors duration-300 border-b-2 border-gray-700 hover:border-green-800">
-          <label class="self-center text-gray-700">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="lucide lucide-phone">
-              <path
-                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-            </svg>
-          </label>
-          <input v-model="loginForm.phone" class="w-full py-3 pl-4 bg-transparent border-0 focus:outline-none"
-            type="tel" placeholder="Phone number" required>
+        <div class="mb-6">
+          <label class="block mb-2 text-sm text-white">Enter your phone number</label>
+          <input v-model="loginForm.phone"
+            class="w-full px-4 py-3 text-white placeholder-white 
+                   bg-white bg-opacity-30 border border-white border-opacity-40 
+                   rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 
+                   backdrop-blur-sm"
+            type="tel" placeholder="Phone Number" required />
         </div>
 
         <!-- Password Input -->
-        <div
-          class="flex items-center mx-4 my-6 transition-colors duration-300 border-b-2 border-gray-700 hover:border-green-800">
-          <label class="self-center text-gray-700">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-              class="lucide lucide-lock-keyhole">
-              <circle cx="12" cy="16" r="1" />
-              <rect x="3" y="10" width="18" height="12" rx="2" />
-              <path d="M7 10V7a5 5 0 0 1 10 0v3" />
-            </svg>
-          </label>
-          <input v-model="loginForm.password" class="w-full py-3 pl-4 bg-transparent border-0 focus:outline-none"
-            type="password" placeholder="Password" required>
+        <div class="mb-6">
+          <label class="block mb-2 text-sm text-white">Enter your own password</label>
+          <input v-model="loginForm.password"
+            class="w-full px-4 py-3 text-white placeholder-white 
+                   bg-white bg-opacity-30 border border-white border-opacity-40 
+                   rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 
+                   backdrop-blur-sm"
+            type="password" placeholder="Password" required />
         </div>
 
         <!-- Login Button -->
-        <div class="mx-4 mt-8 mb-4">
+        <div class="mb-6">
           <button type="submit"
-            class="w-full py-3 font-medium text-white transition-colors duration-300 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-
+            class="w-full py-3 font-semibold text-white bg-green-700 bg-opacity-90 
+                   rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 
+                   focus:ring-green-500 backdrop-blur-sm">
             <span v-if="loading" class="mr-2 loader"></span>
-            <span>{{ loading ? 'Signing in...' : 'Sign In' }}</span>
+            <span>{{ loading ? 'Signing in...' : 'Login' }}</span>
           </button>
         </div>
-        <div class="mt-8">
-          <div class="relative">
-            <div class="absolute inset-0 flex items-center">
-              <div class="w-full border-t border-gray-300"></div>
-            </div>
-            <div class="relative flex justify-center text-sm">
-              <span class="px-2 text-gray-500 bg-white bg-opacity-90">
-                Don't have an account?
-              </span>
-            </div>
-          </div>
-        </div>
 
-        <div class="mx-4 mt-8 mb-4">
-          <RouterLink :to="{ name: 'register' }"
-            class="flex justify-center w-full py-3 font-medium text-black transition-colors duration-300 bg-white border-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            Sign Up
+        <!-- Register Section -->
+        <div class="mb-6 text-center">
+          <p class="text-sm">Don’t have an account?</p>
+          <RouterLink :to="{ name: 'register' }" 
+            class="text-sm font-semibold underline hover:text-green-300">
+            Register Now
           </RouterLink>
         </div>
       </form>
     </div>
+
+    <!-- Partner Logos Footer -->
+    <div class="partner-footer">
+      <img :src="partnerLogo" alt="Partners" class="h-14 mx-auto opacity-100" />
+    </div>
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { loginWithPhone } from '@/firebase/Auth';
+import partnerLogo from '@/assets/partner.png';
+import userIcon from '@/assets/person.png'; 
 
+const loginForm = ref({ phone: '', password: '' });
+const loading = ref(false);
+const router = useRouter();
 
-export default {
-  setup() {
-    const loginForm = ref({
-      phone: '',
-      password: ''
-    });
-    const loading = ref(false);
-    const router = useRouter();
-
-
-
-    const handleLogin = async () => {
-      if (loading.value) return;
-      loading.value = true;
-      const result = await loginWithPhone(loginForm.value.phone, loginForm.value.password);
-      if (result.user) {
-        alert('Login successful!');
-        router.push({ path: '/' });
-      } else {
-        // alert(result.error || 'Login failed');
-        alert("Incorrect email or passowrd. try again!")
-      }
-      loading.value = false;
-    };
-
-    return {
-      loginForm,
-      loading,
-      handleLogin
-    };
+const handleLogin = async () => {
+  if (loading.value) return;
+  loading.value = true;
+  const result = await loginWithPhone(loginForm.value.phone, loginForm.value.password);
+  if (result.user) {
+    alert('Login successful!');
+    router.push({ path: '/' });
+  } else {
+    alert('Incorrect phone or password. Try again!');
   }
+  loading.value = false;
 };
 </script>
 
 <style scoped>
 .hero-image {
-  background-image: url("/src/assets/loan_chart.jpg");
-  background-color: #cccccc;
-  min-height: 100vh;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-image: url("@/assets/background.png"); /* scenic bg */
   background-size: cover;
+  background-position: center;
+  min-height: 100vh;
 }
 
-/* Simple loader spinner */
+/* Footer logos */
+.partner-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  padding: 8px 0;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  text-align: center;
+}
+
+/* Loader spinner */
 .loader {
   border: 2px solid #f3f3f3;
-  border-top: 2px solid #3498db;
+  border-top: 2px solid #fff;
   border-radius: 50%;
   width: 18px;
   height: 18px;
@@ -138,14 +122,8 @@ export default {
   display: inline-block;
   vertical-align: middle;
 }
-
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>

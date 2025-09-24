@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="hidden lg:block" v-motion-fade>
+    <div class="bg-image">
+        <div class="hidden lg:block " v-motion-fade>
             <NavbarComponent />
             <SliderComponent />
             <HomeComponent />
@@ -45,3 +45,13 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .bg-image {
+        background-image: url("/src/assets/bg1.png");
+        min-height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }   
+</style>

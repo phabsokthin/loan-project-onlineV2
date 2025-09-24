@@ -1,214 +1,201 @@
 <template>
-
-    <div class="flex items-center justify-center min-h-screen hero-image" v-motion-fade>
-        <div class="w-full max-w-md px-8 py-12">
-            <form @submit.prevent="handleSubmit"
-                class="p-8 bg-white shadow-lg bg-opacity-90 backdrop-blur-sm rounded-xl">
-                <!-- Logo Section -->
-                <div class="flex justify-center my-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="w-24 h-24 lucide lucide-user-plus">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                        <circle cx="9" cy="7" r="4" />
-                        <line x1="19" x2="19" y1="8" y2="14" />
-                        <line x1="22" x2="16" y1="11" y2="11" />
-                    </svg>
-                </div>
-
-                <!-- Phone Input -->
-                <div
-                    class="flex items-center mx-4 my-6 transition-colors duration-300 border-b-2 border-gray-700 hover:border-green-800">
-                    <label class="self-center text-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-phone">
-                            <path
-                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                        </svg>
-                    </label>
-                    <input id="phone" v-model="form.phone" type="tel" autocomplete="tel" required maxlength="10"
-                        class="w-full py-3 pl-4 bg-transparent border-0 focus:outline-none"
-                        placeholder="Phone Number" />
-                </div>
-
-                <!-- Password Input -->
-                <div
-                    class="flex items-center mx-4 my-6 transition-colors duration-300 border-b-2 border-gray-700 hover:border-green-800">
-                    <label class="self-center text-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-lock-keyhole">
-                            <circle cx="12" cy="16" r="1" />
-                            <rect x="3" y="10" width="18" height="12" rx="2" />
-                            <path d="M7 10V7a5 5 0 0 1 10 0v3" />
-                        </svg>
-                    </label>
-                    <input id="password" v-model="form.password" type="password" autocomplete="new-password" required
-                        class="w-full py-3 pl-4 bg-transparent border-0 focus:outline-none" placeholder="Password" />
-                </div>
-
-                <!-- Confirm Password Input -->
-                <div
-                    class="flex items-center mx-4 my-6 transition-colors duration-300 border-b-2 border-gray-700 hover:border-green-800">
-                    <label class="self-center text-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-lock-keyhole">
-                            <circle cx="12" cy="16" r="1" />
-                            <rect x="3" y="10" width="18" height="12" rx="2" />
-                            <path d="M7 10V7a5 5 0 0 1 10 0v3" />
-                        </svg>
-                    </label>
-                    <input id="confirm_password" v-model="form.confirm_password" type="password"
-                        autocomplete="new-password" required
-                        class="w-full py-3 pl-4 bg-transparent border-0 focus:outline-none"
-                        placeholder="Confirm Password" />
-                </div>
-
-                <!-- Register Button -->
-                <div class="mx-4 mt-8 mb-4">
-                    <button type="submit" :disabled="loading"
-                        class="flex items-center justify-center w-full py-3 font-medium text-white transition-colors duration-300 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        <span v-if="loading" class="mr-2 loader"></span>
-                        <span>{{ loading ? 'Signing up...' : 'Sign Up' }}</span>
-                    </button>
-                </div>
-
-                <!-- Login Link -->
-                <div class="mt-8">
-                    <div class="relative">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-300"></div>
-                        </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-2 text-gray-500 bg-white bg-opacity-90">
-                                Already have an account?
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mx-4 mt-8 mb-4">
-                    <RouterLink :to="{ name: 'login' }"
-                        class="flex justify-center w-full py-3 font-medium text-black transition-colors duration-300 bg-white border-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        Sign In
-                    </RouterLink>
-                </div>
-            </form>
+  <div class="flex flex-col items-center justify-center min-h-screen hero-image">
+    <!-- Register Card -->
+    <div class="w-full max-w-md px-8 py-10 bg-white bg-opacity-10 rounded-lg shadow-lg">
+      <form @submit.prevent="handleSubmit" class="text-white">
+        <!-- Logo Section -->
+        <div class="flex justify-center mb-3">
+            <img :src="userIcon" alt="User Icon" class="w-20 h-20 object-contain" />
         </div>
+
+        <!-- Welcome text -->
+        <div class="mb-8 text-center">
+          <h2 class="text-lg font-semibold">Welcome!</h2>
+          <p class="text-sm">Please login your loan application.</p>
+        </div>
+
+        <!-- Phone Input -->
+        <div class="mb-4">
+          <label class="block mb-2 text-sm text-white">Enter your phone number</label>
+          <input v-model="form.phone" type="tel" maxlength="10" required
+            class="input-style"
+            placeholder="Phone Number" />
+        </div>
+
+        <!-- Password Input -->
+        <div class="mb-4">
+          <label class="block mb-2 text-sm text-white">Create your own password</label>
+          <input v-model="form.password" type="password" required
+            class="input-style"
+            placeholder="Password" />
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mb-4">
+          <label class="block mb-2 text-sm text-white">Confirm Password</label>
+          <input v-model="form.confirm_password" type="password" required
+            class="input-style"
+            placeholder="Confirm Password" />
+        </div>
+
+        <!-- Verification Code -->
+       <div class="mb-6">
+        <label class="block mb-2 text-sm text-white">Verification Code</label>
+        <div class="flex items-center space-x-3">
+            <!-- Input -->
+            <input v-model="form.verification_code" type="text" maxlength="6" required
+            class="flex-grow py-3 px-4 rounded-md text-white placeholder-white 
+                    bg-white bg-opacity-30 border border-white border-opacity-40
+                    focus:outline-none focus:ring-2 focus:ring-green-500 backdrop-blur-sm"
+            placeholder="Enter Code" />
+
+            <!-- Captcha Image -->
+            <div class="h-12 w-28 rounded-md overflow-hidden shadow-md bg-white flex items-center justify-center">
+            <img src="@/assets/fcode.png" alt="captcha" class="w-full h-full object-contain" />
+            </div>
+        </div>
+        </div>
+
+        <!-- Register Button -->
+        <div class="mb-6">
+          <button type="submit" :disabled="loading"
+            class="btn-green">
+            <span v-if="loading" class="mr-2 loader"></span>
+            <span>{{ loading ? 'Signing up...' : 'Register' }}</span>
+          </button>
+        </div>
+
+        <!-- Login Link -->
+        <div class="text-center">
+          <p class="text-sm">Already have an account?</p>
+          <RouterLink :to="{ name: 'login' }"
+            class="text-sm font-semibold underline hover:text-green-300">
+            Login
+          </RouterLink>
+        </div>
+      </form>
     </div>
+
+    <!-- Partner Logos Footer -->
+    <footer class="partner-footer">
+        <div class="container mx-auto flex justify-center items-center">
+            <img src="@/assets/partner.png" alt="partner logos" class="h-14 opacity-100" />
+        </div>
+    </footer>
+
+  </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { registerWithPhone } from '@/firebase/Auth';
 import useCollection from '@/firebase/useCollection';
 import { timestamp } from '@/config/config';
+import userIcon from '@/assets/person.png';
 
-export default {
-    setup() {
-        const form = ref({
-            phone: '',
-            password: '',
-            confirm_password: ''
-        });
-        const loading = ref(false);
-        const router = useRouter();
+const form = ref({
+  phone: '',
+  password: '',
+  confirm_password: '',
+  verification_code: ''
+});
+const loading = ref(false);
+const router = useRouter();
 
-        const { setDocs } = useCollection('users');
-        const { setDocs: setDocsData } = useCollection('customers');
-        
+const { setDocs } = useCollection('users');
+const { setDocs: setDocsData } = useCollection('customers');
 
+const handleSubmit = async () => {
+  const phonePattern = /^\d{9,10}$/;
+  if (!phonePattern.test(form.value.phone)) {
+    alert('Phone number must be 9 or 10 digits');
+    return;
+  }
+  if (form.value.password !== form.value.confirm_password) {
+    alert('Passwords do not match');
+    return;
+  }
 
-        const handleSubmit = async () => {
-         
-            const data = {
-                phone: form.value.phone,
-                password: form.value.password,
-                email: form.value.phone+"@gmail.com",  
-                createdAt: timestamp(),        
-            };
-
-            const clientData = {
-                amount: 0,
-            }
-                
-            // Validate phone number: must be 8, 9, or 10 digits
-            const phonePattern = /^\d{9,10}$/;
-            if (!phonePattern.test(form.value.phone)) {
-                alert('Phone number must be 9, or 10 digits');
-                return;
-            }
-            if (form.value.password !== form.value.confirm_password) {
-                alert('Passwords do not match');
-                return;
-            }
-            loading.value = true;
-            try {
-                const result = await registerWithPhone(form.value.phone, form.value.password);
-                if (result.user?.uid) {
-
-                    try {
-                        const sign_success = await setDocs(data, result?.user?.uid);
-                        await setDocsData(clientData, result?.user?.uid);
-                        if (sign_success) {
-                            router.push({ path: '/' });
-                           
-                        }
-                    }
-                    catch (err) {
-
-                        console.log(err)
-
-                    }
-
-                } else {
-                    alert(result.error || 'Registration failed');
-                }
-            } finally {
-                loading.value = false;
-            }
-        };
-
-        return {
-            form,
-            loading,
-            handleSubmit
-        };
-    },
+  loading.value = true;
+  try {
+    const result = await registerWithPhone(form.value.phone, form.value.password);
+    if (result.user?.uid) {
+      const data = {
+        phone: form.value.phone,
+        password: form.value.password,
+        email: form.value.phone + "@gmail.com",
+        createdAt: timestamp(),
+      };
+      const clientData = { amount: 0 };
+      try {
+        const sign_success = await setDocs(data, result.user.uid);
+        await setDocsData(clientData, result.user.uid);
+        if (sign_success) router.push({ path: '/' });
+      } catch (err) {
+        console.error(err);
+      }
+    } else {
+      alert(result.error || 'Registration failed');
+    }
+  } finally {
+    loading.value = false;
+  }
 };
 </script>
 
 <style scoped>
 .hero-image {
-    background-image: url("/src/assets/loan_chart.jpg");
-    background-color: #cccccc;
-    min-height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-image: url("@/assets/background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment:fixed;
 }
 
+/* Inputs */
+.input-style {
+  @apply w-full py-3 px-4 rounded-md text-gray-500 placeholder-white 
+         bg-gray-400 bg-opacity-30 border border-white border-opacity-40
+         focus:outline-none focus:ring-2 focus:ring-green-500 backdrop-blur-sm;
+}
+
+/* Buttons */
+.btn-green {
+  @apply w-full py-3 font-semibold text-white bg-green-700 bg-opacity-90 
+         rounded-md hover:bg-green-600 focus:outline-none 
+         focus:ring-2 focus:ring-green-500 backdrop-blur-sm;
+}
+
+/* Partner logos footer */
+.partner-footer {
+  position: absolute;       /* stays at the bottom of the screen */
+  bottom: -20%;
+  left: 0;
+  width: 100%;
+  height: 60px;          /* same height as your main footer bar */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;           /* make sure it's on top */
+}
+
+
+/* Loader spinner */
 .loader {
-    border: 2px solid #f3f3f3;
-    border-top: 2px solid #3498db;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    animation: spin 1s linear infinite;
-    display: inline-block;
-    vertical-align: middle;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #fff;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
 }
-
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>
