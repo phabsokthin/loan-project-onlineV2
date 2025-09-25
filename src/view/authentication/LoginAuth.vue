@@ -6,19 +6,11 @@
         <div class="flex justify-center mb-6">
           <img :src="userIcon" alt="User Icon" class="w-28 h-28 object-contain" />
         </div>
-
-        <!-- Welcome text -->
-        <div class="mb-6 text-center">
+        
+         <div class="mb-4 text-center text-white">
           <h2 class="mb-2 text-lg font-semibold">Welcome!</h2>
-          <p class="mb-8 text-sm">Please login to your loan application.</p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"
-            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-28 h-28 lucide lucide-circle-user">
-            <circle cx="12" cy="12" r="10" />
-            <circle cx="12" cy="10" r="3" />
-            <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
-          </svg>
+          <p class="mb-4 text-sm">Please register your loan application.</p>
         </div>
-
         <!-- Phone Input -->
         <div class="mb-6">
           <label for="phone">Enter your Phone number</label>

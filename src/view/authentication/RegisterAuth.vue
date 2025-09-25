@@ -80,7 +80,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { registerWithPhone } from '@/firebase/Auth';
 import useCollection from '@/firebase/useCollection';
