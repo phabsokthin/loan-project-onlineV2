@@ -4,125 +4,79 @@
             <section class="text-gray-700 body-font">
                 <div class="container py-24 mx-auto">
 
-                    <div class="flex flex-wrap -m-4 text-center ">
-                        <a href="#link_account" class="w-full p-4 md:w-1/4 sm:w-1/2 ">
+                    <div class="grid grid-cols-2 gap-4 px-6 py-6 md:grid-cols-3">
 
-
-                            <div
-                                class="px-4 py-6 overflow-hidden transition duration-500 transform border hover:scale-110 bg-[oklch(58.8%_0.158_241.966)] opacity-90 rounded-md"> 
-
-                               
-                                <div class="space-y-2">
-                                    <div class="flex justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            class="w-12 h-12 text-white lucide lucide-credit-card">
-                                            <rect width="20" height="14" x="2" y="5" rx="2" />
-                                            <line x1="2" x2="22" y1="10" y2="10" />
-                                        </svg>
-                                    </div>
-                                    <h2 class="font-medium text-white  md:ext-xl title-font">Account</h2>
-                                </div>
-
-                            </div>
-
-
-                        </a>
-
-
-                        <div @click="handleRequestLoan" class="w-full p-4 md:w-1/4 sm:w-1/2">
-
-                            <div
-                                class="px-4 py-6 overflow-hidden transition duration-500 transform border hover:scale-110 bg-[oklch(58.8%_0.158_241.966)] opacity-90 rounded-md">
-
-                               
-
-                                <div class="space-y-2 cursor-pointer">
-                                    <div class="flex justify-center">
-
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            class="w-12 h-12 text-white lucide lucide-refresh-cw">
-                                            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
-                                            <path d="M21 3v5h-5" />
-                                            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
-                                            <path d="M8 16H3v5" />
-                                        </svg>
-                                    </div>
-                                    <h2 class="font-medium text-white  md:ext-xl title-font">Request Loan
-                                    </h2>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-                        <RouterLink to="/profile" class="w-full p-4 md:w-1/4 sm:w-1/2">
-
-                            <div 
-                                class="px-4 py-6 transition duration-500 border hover:scale-110 bg-[oklch(58.8%_0.158_241.966)] opacity-90 rounded-md">
-
-                             
-
-                                <div class="space-y-2">
-                                    <div class="flex justify-center">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            class="w-12 h-12 text-white lucide lucide-user-round-pen">
-                                            <path d="M2 21a8 8 0 0 1 10.821-7.487" />
-                                            <path
-                                                d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" />
-                                            <circle cx="10" cy="8" r="5" />
-                                        </svg>
-                                    </div>
-                                    <h2 class="font-medium text-white  md:ext-xl title-font">Profile</h2>
-                                </div>
-
-                            </div>
-
-
-                        </RouterLink>
-                        <RouterLink :to="{ name: 'wallet' }" class="w-full p-4 md:w-1/4 sm:w-1/2">
-
-                            <div
-                                class="px-4 py-6 overflow-hidden transition duration-500 transform border hover:scale-110 bg-[oklch(58.8%_0.158_241.966)] opacity-90  rounded-md">
-
-                               
-
-                                <div class="space-y-2">
-                                    <div class="flex justify-center">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            class="w-12 h-12 text-white lucide lucide-landmark">
-                                            <line x1="3" x2="21" y1="22" y2="22" />
-                                            <line x1="6" x2="6" y1="18" y2="11" />
-                                            <line x1="10" x2="10" y1="18" y2="11" />
-                                            <line x1="14" x2="14" y1="18" y2="11" />
-                                            <line x1="18" x2="18" y1="18" y2="11" />
-                                            <polygon points="12 2 20 7 4 7" />
-                                        </svg>
-                                    </div>
-                                    <h2 class="font-medium text-white  md:ext-xl title-font">Withdraw</h2>
-                                </div>
-
-                            </div>
-
-
+                        <!-- Wallet -->
+                        <RouterLink to="/wallet"
+                            class="flex flex-col items-center justify-center p-6 transition duration-300 transform shadow-md bg-white/20 backdrop-blur-md rounded-xl hover:scale-105">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2" class="w-10 h-10 mb-3 text-white">
+                                <rect width="20" height="14" x="2" y="5" rx="2" />
+                                <line x1="2" x2="22" y1="10" y2="10" />
+                            </svg>
+                            <span class="text-sm font-medium text-white">Wallet</span>
                         </RouterLink>
 
+                        <!-- Account -->
+                        <RouterLink to="/account"
+                            class="flex flex-col items-center justify-center p-6 transition duration-300 transform shadow-md bg-white/20 backdrop-blur-md rounded-xl hover:scale-105">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2" class="w-10 h-10 mb-3 text-white">
+                                <circle cx="12" cy="7" r="4" />
+                                <path d="M5.5 21a7.5 7.5 0 0 1 13 0" />
+                            </svg>
+                            <span class="text-sm font-medium text-white">Account</span>
+                        </RouterLink>
+
+                        <!-- Information -->
+                        <RouterLink to="/info"
+                            class="flex flex-col items-center justify-center p-6 transition duration-300 transform shadow-md bg-white/20 backdrop-blur-md rounded-xl hover:scale-105">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2" class="w-10 h-10 mb-3 text-white">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="12" x2="12" y1="16" y2="12" />
+                                <line x1="12" x2="12" y1="8" y2="8" />
+                            </svg>
+                            <span class="text-sm font-medium text-white">Information</span>
+                        </RouterLink>
+
+                        <!-- Password -->
+                        <RouterLink to="/password"
+                            class="flex flex-col items-center justify-center p-6 transition duration-300 transform shadow-md bg-white/20 backdrop-blur-md rounded-xl hover:scale-105">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2" class="w-10 h-10 mb-3 text-white">
+                                <rect x="3" y="11" width="18" height="11" rx="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg>
+                            <span class="text-sm font-medium text-white">Password</span>
+                        </RouterLink>
+
+                        <!-- Terms of Policy -->
+                        <RouterLink to="/policy"
+                            class="flex flex-col items-center justify-center p-6 transition duration-300 transform shadow-md bg-white/20 backdrop-blur-md rounded-xl hover:scale-105">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2" class="w-10 h-10 mb-3 text-white">
+                                <path d="M12 20h9" />
+                                <path d="M12 4h9" />
+                                <path d="M4 9h16" />
+                                <path d="M4 15h16" />
+                            </svg>
+                            <span class="text-sm font-medium text-white">Terms of Policy</span>
+                        </RouterLink>
+
+                        <!-- Logout (Red Style) -->
+                        <button @click="logout"
+                            class="flex flex-col items-center justify-center p-6 transition duration-300 transform shadow-md bg-red-600/80 backdrop-blur-md rounded-xl hover:scale-105">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2" class="w-10 h-10 mb-3 text-white">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                                <polyline points="16 17 21 12 16 7" />
+                                <line x1="21" y1="12" x2="9" y2="12" />
+                            </svg>
+                            <span class="text-sm font-medium text-white">Log Out</span>
+                        </button>
 
                     </div>
-
-
-
                 </div>
             </section>
         </div>

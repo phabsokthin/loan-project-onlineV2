@@ -16,75 +16,14 @@
                         </h2>
 
                     </div>
-                    <!-- <div id="link_account" class="">
-                        <div
-                            class="relative p-8 overflow-hidden border rounded-md shadow-xl bg-[oklch(58.8%_0.158_241.966)] opacity-90 group">
-                            <div aria-hidden="true"
-                                class="absolute inset-0 duration-300 -translate-y-1/2 border rounded-full opacity-25 aspect-video group-hover:-translate-y-1/4 to-white blur-2xl ">
-                            </div>
-                            <div
-                                class="relative grid items-center justify-center grid-cols-1 lg:flex lg:justify-between">
-                                <div
-                                    class="mt-6 border-gray-200 rounded-full border-8 flex items-center justify-center w-[180px] h-[180px]">
-                                    <div v-for="usDoc in userDoc" :key="usDoc" class="space-y-2 text-center">
-                                        <h1 class="text-3xl text-white ">{{ usDoc?.credit }}</h1>
-                                        <span class="text-white ">Meduim Credit</span>
-                                    </div>
-                                    <div v-if="!user">
-                                        <span class="text-white "> No Meduim Credit</span>
-
-                                    </div>
-                                </div>
-
-                                <div v-if="user">
-                                    <div v-for="usDoc in userDoc" :key="usDoc"
-                                        class="mt-6 pb-6 rounded-b-[--card-border-radius]">
-                                        <div v-if="usDoc.accountNumber" class="space-y-3 text-xl text-white">
-                                            <div v-if="usDoc.status === '0' || usDoc.status === '1'">
-                                                <h1>Welcome!</h1>
-                                                <h1>Account Number: {{ usDoc?.accountNumber }}</h1>
-                                                <div class="space-y-2">
-                                                    <h1>Account balance</h1>
-                                                    <h1 v-if="usDoc.status === '1'" class="text-2xl font-bold">₱ {{ usDoc?.withDrawAmount }}</h1>
-                                                     <h1 v-else class="text-2xl font-bold">₱ 0</h1>
-                                                </div>
-                                            </div>
-                                            <h1 v-else class="text-xs text-white md:text-xl">No Account Number
-                                            </h1>
-                                        </div>
-                                        <div v-else>
-                                            <h1 class="text-xs text-white md:text-xl">No Account Number</h1>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div v-else class="mt-6 pb-6 rounded-b-[--card-border-radius]">
-                                    <div class="space-y-3 text-xl text-white">
-
-                                        <h1>No Account Number</h1>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div>
 
-
-            <div class="flex justify-center my-10">
+            <div class="flex justify-center mx-auto my-10">
                 <button @click="handleRequestLoan"
-                    class="flex items-center gap-1 p-3 font-bold text-white bg-blue-600 rounded-full shadow-xl hover:bg-blue-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-move-down">
-                        <path d="M8 18L12 22L16 18" />
-                        <path d="M12 2V22" />
-                    </svg>
-
+                    class="flex items-center gap-1 p-5 font-bold text-white bg-blue-600 rounded-full shadow-xl hover:bg-blue-700">
                     <div>
-                        <div class="">Request loan</div>
+                        <div class="">Apply Now</div>
                     </div>
                 </button>
             </div>
