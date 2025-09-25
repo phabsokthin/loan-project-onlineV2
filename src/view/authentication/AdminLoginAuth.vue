@@ -1,88 +1,73 @@
 <template>
-    <div class="flex items-center justify-center min-h-screen hero-image" v-motion-fade>
-        <div class="w-full max-w-md px-8 py-12">
-            <form @submit.prevent="handleLogin"
-                class="p-8 bg-white shadow-lg bg-opacity-90 backdrop-blur-sm rounded-xl">
-                <!-- Logo Section -->
-                <div class="flex justify-center my-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="w-24 h-24 lucide lucide-circle-user">
-                        <circle cx="12" cy="12" r="10" />
-                        <circle cx="12" cy="10" r="3" />
-                        <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
-                    </svg>
-                </div>
-
-                <!-- email Input -->
-                <div
-                    class="flex items-center mx-4 my-6 transition-colors duration-300 border-b-2 border-gray-700 hover:border-green-800">
-                    <label class="self-center text-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-mail-icon lucide-mail">
-                            <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
-                            <rect x="2" y="4" width="20" height="16" rx="2" />
-                        </svg>
-                    </label>
-                    <input v-model="loginForm.email" class="w-full py-3 pl-4 bg-transparent border-0 focus:outline-none"
-                        type="email" placeholder="Email" required>
-                </div>
-
-                <!-- Password Input -->
-                <div
-                    class="flex items-center mx-4 my-6 transition-colors duration-300 border-b-2 border-gray-700 hover:border-green-800">
-                    <label class="self-center text-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-lock-keyhole">
-                            <circle cx="12" cy="16" r="1" />
-                            <rect x="3" y="10" width="18" height="12" rx="2" />
-                            <path d="M7 10V7a5 5 0 0 1 10 0v3" />
-                        </svg>
-                    </label>
-                    <input v-model="loginForm.password"
-                        class="w-full py-3 pl-4 bg-transparent border-0 focus:outline-none" type="password"
-                        placeholder="Password" required>
-                </div>
-
-                <!-- Login Button -->
-                <div class="mx-4 mt-8 mb-4">
-                    <button type="submit"
-                        class="w-full py-3 font-medium text-white transition-colors duration-300 bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-
-                        <span v-if="loading" class="mr-2 loader"></span>
-                        <span>{{ loading ? 'Logging in...' : 'LOGIN' }}</span>
-                    </button>
-                </div>
-                <!-- <div class="mt-8">
-                    <div class="relative">
-                        <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-gray-300"></div>
-                        </div>
-                        <div class="relative flex justify-center text-sm">
-                            <span class="px-2 text-gray-500 bg-white bg-opacity-90">
-                                Don't have an account?
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mx-4 mt-8 mb-4">
-                    <RouterLink :to="{ name: 'register' }"
-                        class="flex justify-center w-full py-3 font-medium text-black transition-colors duration-300 bg-white border-2 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                        Register
-                    </RouterLink>
-                </div> -->
-            </form>
+  <div class="flex items-center justify-center min-h-screen bg-blue-600">
+    <div class="flex w-full max-w-4xl overflow-hidden bg-white shadow-lg rounded-2xl">
+      
+      <!-- Left: Login Form (always visible) -->
+      <div class="w-full px-6 py-10 md:w-1/2 md:px-10 md:py-12">
+        <h2 class="mb-8 text-2xl font-semibold text-gray-800">Login</h2>
+        
+        <!-- Email -->
+        <div class="mb-6">
+          <input
+            v-model="loginForm.email"
+            type="email"
+            placeholder="Email"
+            required
+            class="w-full px-4 py-3 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
         </div>
+        
+        <!-- Password -->
+        <div class="mb-6">
+          <input
+            v-model="loginForm.password"
+            type="password"
+            placeholder="Password"
+            required
+            class="w-full px-4 py-3 border rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
+        </div>
+        
+        <!-- Remember + Forgot -->
+        <div class="flex items-center justify-between mb-6 text-sm">
+          <label class="flex items-center space-x-2">
+            <input type="checkbox" v-model="rememberMe" class="text-blue-600 rounded focus:ring-blue-500"/>
+            <span>Remember me</span>
+          </label>
+          <a href="#" class="text-blue-600 hover:underline">Forgot password?</a>
+        </div>
+        
+        <!-- Button -->
+        <button
+          type="submit"
+          @click.prevent="handleLogin"
+          class="w-full py-3 font-medium text-white transition-colors bg-blue-600 rounded-md hover:bg-blue-700"
+        >
+          <span v-if="loading">Logging in...</span>
+          <span v-else>Login</span>
+        </button>
+      </div>
+
+      <!-- Right: Illustration & Text (hidden on mobile, visible on md+) -->
+      <div class="flex-col items-center justify-center hidden w-1/2 px-10 py-12 text-center bg-gray-50 md:flex">
+        <img src="@/assets/login.webp" alt="Login Illustration" class="w-64 mb-6" />
+        <h3 class="mb-4 text-xl font-semibold text-gray-800">Check Your Project Progress</h3>
+        <p class="text-sm text-gray-600">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Pellentesque efficitur nisl ut elit commodo, ut posuere urna porttitor.
+        </p>
+      </div>
     </div>
+  </div>
 </template>
+
+
 
 <script>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import useLogin from '@/firebase/useLogin'
+import useLogin from '@/firebase/useLogin';
+
 
 export default {
     setup() {
@@ -149,6 +134,15 @@ export default {
     display: inline-block;
     vertical-align: middle;
 }
+
+.image-login{
+    background-image: url("");
+    min-height: 50px;
+    background-position: "center";
+    background-repeat: "no-repeat";
+    background-size: "cover";
+}
+    
 
 @keyframes spin {
     0% {

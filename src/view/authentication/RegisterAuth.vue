@@ -1,73 +1,71 @@
 <template>
-  <div class="flex flex-col items-center justify-center min-h-screen hero-image">
+  <div class="flex items-center justify-center min-h-screen hero-image">
     <!-- Register Card -->
-    <div class="w-full max-w-md px-8 py-10 bg-white bg-opacity-10 rounded-lg shadow-lg">
-      <form @submit.prevent="handleSubmit" class="text-white">
+    <div class="w-full max-w-md px-4 py-10">
+      <form @submit.prevent="handleSubmit" class="p-8 rounded-xl bg-opacity-90">
         <!-- Logo Section -->
-        <div class="flex justify-center mb-3">
-            <img :src="userIcon" alt="User Icon" class="w-20 h-20 object-contain" />
+        <div class="flex justify-center mb-4">
+          <img :src="userIcon" alt="user icon " class="w-28 h-28 object-contain">
         </div>
 
         <!-- Welcome text -->
-        <div class="mb-8 text-center">
-          <h2 class="text-lg font-semibold">Welcome!</h2>
-          <p class="text-sm">Please login your loan application.</p>
+        <div class="mb-4 text-center text-white">
+          <h2 class="mb-2 text-lg font-semibold">Welcome!</h2>
+          <p class="mb-4 text-sm">Please register your loan application.</p>
         </div>
 
         <!-- Phone Input -->
         <div class="mb-4">
-          <label class="block mb-2 text-sm text-white">Enter your phone number</label>
-          <input v-model="form.phone" type="tel" maxlength="10" required
-            class="input-style"
-            placeholder="Phone Number" />
+          <label for="phone" class="block mb-1 text-sm text-white">Enter your phone number</label>
+          <input id="phone" v-model="form.phone"
+            class="w-full px-4 py-3 text-gray-700 placeholder-gray-500 bg-white bg-opacity-50 rounded-md focus:outline-none"
+            placeholder="Phone Number" required>
         </div>
 
         <!-- Password Input -->
         <div class="mb-4">
-          <label class="block mb-2 text-sm text-white">Create your own password</label>
-          <input v-model="form.password" type="password" required
-            class="input-style"
-            placeholder="Password" />
+          <label for="password" class="block mb-1 text-sm text-white">Create your own password</label>
+          <input id="password" type="password" v-model="form.password"
+            class="w-full px-4 py-3 text-gray-700 placeholder-gray-500 bg-white bg-opacity-50 rounded-md focus:outline-none"
+            placeholder="Password" required>
         </div>
 
-        <!-- Confirm Password -->
+        <!-- Confirm Password Input -->
         <div class="mb-4">
-          <label class="block mb-2 text-sm text-white">Confirm Password</label>
-          <input v-model="form.confirm_password" type="password" required
-            class="input-style"
-            placeholder="Confirm Password" />
+          <label for="confirm_password" class="block mb-1 text-sm text-white">Confirm Password</label>
+          <input id="confirm_password" type="password" v-model="form.confirm_password"
+            class="w-full px-4 py-3 text-gray-700 placeholder-gray-500 bg-white bg-opacity-50 rounded-md focus:outline-none"
+            placeholder="Confirm Password" required>
         </div>
 
         <!-- Verification Code -->
-       <div class="mb-6">
-        <label class="block mb-2 text-sm text-white">Verification Code</label>
-        <div class="flex items-center space-x-3">
-            <!-- Input -->
+        <div class="mb-6">
+          <label class="block mb-2 text-sm text-white">Verification Code</label>
+          <div class="flex items-center space-x-3">
             <input v-model="form.verification_code" type="text" maxlength="6" required
-            class="flex-grow py-3 px-4 rounded-md text-white placeholder-white 
-                    bg-white bg-opacity-30 border border-white border-opacity-40
-                    focus:outline-none focus:ring-2 focus:ring-green-500 backdrop-blur-sm"
-            placeholder="Enter Code" />
+              class="flex-grow py-3 px-4 rounded-md text-white placeholder-white 
+                     bg-white bg-opacity-30 border border-white border-opacity-40
+                     focus:outline-none focus:ring-2 focus:ring-green-500 backdrop-blur-sm"
+              placeholder="Enter Code" />
 
-            <!-- Captcha Image -->
             <div class="h-12 w-28 rounded-md overflow-hidden shadow-md bg-white flex items-center justify-center">
-            <img src="@/assets/fcode.png" alt="captcha" class="w-full h-full object-contain" />
+              <img src="@/assets/fcode.png" alt="captcha" class="w-full h-full object-contain" />
             </div>
-        </div>
+          </div>
         </div>
 
         <!-- Register Button -->
         <div class="mb-6">
           <button type="submit" :disabled="loading"
-            class="btn-green">
+            class="w-full py-3 font-semibold text-white bg-green-700 bg-opacity-90 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 backdrop-blur-sm">
             <span v-if="loading" class="mr-2 loader"></span>
-            <span>{{ loading ? 'Signing up...' : 'Register' }}</span>
+            <span>{{ loading ? 'Registering...' : 'Register' }}</span>
           </button>
         </div>
 
         <!-- Login Link -->
         <div class="text-center">
-          <p class="text-sm">Already have an account?</p>
+          <p class="text-sm text-white">Already have an account?</p>
           <RouterLink :to="{ name: 'login' }"
             class="text-sm font-semibold underline hover:text-green-300">
             Login
@@ -77,21 +75,21 @@
     </div>
 
     <!-- Partner Logos Footer -->
-    <footer class="partner-footer">
-        <div class="container mx-auto flex justify-center items-center">
-            <img src="@/assets/partner.png" alt="partner logos" class="h-14 opacity-100" />
-        </div>
-    </footer>
+     <!-- Partner Logos Footer -->
+    <div class="partner-footer">
+      <img :src="partnerLogo" alt="Partners" class="h-14 mx-auto opacity-100" />
+    </div>
 
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router';
 import { registerWithPhone } from '@/firebase/Auth';
 import useCollection from '@/firebase/useCollection';
 import { timestamp } from '@/config/config';
+import partnerLogo from '@/assets/partner.png';
 import userIcon from '@/assets/person.png';
 
 const form = ref({
@@ -100,11 +98,16 @@ const form = ref({
   confirm_password: '',
   verification_code: ''
 });
+
 const loading = ref(false);
 const router = useRouter();
 
 const { setDocs } = useCollection('users');
 const { setDocs: setDocsData } = useCollection('customers');
+
+// For hiding and showing the partner footer
+const showPartnerFooter = ref(false);
+let lastScrollPosition = 0;
 
 const handleSubmit = async () => {
   const phonePattern = /^\d{9,10}$/;
@@ -142,15 +145,61 @@ const handleSubmit = async () => {
     loading.value = false;
   }
 };
+
+// Scroll event to detect scrolling direction
+const onScroll = () => {
+  const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+  if (currentScrollPosition < lastScrollPosition) {
+    // User scrolled up, show the footer
+    showPartnerFooter.value = true;
+  } else {
+    // User scrolled down, hide the footer
+    showPartnerFooter.value = false;
+  }
+
+  lastScrollPosition = currentScrollPosition <= 0 ? 0 : currentScrollPosition; // Reset if at the top
+};
+
+// Adding the scroll event listener when the component mounts
+onMounted(() => {
+  window.addEventListener('scroll', onScroll);
+});
+
+// Removing the event listener when the component unmounts
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', onScroll);
+});
 </script>
+
 
 <style scoped>
 .hero-image {
-  background-image: url("@/assets/background.png");
+  background-image: url("/src/assets/background.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment:fixed;
+  min-height: 100vh;
+}
+
+/* Footer logos */
+.partner-footer {
+  position:fixed;
+  bottom: 0;
+  width: 100%;
+  height: 65px;
+  padding: 8px 0;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  text-align: center;
+}
+
+.code_input {
+  background-image: url("/src/assets/Verification\ Code.png");
+  width: 150px;
+  height: 50px;
+  background-position: center;
+  border-radius: 5px;
 }
 
 /* Inputs */
@@ -167,20 +216,6 @@ const handleSubmit = async () => {
          focus:ring-2 focus:ring-green-500 backdrop-blur-sm;
 }
 
-/* Partner logos footer */
-.partner-footer {
-  position: absolute;       /* stays at the bottom of the screen */
-  bottom: -20%;
-  left: 0;
-  width: 100%;
-  height: 60px;          /* same height as your main footer bar */
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(6px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 5;           /* make sure it's on top */
-}
 
 
 /* Loader spinner */

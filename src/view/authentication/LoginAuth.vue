@@ -1,48 +1,38 @@
 <template>
-  <div class="flex flex-col items-center justify-center min-h-screen hero-image">
-    <!-- Login Card -->
-    <div class="w-full max-w-md px-6 py-8 bg-white bg-opacity-10 rounded-lg shadow-lg ">
-      <form @submit.prevent="handleLogin" class="text-white">
+  <div class="flex items-center justify-center min-h-screen hero-image" v-motion-fade>
+    <div class="w-full max-w-md px-6 py-10">
+      <form @submit.prevent="handleLogin" class="items-center justify-center p-6 text-white rounded-xl">
         <!-- Logo Section -->
-        <!-- Logo Section -->
-        <div class="flex justify-center mb-3">
-            <img :src="userIcon" alt="User Icon" class="w-20 h-20 object-contain" />
+        <div class="flex justify-center mb-6">
+          <img :src="userIcon" alt="User Icon" class="w-28 h-28 object-contain" />
         </div>
 
         <!-- Welcome text -->
-        <div class="mb-8 text-center">
-          <h2 class="text-lg font-semibold">Welcome!</h2>
-          <p class="text-sm">Please login your loan application.</p>
+        <div class="mb-6 text-center">
+          <h2 class="mb-2 text-lg font-semibold">Welcome!</h2>
+          <p class="mb-8 text-sm">Please login your loan application.</p>
         </div>
 
         <!-- Phone Input -->
         <div class="mb-6">
-          <label class="block mb-2 text-sm text-white">Enter your phone number</label>
+          <label for="">Enter your Phone number</label>
           <input v-model="loginForm.phone"
-            class="w-full px-4 py-3 text-white placeholder-white 
-                   bg-white bg-opacity-30 border border-white border-opacity-40 
-                   rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 
-                   backdrop-blur-sm"
-            type="tel" placeholder="Phone Number" required />
+            class="w-full px-4 py-3 text-gray-600 placeholder-gray-600 bg-white bg-opacity-50 rounded-md focus:outline-none"
+            type="tel" placeholder="Phone Number" required>
         </div>
 
         <!-- Password Input -->
         <div class="mb-6">
-          <label class="block mb-2 text-sm text-white">Enter your own password</label>
+          <label for="">Enter your Password</label>
           <input v-model="loginForm.password"
-            class="w-full px-4 py-3 text-white placeholder-white 
-                   bg-white bg-opacity-30 border border-white border-opacity-40 
-                   rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 
-                   backdrop-blur-sm"
-            type="password" placeholder="Password" required />
+            class="w-full px-4 py-3 text-gray-600 placeholder-gray-600 bg-white bg-opacity-50 rounded-md focus:outline-none"
+            type="password" placeholder="Password" required>
         </div>
 
         <!-- Login Button -->
         <div class="mb-6">
           <button type="submit"
-            class="w-full py-3 font-semibold text-white bg-green-700 bg-opacity-90 
-                   rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 
-                   focus:ring-green-500 backdrop-blur-sm">
+            class="w-full py-3 font-medium text-white bg-green-700 rounded-md hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-green-500">
             <span v-if="loading" class="mr-2 loader"></span>
             <span>{{ loading ? 'Signing in...' : 'Login' }}</span>
           </button>
@@ -71,7 +61,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { loginWithPhone } from '@/firebase/Auth';
 import partnerLogo from '@/assets/partner.png';
-import userIcon from '@/assets/person.png'; 
+import userIcon from '@/assets/person.png'; // This is now used in the template
 
 const loginForm = ref({ phone: '', password: '' });
 const loading = ref(false);
@@ -85,7 +75,7 @@ const handleLogin = async () => {
     alert('Login successful!');
     router.push({ path: '/' });
   } else {
-    alert('Incorrect phone or password. Try again!');
+    alert("Incorrect phone or password. Try again!");
   }
   loading.value = false;
 };
@@ -93,9 +83,10 @@ const handleLogin = async () => {
 
 <style scoped>
 .hero-image {
-  background-image: url("@/assets/background.png"); /* scenic bg */
-  background-size: cover;
+  background-image: url("/src/assets/background.png");
   background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   min-height: 100vh;
 }
 
@@ -104,7 +95,7 @@ const handleLogin = async () => {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 60px;
+  height: 65px;
   padding: 8px 0;
   background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(8px);
