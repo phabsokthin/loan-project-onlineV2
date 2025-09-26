@@ -2,26 +2,9 @@
     <div class="mx-auto ">
         <!-- component -->
         <section>
-            <div class="">
-                <div class="max-w-4xl px-6 mx-auto text-gray-500">
-                    <div class="flex justify-center my-10">
-                        <h2 class="flex items-center gap-1 text-2xl font-semibold text-gray-950 ">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="text-white lucide lucide-move-right">
-                                <path d="M18 8L22 12L18 16" />
-                                <path d="M2 12H22" />
-                            </svg>
-                            <!-- <span class="text-lg text-black md:text-2xl">Loan Processing</span> -->
-                        </h2>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex justify-center mx-auto my-10">
+            <div class="flex justify-center  mx-auto my-5">
                 <button @click="handleRequestLoan"
-                    class="flex items-center gap-1 p-5 font-bold text-white bg-blue-600 rounded-full shadow-xl hover:bg-blue-700">
+                    class="w-40 p-2 font-bold text-white rounded-lg shadow-xl bg-[#5A7135] hover:bg-[#4A5E2A] text-center">
                     <div>
                         <div class="">Apply Now</div>
                     </div>
@@ -29,18 +12,6 @@
             </div>
 
             <div>
-                <div class="flex justify-center my-10">
-                    <h2 class="flex items-center gap-1 font-semibold text-black ">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-move-right">
-                            <path d="M18 8L22 12L18 16" />
-                            <path d="M2 12H22" />
-                        </svg>
-                        <span class="text-lg md:text-2xl">Customer Received Loans </span>
-                    </h2>
-                </div>
-
                 <div class="max-w-4xl px-6 mx-auto text-white">
                     <div
                         class="relative p-2 overflow-hidden bg-gray-800 opacity-45  border rounded-md  md:px-8 group ">
