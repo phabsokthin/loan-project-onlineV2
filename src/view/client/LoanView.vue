@@ -1,11 +1,6 @@
 <template>
-    <div class="hidden lg:block">
-        <NavbarComponent />
-    </div>
-    <div class="lg:hidden">
-        <MobileView />
-    </div>
-    <div v-for="usDoc in userDoc" :key="usDoc">
+ 
+    <div v-for="usDoc in userDoc" :key="usDoc" class="my-10">
         <form v-if="usDoc.amount === 0" @submit.prevent="submitLoan" v-motion-fade>
             <div class="max-w-4xl rounded-md px-4 py-2 m-auto mt-2 bg-[oklch(58.8%_0.158_241.966)] opacity-90 ">
                 <div class="max-w-4xl px-4 py-2 m-auto mt-2">
@@ -305,8 +300,6 @@
 
 <script>
 import { ref, computed } from 'vue';
-import NavbarComponent from '@/components/client/NavbarComponent.vue';
-import MobileView from './MobileView.vue';
 // import IdentificationView from './IdentificationView.vue';
 import { useRouter } from 'vue-router';
 import useCollection from '@/firebase/useCollection';
@@ -318,8 +311,7 @@ import { documentId, where } from 'firebase/firestore';
 
 export default {
     components: {
-        NavbarComponent,
-        MobileView
+      
         // IdentificationView
     },
     setup() {

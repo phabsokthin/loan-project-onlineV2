@@ -4,12 +4,17 @@
       <form @submit.prevent="handleLogin" class="items-center justify-center p-6 text-white rounded-xl">
         <!-- Logo Section -->
         <div class="flex justify-center mb-6">
-          <img :src="userIcon" alt="User Icon" class="w-28 h-28 object-contain" />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="w-[140px]">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+          </svg>
+
         </div>
-        
-         <div class="mb-4 text-center text-white">
-          <h2 class="mb-2 text-lg font-semibold">Welcome!</h2>
-          <p class="mb-4 text-sm">Please register your loan application.</p>
+
+        <div class="mb-4 text-center text-white">
+          <h2 class="mb-2 text-xl font-semibold">Welcome!</h2>
+          <p class="mb-4 text-md">Please register your loan application.</p>
         </div>
         <!-- Phone Input -->
         <div class="mb-6">
@@ -39,8 +44,7 @@
         <!-- Register Section -->
         <div class="mb-6 text-center">
           <p class="text-sm">Don’t have an account?</p>
-          <RouterLink :to="{ name: 'register' }"
-            class="text-sm font-semibold underline hover:text-green-300">
+          <RouterLink :to="{ name: 'register' }" class="text-sm font-semibold underline hover:text-green-300">
             Register Now
           </RouterLink>
         </div>
@@ -49,7 +53,7 @@
 
     <!-- Partner Logos Footer -->
     <div class="partner-footer">
-      <img :src="partnerLogo" alt="Partners" class="h-14 mx-auto opacity-100" />
+      <img :src="partnerLogo" alt="Partners" class="mx-auto opacity-100 h-14" />
     </div>
   </div>
 </template>
@@ -59,7 +63,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { loginWithPhone } from '@/firebase/Auth';
 import partnerLogo from '@/assets/partner.png';
-import userIcon from '@/assets/person.png'; // This is now used in the template
+// import userIcon from '@/assets/person.png'; // This is now used in the template
 
 // Form and loading state
 const loginForm = ref({ phone: '', password: '' });
@@ -70,16 +74,16 @@ const router = useRouter();
 const handleLogin = async () => {
   if (loading.value) return;
   loading.value = true;
-  
+
   const result = await loginWithPhone(loginForm.value.phone, loginForm.value.password);
-  
+
   if (result.user) {
     alert('Login successful!');
     router.push({ path: '/' });
   } else {
     alert("Incorrect phone or password. Try again!");
   }
-  
+
   loading.value = false;
 };
 </script>
@@ -119,7 +123,12 @@ const handleLogin = async () => {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
