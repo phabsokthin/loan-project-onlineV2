@@ -48,7 +48,7 @@ export default {
 
 <style scoped>
     .bg-image {
-        background-image: url("/src/assets/bg1.png");
+        background-image: url("/src/assets/background.png");
         min-height: 100vh;
         background-position: center;
         background-repeat: no-repeat;

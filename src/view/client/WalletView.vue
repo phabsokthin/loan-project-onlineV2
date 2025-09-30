@@ -1,201 +1,165 @@
 <template>
+  <div>
+    <!-- Navbar -->
     <div class="hidden lg:block">
-        <NavbarComponent />
+      <NavbarComponent />
     </div>
     <div class="lg:hidden">
-        <MobileView />
+      <MobileView />
     </div>
-    <div class="w-full max-w-4xl px-4 py-2 m-auto mt-2 " v-motion-fade>
 
-        <h2 class="p-3 text-lg font-semibold text-center text-white bg-blue-600 border rounded-md opacity-80">Wallet
+    <!-- Main Container -->
+    <div class="px-4 py-4 m-auto min-h-screen hero-image" v-motion-fade >
+      <div class="w-full max-w-5xl mx-auto mt-10">
+        <!-- Header -->
+        <h2 class="flex items-center gap-2 p-3 text-lg font-semibold text-white bg-black rounded-t-md">
+          <!-- Back Arrow Icon -->
+          <svg
+            class="w-6 h-6"
+            viewBox="0 0 7111 7111"
+            xmlns="http://www.w3.org/2000/svg"> <path d="m5000 7111c-179 0-346-69-472-195l-2888-2889c-260-260-260-683 0-943l2888-2889c260-260 683-260 943 0s260 683 0 943l-2417 2418 2417 2417c260 260 260 683 0 943-125 126-293 195-471 195z"
+              fill="#ffffff"/>
+          </svg>
+          <span>Wallet</span>
         </h2>
 
-        <div
-            class="grid items-center grid-cols-2 grid-rows-2 gap-4 mt-4 bg-[oklch(58.8%_0.158_241.966)] opacity-90 border rounded-md p-7">
-            <div class="flex items-center">
-                <span class="font-bold text-white ">Account balance :</span>
+        <!-- Balance Card -->
+        <div class="relative  rounded-md overflow-hidden mt-5">
+          <div
+            class="relative p-6 bg-black/50 shadow-md rounded-md text-white"
+          >
+            <!-- Icon Top Left -->
+            <div class="absolute top-3 left-3">
+              <svg
+                id="Layer_1"
+                viewBox="0 0 64 64"
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6 text-white"
+              >
+                <path
+                  d="m16.63997 5.20539-10.5599 10.5599c-2.21875-.14922-3.94674-1.98398-3.94674-4.22396v-4.69336c1.13073-1.02396 2.60273-1.64258 4.22409-1.64258zm32.44805 0h-4.5013l10.45325 10.45325v-4.47995c0-3.28541-2.66666-5.9733-5.95195-5.9733zm-22.95469-1.21602c-1.45065-1.45065-3.79727-1.45065-5.24792 0l-11.79739 11.79727h11.2l8.83203-8.81068zm14.22943 0c-1.45078-1.45065-3.81875-1.45065-5.2694 0l-11.79727 11.79727h28.86393zm7.06133 26.53867h13.6319c.23477 0 .4694.02135.70404.06393v-6.71992c0-3.28542-2.66666-5.95208-5.95195-5.95208h-49.42943c-3.51993 0-6.37865-2.85859-6.37865-6.37865v38.82669c0 5.9306 4.8 10.7306 10.73073 10.7306h45.07734c3.28529 0 5.95195-2.66667 5.95195-5.95195v-8.89596c-.23463.02135-.46927.04258-.70404.04258h-13.6319c-4.35208 0-7.89336-3.54128-7.89336-7.87201.00001-4.35195 3.54129-7.89323 7.89337-7.89323zm-.10677 6.84792c-.57591 0-1.02396.4694-1.02396 1.04531 0 .55469.44805 1.02409 1.02396 1.02409.55469 0 1.02409-.4694 1.02409-1.02409 0-.57591-.4694-1.04531-1.02409-1.04531zm16.68268-1.79193v5.65326c0 1.62135-1.32265 2.92266-2.94401 2.92266h-13.6319c-1.6 0-3.02943-.63998-4.07474-1.68529s-1.68529-2.47461-1.68529-4.07461c0-3.17878 2.58125-5.73867 5.76003-5.73867h13.6319c1.62136 0 2.94401 1.3013 2.94401 2.92265zm-13.52526 2.83724c0-1.74922-1.42943-3.17865-3.15742-3.17865-1.74935 0-3.15729 1.42943-3.15729 3.17865 0 1.72813 1.40794 3.15742 3.15729 3.15742 1.72799 0 3.15742-1.42929 3.15742-3.15742z"
+                  fill="#ffffff"
+                />
+              </svg>
             </div>
-            <div class="text-right text-white">
-                <div v-for="usDoc in userDoc" :key="usDoc" class="flex items-center justify-end">
-                    <div v-if="usDoc?.status == '1'">
-                        <div v-if="usDoc.totalPrincipalAndInterest" class="text-lg font-bold ">₱ {{
-                            usDoc?.withDrawAmount }}</div>
-                        <div v-else class="">No account balance</div>
-                    </div>
-                    <div v-else>
-                        <p class="text-lg ">₱ 0</p>
-                    </div>
 
-                </div>
-                <svg class="inline-block h-6 text-white w-7" fill="none" stroke="currentColor" stroke-width="2"
-                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M1 12s4-6 11-6 11 6 11 6-4 6-11 6-11-6z" />
-                    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" fill="none" />
-                </svg>
+            <!-- Content Center -->
+            <div class="flex flex-col items-center">
+              <p class="text-sm opacity-90">Current balance:</p>
+              <div>
+                <h1 class="text-3xl font-bold">₱200,000.00</h1>
+              </div>
+              <p class="mt-1 text-xs opacity-80">
+                Repayment Period: 48 Months
+              </p>
             </div>
-            <!-- <div class="flex items-center">
-                <span class="font-medium">Another Field :</span>
-            </div>
-            <div class="text-right">
-                <span class="font-semibold text-blue-600">0₱</span>
-            </div> -->
+          </div>
         </div>
 
-
-        <div v-for="usDoc in userDoc" :key="usDoc">
-            <div v-if="usDoc?.status === '1'">
-                <button @click="handleWidthModal(usDoc)"
-                    class="w-full py-3 mt-4  font-semibold text-white capitalize bg-[oklch(58.8%_0.158_241.966)] opacity-90 border rounded-md hover:bg-blue-600 flex justify-center gap-2 ">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-banknote-arrow-down-icon lucide-banknote-arrow-down">
-                        <path d="M12 18H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5" />
-                        <path d="m16 19 3 3 3-3" />
-                        <path d="M18 12h.01" />
-                        <path d="M19 16v6" />
-                        <path d="M6 12h.01" />
-                        <circle cx="12" cy="12" r="2" />
-                    </svg>
-                    <span> Withdraw Money</span>
-                </button>
-
-                <p class="mt-2 text-sm text-green-500">{{ usDoc?.description }}</p>
-             
+        <!-- Loan Card -->
+        <div class="relative rounded-md overflow-hidden mt-5">
+          <div class="relative p-4 bg-black/50 rounded-md text-white">
+            <div class="flex justify-between mb-2">
+              <p class="text-sm font-medium">Loan Number:</p>
+              <span>175741244212933</span>
             </div>
-
+            <div class="flex justify-between">
+              <p class="text-sm font-medium">Order Status:</p>
+              <span class="text-green-400 font-semibold">Approved</span>
+            </div>
+          </div>
         </div>
 
-
-        <div
-            class="grid items-center grid-cols-2 grid-rows-2 gap-4 mt-4 bg-[oklch(58.8%_0.158_241.966)] opacity-90 border rounded-md p-7">
-            <div class="flex items-center">
-                <svg class="w-4 h-4 mr-2 text-white" fill="currentColor" viewBox="0 0 64 64"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <g>
-                        <circle cx="32" cy="14" r="3"></circle>
-                        <path d="M4,25h56c1.794,0,3.368-1.194,3.852-2.922c0.484-1.728-0.242-3.566-1.775-4.497l-28-17C33.438,0.193,32.719,0,32,0
-s-1.438,0.193-2.076,0.581l-28,17c-1.533,0.931-2.26,2.77-1.775,4.497C0.632,23.806,2.206,25,4,25z M32,9c2.762,0,5,2.238,5,5
-s-2.238,5-5,5s-5-2.238-5-5S29.238,9,32,9z"></path>
-                        <rect x="34" y="27" width="8" height="25"></rect>
-                        <rect x="46" y="27" width="8" height="25"></rect>
-                        <rect x="22" y="27" width="8" height="25"></rect>
-                        <rect x="10" y="27" width="8" height="25"></rect>
-                        <path d="M4,58h56c0-2.209-1.791-4-4-4H8C5.791,54,4,55.791,4,58z"></path>
-                        <path
-                            d="M63.445,60H0.555C0.211,60.591,0,61.268,0,62v2h64v-2C64,61.268,63.789,60.591,63.445,60z">
-                        </path>
-                    </g>
-                </svg>
-                <p class="text-sm text-white">
-                    Loan Number:
-                </p>
-            </div>
-            <div v-for="usDoc in userDoc" :key="usDoc" class="text-right text-white">
-                <span v-if="usDoc.accountNumber" class="">{{ usDoc?.accountNumber }}</span>
-                <span v-else>No loan number</span>
-            </div>
-
-            <div class="flex items-center">
-                <svg class="w-4 h-4 mr-2 text-white" fill="currentColor" viewBox="0 0 512 512"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <g>
-                        <path d="M341.942,356.432c-20.705-12.637-28.134-11.364-28.134-36.612c0-8.837,0-25.256,0-40.403
-c11.364-12.62,15.497-11.049,25.107-60.597c19.433,0,18.174-25.248,27.34-47.644c7.471-18.238,1.213-25.632-5.08-28.654
-c5.144-66.462,5.144-112.236-70.292-126.436c-27.344-23.437-68.605-15.48-88.158-11.569c-19.536,3.911-37.159,0-37.159,0
-l3.356,31.49c-28.608,34.332-14.302,80.106-18.908,106.916c-6.002,3.27-11.416,10.809-4.269,28.253
-c9.165,22.396,7.906,47.644,27.34,47.644c9.61,49.548,13.742,47.977,25.107,60.597c0,15.147,0,31.566,0,40.403
-c0,25.248-8.581,25.683-28.133,36.612c-47.14,26.349-108.569,41.658-119.575,124.01C48.468,495.504,134.952,511.948,256,512
-c121.048-0.052,207.528-16.496,205.517-31.558C450.511,398.09,388.519,384.847,341.942,356.432z"></path>
-                    </g>
-                </svg>
-                <p class="text-sm text-white">
-                    Order Status:
-                </p>
-            </div>
-            <div class="text-right" v-for="usDoc in userDoc" :key="usDoc">
-                <span v-if="usDoc.status === '0'"
-                    class="px-2 py-1 text-xs font-semibold text-white bg-orange-500 rounded-full">Under Review</span>
-                <span v-else-if="usDoc.status === '1'"
-                    class="px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded-full">Approved</span>
-                <span v-else class="px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded-full">Not
-                    Complete</span>
-
-
-            </div>
+        <!-- Description Card -->
+        <div class="relative mt-5 rounded-md overflow-hidden ">
+          <div class="relative p-4 bg-black/50 rounded-md text-white">
+            <p class="text-sm font-semibold mb-1">Description:</p>
+            <p class="text-sm leading-relaxed">
+              Congratulations, Your loan application has been approved by
+              Department of Finance.
+            </p>
+          </div>
         </div>
-        <!-- we use class select-none and point-events-none -->
-        <!-- <div class="w-full max-w-4xl mt-5 select-none">
-            <img :src="require('@/assets/Bank_image.jpg')" alt="BPI"
-                class="object-cover w-full max-w-4xl shadow-sm pointer-events-none select-none">
-        </div> -->
 
-
-
-
-
+        <!-- Withdraw Button -->
+        <div class="flex justify-center mx-auto my-6">
+          <button
+            @click="handleWidthModal()"
+            class="w-40 p-2 font-bold text-white rounded-lg shadow-xl bg-[#5A7135] hover:bg-[#4A5E2A] text-center"
+          >
+            Withdraw
+          </button>
+        </div>
+      </div>
     </div>
-    <component :is="currentComponents" :currentData="currentData" @close="currentComponents = ''" />
 
+    <component
+      :is="currentComponents"
+      :currentData="currentData"
+      @close="currentComponents = ''"
+    />
+  </div>
 </template>
+
 <script>
 import NavbarComponent from '@/components/client/NavbarComponent.vue';
 import MobileView from './MobileView.vue';
-import { watch } from 'vue';
+import { watch, ref } from 'vue';
 import getUser from '@/firebase/getUser';
 import getCollectionQueryTerm from '@/firebase/getCollectionQueryTerm';
 import { documentId, where } from 'firebase/firestore';
-import { ref } from 'vue';
-import WidthDrawModal from '@/components/admin/WithDrawLoanModal.vue'
+import WidthDrawModal from '@/components/admin/WithDrawLoanModal.vue';
+
 export default {
-    components: {
-        NavbarComponent,
-        MobileView,
-        WidthDrawModal
+  components: {
+    NavbarComponent,
+    MobileView,
+    WidthDrawModal,
+  },
+  setup() {
+    const userDoc = ref(null);
+    const { user } = getUser();
 
-    },
+    const currentComponents = ref('');
+    const currentData = ref(null);
 
-    setup() {
-
-        const userDoc = ref(null);
-        const { user } = getUser();
-
-        const currentComponents = ref("")
-
-        const currentData = ref(null)
-
-
-        watch(
-            () => user.value?.uid,
-            async (newUid) => {
-                if (newUid) {
-                    const { documents } = await getCollectionQueryTerm('customers', where(documentId(), '==', newUid));
-                    console.log("documents", documents);
-                    watch(() => {
-                        userDoc.value = documents.value || null;
-                    })
-
-
-
-                }
-            },
-            { immediate: true }
-        );
-
-
-        const handleWidthModal = (item) => {
-            currentComponents.value = "WidthDrawModal"
-            currentData.value = item
+    watch(
+      () => user.value?.uid,
+      async (newUid) => {
+        if (newUid) {
+          const { documents } = await getCollectionQueryTerm(
+            'customers',
+            where(documentId(), '==', newUid)
+          );
+          watch(() => {
+            userDoc.value = documents.value || null;
+          });
         }
+      },
+      { immediate: true }
+    );
 
+    const handleWidthModal = (item) => {
+      currentComponents.value = 'WidthDrawModal';
+      currentData.value = item;
+    };
 
-        return {
-            userDoc,
-            handleWidthModal,
-            currentComponents,
-            currentData
-        };
-
-    },
-}
+    return {
+      userDoc,
+      handleWidthModal,
+      currentComponents,
+      currentData,
+    };
+  },
+};
 </script>
-<style></style>
+
+<style scoped>
+.hero-image {
+  background-image: url('/src/assets/background.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+</style>
