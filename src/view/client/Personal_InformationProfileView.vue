@@ -1,17 +1,11 @@
 <template>
-  <!-- ✅ Navbar -->
-  <div class="hidden lg:block">
-    <NavbarComponent />
-  </div>
-  <div class="lg:hidden">
-    <MobileView />
-  </div>
 
-  <div class="px-4 py-4 m-auto min-h-screen back_image">
+  <div class="min-h-screen px-4 py-4 m-auto back_image">
     <div class="w-full max-w-5xl mx-auto mt-10">
       <!-- Header -->
-      <h2 class="flex items-center gap-2 p-3 text-lg font-semibold text-white bg-black rounded-t-md mt-10">
-        <svg
+      <h2 class="flex items-center gap-2 p-3 mt-10 text-lg font-semibold text-white bg-black rounded-t-md">
+       <RouterLink :to="{ name: 'home' }">
+         <svg
           class="w-6 h-6"
           viewBox="0 0 7111 7111"
           xmlns="http://www.w3.org/2000/svg"
@@ -21,12 +15,13 @@
             fill="#ffffff"
           />
         </svg>
-        <span>Wallet</span>
+       </RouterLink>
+        <span>Personal Profile</span>
       </h2>
     </div>
 
     <!-- ✅ Card -->
-    <div class="w-full max-w-5xl mx-auto mt-5 bg-black/50 p-6 rounded-md text-white">
+    <div class="w-full max-w-5xl p-6 mx-auto mt-5 text-white rounded-md bg-black/50">
       <!-- Card Header -->
       <div class="flex items-center gap-2 mb-6">
         <svg
@@ -60,58 +55,58 @@
       <form
         v-if="!userDoc?.maritalStatus"
         @submit.prevent="handleSubmitInfo"
-        class="grid grid-cols-1 lg:grid-cols-2 gap-6"
+        class="grid grid-cols-1 gap-6 lg:grid-cols-2"
       >
         <div>
-          <label class="block text-sm mb-1">Marital Status</label>
+          <label class="block mb-1 text-sm">Marital Status</label>
           <input
             v-model="formData.maritalStatus"
             type="text"
             placeholder="Marital Status"
-            class="w-full bg-transparent border-b border-gray-300 focus:outline-none focus:border-yellow-400 p-2"
+            class="w-full p-2 bg-transparent border-b border-gray-300 focus:outline-none focus:border-yellow-400"
             required
           />
         </div>
 
         <div>
-          <label class="block text-sm mb-1">Current Address</label>
+          <label class="block mb-1 text-sm">Current Address</label>
           <input
             v-model="formData.address"
             type="text"
             placeholder="Current Address"
-            class="w-full bg-transparent border-b border-gray-300 focus:outline-none focus:border-yellow-400 p-2"
+            class="w-full p-2 bg-transparent border-b border-gray-300 focus:outline-none focus:border-yellow-400"
             required
           />
         </div>
 
         <div>
-          <label class="block text-sm mb-1">Monthly Income</label>
+          <label class="block mb-1 text-sm">Monthly Income</label>
           <input
             v-model="formData.income"
             type="text"
             placeholder="Monthly Income"
-            class="w-full bg-transparent border-b border-gray-300 focus:outline-none focus:border-yellow-400 p-2"
+            class="w-full p-2 bg-transparent border-b border-gray-300 focus:outline-none focus:border-yellow-400"
             required
           />
         </div>
 
         <div>
-          <label class="block text-sm mb-1">Loan Purpose</label>
+          <label class="block mb-1 text-sm">Loan Purpose</label>
           <input
             v-model="formData.loanPurpose"
             type="text"
             placeholder="Loan Purpose"
-            class="w-full bg-transparent border-b border-gray-300 focus:outline-none focus:border-yellow-400 p-2"
+            class="w-full p-2 bg-transparent border-b border-gray-300 focus:outline-none focus:border-yellow-400"
             required
           />
         </div>
 
         <!-- Submit Button -->
-        <div class="lg:col-span-2 pt-6">
+        <div class="pt-6 lg:col-span-2">
           <button
             v-if="!isLoanding"
             type="submit"
-            class="w-full py-3 font-semibold text-white bg-yellow-500 rounded-full hover:bg-yellow-600 transition"
+            class="w-full py-3 font-semibold text-white transition bg-yellow-500 rounded-full hover:bg-yellow-600"
           >
             Submit
           </button>
@@ -128,19 +123,19 @@
 
       <!-- If Data Exists -->
       <div v-else class="space-y-4">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
           <p><strong>Marital Status:</strong> {{ userDoc.maritalStatus }}</p>
           <p><strong>Current Address:</strong> {{ userDoc.address }}</p>
           <p><strong>Monthly Income:</strong> {{ userDoc.income }}</p>
           <p><strong>Loan Purpose:</strong> {{ userDoc.loanPurpose }}</p>
         </div>
 
-        <button
+        <!-- <button
           @click="handleNext"
-          class="w-full mt-6 py-3 font-semibold text-white rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700"
+          class="w-full py-3 mt-6 font-semibold text-white rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700"
         >
           Next
-        </button>
+        </button> -->
       </div>
     </div>
   </div>
@@ -148,8 +143,7 @@
 
 
 <script>
-import NavbarComponent from "@/components/client/NavbarComponent.vue";
-import MobileView from "./MobileView.vue";
+
 import { useRouter } from "vue-router";
 import { ref, watch } from "vue";
 import useCollection from "@/firebase/useCollection";
@@ -158,7 +152,7 @@ import getColectionQuryTerms from "@/firebase/getCollectionQueryTerm";
 import { documentId, where } from "firebase/firestore";
 
 export default {
-  components: { NavbarComponent, MobileView },
+
   name: "PersonalInforView",
   props: { data: { type: Object, required: true } },
 

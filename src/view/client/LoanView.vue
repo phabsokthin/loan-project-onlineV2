@@ -1,12 +1,34 @@
 <template>
-  <div class="w-full min-h-screen back_image flex items-center justify-center px-4">
+  <div class="min-h-screen px-4 py-5 space-y-4 back_image">
+    
+  
+       <div class="w-full max-w-4xl mx-auto mt-10">
+      <!-- Header -->
+      <h2 class="flex items-center gap-2 p-3 mt-10 text-lg font-semibold text-white bg-black rounded-t-md">
+       <RouterLink :to="{ name: 'home' }">
+         <svg
+          class="w-6 h-6"
+          viewBox="0 0 7111 7111"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m5000 7111c-179 0-346-69-472-195l-2888-2889c-260-260-260-683 0-943l2888-2889c260-260 683-260 943 0s260 683 0 943l-2417 2418 2417 2417c260 260 260 683 0 943-125 126-293 195-471 195z"
+            fill="#ffffff"
+          />
+        </svg>
+       </RouterLink>
+        <span>Personal Profile</span>
+      </h2>
+    </div>
     <!-- Loan Card -->
     <div
-      class="w-full max-w-lg lg:max-w-2xl bg-black/30 rounded-xl shadow-lg p-6 sm:p-8 lg:p-10 text-white mb-5"
+      class="w-full max-w-4xl p-6 mx-auto mb-5 text-white shadow-lg bg-black/30 rounded-xl sm:p-8 lg:p-10"
     >
+
+    
       <!-- Header -->
-      <div class="text-center mb-6 lg:mb-8">
-        <h2 class="text-xl lg:text-2xl font-bold">Apply Now</h2>
+      <div class="mb-6 text-center lg:mb-8">
+        <h2 class="text-xl font-bold lg:text-2xl">Apply Now</h2>
         <p class="text-sm lg:text-base opacity-80">
           Apply from PHP 200,000 up to PHP 5,000,000
         </p>
@@ -14,17 +36,17 @@
 
       <!-- Loan Amount -->
       <div class="mb-6 lg:mb-8">
-        <label class="block text-sm lg:text-base mb-2">Enter Loan Amount</label>
-        <div class="flex items-center bg-gray-800 rounded-lg px-3 py-2 lg:py-3">
+        <label class="block mb-2 text-sm lg:text-base">Enter Loan Amount</label>
+        <div class="flex items-center px-3 py-2 bg-gray-800 rounded-lg lg:py-3">
           <input
             v-model="loanAmount"
             type="number"
             min="200000"
             max="5000000"
             step="10000"
-            class="flex-1 bg-transparent text-white text-lg lg:text-xl focus:outline-none"
+            class="flex-1 text-lg text-white bg-transparent lg:text-xl focus:outline-none"
           />
-          <span class="ml-2 text-gray-300 text-lg">₱</span>
+          <span class="ml-2 text-lg text-gray-300">₱</span>
         </div>
         <!-- Slider -->
         <input
@@ -39,7 +61,7 @@
 
       <!-- Installment Period -->
       <div class="mb-6 lg:mb-8">
-        <p class="text-sm lg:text-base mb-2">Choose Installment period</p>
+        <p class="mb-2 text-sm lg:text-base">Choose Installment period</p>
         <div class="grid grid-cols-3 gap-3">
           <button
             v-for="m in [6, 12, 24, 36, 48, 60]"
@@ -59,8 +81,8 @@
       </div>
 
       <!-- Loan Details -->
-      <div class="rounded-lg p-4 lg:p-6 mb-6 text-sm lg:text-base space-y-2">
-        <p class="font-semibold mb-2">Details:</p>
+      <div class="p-4 mb-6 space-y-2 text-sm rounded-lg lg:p-6 lg:text-base">
+        <p class="mb-2 font-semibold">Details:</p>
         <div class="flex justify-between">
           <span>Initial Loan Requested:</span>
           <span>₱{{ formatNumber(loanAmount) }}</span>
@@ -87,7 +109,7 @@
       <button
         @click="submitLoan"
         :disabled="isLoanding"
-        class="w-full py-3 lg:py-4 rounded-md bg-yellow-500 font-bold text-black hover:bg-yellow-400 disabled:bg-gray-600 disabled:text-gray-300 text-base lg:text-lg transition"
+        class="w-full py-3 text-base font-bold text-black transition bg-yellow-500 rounded-md lg:py-4 hover:bg-yellow-400 disabled:bg-gray-600 disabled:text-gray-300 lg:text-lg"
       >
         {{ isLoanding ? "Processing..." : "Apply Now" }}
       </button>

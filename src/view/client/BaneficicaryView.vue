@@ -1,10 +1,5 @@
 <template>
-    <div class="hidden lg:block">
-        <NavbarComponent />
-    </div>
-    <div class="lg:hidden">
-        <MobileView />
-    </div>
+    
     <div class="w-full max-w-4xl px-1 py-4 m-auto mt-1 " v-motion-fade>
         <h2
             class="flex items-center justify-center gap-2 p-3 text-lg font-semibold text-center text-white border rounded-md bg-blue-600/90">
@@ -110,8 +105,7 @@
     </div>
 </template>
 <script>
-import NavbarComponent from '@/components/client/NavbarComponent.vue'
-import MobileView from './MobileView.vue';
+
 import { useRouter } from 'vue-router';
 import getCollectionQueryTerm from '@/firebase/getCollectionQueryTerm';
 import { documentId, where } from 'firebase/firestore';
@@ -122,8 +116,7 @@ import useCollection from '@/firebase/useCollection';
 
 export default {
     components: {
-        NavbarComponent,
-        MobileView,
+        
     },
     name: 'BaneficicaryView',
     props: {

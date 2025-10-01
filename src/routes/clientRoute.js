@@ -15,6 +15,7 @@ import PersionalProfileView from '@/view/client/Personal_InformationProfileView.
 import BaneficicaryProfileView from '@/view/client/Baneficicary_ProfileView.vue'
 import LoanContactProfileView from '@/view/client/LoanContactProfileView.vue'
 import WithDrawSuccess from '@/view/client/WithDrawSuccessView.vue'
+import AccountView from '@/view/client/AccountView.vue';
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
@@ -25,6 +26,7 @@ const routes = [
   { path: '/register', name: 'register', component: RegisterAuth },
   { path: '/login', name: 'login', component: LoginAuth },
   { path: '/complete', name: 'complete', component: CompleteLoanView },
+
   {
     path: '/personal', name: 'personal', component: Personal_InforView,
 
@@ -34,30 +36,33 @@ const routes = [
 
   },
   {
-    path: '/baneficicary', name: 'baneficicary', component: BaneficicaryView,
+    path: '/bankDetails', name: 'bankDetails', component: BaneficicaryView,
 
     // props: (route) => ({
     //   data: JSON.parse(route.query.data),
     // })
   },
   {
-    path: '/loancontect', name: 'loancontect', component: LoancontractView,
+    path: '/signature', name: 'signature', component: LoancontractView,
 
     // props: (route) => ({
     //   data: JSON.parse(route.query.data),})
   },
   {
-    path: '/identification', name: 'identification', component: IdentificationView,
+    path: '/identifyPicture', name: 'identifyPicture', component: IdentificationView,
 
-    props: (route) => ({
-      data: JSON.parse(route.query.data),
-    })
+    // props: (route) => ({
+    //   data: JSON.parse(route.query.data),
+    // })
   },
   { path: '/persionalProfile', name: 'persionalProfile', component: PersionalProfileView },
 
   { path: '/baneficicaryProfile', name: 'baneficicaryProfile', component: BaneficicaryProfileView },
   { path: '/loancontactProfile', name: 'loancontactProfile', component: LoanContactProfileView },
   { path: '/withDrawSuccess', name: 'withDrawSuccess', component: WithDrawSuccess },
+  //acc
+
+  {path: '/account', name: 'account', component: AccountView},
 
 
 ];
