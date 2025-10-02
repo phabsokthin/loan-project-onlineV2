@@ -115,7 +115,6 @@ export default {
 
 <style scoped>
 .hero-image {
-    background-image: url("/src/assets/loan_chart.jpg");
     background-color: #cccccc;
     min-height: 100vh;
     background-position: center;

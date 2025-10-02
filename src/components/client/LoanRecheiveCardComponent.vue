@@ -62,7 +62,7 @@
 
           <!-- Password -->
           <div>
-            <RouterLink to="/password"
+            <RouterLink to="/changepassword"
               class="flex items-center justify-center h-24 transition duration-300 bg-gray-700 shadow-md rounded-xl bg-opacity-30 backdrop-blur-md hover:scale-105">
               <svg id="Layer_1" enable-background="new 0 0 512 512" viewBox="0 0 512 512"
                 xmlns="http://www.w3.org/2000/svg" width="300" height="300" class="h-12" version="1.1"

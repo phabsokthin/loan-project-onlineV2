@@ -16,6 +16,7 @@ import BaneficicaryProfileView from '@/view/client/Baneficicary_ProfileView.vue'
 import LoanContactProfileView from '@/view/client/LoanContactProfileView.vue'
 import WithDrawSuccess from '@/view/client/WithDrawSuccessView.vue'
 import AccountView from '@/view/client/AccountView.vue';
+import changepassword from '@/view/authentication/Change_Password.vue';
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
@@ -26,6 +27,8 @@ const routes = [
   { path: '/register', name: 'register', component: RegisterAuth },
   { path: '/login', name: 'login', component: LoginAuth },
   { path: '/complete', name: 'complete', component: CompleteLoanView },
+  { path: '/complete', name: 'complete', component: CompleteLoanView },
+  { path: '/changepassword', name: 'changepassword', component: changepassword },
 
   {
     path: '/personal', name: 'personal', component: Personal_InforView,
@@ -63,6 +66,7 @@ const routes = [
   //acc
 
   {path: '/account', name: 'account', component: AccountView},
+
 
 
 ];
