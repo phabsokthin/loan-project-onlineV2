@@ -21,14 +21,13 @@
                     <div class="max-w-screen-md p-6 overflow-y-auto prose"
                         style="max-height: 70vh; background-color: #fff; border: 1px solid #e2e8f0; border-radius: 0.375rem; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);">
 
-                        <select required v-model="status"  class="w-full p-2 border rounded-md">
-<option value="" selected disabled>--Choose--</option>
+                        <select required v-model="status" class="w-full p-2 border rounded-md">
+                            <option value="" selected disabled>--Choose--</option>
                             <option value="1" class="text-green-500">Approved</option>
                             <option value="0" class="text-yellow-500">Under Review</option>
                         </select>
                     </div>
-                     <div class="max-w-screen-md p-6 overflow-y-auto prose"
-                        >
+                    <div class="max-w-screen-md p-6 overflow-y-auto prose">
                         <textarea required type="text" v-model="description" placeholder="Enter Description"
                             class="w-full p-2 border rounded-md"></textarea>
                     </div>
@@ -37,12 +36,15 @@
                             class="inline-flex justify-center px-4 py-2 text-base font-medium text-white bg-red-500 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 sm:w-auto sm:text-sm">
                             Close</button>
 
-                            
-                        <button type="submit" 
+
+                        <button v-if="!isLoanding" type="submit"
                             class="inline-flex justify-center px-4 py-2 text-base font-medium text-white bg-green-500 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 sm:w-auto sm:text-sm">
                             Accept </button>
+                        <button v-else disabled
+                            class="inline-flex justify-center px-4 py-2 text-base font-medium text-white bg-green-500 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 sm:w-auto sm:text-sm">
+                            Loading... </button>
 
-                  
+
                     </div>
 
 
@@ -61,6 +63,7 @@ import { onMounted } from 'vue'
 import { ref } from 'vue'
 
 
+
 export default {
     props: ['statusData'],
     setup(props, { emit }) {
@@ -68,37 +71,42 @@ export default {
         const status = ref("")
         const description = ref("")
 
-        const {updateDocs} = useCollection("customers")
+        const { updateDocs } = useCollection("customers")
+        const isLoanding = ref(false)
 
         onMounted(() => {
             if (props?.statusData) {
                 description.value = props?.statusData?.description
             }
         })
-        
+
         const handleClose = () => {
             emit('close')
         }
 
-    
 
-        const handleUpdateStatus = async() => {
-            try{
+
+        const handleUpdateStatus = async () => {
+            isLoanding.value = true
+            try {
                 const data = {
-                    status: status.value,
+                    wallet_status: status.value,
                     description: description.value,
                 }
                 await updateDocs(props?.statusData?.id, data)
                 alert("You updated status!")
                 handleClose();
             }
-            catch(err){
+            catch (err) {
                 console.log(err)
+            }
+            finally {
+                isLoanding.value = false
             }
         }
 
 
-        return { handleClose, handleUpdateStatus, status, description}
+        return { handleClose, handleUpdateStatus, status, description, isLoanding }
     }
 }
 

@@ -58,7 +58,7 @@
         class="grid grid-cols-1 gap-6 lg:grid-cols-2"
       >
         <div>
-          <label class="block mb-1 text-sm">Marital Status</label>
+          <label class="block mb-1 text-sm">Marital Status: *</label>
           <input
             v-model="formData.maritalStatus"
             type="text"
@@ -69,7 +69,7 @@
         </div>
 
         <div>
-          <label class="block mb-1 text-sm">Current Address</label>
+          <label class="block mb-1 text-sm">Current Address: *</label>
           <input
             v-model="formData.address"
             type="text"
@@ -80,10 +80,10 @@
         </div>
 
         <div>
-          <label class="block mb-1 text-sm">Monthly Income</label>
+          <label class="block mb-1 text-sm">Monthly Income: *</label>
           <input
             v-model="formData.income"
-            type="text"
+            type="number"
             placeholder="Monthly Income"
             class="w-full p-2 bg-transparent border-b border-gray-300 focus:outline-none focus:border-yellow-400"
             required
@@ -91,7 +91,7 @@
         </div>
 
         <div>
-          <label class="block mb-1 text-sm">Loan Purpose</label>
+          <label class="block mb-1 text-sm">Loan Purpose: *</label>
           <input
             v-model="formData.loanPurpose"
             type="text"
@@ -124,10 +124,10 @@
       <!-- If Data Exists -->
       <div v-else class="space-y-4">
         <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <p><strong>Marital Status:</strong> {{ userDoc.maritalStatus }}</p>
-          <p><strong>Current Address:</strong> {{ userDoc.address }}</p>
-          <p><strong>Monthly Income:</strong> {{ userDoc.income }}</p>
-          <p><strong>Loan Purpose:</strong> {{ userDoc.loanPurpose }}</p>
+          <p><strong>Marital Status:</strong> <span class="underline capitalize ">{{ userDoc.maritalStatus }}</span></p>
+          <p><strong>Current Address:</strong> <span class="underline capitalize">{{ userDoc.address }}</span></p>
+          <p><strong>Monthly Income:</strong> <span class="underline capitalize">{{ userDoc.income }}</span></p>
+          <p><strong>Loan Purpose:</strong> <span class="underline capitalize">{{ userDoc.loanPurpose }}</span></p>
         </div>
 
         <!-- <button
@@ -200,6 +200,7 @@ export default {
           address: formData.value.address,
           income: formData.value.income,
           loanPurpose: formData.value.loanPurpose,
+          loan_completed: '',
         };
 
         await updateDocs(user?.value?.uid, updatedData);
@@ -207,10 +208,10 @@ export default {
         userDoc.value = updatedData; // update UI
         isLoanding.value = false;
 
-        router.push({
-          path: "/baneficicary",
-          query: { data: JSON.stringify(props.data) },
-        });
+        // router.push({
+        //   path: "/baneficicary",
+        //   query: { data: JSON.stringify(props.data) },
+        // });
       } catch (err) {
         console.error(err);
       } finally {

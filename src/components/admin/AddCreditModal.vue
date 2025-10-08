@@ -28,9 +28,13 @@
                             class="inline-flex justify-center px-4 py-2 text-base font-medium text-white bg-red-500 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 sm:w-auto sm:text-sm">
                             Close</button>
 
-                        <button type="button" @click="handleAddCredit"
+                        <button v-if="!isLoanding" type="button" @click="handleAddCredit"
                             class="inline-flex justify-center px-4 py-2 text-base font-medium text-white bg-green-500 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 sm:w-auto sm:text-sm">
                             Accept </button>
+
+                        <button v-else
+                            class="inline-flex justify-center px-4 py-2 text-base font-medium text-white bg-green-500 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 sm:w-auto sm:text-sm">
+                            Loading... </button>
                     </div>
 
 
@@ -56,11 +60,12 @@ export default {
         const credit = ref('')
 
         const { updateDocs } = useCollection("customers")
+        const isLoanding = ref(false)
 
 
         onMounted(() => {
             if (props?.creditData) {
-                credit.value = props?.creditData?.credit
+                credit.value = props?.creditData?.credit_score
             }
 
         })
@@ -73,9 +78,10 @@ export default {
 
 
         const handleAddCredit = async () => {
+            isLoanding.value = true
             try {
                 const data = {
-                    credit: credit.value
+                    credit_score: credit.value
                 }
                 if (props?.creditData) {
                     await updateDocs(props?.creditData?.id, data)
@@ -91,10 +97,14 @@ export default {
             catch (err) {
                 console.log(err)
             }
+
+            finally {
+                isLoanding.value = false
+            }
         }
 
 
-        return { handleClose, handleAddCredit, credit }
+        return { handleClose, handleAddCredit, credit, isLoanding }
     }
 }
 

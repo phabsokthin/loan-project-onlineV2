@@ -9,8 +9,8 @@
             <p>Name of the Borrower: {{ usDoc.name }}</p>
             <p>ID Number: {{ usDoc.idNumber }}</p>
             <p>Registered Phone Number: {{ phoneDoc?.phone }}</p>
-            <p>Loan Amount Applied: {{ usDoc?.amount }} ₱</p>
-            <p>Repayment Period: {{ usDoc?.term }} Months</p>
+            <p>Loan Amount Applied: {{ usDoc?.loanAmount }} ₱</p>
+            <p>Repayment Period: {{ usDoc?.loanTerm }} Months</p>
             <p>Interest Rate: {{ usDoc?.interestRate }}%</p>
             <p>Monthly Repayment: {{ usDoc?.monthlyPayment }} ₱</p>
             <p>Beneficiary Name: {{ usDoc?.bankName }}</p>

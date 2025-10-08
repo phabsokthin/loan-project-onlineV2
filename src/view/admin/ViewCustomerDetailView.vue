@@ -48,7 +48,7 @@
                         </div>
                     </div>
 
-                    <div class="sm:col-span-2">
+                    <!-- <div class="sm:col-span-2">
                         <label for="postal-code" class="block text-sm font-medium text-gray-700"> Gender
                         </label>
                         <div class="mt-1">
@@ -56,17 +56,10 @@
                                 class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
 
                         </div>
-                    </div>
+                    </div> -->
 
 
-                    <div class="sm:col-span-2">
-                        <label for="city" class="block text-sm font-medium text-gray-700"> Current Job </label>
-                        <div class="mt-1">
-                            <input v-model="job" autocomplete="address-level2"
-                                class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
-
-                        </div>
-                    </div>
+             
 
                     <div class="sm:col-span-2">
                         <label for="region" class="block text-sm font-medium text-gray-700"> Stable Income </label>
@@ -96,7 +89,7 @@
                         </div>
                     </div>
 
-                    <div class="sm:col-span-2">
+                    <!-- <div class="sm:col-span-2">
                         <label for="postal-code" class="block text-sm font-medium text-gray-700"> Name of Relative
                         </label>
                         <div class="mt-1">
@@ -104,18 +97,18 @@
                                 class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
 
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="sm:col-span-2">
+                    <!-- <div class="sm:col-span-2">
                         <label for="region" class="block text-sm font-medium text-gray-700"> Contact </label>
                         <div class="mt-1">
                             <input v-model="contact" autocomplete="address-level2"
                                 class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
 
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="sm:col-span-2">
+                    <!-- <div class="sm:col-span-2">
                         <label for="postal-code" class="block text-sm font-medium text-gray-700"> Relative's Phone
                             Number
                         </label>
@@ -124,7 +117,7 @@
                                 class="block w-full p-3 bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
 
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <button
                     class="px-4 py-2 mt-5 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Update</button>
@@ -264,17 +257,17 @@
                 </div>
                 <div class="p-4 mt-6 text-white bg-blue-600 rounded-md shadow-xl">
                     <div class="space-y-3">
-                        <h1 class="flex justify-between font-mono text-xl">Loan Amount: <span><b>₱ {{ usDoc?.amount
+                        <h1 class="flex justify-between font-mono text-xl">Loan Amount: <span><b>₱ {{ usDoc?.loanAmount
                                     }}</b></span></h1>
-                        <h1 class="flex justify-between font-mono text-xl">Loan Tearm: <span><b>{{ usDoc?.term }}
+                        <h1 class="flex justify-between font-mono text-xl">Loan Tearm: <span><b>{{ usDoc?.loanTerm }}
                                     Months</b></span></h1>
 
                         <h1 class="flex justify-between font-mono text-xl">Montly Payments: <span><b>₱ {{
                             usDoc?.monthlyPayment }}</b></span></h1>
-                        <h1 class="flex justify-between font-mono text-xl">Interest: <span><b>₱ {{ usDoc?.totalInterest
+                        <h1 class="flex justify-between font-mono text-xl">Interest: <span><b>₱ {{ usDoc?.baseInterest
                                     }}</b></span></h1>
-                        <h1 class="flex justify-between font-mono text-xl">Loan Total & Interest: <span><b>₱ {{
-                            usDoc?.totalPrincipalAndInterest }}</b></span></h1>
+                        <!-- <h1 class="flex justify-between font-mono text-xl">Loan Total & Interest: <span><b>₱ {{
+                            usDoc?.totalPrincipalAndInterest }}</b></span></h1> -->
                         <h1 class="flex justify-between font-mono text-xl">Status:
                             <span v-if="usDoc.status === '0'" class="p-2 font-mono text-sm bg-orange-500 rounded-full">
 

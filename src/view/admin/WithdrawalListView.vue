@@ -104,13 +104,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(customer, index) in filteredData" :key="customer.id" class="text-sm font-medium align-top">
+                    <tr v-for="(customer, index) in filteredData" :key="customer.id"
+                        class="text-sm font-medium align-top">
                         <td class="p-2 px-1 pt-5 border border-gray-300">#{{ index + 1 }}</td>
                         <td class="px-2 pt-5 border border-gray-300">{{ customer?.codeWithdraw }}</td>
                         <td class="px-2 pt-5 border border-gray-300">{{ customer?.name }}</td>
                         <!-- <td class="px-2 border border-gray-300">{{ customer?.gender }}</td> -->
 
-                        <td class="px-2 pt-5 border border-gray-300">₱ {{ customer?.totalPrincipalAndInterest }}</td>
+                        <td class="px-2 pt-5 border border-gray-300">₱ {{ customer?.loanAmount }}</td>
                         <td class="px-2 pt-5 border border-gray-300"> {{ customer?.term }} Months</td>
                         <td class="w-10 px-2 pt-5 border border-gray-300"> {{ formatDate(customer?.createdAt) }}</td>
                         <td class="w-32 px-2 pt-5 border border-gray-300">
@@ -264,7 +265,9 @@
             <!-- <pre>{{ paginatedStudents }}</pre> -->
 
             <!-- <pre>{{ data }}</pre> -->
+            <!-- <pre>{{ filteredData }}</pre> -->
         </div>
+
 
     </section>
 
@@ -287,6 +290,7 @@ import useCollection from '@/firebase/useCollection';
 import AddCreditModal from '@/components/admin/AddCreditModal.vue';
 import WithDrawAmountModal from '@/components/admin/WithDrawAmountModal.vue';
 import AddCodeWithDrawModal from '@/components/admin/AddCodeWithDrawModal.vue';
+import getUser from '@/firebase/getUser';
 
 export default {
     components: {
@@ -308,21 +312,22 @@ export default {
 
         // Firebase Collections
         const { document: customers } = getCollection("withdrawLoan");
-        const { deleteDocs, updateDocs } = useCollection("withdrawLoan");
+        const { deleteDocs, updateDocs, setDocs } = useCollection("withdrawLoan");
         const { updateDocs: updateDocsCustomer } = useCollection('customers');
+        const { user } = getUser();
 
         // Pagination
         const itemsPerPage = ref(10);
-        const { 
-            data, 
-            currentPage, 
-            pageRange, 
-            totalPages, 
-            loadPreviousPage, 
-            loadNextPage, 
-            goToPage, 
-            fetchTotalPages, 
-            getDataRealTime 
+        const {
+            data,
+            currentPage,
+            pageRange,
+            totalPages,
+            loadPreviousPage,
+            loadNextPage,
+            goToPage,
+            fetchTotalPages,
+            getDataRealTime
         } = useFirestorePagination('withdrawLoan', itemsPerPage.value);
 
         // Initialize
@@ -363,7 +368,7 @@ export default {
             to.setHours(23, 59, 59, 999);
 
             const sourceData = rawData.value.length ? rawData.value : data.value;
-            
+
             return sourceData.filter((customer) => {
                 const createdAt = customer.createdAt?.toDate ? customer.createdAt.toDate() : new Date(customer.createdAt);
                 return createdAt >= from && createdAt <= to;
@@ -391,8 +396,15 @@ export default {
         // Delete handler
         const handleDelete = async (id) => {
             try {
+                const data = {
+                    status: '2'
+                }
                 if (window.confirm("Are you sure you want to delete?")) {
                     await deleteDocs(id);
+
+                    setTimeout(async () => {
+                        await setDocs(data, id);
+                    });
                     alert("Delete Successful");
                     getDataRealTime(currentPage.value); // Refresh data
                 }
@@ -400,6 +412,7 @@ export default {
                 console.error(err);
             }
         };
+
 
         // Date formatter
         const formatDate = (timestamp) => {
@@ -454,7 +467,8 @@ export default {
             handleConfirmLoan,
             fromDate,
             toDate,
-            filteredData
+            filteredData,
+            user
         }
     }
 }

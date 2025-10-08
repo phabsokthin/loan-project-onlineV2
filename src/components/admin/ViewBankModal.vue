@@ -25,15 +25,13 @@
 
                         <div>
                             <label for="">Bank Name</label>
-                            <input required type="text" class="w-full p-2 border rounded-md" v-model="bankName"
-                                >
+                            <input required type="text" class="w-full p-2 border rounded-md" v-model="bankName">
 
 
                         </div>
                         <div>
                             <label for="">ID Number</label>
-                            <input required type="text" class="w-full p-2 border rounded-md" v-model="idNumber"
-                            >
+                            <input required type="text" class="w-full p-2 border rounded-md" v-model="idNumber">
 
 
                         </div>
@@ -45,9 +43,14 @@
 
 
 
-                        <button type="submit" @click="handleUpdateStatus"
+                        <button v-if="!isLoanding" type="submit" @click="handleUpdateStatus"
                             class="inline-flex justify-center px-4 py-2 text-base font-medium text-white bg-green-500 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 sm:w-auto sm:text-sm">
                             Update </button>
+
+
+                               <button v-else disabled
+                            class="inline-flex justify-center px-4 py-2 text-base font-medium text-white bg-green-500 border border-transparent rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 sm:w-auto sm:text-sm">
+                            Updating... </button>
                     </div>
 
                 </div>
@@ -71,8 +74,10 @@ export default {
         const codeWithdraw = ref("")
         const bankName = ref("")
         const idNumber = ref("")
+        const isLoanding = ref(false)
 
         const { updateDocs } = useCollection('customers')
+
 
 
         const handleClose = () => {
@@ -90,24 +95,33 @@ export default {
 
 
         const handleUpdateBank = async () => {
-            if (props?.creditData) {
-                const data = {
-                    bankName: bankName.value,
-                    idNumber: idNumber.value,
+            isLoanding.value = true
+            try {
+                if (props?.creditData) {
+                    const data = {
+                        bankName: bankName.value,
+                        idNumber: idNumber.value,
+                    }
+
+                    await updateDocs(props?.creditData?.id, data)
+                    alert("Bank details updated successfully.")
+                    handleClose();
+
+                } else {
+                    console.error("No credit data provided for update.");
                 }
-
-                await updateDocs(props?.creditData?.id, data)
-                alert("Bank details updated successfully.")
-                handleClose();
-
-            } else {
-                console.error("No credit data provided for update.");
+            }
+            catch (err) {
+                console.log(err)
+            }
+            finally {
+                isLoanding.value = false
             }
         }
 
 
 
-        return { handleClose, codeWithdraw, bankName, idNumber, handleUpdateBank }
+        return { handleClose, codeWithdraw, bankName, idNumber, handleUpdateBank, isLoanding }
     }
 }
 

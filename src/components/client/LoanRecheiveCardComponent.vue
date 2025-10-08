@@ -4,8 +4,8 @@
       <div class="container py-8 mx-auto">
         <div class="grid grid-cols-3 gap-6 text-center">
           <!-- Wallet -->
-          <div>
-            <RouterLink to="/wallet"
+          <div @click="handleWalletAuth">
+            <div
               class="flex items-center justify-center h-24 transition duration-300 bg-gray-700 shadow-md rounded-xl bg-opacity-30 backdrop-blur-md hover:scale-105">
               <svg id="Layer_1" enable-background="new 0 0 64 64" height="300" viewBox="0 0 64 64" width="300"
                 class="h-12" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -16,7 +16,7 @@
                     fill="#ffffff" fill-opacity="1" data-original-color="#000000ff" stroke="none" stroke-opacity="1" />
                 </g>
               </svg>
-            </RouterLink>
+            </div>
             <span class="block mt-2 text-lg font-medium text-white">Wallet</span>
           </div>
 
@@ -43,8 +43,8 @@
           </div>
 
           <!-- Information -->
-          <div>
-            <RouterLink to="/profile"
+          <div @click="handleRequestLoan">
+            <div
               class="flex items-center justify-center h-24 transition duration-300 bg-gray-700 shadow-md rounded-xl bg-opacity-30 backdrop-blur-md hover:scale-105">
               <svg id="Layer_1" enable-background="new 0 0 512 512" height="300" class="h-12" viewBox="0 0 512 512"
                 width="300" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -56,13 +56,13 @@
                     stroke-opacity="1" />
                 </g>
               </svg>
-            </RouterLink>
+            </div>
             <span class="block mt-2 text-lg font-medium text-white">Information</span>
           </div>
 
           <!-- Password -->
-          <div>
-            <RouterLink to="/changepassword"
+          <div @click="handlePassword"> 
+            <div
               class="flex items-center justify-center h-24 transition duration-300 bg-gray-700 shadow-md rounded-xl bg-opacity-30 backdrop-blur-md hover:scale-105">
               <svg id="Layer_1" enable-background="new 0 0 512 512" viewBox="0 0 512 512"
                 xmlns="http://www.w3.org/2000/svg" width="300" height="300" class="h-12" version="1.1"
@@ -73,7 +73,7 @@
                     fill="#ffffff" fill-opacity="1" data-original-color="#000000ff" stroke="none" stroke-opacity="1" />
                 </g>
               </svg>
-            </RouterLink>
+            </div>
             <span class="block mt-2 text-lg font-medium text-white">Password</span>
           </div>
 
@@ -113,7 +113,7 @@
           </div>
 
           <!-- Logout (Red Style) -->
-          <div>
+          <div v-if="user">
             <button @click="handleLogout"
               class="flex items-center justify-center w-full h-24 transition duration-300 bg-gray-700 shadow-md rounded-xl bg-opacity-30 backdrop-blur-md hover:scale-105">
               <svg height="300" viewBox="0 0 512.00533 512" width="300" class="h-12" xmlns="http://www.w3.org/2000/svg"
@@ -163,9 +163,27 @@ export default {
       if (user.value) {
         // await setDocs(data, user?.value?.uid)
 
-        router.push('/loan')
+        router.push('/profile')
       }
       else {
+        router.push('/login')
+      }
+    }
+
+    const handleWalletAuth = () => {
+      if (user.value) {
+        router.push('/wallet')
+      }
+      else{
+        router.push('/login')
+      }
+    }
+
+    const handlePassword = () => {
+      if (user.value) {
+        router.push('/changepassword')
+      }
+      else{
         router.push('/login')
       }
     }
@@ -183,11 +201,15 @@ export default {
       }
     };
 
+    
 
 
     return {
       handleRequestLoan,
-      handleLogout
+      handleLogout,
+      handleWalletAuth,
+      handlePassword,
+      user
     }
   }
 }

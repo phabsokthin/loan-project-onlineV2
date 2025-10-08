@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen px-4 py-4 m-auto  back_image">
+  <div class="min-h-screen px-4 py-4 m-auto back_image">
   <div class="hidden lg:block">
     <NavbarComponent />
   </div>
@@ -124,6 +124,7 @@ export default {
         const updatedData = {
           bankName: bankName.value,
           accountNumber: accountNumber.value,
+          loan_completed: '' 
         };
         await updateDocs(user?.value?.uid, updatedData);
         userDoc.value = updatedData; // update UI instantly

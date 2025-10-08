@@ -45,6 +45,7 @@
                             <p class="text-xs text-white uppercase">Profile៖ <span class="font-bold">{{ user?.email
                             }}</span></p>
                         </div>
+                  
                         <div class="p-4 bg-gray-100 rounded-full shadow-xl">
 
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
@@ -195,7 +196,6 @@
         </div>
 
         <!-- <pre>{{ roleDocs }}</pre> -->
-
     </div>
 
 </template>

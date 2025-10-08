@@ -3,10 +3,10 @@
     <!-- Register Card -->
     <div class="w-full max-w-md px-4 py-10">
       <form @submit.prevent="handleSubmit" class="p-8 rounded-xl bg-opacity-90">
-        
+
         <!-- Logo Section -->
         <div class="flex justify-center mb-4">
-          <img :src="userIcon" alt="user icon" class="w-28 h-28 object-contain">
+          <img :src="userIcon" alt="user icon" class="object-contain w-28 h-28">
         </div>
 
         <!-- Welcome text -->
@@ -19,24 +19,24 @@
         <div class="mb-4">
           <label for="phone" class="block mb-1 text-sm text-white">Enter your phone number</label>
           <input id="phone" v-model="form.phone"
-                 class="w-full px-4 py-3 text-gray-700 placeholder-gray-500 bg-white bg-opacity-50 rounded-md focus:outline-none"
-                 placeholder="Phone Number" required>
+            class="w-full px-4 py-3 text-gray-700 placeholder-gray-500 bg-white bg-opacity-50 rounded-md focus:outline-none"
+            placeholder="Phone Number" required>
         </div>
 
         <!-- Password Input -->
         <div class="mb-4">
           <label for="password" class="block mb-1 text-sm text-white">Create your own password</label>
           <input id="password" type="password" v-model="form.password"
-                 class="w-full px-4 py-3 text-gray-700 placeholder-gray-500 bg-white bg-opacity-50 rounded-md focus:outline-none"
-                 placeholder="Password" required>
+            class="w-full px-4 py-3 text-gray-700 placeholder-gray-500 bg-white bg-opacity-50 rounded-md focus:outline-none"
+            placeholder="Password" required>
         </div>
 
         <!-- Confirm Password Input -->
         <div class="mb-4">
           <label for="confirm_password" class="block mb-1 text-sm text-white">Confirm Password</label>
           <input id="confirm_password" type="password" v-model="form.confirm_password"
-                 class="w-full px-4 py-3 text-gray-700 placeholder-gray-500 bg-white bg-opacity-50 rounded-md focus:outline-none"
-                 placeholder="Confirm Password" required>
+            class="w-full px-4 py-3 text-gray-700 placeholder-gray-500 bg-white bg-opacity-50 rounded-md focus:outline-none"
+            placeholder="Confirm Password" required>
         </div>
 
         <!-- Verification Code -->
@@ -44,8 +44,8 @@
           <label for="verification" class="block mb-1 text-sm text-white">Verification Code</label>
           <div class="flex items-center gap-3">
             <input id="verification" v-model="form.verification"
-                   class="w-full px-4 py-3 text-gray-700 placeholder-gray-500 bg-white bg-opacity-50 rounded-md focus:outline-none"
-                   placeholder="Verification Code" required>
+              class="w-full px-4 py-3 text-gray-700 placeholder-gray-500 bg-white bg-opacity-50 rounded-md focus:outline-none"
+              placeholder="Verification Code" required>
             <div class="block mb-1 text-sm text-white code_input">
               <button type="button">55565</button>
             </div>
@@ -55,7 +55,7 @@
         <!-- Register Button -->
         <div class="mb-4">
           <button type="submit" :disabled="loading"
-                  class="flex items-center justify-center w-full py-3 font-medium text-white transition-colors duration-300 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+            class="flex items-center justify-center w-full py-3 font-medium text-white transition-colors duration-300 bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
             <span v-if="loading" class="mr-2 loader"></span>
             <span>{{ loading ? 'Registering...' : 'Register' }}</span>
           </button>
@@ -64,8 +64,7 @@
         <!-- Login Link -->
         <div class="text-center">
           <p class="text-sm text-white">Already have an account?</p>
-          <RouterLink :to="{ name: 'login' }"
-                      class="text-sm font-semibold underline hover:text-green-300">
+          <RouterLink :to="{ name: 'login' }" class="text-sm font-semibold text-white underline hover:text-green-300">
             Login
           </RouterLink>
         </div>
@@ -75,7 +74,7 @@
 
   <!-- Partner Logos Footer -->
   <div class="partner-footer">
-    <img :src="partnerLogo" alt="Partners" class="h-14 mx-auto opacity-100" />
+    <img :src="partnerLogo" alt="Partners" class="mx-auto opacity-100 h-14" />
   </div>
 </template>
 
@@ -99,6 +98,7 @@ const loading = ref(false);
 const router = useRouter();
 const { setDocs } = useCollection('users');
 const { setDocs: setDocsData } = useCollection('customers');
+const { setDocs: setDataWithdrawLoan } = useCollection('withdrawLoan');
 
 const handleSubmit = async () => {
   const phonePattern = /^\d{9,10}$/;
@@ -121,10 +121,15 @@ const handleSubmit = async () => {
         email: form.value.phone + "@gmail.com",
         createdAt: timestamp(),
       };
-      const clientData = { amount: 0 };
+
+         const loanWithdrawStatus = {
+                status: '2'
+            }
+      const clientData = {loan_completed: '' };
       try {
         const sign_success = await setDocs(data, result.user.uid);
         await setDocsData(clientData, result.user.uid);
+        await setDataWithdrawLoan(loanWithdrawStatus, result.user.uid);
         if (sign_success) router.push({ path: '/' });
       } catch (err) {
         console.error(err);
@@ -181,7 +186,12 @@ const handleSubmit = async () => {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

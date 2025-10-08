@@ -40,9 +40,12 @@
 
                     <!-- User Info -->
                     <h3 class="text-lg font-semibold">Account</h3>
-                    <p class="mt-1 text-xl font-bold">
-                        {{ user?.phoneNumber || "0965422332" }}
-                    </p>
+                   <p class="mt-1 text-xl font-bold">
+  {{ user?.email && user.email.length > 10
+      ? user.email.slice(0, 9) + "*"
+      : user?.email  || "No account" }}
+</p>
+
                 </div>
             </div>
 
@@ -54,7 +57,7 @@
                         <img :src="creditscore" alt="creditscore" class="h-16" />
                         <p class="mt-2 text-sm">
                             Credit Score:
-                            <span class="font-bold">{{ userDoc?.[0]?.credit || 500 }}</span>
+                            <span class="font-bold">{{ userDoc?.[0]?.credit_score || 0 }}</span>
                         </p>
                     </div>
 
@@ -68,7 +71,7 @@
                                     d="m16.6 5.2-10.6 10.6c-2.2-.1-3.9-2-3.9-4.2v-4.7c1.1-1 2.6-1.6 4.2-1.6zm32.5 0h-4.5l10.5 10.5v-4.5c0-3.3-2.7-6-6-6zm-22.9-1.2c-1.5-1.5-3.8-1.5-5.2 0l-11.8 11.8h11.2l8.8-8.8zm14.2 0c-1.5-1.5-3.8-1.5-5.3 0l-11.8 11.8h28.9zm7.1 26.6h13.6c.2 0 .5 0 .7.1v-6.7c0-3.3-2.7-6-6-6h-49.4c-3.5 0-6.4-2.9-6.4-6.4v38.8c0 5.9 4.8 10.7 10.7 10.7h45.1c3.3 0 6-2.7 6-6v-8.9c-.2 0-.5 0-.7 0h-13.6c-4.3 0-7.9-3.5-7.9-7.9s3.6-7.9 7.9-7.9zm-.1 6.8c-.6 0-1 .5-1 1s.4 1 1 1 1-.5 1-1-.5-1-1-1zm16.7-1.8v5.7c0 1.6-1.3 2.9-2.9 2.9h-13.6c-1.6 0-3-0.6-4.1-1.7s-1.7-2.5-1.7-4.1c0-3.2 2.6-5.7 5.8-5.7h13.6c1.6 0 2.9 1.3 2.9 2.9zm-13.5 2.8c0-1.7-1.4-3.2-3.2-3.2-1.7 0-3.2 1.4-3.2 3.2s1.4 3.2 3.2 3.2c1.7 0 3.2-1.4 3.2-3.2z"
                                     fill="#ffffff" />
                             </svg>
-                            <span class="text-lg font-bold">₱200,000</span>
+                            <span class="text-lg font-bold">₱ {{ userDoc?.[0]?.loanAmount || 0 }}</span>
                         </div>
 
                         <!-- Installment Period -->
@@ -78,13 +81,13 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h8M8 11h8m-6 4h6M5 3h14a2 2 0 012 2v14a2 2 
                      0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" />
                             </svg>
-                            <span>Installment period: 36 months</span>
+                            <span>Installment period: {{ userDoc?.[0]?.loanTerm || 0 }} months</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-
+                <!-- <pre>{{ userDoc }}</pre> -->
         </div>
     </div>
 </template>

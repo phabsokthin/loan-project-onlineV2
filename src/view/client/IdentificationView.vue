@@ -5,107 +5,110 @@
     <div class="w-full max-w-5xl mx-auto mt-10">
       <!-- Header -->
       <h2 class="flex items-center gap-2 p-3 mt-10 text-lg font-semibold text-white bg-black rounded-t-md">
-       <router-link :to="{ name: 'home' }">
-         <svg
-          class="w-6 h-6"
-          viewBox="0 0 7111 7111"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="m5000 7111c-179 0-346-69-472-195l-2888-2889c-260-260-260-683 0-943l2888-2889c260-260 683-260 943 0s260 683 0 943l-2417 2418 2417 2417c260 260 260 683 0 943-125 126-293 195-471 195z"
-            fill="#ffffff"
-          />
-        </svg>
-       </router-link>
+        <router-link :to="{ name: 'home' }">
+          <svg class="w-6 h-6" viewBox="0 0 7111 7111" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m5000 7111c-179 0-346-69-472-195l-2888-2889c-260-260-260-683 0-943l2888-2889c260-260 683-260 943 0s260 683 0 943l-2417 2418 2417 2417c260 260 260 683 0 943-125 126-293 195-471 195z"
+              fill="#ffffff" />
+          </svg>
+        </router-link>
         <span>Identify Picture </span>
       </h2>
     </div>
     <!-- Card -->
     <div class="w-full max-w-5xl p-6 mx-auto mt-5 text-white rounded-md bg-black/50">
-        <form v-if="!userDoc?.front_image" @submit.prevent="handleSubmit" class="space-y-6">
-            <h2
-            class="flex items-center gap-2 text-xl font-semibold text-white rounded-md ">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor" stroke-width="2">
-                <path d="M16 10h2M16 14h2M6.17 15a3 3 0 0 1 5.66 0" />
-                <circle cx="9" cy="11" r="2" />
-                <rect x="2" y="5" width="20" height="14" rx="2" />
-            </svg>
-            <span>Identify Picture</span>
-            </h2>
+      <form v-if="!userDoc?.front_image" @submit.prevent="handleSubmit" class="space-y-6">
+        <h2 class="flex items-center gap-2 text-xl font-semibold text-white rounded-md ">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            stroke-width="2">
+            <path d="M16 10h2M16 14h2M6.17 15a3 3 0 0 1 5.66 0" />
+            <circle cx="9" cy="11" r="2" />
+            <rect x="2" y="5" width="20" height="14" rx="2" />
+          </svg>
+          <span>Identify Picture</span>
+        </h2>
 
-            <!-- Responsive Grid -->
-            <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <!-- Actual Name -->
-            <div>
-                <label class="block mb-1 text-sm">Actual Name</label>
-                <input v-model="formData.name" type="text" placeholder="Actual Name"
-                class="w-full p-2 bg-transparent border-b border-gray-300 focus:outline-none focus:border-yellow-400" />
-            </div>
+        <!-- Responsive Grid -->
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <!-- Actual Name -->
+          <div>
+            <label class="block mb-1 text-sm">Actual Name: *</label>
+            <input required v-model="formData.name" type="text" placeholder="Actual Name"
+              class="w-full p-2 bg-transparent border-b border-gray-300 focus:outline-none focus:border-yellow-400" />
+          </div>
 
-            <!-- ID Number -->
-            <div>
-                <label class="block mb-1 text-sm">ID Number</label>
-                <input v-model="formData.idNumber" type="text" placeholder="ID Number"
-                class="w-full p-2 bg-transparent border-b border-gray-300 focus:outline-none focus:border-yellow-400" />
-            </div>
-            </div>
+          <!-- ID Number -->
+          <div>
+            <label class="block mb-1 text-sm">ID Number: *</label>
+            <input required v-model="formData.idNumber" type="text" placeholder="ID Number"
+              class="w-full p-2 bg-transparent border-b border-gray-300 focus:outline-none focus:border-yellow-400" />
+          </div>
+        </div>
 
-            <!-- Uploads -->
-            <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <div>
-                <label class="block mb-1">Front ID Card</label>
-                <input type="file" @change="handleFrontUpload" accept="image/*"
-                class="block w-full text-sm text-gray-300" />
-                <img v-if="frontImage" :src="frontImage" class="mx-auto mt-2 rounded-md max-h-48" />
-            </div>
+        <!-- Uploads -->
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <div class="p-4 border bg-gray-500/40">
+            <label class="block mb-1">Front ID Card: *</label>
+            <input type="file" @change="handleFrontUpload" required accept="image/*"
+              class="block w-full text-sm text-gray-300" />
+            <img v-if="frontImage" :src="frontImage" class="mx-auto mt-2 rounded-md max-h-48" />
+          </div>
 
-            <div>
-                <label class="block mb-1">Back ID Card</label>
-                <input type="file" @change="handleBackUpload" accept="image/*"
-                class="block w-full text-sm text-gray-300" />
-                <img v-if="backImage" :src="backImage" class="mx-auto mt-2 rounded-md max-h-48" />
-            </div>
-            </div>
+          <div class="p-4 border bg-gray-500/40">
+            <label class="block mb-1">Back ID Card: *</label>
+            <input type="file" @change="handleBackUpload" accept="image/*" required class="block w-full text-sm text-gray-300" />
+            <img v-if="backImage" :src="backImage" class="mx-auto mt-2 rounded-md max-h-48" />
+          </div>
+        </div>
 
-            <div>
-            <label class="block mb-1">Selfie with ID Card</label>
-            <input type="file" @change="handleSelfieUpload" accept="image/*"
-                class="block w-full text-sm text-gray-300" />
-            <img v-if="selfieImage" :src="selfieImage" class="mx-auto mt-2 rounded-md max-h-48" />
-            </div>
+        <div class="p-4 border bg-gray-500/40">
+          <label class="block mb-1">Selfie with ID Card: *</label>
+          <input type="file" @change="handleSelfieUpload" required accept="image/*" class="block w-full text-sm text-gray-300" />
+          <img v-if="selfieImage" :src="selfieImage" class="mx-auto mt-2 rounded-md max-h-48" />
+        </div>
 
-            <!-- Submit -->
-            <div class="pt-4">
-            <button v-if="!isLoanding" type="submit"
-                class="w-full py-3 font-semibold text-black transition bg-yellow-500 rounded-full hover:bg-yellow-600">
-                Submit
-            </button>
-            <button v-else disabled type="button"
-                class="w-full py-3 font-semibold text-gray-200 bg-gray-600 rounded-full cursor-not-allowed">
-                Please wait...
-            </button>
-            </div>
-        </form>
+        <!-- Submit -->
+        <div class="pt-4">
+          <button v-if="!isLoanding" type="submit"
+            class="w-full py-3 font-semibold text-black transition bg-yellow-500 rounded-full hover:bg-yellow-600">
+            Submit
+          </button>
+          <button v-else disabled type="button"
+            class="w-full py-3 font-semibold text-gray-200 bg-gray-600 rounded-full cursor-not-allowed">
+            Please wait...
+          </button>
+        </div>
+      </form>
 
-        <!-- If Data Exists -->
-        <div v-else class="space-y-4">
-            <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <p><strong>Name:</strong> {{ userDoc.name }}</p>
-            <p><strong>ID Number:</strong> {{ userDoc.idNumber }}</p>
-            </div>
-
-            <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <!-- If Data Exists -->
+      <div v-else class="space-y-4">
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <p class="text-lg"><strong>Name:</strong> <span class="text-lg underline">{{ userDoc.name }}</span></p>
+          <p class="text-lg"><strong>ID Number:</strong> <span class="underline">{{ userDoc.idNumber }}</span></p>
+        </div>
+<hr>
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          <div class="p-5 border-2 bg-gray-500/40">
+            <p><strong>Front ID:</strong></p>
             <img :src="userDoc.front_image" alt="Front ID" class="mx-auto rounded-md max-h-48" />
+          </div>
+          <div class="p-5 border-2 bg-gray-500/40">
+            <p><strong>Back ID:</strong></p>
             <img :src="userDoc.back_image" alt="Back ID" class="mx-auto rounded-md max-h-48" />
-            <img :src="userDoc.selfie_image" alt="Selfie" class="mx-auto rounded-md max-h-48" />
-            </div>
 
-            <!-- <button @click="handleNext"
+          </div>
+          <div class="p-5 border-2 bg-gray-500/40">
+            <p><strong>Selfie with ID:</strong></p>
+            <img :src="userDoc.selfie_image" alt="Selfie" class="mx-auto rounded-md max-h-48" />
+
+          </div>
+        </div>
+
+        <!-- <button @click="handleNext"
             class="w-full py-3 font-semibold text-white rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700">
             Next
             </button> -->
-        </div>
+      </div>
     </div>
 
   </div>
@@ -114,7 +117,7 @@
 <script>
 import { ref, watch } from "vue";
 
-import {  useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import useStorage from "@/firebase/useStorage";
 import useCollection from "@/firebase/useCollection";
 import getUser from "@/firebase/getUser";
@@ -122,7 +125,7 @@ import getColectionQuryTerms from "@/firebase/getCollectionQueryTerm";
 import { documentId, where } from "firebase/firestore";
 
 export default {
-  components: { },
+  components: {},
   name: "KYCForm",
   props: { data: { type: Object, required: true } },
 
@@ -196,12 +199,12 @@ export default {
           front_image: frontUrl,
           back_image: backUrl,
           selfie_image: selfieUrl,
+          loan_completed: '' 
         };
 
         await updateDocs(user?.value?.uid, saveData);
         userDoc.value = saveData;
 
-        router.push({ path: "/personal", query: { data: JSON.stringify(props.data) } });
       } catch (err) {
         console.error(err);
       } finally {
@@ -236,6 +239,6 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
- min-height: 100vh;
+  min-height: 100vh;
 }
 </style>

@@ -146,11 +146,11 @@
 
                         <td class="px-2 pt-5 border border-gray-300">{{ customer?.gender }}</td>
 
-                        <td class="px-2 pt-5 border border-gray-300">₱ {{ customer?.amount }}</td>
+                        <td class="px-2 pt-5 border border-gray-300">₱ {{ customer?.loanAmount }}</td>
                         <td class="px-2 pt-5 border border-gray-300"> {{ customer?.term }} Months</td>
                         <td class="w-10 px-2 pt-5 border border-gray-300"> {{ formatDate(customer?.createdAt) }}</td>
                         <td class="px-2 pt-5 border border-gray-300 w-28">
-                            <div v-if="customer.status === '0'">
+                            <div v-if="customer.wallet_status === '0'">
 
                                 <div class="p-1 text-xs text-center text-white bg-orange-500">
                                     Under Review
@@ -158,7 +158,7 @@
                                 <p class="text-xs text-gray-500">{{ customer.description }}</p>
 
                             </div>
-                            <div v-else-if="customer.status === '1'">
+                            <div v-else-if="customer.wallet_status === '1'">
                                 <div class="p-1 text-xs text-center text-white bg-green-500">
                                     <p>Approved</p>
                                 </div>
@@ -170,7 +170,7 @@
                         </td>
                         <td class="px-2 border border-gray-300 w-72">
                             <div class="flex flex-wrap gap-2 px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                <div v-if="customer?.status === '0' || customer?.status === '1'"
+                                <div v-if="customer?.wallet_status === '0' || customer?.wallet_status === '1'"
                                     @click="handleCurrentUpdate(customer)"
                                     class="flex items-center gap-2 p-2 text-white bg-blue-600 shadow-md cursor-pointer hover:bg-blue-500">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
@@ -280,7 +280,7 @@
 
                                 </RouterLink>
 
-                                <div v-if="customer?.status !== '1'"
+                                <div v-if="customer?.wallet_status !== '1'"
                                     class="flex items-center gap-2 p-2 text-white bg-red-600 shadow-md cursor-pointer hover:bg-red-500"
                                     @click="handleDelete(customer?.id, customer?.front_image, customer?.back_image, customer?.selfie_image, customer?.assigned_image)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
@@ -305,7 +305,7 @@
 
                 </tbody>
             </table>
-
+         
             <!-- Pagination -->
             <div class="flex justify-end px-4 py-3">
                 <nav class="flex items-center space-x-1">
@@ -333,12 +333,12 @@
 
             <!-- <pre>{{ paginatedStudents }}</pre> -->
         </div>
-
+<!-- <pre>{{ filterFromDateToData }}</pre> -->
     </section>
 
     <!-- <pre>{{ customers }}</pre> -->
 
-
+  
     <!-- modal Update stutus -->
     <component :is="currentComponents" :statusData="statusData" @close="currentComponents = ''"
         :creditData="creditData" />
@@ -493,7 +493,7 @@ export default {
 
         const customerStatus = computed(() => {
             return data.value.filter((customer) => {
-                return customer.status === '0' || customer.status === '1';
+                return customer.wallet_status === '0' || customer.wallet_status === '1';
             });
         })
 

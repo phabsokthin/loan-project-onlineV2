@@ -1,16 +1,11 @@
 <template>
   <div class="min-h-screen px-4 py-4 m-auto back_image">
-    <div class="hidden lg:block">
-      <NavbarComponent />
-    </div>
-    <div class="lg:hidden">
-      <MobileView />
-    </div>
-
+   
     <div class="w-full max-w-5xl mx-auto mt-10">
       <!-- Header -->
       <h2 class="flex items-center gap-2 p-3 mt-10 text-lg font-semibold text-white bg-black rounded-t-md">
-        <svg
+        <router-link :to="{ name: 'home' }">
+            <svg
           class="w-6 h-6"
           viewBox="0 0 7111 7111"
           xmlns="http://www.w3.org/2000/svg"
@@ -20,6 +15,7 @@
             fill="#ffffff"
           />
         </svg>
+        </router-link>
         <span>Beneficiary Bank Details</span>
       </h2>
     </div>
@@ -41,14 +37,14 @@
         </h2>
 
         <div>
-          <label class="block mb-1 text-sm">Bank Name</label>
-          <input v-model="bankName" type="text" placeholder="Bank Name"
+          <label class="block mb-1 text-sm">Bank Name: *</label>
+          <input required v-model="bankName" type="text" placeholder="Bank Name"
             class="w-full p-2 text-white bg-transparent border-b border-gray-300 focus:outline-none focus:border-yellow-400" />
         </div>
 
         <div>
-          <label class="block mb-1 text-sm">Account Number</label>
-          <input v-model="accountNumber" type="text" placeholder="Account Number"
+          <label class="block mb-1 text-sm">Account Number: * </label>
+          <input required v-model="accountNumber" type="text" placeholder="Account Number"
             class="w-full p-2 text-white bg-transparent border-b border-gray-300 focus:outline-none focus:border-yellow-400" />
         </div>
 
@@ -67,21 +63,22 @@
 
       <!-- Show Data if already exists -->
       <div v-else class="space-y-4">
-        <p><strong>Bank Name:</strong> {{ userDoc.bankName }}</p>
-        <p><strong>Account Number:</strong> {{ userDoc.accountNumber }}</p>
+        
+        <p class="text-lg"><strong>Bank Name:</strong> <span class="underline">{{ userDoc.bankName }}</span></p>
+        <p class="text-lg"><strong>Account Number:</strong> <span class="underline">{{ userDoc.accountNumber }}</span></p>
 
-        <button @click="handleNextToAssign"
+      
+        <!-- <button @click="handleNextToAssign"
           class="w-full py-3 font-semibold text-white rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700">
           Next
-        </button>
+        </button> -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import NavbarComponent from '@/components/client/NavbarComponent.vue';
-import MobileView from './MobileView.vue';
+
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import getUser from '@/firebase/getUser';
@@ -90,7 +87,7 @@ import getColectionQuryTerms from '@/firebase/getCollectionQueryTerm';
 import { documentId, where } from 'firebase/firestore';
 
 export default {
-  components: { NavbarComponent, MobileView },
+  
   name: 'BeneficiaryBankView',
   props: { data: { type: Object, required: true } },
 
@@ -132,10 +129,10 @@ export default {
         };
         await updateDocs(user?.value?.uid, updatedData);
         userDoc.value = updatedData;
-        router.push({
-          path: '/loancontect',
-          query: { data: JSON.stringify(props.data) },
-        });
+        // router.push({
+        //   path: '/loancontect',
+        //   query: { data: JSON.stringify(props.data) },
+        // });
       } catch (err) {
         console.error(err);
       } finally {

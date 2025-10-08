@@ -1,79 +1,59 @@
 <template>
-    <div class="hidden lg:block">
-        <NavbarComponent />
-    </div>
-    <div class="lg:hidden">
-        <MobileView />
-    </div>
+  <div class="min-h-screen py-3 back_image">
 
-    <div class="flex flex-col justify-start items-center  min-h-[100vh]">
-        <div class="flex justify-center my-4">
-            <div class="">
-                <div class="flex items-center justify-center w-32 h-32 text-white bg-green-500 rounded-full shadow-xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="lucide lucide-check-icon lucide-check">
-                        <path d="M20 6 9 17l-5-5" />
-                    </svg>
-                </div>
-            </div>
-        </div>
-        <div class="mx-auto flex w-full  flex-col justify-center px-5 pt-0 md:h-[unset] max-w-[520px] lg:px-6 xl:pl-0 ">
-            <div class="relative flex w-full flex-col pt-[20px] md:pt-0">
-                <div
-                    class="max-w-full px-6 pt-8 pb-6 mb-5 mr-0 border rounded-lg shadow-sm bg-card text-card-foreground h-min dark:border-zinc-800 md:mb-0 bg-[oklch(58.8%_0.158_241.966)] opacity-95">
-                    <div class="relative mx-auto flex w-full max-w-full md:pt-[unset] mb-6">
-                        <div class="w-2 h-2 mt-1 bg-green-500 rounded-full me-4"></div>
-                        <div>
-                            <p class="mb-1  font-medium text-white ">
-                                Withdrawal request submitted.
-                            </p>
-                            <p class="font-medium text-zinc-500 dark:text-zinc-400">
-                               
-                            </p>
-                        </div>
-                    </div>
-                    <div class="relative mx-auto flex w-full max-w-full md:pt-[unset] mb-6">
-                        <div class="w-2 h-2 mt-1 bg-green-500 rounded-full me-4"></div>
-                        <div>
-                            <p class="mb-1  font-medium text-white">
-                                System proccessing.
-                            </p>
-                            <!-- <p class="font-medium text-zinc-500 dark:text-zinc-400">
-                                2 hours ago
-                            </p> -->
-                        </div>
-                    </div>
-                    <div class="relative mx-auto flex w-full max-w-full md:pt-[unset]">
-                        <div class="w-2 h-2 mt-1 bg-gray-800 rounded-full me-4"></div>
-                        <div>
-                            <p class="mb-1  font-medium text-gray-300/90">
-                                Withdrawal request successfull
-                            </p>
 
-                        </div>
-                    </div>
-                </div>
+
+    <!-- Container -->
+    <div class="w-full max-w-2xl px-4 mx-auto mt-10">
+      <!-- Header -->
+      <h2 class="flex items-center gap-2 p-3 text-lg font-semibold text-white bg-black rounded-t-md">
+        <RouterLink :to="{ name: 'home' }">
+          <svg class="w-6 h-6" viewBox="0 0 7111 7111" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m5000 7111c-179 0-346-69-472-195l-2888-2889c-260-260-260-683 0-943l2888-2889c260-260 683-260 943 0s260 683 0 943l-2417 2418 2417 2417c260 260 260 683 0 943-125 126-293 195-471 195z"
+              fill="#ffffff" />
+          </svg>
+        </RouterLink>
+        <span>Wallet </span>
+      </h2>
+
+      <!-- Card -->
+      <div class="w-full max-w-2xl p-6 mt-5 ">
+        <!-- Form -->
+        <div class="">
+          <!-- Left side -->
+          <div class="w-full space-y-1 text-center">
+            <h1 class="text-4xl font-bold text-center text-white">Delivered</h1>
+            <div>
+              <p class="text-white text-md">The system has successfully</p>
+              <p class="text-white text-md">sent the funds to your beneficiary.</p>
             </div>
+            <div class="flex justify-center ">
+              <img src="https://img.icons8.com/?size=1200&id=63726&format=png" class="object-contain w-40" alt="">
+            </div>
+          </div>
         </div>
 
-    </div>
+        <!-- If Data Exists -->
 
+      </div>
+    </div>
+  </div>
 </template>
 
-<script>
-import NavbarComponent from '@/components/client/NavbarComponent.vue';
-import MobileView from './MobileView.vue';
 
-export default {
-    components: {
-        NavbarComponent,
-        MobileView
-    },
-    setup() {
 
-    }
+<style scoped>
+canvas {
+  touch-action: none;
 }
 
+.back_image {
+  background-image: url("/src/assets/background.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
 
-</script>
+}
+</style>
