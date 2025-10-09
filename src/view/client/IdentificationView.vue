@@ -2,21 +2,21 @@
 
   <div class="min-h-screen px-4 py-4 m-auto text-white back_image">
     <!-- Header -->
-    <div class="w-full max-w-5xl mx-auto mt-10">
+    <div class="w-full max-w-5xl mx-auto mt-10" >
       <!-- Header -->
       <h2 class="flex items-center gap-2 p-3 mt-10 text-lg font-semibold text-white bg-black rounded-t-md">
-        <router-link :to="{ name: 'home' }">
+        <button @click="$router.back()">
           <svg class="w-6 h-6" viewBox="0 0 7111 7111" xmlns="http://www.w3.org/2000/svg">
             <path
               d="m5000 7111c-179 0-346-69-472-195l-2888-2889c-260-260-260-683 0-943l2888-2889c260-260 683-260 943 0s260 683 0 943l-2417 2418 2417 2417c260 260 260 683 0 943-125 126-293 195-471 195z"
               fill="#ffffff" />
           </svg>
-        </router-link>
+        </button>
         <span>Identify Picture </span>
       </h2>
     </div>
     <!-- Card -->
-    <div class="w-full max-w-5xl p-6 mx-auto mt-5 text-white rounded-md bg-black/50">
+    <div class="w-full max-w-5xl p-6 mx-auto mt-5 text-white rounded-md bg-black/50" v-motion-fade>
       <form v-if="!userDoc?.front_image" @submit.prevent="handleSubmit" class="space-y-6">
         <h2 class="flex items-center gap-2 text-xl font-semibold text-white rounded-md ">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -56,14 +56,16 @@
 
           <div class="p-4 border bg-gray-500/40">
             <label class="block mb-1">Back ID Card: *</label>
-            <input type="file" @change="handleBackUpload" accept="image/*" required class="block w-full text-sm text-gray-300" />
+            <input type="file" @change="handleBackUpload" accept="image/*" required
+              class="block w-full text-sm text-gray-300" />
             <img v-if="backImage" :src="backImage" class="mx-auto mt-2 rounded-md max-h-48" />
           </div>
         </div>
 
         <div class="p-4 border bg-gray-500/40">
           <label class="block mb-1">Selfie with ID Card: *</label>
-          <input type="file" @change="handleSelfieUpload" required accept="image/*" class="block w-full text-sm text-gray-300" />
+          <input type="file" @change="handleSelfieUpload" required accept="image/*"
+            class="block w-full text-sm text-gray-300" />
           <img v-if="selfieImage" :src="selfieImage" class="mx-auto mt-2 rounded-md max-h-48" />
         </div>
 
@@ -75,7 +77,7 @@
           </button>
           <button v-else disabled type="button"
             class="w-full py-3 font-semibold text-gray-200 bg-gray-600 rounded-full cursor-not-allowed">
-            Please wait...
+            Wait a minute...
           </button>
         </div>
       </form>
@@ -83,10 +85,12 @@
       <!-- If Data Exists -->
       <div v-else class="space-y-4">
         <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <p class="text-lg"><strong>Name:</strong> <span class="text-lg underline">{{ userDoc.name }}</span></p>
-          <p class="text-lg"><strong>ID Number:</strong> <span class="underline">{{ userDoc.idNumber }}</span></p>
+          <p class="flex justify-between text-lg"><strong>Name:</strong> <span class="text-lg underline">{{ userDoc.name
+              }}</span></p>
+          <p class="flex justify-between text-lg"><strong>ID Number:</strong> <span class="underline">{{
+            userDoc.idNumber }}</span></p>
         </div>
-<hr>
+        <hr>
         <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div class="p-5 border-2 bg-gray-500/40">
             <p><strong>Front ID:</strong></p>
@@ -101,6 +105,19 @@
             <p><strong>Selfie with ID:</strong></p>
             <img :src="userDoc.selfie_image" alt="Selfie" class="mx-auto rounded-md max-h-48" />
 
+          </div>
+        </div>
+        <div class="flex justify-end ">
+          <div class="px-4 py-2 font-bold text-white rounded bg-green-500/60 hover:bg-green-600">
+            <RouterLink to="/bankDetails" class="flex gap-2">
+              <span>Next</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-move-right-icon lucide-move-right">
+                <path d="M18 8L22 12L18 16" />
+                <path d="M2 12H22" />
+              </svg>
+            </RouterLink>
           </div>
         </div>
 
@@ -199,7 +216,7 @@ export default {
           front_image: frontUrl,
           back_image: backUrl,
           selfie_image: selfieUrl,
-          loan_completed: '' 
+          loan_completed: ''
         };
 
         await updateDocs(user?.value?.uid, saveData);

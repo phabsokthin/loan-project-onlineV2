@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen px-4 py-4 m-auto back_image">
-    <div class="w-full max-w-5xl mx-auto mt-10">
+    <div class="w-full max-w-5xl mx-auto mt-10" >
       <!-- Header -->
       <h2 class="flex items-center gap-2 p-3 mt-10 text-lg font-semibold text-white bg-black rounded-t-md">
         <RouterLink :to="{ name: 'home' }">
@@ -20,7 +20,7 @@
     </div>
 
     <!-- ✅ Card -->
-    <div class="w-full max-w-5xl p-6 mx-auto mt-5 text-white rounded-md bg-black/50">
+    <div class="w-full max-w-5xl p-6 mx-auto mt-5 text-white rounded-md bg-black/50" v-motion-fade>
       <!-- Card Header -->
       <div class="flex items-center gap-2 mb-6">
         <svg

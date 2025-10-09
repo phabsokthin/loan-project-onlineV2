@@ -1,32 +1,25 @@
 <template>
   <div class="min-h-screen px-4 py-4 m-auto back_image">
-   
-    <div class="w-full max-w-5xl mx-auto mt-10">
+
+    <div class="w-full max-w-5xl mx-auto mt-10" >
       <!-- Header -->
       <h2 class="flex items-center gap-2 p-3 mt-10 text-lg font-semibold text-white bg-black rounded-t-md">
-        <router-link :to="{ name: 'home' }">
-            <svg
-          class="w-6 h-6"
-          viewBox="0 0 7111 7111"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="m5000 7111c-179 0-346-69-472-195l-2888-2889c-260-260-260-683 0-943l2888-2889c260-260 683-260 943 0s260 683 0 943l-2417 2418 2417 2417c260 260 260 683 0 943-125 126-293 195-471 195z"
-            fill="#ffffff"
-          />
-        </svg>
-        </router-link>
+        <button @click="$router.back()">
+          <svg class="w-6 h-6" viewBox="0 0 7111 7111" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="m5000 7111c-179 0-346-69-472-195l-2888-2889c-260-260-260-683 0-943l2888-2889c260-260 683-260 943 0s260 683 0 943l-2417 2418 2417 2417c260 260 260 683 0 943-125 126-293 195-471 195z"
+              fill="#ffffff" />
+          </svg>
+        </button>
         <span>Beneficiary Bank Details</span>
       </h2>
     </div>
 
     <!-- Card -->
-    <div class="w-full max-w-5xl p-6 mx-auto mt-5 text-white shadow-lg bg-black/50 rounded-xl">
+    <div class="w-full max-w-5xl p-6 mx-auto mt-5 text-white shadow-lg bg-black/50 rounded-xl" v-motion-fade>
       <!-- Show Form if no bank data -->
-      <form v-if="!userDoc?.bankName || !userDoc?.accountNumber"
-        @submit.prevent="handleSubmitBaneFicicary"
-        class="space-y-6"
-      >
+      <form v-if="!userDoc?.bankName || !userDoc?.accountNumber" @submit.prevent="handleSubmitBaneFicicary"
+        class="space-y-6">
         <h2 class="flex items-center gap-2 text-xl font-semibold text-white rounded-md">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24"
             stroke="currentColor">
@@ -63,11 +56,26 @@
 
       <!-- Show Data if already exists -->
       <div v-else class="space-y-4">
-        
-        <p class="text-lg"><strong>Bank Name:</strong> <span class="underline">{{ userDoc.bankName }}</span></p>
-        <p class="text-lg"><strong>Account Number:</strong> <span class="underline">{{ userDoc.accountNumber }}</span></p>
 
-      
+        <p class="flex justify-between text-lg"><strong>Bank Name:</strong> <span class="underline">{{ userDoc.bankName
+            }}</span></p>
+        <p class="flex justify-between text-lg"><strong>Account Number:</strong> <span class="underline">{{
+          userDoc.accountNumber }}</span></p>
+
+
+        <div class="flex justify-end ">
+          <div class="px-4 py-2 font-bold text-white rounded bg-green-500/60 hover:bg-green-600">
+            <RouterLink to="/signature" class="flex gap-2">
+              <span>Next</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="lucide lucide-move-right-icon lucide-move-right">
+                <path d="M18 8L22 12L18 16" />
+                <path d="M2 12H22" />
+              </svg>
+            </RouterLink>
+          </div>
+        </div>
         <!-- <button @click="handleNextToAssign"
           class="w-full py-3 font-semibold text-white rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700">
           Next
@@ -87,7 +95,7 @@ import getColectionQuryTerms from '@/firebase/getCollectionQueryTerm';
 import { documentId, where } from 'firebase/firestore';
 
 export default {
-  
+
   name: 'BeneficiaryBankView',
   props: { data: { type: Object, required: true } },
 

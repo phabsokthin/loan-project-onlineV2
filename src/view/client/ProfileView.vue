@@ -2,7 +2,7 @@
   <div class="min-h-screen back_image">
 
 
-    <div class="w-full max-w-4xl px-4 py-6 mx-auto space-y-6">
+    <div class="w-full max-w-4xl px-4 py-6 mx-auto space-y-6" v-motion-fade>
 
       <h2 class="flex items-center gap-2 p-3 text-lg font-semibold text-white bg-black rounded-t-md">
         <!-- Back Arrow Icon -->
@@ -46,11 +46,18 @@
               <span class="font-medium">Personal Info</span>
             </div>
             <div v-for="userData in userDoc" :key="userData" class="flex items-center space-x-2 text-sm">
-              <div v-if="userData.maritalStatus && userData.address && userData.income && userData.loanPurpose">
+              <div v-if="userData.maritalStatus && userData.address && userData.income && userData.loanPurpose"
+                class="flex items-center gap-2">
                 <div class="text-green-500">Completed</div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="text-green-500 size-5">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+
               </div>
-              <span v-else class="">Incomplete</span>
-              <span>&gt;</span>
+              <span v-else class="">Incomplete <span>&gt;</span></span>
+
             </div>
           </router-link>
 
@@ -154,11 +161,18 @@
             </div>
             <div v-for="userData in userDoc" :key="userData" class="flex items-center space-x-2 text-sm">
               <div
-                v-if="userData.name && userData.idNumber && userData.front_image && userData.back_image && userData.selfie_image">
+                v-if="userData.name && userData.idNumber && userData.front_image && userData.back_image && userData.selfie_image"
+                class="flex items-center gap-2">
                 <div class="text-green-500">Completed</div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="text-green-500 size-5">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+
               </div>
-              <span v-else class="">Incomplete</span>
-              <span>&gt;</span>
+              <span v-else class="">Incomplete <span>&gt;</span></span>
+
             </div>
           </router-link>
 
@@ -225,11 +239,16 @@
             </div>
             <div class="flex items-center space-x-2 text-sm">
               <div v-for="userData in userDoc" :key="userData" class="flex items-center space-x-2 text-sm">
-                <div v-if="userData.bankName && userData.accountNumber">
+                <div v-if="userData.bankName && userData.accountNumber" class="flex items-center gap-2">
                   <div class="text-green-500">Completed</div>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="text-green-500 size-5">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
                 </div>
-                <span v-else class="">Incomplete</span>
-                <span>&gt;</span>
+                <span v-else class="">Incomplete <span>&gt;</span></span>
+
               </div>
             </div>
           </router-link>
@@ -238,8 +257,7 @@
           <div v-for="userData in userDoc" :key="userData">
             <!-- if we complete aboave we can sellect -->
             <router-link
-          
-              v-if="userData.maritalStatus && userData.address && userData.income && userData.loanPurpose &&userData.name && userData.idNumber && userData.front_image && userData.back_image && userData.selfie_image &&userData.bankName && userData.accountNumber"
+              v-if="userData.maritalStatus && userData.address && userData.income && userData.loanPurpose && userData.name && userData.idNumber && userData.front_image && userData.back_image && userData.selfie_image && userData.bankName && userData.accountNumber"
               to="/signature" class="flex items-center justify-between p-3 rounded-lg hover:bg-white/10">
               <div class="flex items-center space-x-3">
                 <svg version="1.1" id="Capa_1" class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg"
@@ -263,18 +281,20 @@
 
               <div class="flex items-center space-x-2 text-sm">
                 <div v-for="userData in userDoc" :key="userData" class="flex items-center space-x-2 text-sm">
-                  <div v-if="userData.signature_name && userData.assigned_image">
+                  <div v-if="userData.signature_name && userData.assigned_image" class="flex items-center gap-2">
                     <div class="text-green-500">Completed</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor" class="text-green-500 size-5">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
                   </div>
-                  <span v-else class="">Incomplete</span>
-                  <span>&gt;</span>
+                  <span v-else class="">Incomplete<span>&gt;</span></span>
+
                 </div>
               </div>
             </router-link>
-               <div v-else
-          
-             
-             class="flex items-center justify-between p-3 rounded-lg hover:bg-white/10">
+            <div v-else class="flex items-center justify-between p-3 rounded-lg hover:bg-white/10">
               <div class="flex items-center space-x-3">
                 <svg version="1.1" id="Capa_1" class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 25.588 25.588"
@@ -300,8 +320,8 @@
                   <div v-if="userData.signature_name && userData.assigned_image">
                     <div class="text-green-500">Completed</div>
                   </div>
-                  <span v-else class="">Incomplete</span>
-                  <span>&gt;</span>
+                  <span v-else class="">Incomplete <span>&gt;</span></span>
+                 
                 </div>
               </div>
             </div>

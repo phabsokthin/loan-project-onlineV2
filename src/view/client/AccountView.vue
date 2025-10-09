@@ -2,7 +2,7 @@
     <div class="min-h-screen back_image">
 
 
-        <div class="w-full max-w-4xl px-4 py-6 mx-auto space-y-6">
+        <div class="w-full max-w-4xl px-4 py-6 mx-auto space-y-6" v-motion-fade>
 
             <h2 class="flex items-center gap-2 p-3 text-lg font-semibold text-white bg-black rounded-t-md">
                 <!-- Back Arrow Icon -->

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-center min-h-screen bg-blue-600">
+  <div class="flex items-center justify-center min-h-screen bg-blue-600" v-motion-fade>
     <div class="flex w-full max-w-4xl overflow-hidden bg-white shadow-lg rounded-2xl">
       
       <!-- Left: Login Form (always visible) -->

@@ -111,7 +111,7 @@
                         <td class="px-2 pt-5 border border-gray-300">{{ customer?.name }}</td>
                         <!-- <td class="px-2 border border-gray-300">{{ customer?.gender }}</td> -->
 
-                        <td class="px-2 pt-5 border border-gray-300">₱ {{ customer?.loanAmount }}</td>
+                        <td class="px-2 pt-5 border border-gray-300">₱ {{ formatCurrency(customer?.loanAmount) }}</td>
                         <td class="px-2 pt-5 border border-gray-300"> {{ customer?.term }} Months</td>
                         <td class="w-10 px-2 pt-5 border border-gray-300"> {{ formatDate(customer?.createdAt) }}</td>
                         <td class="w-32 px-2 pt-5 border border-gray-300">
@@ -291,6 +291,7 @@ import AddCreditModal from '@/components/admin/AddCreditModal.vue';
 import WithDrawAmountModal from '@/components/admin/WithDrawAmountModal.vue';
 import AddCodeWithDrawModal from '@/components/admin/AddCodeWithDrawModal.vue';
 import getUser from '@/firebase/getUser';
+import { formatCurrency } from '@/utils/formatCurrency';
 
 export default {
     components: {
@@ -468,7 +469,8 @@ export default {
             fromDate,
             toDate,
             filteredData,
-            user
+            user,
+            formatCurrency
         }
     }
 }

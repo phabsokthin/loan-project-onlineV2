@@ -4,16 +4,16 @@
 
 
     <!-- Container -->
-    <div class="w-full max-w-2xl px-4 mx-auto mt-10">
+    <div class="w-full max-w-2xl px-4 mx-auto mt-10" v-motion-fade>
       <!-- Header -->
       <h2 class="flex items-center gap-2 p-3 text-lg font-semibold text-white bg-black rounded-t-md">
-        <RouterLink :to="{ name: 'home' }">
+        <button @click="$router.back()">
           <svg class="w-6 h-6" viewBox="0 0 7111 7111" xmlns="http://www.w3.org/2000/svg">
             <path
               d="m5000 7111c-179 0-346-69-472-195l-2888-2889c-260-260-260-683 0-943l2888-2889c260-260 683-260 943 0s260 683 0 943l-2417 2418 2417 2417c260 260 260 683 0 943-125 126-293 195-471 195z"
               fill="#ffffff" />
           </svg>
-        </RouterLink>
+        </button>
         <span>Signature </span>
       </h2>
 
@@ -69,16 +69,25 @@
 
         <!-- If Data Exists -->
         <div v-else class="space-y-4">
-          <p><strong>Signature Name:</strong> {{ userDoc.signature_name }}</p>
+          <p class="flex justify-between text-lg"><strong>Signature Name:</strong> <span class="underline">{{
+            userDoc.signature_name }}</span></p>
           <p class="font-semibold">Your Signature</p>
           <img :src="userDoc.assigned_image" alt="Signature" class="object-contain w-full h-40 bg-white rounded-md" />
 
-          <!-- <button
-            @click="handleComplete"
-            class="w-full py-3 mt-4 font-semibold text-white rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700"
-          >
-            Continue
-          </button> -->
+          <div class="flex justify-end ">
+            <div class="px-4 py-2 font-bold text-white rounded bg-green-500/60 hover:bg-green-600">
+              <RouterLink to="/loan" class="flex gap-2">
+                <span>Apply Now</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="lucide lucide-move-right-icon lucide-move-right">
+                  <path d="M18 8L22 12L18 16" />
+                  <path d="M2 12H22" />
+                </svg>
+              </RouterLink>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -188,7 +197,7 @@ export default {
       });
     };
 
- 
+
 
 
     return {

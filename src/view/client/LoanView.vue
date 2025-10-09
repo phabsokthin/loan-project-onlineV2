@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen px-4 py-5 space-y-4 back_image">
 
-    <div v-for="userData in userDoc" :key="userData">
+    <div v-for="userData in userDoc" :key="userData" v-motion-fade>
       <div v-if="!userData.status === '1'">
         <div class="w-full max-w-4xl mx-auto mt-10">
           <!-- Header -->
@@ -98,7 +98,7 @@
 
         </div>
       </div>
-       <div v-else>
+      <div v-else>
         <div class="w-full max-w-4xl mx-auto mt-10">
           <!-- Header -->
           <h2 class="flex items-center gap-2 p-3 mt-10 mb-5 text-lg font-semibold text-white bg-black rounded-t-md">
@@ -180,7 +180,8 @@
               <div :disabled="isLoanding"
                 class="w-full py-3 text-base text-center text-white transition bg-green-500 rounded-md lg:py-4 disabled:bg-gray-600 lg:text-lg">
                 Loan applied successfully. <span>
-                  <RouterLink class="text-blue-500 underline hover:text-blue-600" :to="{ name: 'account' }">View accounts
+                  <RouterLink class="text-blue-500 underline hover:text-blue-600" :to="{ name: 'account' }">View
+                    accounts
                   </RouterLink>
                 </span>
               </div>
@@ -204,7 +205,7 @@
         </div>
       </div>
     </div>
-   
+
   </div>
 </template>
 
@@ -251,9 +252,50 @@ export default {
       }).format(num);
 
 
+    // const submitLoan = async () => {
+    //   try {
+
+
+    //     isLoanding.value = true;
+    //     const updatedData = {
+    //       loanAmount: loanAmount.value || 0,
+    //       loanTerm: loanTerm.value || 0,
+    //       interestRate: interestRate.value || 0,
+    //       baseInterest: baseInterest.value || 0,
+    //       monthlyPayment: monthlyPayment.value || 0,
+    //       credit_score: 750,
+    //       status: '1',
+    //       createdAt: timestamp(),
+    //       loan_acc: generateLoanAcc(),
+
+    //     }
+    //     await updateDocs(user?.value?.uid, updatedData);
+    //     console.log(updatedData);
+
+    //     // router.push({
+    //     //   path: '/loancontect',
+    //     //   query: { data: JSON.stringify(props.data) },
+    //     // });
+    //   } catch (err) {
+    //     console.error(err);
+    //   } finally {
+    //     isLoanding.value = false;
+    //   }
+    // };
+
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
     const submitLoan = async () => {
       try {
+        if (!window.confirm("Are you sure you want to apply for loan?")) {
+          return;
+        }
+
         isLoanding.value = true;
+
+        // simulate delay (2s)
+        await sleep(2000);
+
         const updatedData = {
           loanAmount: loanAmount.value || 0,
           loanTerm: loanTerm.value || 0,
@@ -261,25 +303,19 @@ export default {
           baseInterest: baseInterest.value || 0,
           monthlyPayment: monthlyPayment.value || 0,
           credit_score: 750,
-          status: '1',
+          status: "1",
           createdAt: timestamp(),
-          loan_acc: generateLoanAcc(),
+          loan_acc: generateLoanAcc(), // ✅ must return random/unique
+        };
 
-        }
         await updateDocs(user?.value?.uid, updatedData);
-        console.log(updatedData);
 
-        // router.push({
-        //   path: '/loancontect',
-        //   query: { data: JSON.stringify(props.data) },
-        // });
       } catch (err) {
-        console.error(err);
+        console.error("Submit loan failed:", err);
       } finally {
         isLoanding.value = false;
       }
     };
-
 
     watch(
       () => user.value?.uid,
@@ -301,7 +337,7 @@ export default {
     );
 
 
-       function generateLoanAcc() {
+    function generateLoanAcc() {
       const prefix = "LN"; // you can customize prefix
       const randomNum = Math.floor(100000 + Math.random() * 900000);
       return prefix + randomNum; // e.g. LN483920
