@@ -180,27 +180,70 @@ export default {
     );
 
     // uploads
-    const handleFrontUpload = (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        frontImage.value = URL.createObjectURL(file);
-        frontCard.value = file;
-      }
-    };
-    const handleBackUpload = (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        backImage.value = URL.createObjectURL(file);
-        backCard.value = file;
-      }
-    };
-    const handleSelfieUpload = (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        selfieImage.value = URL.createObjectURL(file);
-        selfieCard.value = file;
-      }
-    };
+    // const handleFrontUpload = (e) => {
+    //   const file = e.target.files[0];
+    //   if (file) {
+    //     frontImage.value = URL.createObjectURL(file);
+    //     frontCard.value = file;
+    //   }
+    // };
+    // const handleBackUpload = (e) => {
+    //   const file = e.target.files[0];
+    //   if (file) {
+    //     backImage.value = URL.createObjectURL(file);
+    //     backCard.value = file;
+    //   }
+    // };
+    // const handleSelfieUpload = (e) => {
+    //   const file = e.target.files[0];
+    //   if (file) {
+    //     selfieImage.value = URL.createObjectURL(file);
+    //     selfieCard.value = file;
+    //   }
+    // };
+
+    const MAX_SIZE_MB = 3; // Maximum 3 MB
+const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
+
+const handleFrontUpload = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    if (file.size > MAX_SIZE_BYTES) {
+      alert(`Front image must be less than ${MAX_SIZE_MB} MB.`);
+      e.target.value = ''; // reset input
+      return;
+    }
+    frontImage.value = URL.createObjectURL(file);
+    frontCard.value = file;
+  }
+};
+
+const handleBackUpload = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    if (file.size > MAX_SIZE_BYTES) {
+      alert(`Back image must be less than ${MAX_SIZE_MB} MB.`);
+      e.target.value = '';
+      return;
+    }
+    backImage.value = URL.createObjectURL(file);
+    backCard.value = file;
+  }
+};
+
+const handleSelfieUpload = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    if (file.size > MAX_SIZE_BYTES) {
+      alert(`Selfie image must be less than ${MAX_SIZE_MB} MB.`);
+      e.target.value = '';
+      return;
+    }
+    selfieImage.value = URL.createObjectURL(file);
+    selfieCard.value = file;
+  }
+};
+
 
     // submit
     const handleSubmit = async () => {

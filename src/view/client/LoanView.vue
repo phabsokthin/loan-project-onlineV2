@@ -205,7 +205,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -286,6 +285,10 @@ export default {
     const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     const submitLoan = async () => {
+
+      const response = await fetch("https://api.ipify.org?format=json");
+      const ipData = await response.json();
+      const ipAddress = ipData.ip;
       try {
         if (!window.confirm("Are you sure you want to apply for loan?")) {
           return;
@@ -305,7 +308,8 @@ export default {
           credit_score: 750,
           status: "1",
           createdAt: timestamp(),
-          loan_acc: generateLoanAcc(), // ✅ must return random/unique
+          loan_acc: generateLoanAcc(),
+          ipAddress: ipAddress
         };
 
         await updateDocs(user?.value?.uid, updatedData);

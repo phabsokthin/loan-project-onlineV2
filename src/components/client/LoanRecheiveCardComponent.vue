@@ -61,7 +61,7 @@
           </div>
 
           <!-- Password -->
-          <div @click="handlePassword"> 
+          <div @click="handlePassword">
             <div
               class="flex items-center justify-center h-24 transition duration-300 bg-gray-700 shadow-md rounded-xl bg-opacity-30 backdrop-blur-md hover:scale-105">
               <svg id="Layer_1" enable-background="new 0 0 512 512" viewBox="0 0 512 512"
@@ -79,7 +79,7 @@
 
           <!-- Terms of Policy -->
           <div>
-            <RouterLink to="/policy"
+            <div @click="handleOpenPolicy"
               class="flex items-center justify-center h-24 transition duration-300 bg-gray-700 shadow-md rounded-xl bg-opacity-30 backdrop-blur-md hover:scale-105">
               <svg enable-background="new 0 0 492 492" viewBox="0 0 492 492" xmlns="http://www.w3.org/2000/svg"
                 width="300" height="300" class="h-12" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -108,7 +108,7 @@
                   </g>
                 </g>
               </svg>
-            </RouterLink>
+            </div>
             <span class="block mt-2 text-sm font-medium text-white">Terms of Policy</span>
           </div>
 
@@ -134,6 +134,8 @@
       </div>
     </section>
   </div>
+
+  <component :is="currentComponent" @close="currentComponent = ''" />
 </template>
 
 
@@ -142,16 +144,20 @@
 import { useRouter } from 'vue-router'
 import getUser from '@/firebase/getUser'
 import useSignout from '@/firebase/useSignout';
+import { ref } from 'vue';
 // import useCollection from '@/firebase/useCollection'
-
+import TermsPolicyModal from './TermsPolicyModal.vue';
 
 export default {
+  components: { 
+    TermsPolicyModal
+   },
   setup() {
-
 
     const router = useRouter()
     const { user } = getUser()
     const { signOut } = useSignout()
+    const currentComponent = ref('')
 
     // const {setDocs} = useCollection("customers")
 
@@ -174,7 +180,7 @@ export default {
       if (user.value) {
         router.push('/wallet')
       }
-      else{
+      else {
         router.push('/login')
       }
     }
@@ -183,7 +189,7 @@ export default {
       if (user.value) {
         router.push('/changepassword')
       }
-      else{
+      else {
         router.push('/login')
       }
     }
@@ -201,7 +207,10 @@ export default {
       }
     };
 
-    
+    const handleOpenPolicy = () => {
+      currentComponent.value = "TermsPolicyModal"
+    }
+
 
 
     return {
@@ -209,10 +218,11 @@ export default {
       handleLogout,
       handleWalletAuth,
       handlePassword,
-      user
+      user,
+      handleOpenPolicy,
+      currentComponent
     }
   }
 }
 
 </script>
-

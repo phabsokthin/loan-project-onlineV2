@@ -128,7 +128,7 @@
                         <th class="w-20 p-2 border border-gray-300">No</th>
                         <th class="border border-gray-300">Names</th>
                         <th class="border border-gray-300 ">Identify No</th>
-                        <th class="border border-gray-300">Gender</th>
+                        <!-- <th class="border border-gray-300">Gender</th> -->
                         <th class="border border-gray-300">Loan Amount</th>
                         <th class="border border-gray-300 ">Month</th>
                         <th class="border border-gray-300 ">Created Date</th>
@@ -144,10 +144,10 @@
 
                         <td class="px-2 pt-5 border border-gray-300">{{ customer?.idNumber }}</td>
 
-                        <td class="px-2 pt-5 border border-gray-300">{{ customer?.gender }}</td>
+                        <!-- <td class="px-2 pt-5 border border-gray-300">{{ customer?.gender }}</td> -->
 
                         <td class="px-2 pt-5 border border-gray-300">₱ {{ customer?.loanAmount }}</td>
-                        <td class="px-2 pt-5 border border-gray-300"> {{ customer?.term }} Months</td>
+                        <td class="px-2 pt-5 border border-gray-300"> {{ customer?.loanTerm }} Months</td>
                         <td class="w-10 px-2 pt-5 border border-gray-300"> {{ formatDate(customer?.createdAt) }}</td>
                         <td class="px-2 pt-5 border border-gray-300 w-28">
                             <div v-if="customer.wallet_status === '0'">

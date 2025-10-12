@@ -62,7 +62,7 @@
           </router-link>
 
           <!-- Identify Picture -->
-          <router-link to="/identifyPicture"
+          <div
             class="flex items-center justify-between p-3 border-b rounded-lg border-white/20 hover:bg-white/10">
             <div class="flex items-center space-x-3">
               <svg enable-background="new 0 0 32 32" viewBox="0 0 32 32" class="w-6 h-6 text-white"
@@ -174,10 +174,10 @@
               <span v-else class="">Incomplete <span>&gt;</span></span>
 
             </div>
-          </router-link>
+          </div>
 
           <!-- Bank Details -->
-          <router-link to="/bankDetails"
+          <div
             class="flex items-center justify-between p-3 border-b rounded-lg border-white/20 hover:bg-white/10">
             <div class="flex items-center space-x-3">
               <svg id="Layer_1" enable-background="new 0 0 388 453" height="300" class="w-6 h-6 text-white"
@@ -251,7 +251,7 @@
 
               </div>
             </div>
-          </router-link>
+          </div>
 
           <!-- Signature -->
           <div v-for="userData in userDoc" :key="userData">

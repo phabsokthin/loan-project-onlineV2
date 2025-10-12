@@ -41,7 +41,7 @@
             </div>
 
 
-             <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2">
                 <div class="relative flex items-center mt-4 md:mt-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -105,13 +105,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(customer, index) in filterFromDateToData" :key="customer" class="text-sm font-medium align-top">
+                    <tr v-for="(customer, index) in filterFromDateToData" :key="customer"
+                        class="text-sm font-medium align-top">
                         <td class="p-2 px-1 pt-5 border border-gray-300">#{{ index + 1 }}</td>
                         <td class="px-2 pt-5 border border-gray-300">{{ customer?.name }}</td>
 
                         <td class="px-2 pt-5 border border-gray-300">
-                            <a class="text-blue-500 underline" :href="`https://ipinfo.io/${customer?.ipAddress}`" target="_blank"
-                                rel="noopener noreferrer">
+                            <a class="text-blue-500 underline" :href="`https://ipinfo.io/${customer?.ipAddress}`"
+                                target="_blank" rel="noopener noreferrer">
                                 {{ customer?.ipAddress }}
                             </a>
 
@@ -119,26 +120,20 @@
 
                         <!-- <td class="px-2 border border-gray-300">{{ customer?.gender }}</td> -->
 
-                        <td class="px-2 pt-5 border border-gray-300">₱ {{ customer?.amount }}</td>
-                        <td class="px-2 pt-5 border border-gray-300"> {{ customer?.term }} Months</td>
+                        <td class="px-2 pt-5 border border-gray-300">₱ {{ customer?.loanAmount }}</td>
+                        <td class="px-2 pt-5 border border-gray-300"> {{ customer?.loanTerm }} Months</td>
                         <td class="w-10 px-2 pt-5 border border-gray-300"> {{ formatDate(customer?.createdAt) }}</td>
                         <td class="px-2 pt-5 border border-gray-300 w-28">
-                            <div v-if="customer.status === '0'"
-                                class="p-1 text-xs text-center text-white bg-orange-500">
-                                Under Review
+                            <div v-if="customer.wallet_status !== '0' && customer.wallet_status !== '1'"
+                                class="p-1 text-xs text-center text-blue-500 underline">
+                                Enabled
                             </div>
-                            <div v-else-if="customer.status ===
-                                '1'" class="p-1 text-xs text-center text-white bg-green-500">
-                                <p>Approved</p>
-                            </div>
-                            <div v-else class="p-1 text-center text-blue-700 underline text-md ">
-                                <p>Enabled</p>
-                            </div>
+
                         </td>
-                     
-                          <td class="px-2 border border-gray-300 w-72">
+
+                        <td class="px-2 border border-gray-300 w-72">
                             <div class="flex flex-wrap gap-2 px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                <div v-if="customer?.status === '0' || customer?.status === '1'"
+                                <div v-if="customer?.wallet_status === '0' || customer?.wallet_status === '1'"
                                     @click="handleCurrentUpdate(customer)"
                                     class="flex items-center gap-2 p-2 text-white bg-blue-600 shadow-md cursor-pointer hover:bg-blue-500">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
@@ -215,7 +210,7 @@
                                     <p>Credit Score</p>
                                 </div>
 
-                              
+
                                 <div class="flex items-center gap-2 p-2 text-white bg-red-600 shadow-md cursor-pointer hover:bg-red-500"
                                     @click="handleDelete(customer?.id, customer?.front_image, customer?.back_image, customer?.selfie_image, customer?.assigned_image)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
@@ -273,7 +268,7 @@
 
     </section>
 
-    <!-- <pre>{{ customers }}</pre> -->
+    <!-- <pre>{{ filterFromDateToData }}</pre> -->
 
 
     <!-- modal Update stutus -->
@@ -307,7 +302,7 @@ export default {
 
         const currentComponents = ref("")
         const creditData = ref(null)
- const fromDate = ref(null);
+        const fromDate = ref(null);
         const toDate = ref(null);
 
         const statusData = ref(null)
@@ -362,8 +357,6 @@ export default {
         const handleDelete = async (id, fimage, bimage, simage, assign_image) => {
             try {
 
-
-
                 if (window.confirm("Are you sure you want to delete?")) {
 
 
@@ -407,6 +400,7 @@ export default {
         }
 
 
+
         const formatDate = (timestamp) => {
             if (!timestamp) return 'N/A';
             const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
@@ -416,16 +410,17 @@ export default {
 
         const customerStatus = computed(() => {
             return data.value.filter((customer) => {
-                return !customer.status && !customer.status;
+                return customer.status !== '0' && customer.wallet_status !== '1';
             });
-        })
+        });
 
-         const filterFromDateToData = computed(() => {
+
+        const filterFromDateToData = computed(() => {
             if (!fromDate.value || !toDate.value) return customerStatus.value;
 
             const from = new Date(fromDate.value);
             const to = new Date(toDate.value);
-            to.setHours(23, 59, 59, 999); 
+            to.setHours(23, 59, 59, 999);
 
             return customerStatus.value.filter((customer) => {
                 const createdAt = new Date(customer.createdAt);
@@ -451,7 +446,7 @@ export default {
             pageRange,
             customers,
             currentPage,
-            
+
             handleDelete,
             handleAddCreditModal,
             creditData,
