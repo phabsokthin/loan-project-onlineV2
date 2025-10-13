@@ -124,9 +124,13 @@
                         <td class="px-2 pt-5 border border-gray-300"> {{ customer?.loanTerm }} Months</td>
                         <td class="w-10 px-2 pt-5 border border-gray-300"> {{ formatDate(customer?.createdAt) }}</td>
                         <td class="px-2 pt-5 border border-gray-300 w-28">
-                            <div v-if="customer.wallet_status !== '0' && customer.wallet_status !== '1'"
-                                class="p-1 text-xs text-center text-blue-500 underline">
+                            <div v-if="customer.wallet_status === '1'"
+                                class="p-1 text-xs text-center text-blue-500 underline cursor-pointer">
                                 Enabled
+                            </div>
+                              <div v-else
+                                class="p-1 text-xs text-center text-blue-500 underline cursor-pointer">
+                                Disabled
                             </div>
 
                         </td>
@@ -410,7 +414,7 @@ export default {
 
         const customerStatus = computed(() => {
             return data.value.filter((customer) => {
-                return customer.status !== '0' && customer.wallet_status !== '1';
+                return customer.wallet_status === '0' || customer.wallet_status === '1';
             });
         });
 

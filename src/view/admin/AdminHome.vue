@@ -36,16 +36,16 @@
                             <RouterLink :to="{ name: 'withdrawal' }"
                                 class="flex items-center gap-2 px-3 py-2 text-sm text-white bg-blue-600 ">
                                 <p>New WithDraw</p>
-                                <p class="px-2 bg-red-500 rounded-full">{{ withdrawLoanDoc?.length }}</p>
+                                <p class="px-2 bg-red-500 rounded-full">{{ inactiveWithdrawLoanMembersCount }}</p>
                             </RouterLink>
                         </div>
                     </div>
                     <div class="flex items-center gap-2">
                         <div class="flex gap-1">
                             <p class="text-xs text-white uppercase">Profile៖ <span class="font-bold">{{ user?.email
-                            }}</span></p>
+                                    }}</span></p>
                         </div>
-                  
+
                         <div class="p-4 bg-gray-100 rounded-full shadow-xl">
 
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
@@ -157,7 +157,7 @@
                         </RouterLink>
                     </li>
 
-                     <li v-if="allowDeveloper" class="block">
+                    <li v-if="allowDeveloper" class="block">
                         <RouterLink :to="{ name: 'allMemberRegister' }"
                             class="flex items-center gap-3 px-4 py-2 font-thin rounded hover:bg-black/50">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -196,7 +196,7 @@
         </div>
 
         <!-- <pre>{{ roleDocs }}</pre> -->
-         
+
     </div>
 
 </template>
@@ -239,7 +239,7 @@ export default {
 
         const inactiveMembers = computed(() => {
             return members.value
-                ? members.value.filter(customer => !customer.status)
+                ? members.value.filter(customer => customer.wallet_status === '0')
                 : [];
         });
 
@@ -253,7 +253,15 @@ export default {
         });
 
         const inactiveLoanMembersCount = computed(() => inactiveLoanMembers.value.length);
+        //count withdraw loan
 
+        const inactiveWithdrawLoanMembers = computed(() => {
+            return withdrawLoanDoc.value
+                ? withdrawLoanDoc.value.filter(customer => customer.status === '1')
+                : [];
+        });
+
+        const inactiveWithdrawLoanMembersCount = computed(() => inactiveWithdrawLoanMembers.value.length);
 
 
 
@@ -282,7 +290,7 @@ export default {
         })
 
 
-          const allowDeveloper = computed(() => {
+        const allowDeveloper = computed(() => {
             return roleDoc.value?.some(role =>
                 role.email === user.value?.email &&
                 ['Developer'].includes(role.roles)
@@ -290,7 +298,7 @@ export default {
         })
 
 
-        return { handleLogout, user, inactiveMembersCount, inactiveLoanMembersCount, withdrawLoanDoc, isAdmin, allowSuperAdmin,allowAdmin,allowDeveloper }
+        return { handleLogout, user, inactiveMembersCount, inactiveLoanMembersCount, inactiveWithdrawLoanMembersCount, withdrawLoanDoc, isAdmin, allowSuperAdmin, allowAdmin, allowDeveloper }
 
     }
 }
